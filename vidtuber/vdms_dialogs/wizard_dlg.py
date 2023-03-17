@@ -190,7 +190,7 @@ class PageTwo(wx.Panel):
     def Locate(self, event):
         """
         The user browse manually to find ffmpeg, ffprobe,
-        ffplay executables
+        executables
 
         """
         self.parent.btnNext.Enable()
@@ -203,7 +203,7 @@ class PageTwo(wx.Panel):
     def detectbin(self, event):
         """
         The user push the auto-detect button to automatically
-        detect ffmpeg, ffprobe and ffplay on the O.S.
+        detect ffmpeg, ffprobe on the O.S.
 
         """
         if PageTwo.OS == 'Windows':
@@ -249,7 +249,7 @@ class PageTwo(wx.Panel):
 class PageThree(wx.Panel):
     """
     Shows panel to locate manually ffmpeg, ffprobe,
-    and ffplay executables and set attributes on parent.
+    executables and set attributes on parent.
 
     """
     get = wx.GetApp()
@@ -518,8 +518,7 @@ class Wizard(wx.Dialog):
 
         elif self.pageThree.IsShown():
             if (self.pageThree.ffmpegTxt.GetValue()
-                    and self.pageThree.ffprobeTxt.GetValue()
-                    and self.pageThree.ffplayTxt.GetValue()):
+                    and self.pageThree.ffprobeTxt.GetValue()):
                 self.pageThree.Hide()
                 self.pageFinish.Show()
                 self.btnNext.SetLabel(_('Finish'))

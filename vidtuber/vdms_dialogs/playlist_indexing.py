@@ -61,6 +61,12 @@ class Indexing(wx.Dialog):
     get = wx.GetApp()  # get data from bootstrap
     OS = get.appset['ostype']
     appdata = get.appset
+    if appdata['IS_DARK_THEME'] is True:
+        GREEN = '#136322'
+    elif appdata['IS_DARK_THEME'] is False:
+        GREEN = '#4CDD67'
+    else:
+        GREEN = '#40804C'
 
     HELPME = _('Click on "Playlist Items" column to specify indices of '
                'the videos in the playlist separated by commas like: '
@@ -138,7 +144,7 @@ class Indexing(wx.Dialog):
             self.lctrl.InsertItem(index, str(index + 1))
             self.lctrl.SetItem(index, 1, link)
             if '/playlist' in link:
-                self.lctrl.SetItemBackgroundColour(index, self.clrs['TXT3'])
+                self.lctrl.SetItemBackgroundColour(index, Indexing.GREEN)
 
             if not self.data == {'': ''}:
                 for key, val in self.data.items():
@@ -246,7 +252,7 @@ class Indexing(wx.Dialog):
         invalidmsg = _('WARNING: The selected URL does not refer to a '
                        'playlist. Only lines marked green can be indexed.')
 
-        colour = self.clrs['TXT3']
+        colour = Indexing.GREEN
 
         if event.GetColumn() in (0, 1):
             event.Veto()

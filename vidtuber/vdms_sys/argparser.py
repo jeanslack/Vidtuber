@@ -89,7 +89,7 @@ def arguments():
     argmts = parser.parse_args()
 
     if argmts.check:
-        deps = {'Required': {'ffmpeg': None, 'ffprobe': None, 'ffplay': None},
+        deps = {'Required': {'ffmpeg': None, 'ffprobe': None},
                 'Recommended': {'youtube-dl': None, 'yt-dlp': None},
                 'Optional': {'atomicparsley': None}
                 }
