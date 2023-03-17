@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.jeanslack.vidtuber</id>
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <name>Vidtuber</name>
+  <summary>GUI for FFmpeg and Youtube-dl</summary>
+  <icon type="remote">https://raw.githubusercontent.com/jeanslack/Vidtuber/master/vidtuber/art/icons/hicolor/scalable/apps/vidtuber.svg</icon>
+  <categories>
+    <category>AudioVideo</category>
+  </categories>
+
+  <description>
+    <p>
+      Vidtuber is a simple and cross-platform GUI for yt-dlp.
+    </p>
+    <p>
+      Vidtuber is written in Python3 using the wxPython-Phoenix GUI toolkit.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">io.github.jeanslack.vidtuber.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://jeanslack.github.io/Vidtuber/images/screenshots/HomePanel.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://jeanslack.github.io/Vidtuber/images/screenshots/crop-filter.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://jeanslack.github.io/Vidtuber/images/screenshots/download.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="homepage">https://github.com/jeanslack/Vidtuber/</url>
+  <url type="bugtracker">https://github.com/jeanslack/Vidtuber/issues</url>
+  <url type="translate">https://github.com/jeanslack/Vidtuber/tree/master/docs/localization_guidelines.md</url>
+
+  <provides>
+    <binary>vidtuber</binary>
+  </provides>
+</component>

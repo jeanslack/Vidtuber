@@ -1,0 +1,906 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 14:57+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../gui_app.py:151
+msgid ""
+"Permission denied: {}\n"
+"\n"
+"Check execution permissions."
+msgstr ""
+
+#: ../gui_app.py:231
+#, python-brace-format
+msgid ""
+"Unexpected error while deleting file contents:\n"
+"\n"
+"{0}"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:57
+msgid "Please take a moment to set up the application"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:58
+msgid "Click the \"Next\" button to get started"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:73
+msgid "Welcome to the Vidtuber Wizard!"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:115
+msgid "Vidtuber is an application based on yt-dlp\n"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:117
+msgid ""
+"yt-dlp strongly recommends FFmpeg and FFprobe, required for\n"
+"merging separate video and audio files as well as for various\n"
+"post-processing tasks."
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:121
+msgid ""
+"If you have already installed FFmpeg on your operating\n"
+"system, click the \"Auto-detection\" button."
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:124
+msgid ""
+"If you want to use a version of FFmpeg located on your\n"
+"filesystem but not installed on your operating system,\n"
+"click the \"Locate\" button."
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:146
+msgid "Auto-detection"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:148
+msgid "Locate"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:199
+msgid "Click the \"Next\" button"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:220
+msgid ""
+"'{}' is not installed on your computer. Install it or indicate another "
+"location by clicking the 'Locate' button."
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:234
+msgid ""
+"Vidtuber already seems to include FFmpeg.\n"
+"\n"
+"Do you want to use that?"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:236
+msgid "Vidtuber: Please Confirm"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:259
+msgid "Locating FFmpeg executables\n"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:261
+msgid ""
+"\"ffmpeg\" and \"ffprobe\" are required. Complete all the text\n"
+"boxes below by clicking on the respective buttons."
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:330 ../vdms_dialogs/wizard_dlg.py:347
+#: ../vdms_dialogs/preferences.py:422 ../vdms_dialogs/preferences.py:464
+msgid "Choose the {} executable"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:369
+msgid "Wizard completed successfully!\n"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:370
+msgid ""
+"Remember that you can always change these settings later, through the Setup "
+"dialog."
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:372
+msgid "Thank You!"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:373
+msgid "To exit click the \"Finish\" button"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:461
+msgid "< Previous"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:464 ../vdms_dialogs/wizard_dlg.py:549
+msgid "Next >"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:469
+msgid "Vidtuber Wizard"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:498 ../vdms_dialogs/wizard_dlg.py:517
+#: ../vdms_dialogs/wizard_dlg.py:525
+msgid "Finish"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:527
+msgid "Some text boxes are still incomplete"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:576
+msgid "Re-start is required"
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:577
+msgid "Done!"
+msgstr ""
+
+#: ../vdms_dialogs/infoprg.py:62
+msgid "A simple and cross-platform GUI for yt-dlp.\n"
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:50 ../vdms_dialogs/ydl_mediainfo.py:69
+msgid "URL"
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:51
+msgid "Playlist Items"
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:65
+msgid ""
+"Click on \"Playlist Items\" column to specify indices of the videos in the "
+"playlist separated by commas like: \"1,2,5,8\" if you want to download "
+"videos indexed 1, 2, 5, 8 in the playlist.\n"
+"\n"
+"You can specify range: \"1-3,7,10-13\" it will download the videos at index "
+"1, 2, 3, 7, 10, 11, 12 and 13.\n"
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:101
+msgid "Playlist video items to download"
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:110 ../vdms_panels/youtubedl_ui.py:356
+msgid "Help viewer"
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:121
+msgid "Reset"
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:125
+msgid "Apply"
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:215
+msgid "ERROR: Invalid option"
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:216
+msgid "please try again."
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:217
+msgid "OK: Indexes to download"
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:246
+msgid ""
+"WARNING: The selected URL does not refer to a playlist. Only lines marked "
+"green can be indexed."
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:74
+msgid "Application Language"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:85
+msgid "Clear the cache when exiting the application"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:88
+msgid "Delete the contents of the log files when exiting the application"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:93
+msgid "Warn on exit"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:97
+msgid "Configuration folder"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:109
+msgid "Log folder"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:121
+msgid "Miscellanea"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:127
+msgid "Where do you prefer to save your downloads?"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:142
+msgid "Auto-create subfolders when downloading playlists"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:147
+msgid "File Preferences"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:154
+msgid "Path to the FFmpeg executables"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:157
+msgid "Enable another location to run FFmpeg"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:169
+msgid "Enable another location to run FFprobe"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:181
+msgid "FFmpeg"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:187
+msgid "Icon themes"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:189
+msgid ""
+"The chosen icon theme will only change the icons,\n"
+"background and foreground of some text fields."
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:209
+msgid "Toolbar customization"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:211
+msgid "At the top of window (default)"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:212
+msgid "At the bottom of window"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:213
+msgid "At the right of window"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:214
+msgid "At the left of window"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:216
+msgid "Place the toolbar"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:226
+msgid "Icon size:"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:239
+msgid "Shows the text in the toolbar buttons"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:244
+msgid "Appearance"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:265 ../vdms_main/main_frame.py:318
+msgid "Settings"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:375
+msgid "Set a persistent location to save the file downloads"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:563
+msgid ""
+"Changes will take effect once the program has been restarted.\n"
+"\n"
+"Do you want to exit the application now?"
+msgstr ""
+
+#: ../vdms_dialogs/preferences.py:566 ../vdms_main/main_frame.py:237
+msgid "Exit"
+msgstr ""
+
+#: ../vdms_dialogs/vidtuber_check_version.py:63
+msgid "Get Latest Version"
+msgstr ""
+
+#: ../vdms_dialogs/vidtuber_check_version.py:67
+msgid "Checking for newer version"
+msgstr ""
+
+#: ../vdms_dialogs/vidtuber_check_version.py:95
+msgid ""
+"\n"
+"\n"
+"New releases fix bugs and offer new features."
+msgstr ""
+
+#: ../vdms_dialogs/vidtuber_check_version.py:96
+#, python-brace-format
+msgid ""
+"\n"
+"\n"
+"This is Vidtuber v.{0}\n"
+"\n"
+msgstr ""
+
+#: ../vdms_dialogs/ydl_mediainfo.py:65
+msgid "Statistics viewer"
+msgstr ""
+
+#: ../vdms_dialogs/ydl_mediainfo.py:68
+msgid "TITLE SELECTION"
+msgstr ""
+
+#: ../vdms_dialogs/showlogs.py:66
+msgid "Log file list"
+msgstr ""
+
+#: ../vdms_dialogs/showlogs.py:68
+msgid "Log messages"
+msgstr ""
+
+#: ../vdms_dialogs/showlogs.py:91
+msgid "Refresh all log files"
+msgstr ""
+
+#: ../vdms_dialogs/showlogs.py:96
+msgid "Clear selected log"
+msgstr ""
+
+#: ../vdms_dialogs/showlogs.py:106
+msgid "Showing log messages"
+msgstr ""
+
+#: ../vdms_dialogs/showlogs.py:133
+msgid "Select a log file"
+msgstr ""
+
+#: ../vdms_dialogs/showlogs.py:140
+msgid "Are you sure you want to clear the selected log file?"
+msgstr ""
+
+#: ../vdms_io/io_tools.py:61
+msgid "Vidtuber - Loading..."
+msgstr ""
+
+#: ../vdms_io/io_tools.py:62
+msgid ""
+"Wait....\n"
+"Retrieving required data."
+msgstr ""
+
+#: ../vdms_main/main_frame.py:117 ../vdms_main/main_frame.py:166
+#: ../vdms_main/main_frame.py:772 ../vdms_main/main_frame.py:807
+#: ../vdms_panels/youtubedl_ui.py:666
+msgid "Ready"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:165
+msgid "Vidtuber"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:236
+msgid "Are you sure you want to exit?"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:268
+msgid "Downloads folder\tCtrl+D"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:269
+msgid "Open the default downloads folder"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:272
+msgid "Open temporary downloads"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:273
+msgid "Open the temporary downloads folder"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:278
+msgid "Work Notes\tCtrl+N"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:279
+msgid "Read and write useful notes and reminders."
+msgstr ""
+
+#: ../vdms_main/main_frame.py:282
+msgid "Exit\tCtrl+Q"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:283
+msgid "Close Vidtuber"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:284
+msgid "File"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:288
+msgid "Version in Use"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:289
+msgid "Shows the version in use"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:291
+msgid "Show the latest version..."
+msgstr ""
+
+#: ../vdms_main/main_frame.py:292
+msgid "Shows the latest version available on github.com"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:296
+msgid "Show Logs\tCtrl+L"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:297
+msgid "Viewing log messages"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:299
+msgid "View"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:304 ../vdms_panels/textdrop.py:79
+msgid "Set up a temporary folder for downloads"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:305
+msgid "Save all downloads to this temporary location"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:308
+msgid "Restore the default destination folders"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:309
+msgid "Restore the default folders for file conversions and downloads"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:316
+msgid "Preferences\tCtrl+P"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:317
+msgid "Application preferences"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:322
+msgid "User Guide"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:323
+msgid "Wiki"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:325
+msgid "Issue tracker"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:327
+msgid "Translation..."
+msgstr ""
+
+#: ../vdms_main/main_frame.py:329
+msgid "Donation"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:332
+msgid "Check for newer version"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:333
+msgid ""
+"Check for the latest Vidtuber version at <https://pypi.org/project/vidtuber/>"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:337
+msgid "System version"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:338
+msgid ""
+"Get version about your operating system, version of Python and wxPython."
+msgstr ""
+
+#: ../vdms_main/main_frame.py:341
+msgid "About Vidtuber"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:342
+msgid "Help"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:412
+#, python-brace-format
+msgid ""
+"Unexpected error while creating file:\n"
+"\n"
+"{0}"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:427
+#, python-brace-format
+msgid "You are using '{0}' version {1}"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:452
+#, python-brace-format
+msgid "{0}: Latest version available: {1}"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:482
+msgid "Choose a temporary destination for downloads"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:511
+msgid "Default destination folders successfully restored"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:592
+#, python-brace-format
+msgid "A new release is available - v.{0}\n"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:595
+msgid "You are using a development version that has not yet been released!\n"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:598
+msgid "Congratulation! You are already using the latest version.\n"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:682
+msgid "Go to the previous panel"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:683
+msgid "Back"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:687
+msgid "Go to the next panel"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:688
+msgid "Next"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:692
+msgid "Shows statistics and information"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:693
+msgid "Statistics"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:697
+msgid "Start downloading"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:698
+msgid "Download"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:702
+msgid "Stops current process"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:703
+msgid "Stop"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:706
+msgid "Clear the URL list"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:707
+msgid "Clear"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:748
+msgid "ERROR: Invalid URL: \"{}\""
+msgstr ""
+
+#: ../vdms_main/main_frame.py:752
+msgid "ERROR: Some equal URLs found"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:773
+msgid "Vidtuber - Queued URLs"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:794
+msgid "URL list changed, please check the settings again."
+msgstr ""
+
+#: ../vdms_main/main_frame.py:809
+msgid "Vidtuber - YouTube Downloader"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:825
+msgid "Viewing last log"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:834
+msgid "Vidtuber - Output Monitor"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:132
+msgid ""
+"At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:166
+msgid "Precompiled Videos"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:167
+msgid "Download videos by resolution"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:168
+msgid "Download split audio and video"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:169
+msgid "Download Audio only"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:170
+msgid "Download by format code"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:208
+msgid "Options"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:242
+msgid ""
+"When not available, the chosen video resolution will be replaced with the "
+"closest one"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:246
+msgid "Preferred video format"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:279
+msgid "Download all videos in playlist"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:284
+msgid "Playlist Editor"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:290
+msgid "Don’t check SSL certificate"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:294
+msgid "Embed thumbnail in audio file"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:298
+msgid "Add metadata to file"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:302
+msgid "Write subtitles to video"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:307
+msgid "Download all available subtitles"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:315
+msgid "Download subtitles only"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:322
+msgid "Prevent overwriting files"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:326
+msgid ""
+"Include the video ID\n"
+"in the file names"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:332
+msgid "Restrict file names"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:474
+msgid "Format Code"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:475 ../vdms_panels/youtubedl_ui.py:584
+msgid "Url"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:476 ../vdms_panels/youtubedl_ui.py:585
+msgid "Title"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:477
+msgid "Extension"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:478
+msgid "Resolution"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:479
+msgid "Video Codec"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:480
+msgid "fps"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:481
+msgid "Audio Codec"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:482
+msgid "Size"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:520
+#, python-brace-format
+msgid ""
+"ERROR: Unable to get format codes.\n"
+"\n"
+"Unsupported URL:\n"
+"'{0}'"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:586
+msgid "Quality"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:646
+#, python-brace-format
+msgid ""
+"Unable to get format codes on '{0}'\n"
+"\n"
+"Unsupported '{0}':\n"
+"'{1}'"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:802
+msgid "URLs have no playlist references"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:935
+msgid "The URLs contain playlists. Are you sure you want to continue?"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:937 ../vdms_panels/youtubedl_ui.py:943
+#: ../vdms_panels/long_processing_task.py:274
+msgid "Please confirm"
+msgstr ""
+
+#: ../vdms_panels/youtubedl_ui.py:941
+msgid "The URLs contain channels. Are you sure you want to continue?"
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:43
+msgid "[Vidtuber]: SUCCESS !"
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:44
+msgid "[Vidtuber]: FAILED !"
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:45
+msgid "Sorry, all task failed !"
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:46
+msgid "The process was stopped due to a fatal error."
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:47
+msgid "Interrupted Process !"
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:48
+msgid "Successfully completed !"
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:49
+msgid "Not everything was successful."
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:74
+msgid "Process log:"
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:204
+msgid "Fatal Error !"
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:213
+msgid "Get your files at the destination you specified"
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:221
+#: ../vdms_panels/long_processing_task.py:228
+msgid ""
+"Check the current output or read the related log file for more information."
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:233
+msgid "...Finished"
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:246
+msgid ""
+"wait... all operations will be stopped at the end of the download in "
+"progress "
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:250
+msgid "...Interrupted"
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:271
+msgid ""
+"There are still processes running.. if you want to stop them, use the \"Abort"
+"\" button.\n"
+"\n"
+"Do you want to kill application?"
+msgstr ""
+
+#: ../vdms_panels/textdrop.py:47
+msgid "Enter URLs below"
+msgstr ""
+
+#: ../vdms_panels/textdrop.py:81
+msgid "Destination folder"
+msgstr ""

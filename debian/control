@@ -1,0 +1,25 @@
+Source: vidtuber
+Maintainer: Gianluca Pernigotto <jeanlucperni@gmail.com>
+Section: python
+Priority: optional
+Build-Depends: python3-setuptools, python3-all, debhelper (>=11~), dh-python
+Standards-Version: 4.1.4
+Homepage: https://github.com/jeanslack/Vidtuber
+X-Python3-Version: >= 3.7
+
+Package: python3-vidtuber
+Architecture: all
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         yt-dlp,
+         ffmpeg,
+         python3-wxgtk4.0,
+         python3-pubsub,
+         python3-requests
+Suggests: atomicparsley
+
+Description: Vidtuber is a GUI for downloading video, audio and other media
+ types using yt-dlp.
+ .
+ Vidtuber is written in Python3 using the wxPython GUI toolkit, it is
+ cross-platform and work on Gnu/Linux, macOS, MS-Windows and FreeBSD.

@@ -1,0 +1,4133 @@
+# Dutch translation for Vidtuber.
+# Copyleft -  2023 Gianluca Pernigotto
+# This file is distributed under the same license as the Vidtuber package
+# FIRST AUTHOR Gianluca Pernigotto <jeanlucperni@gmail.com>, 2021
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Vidtuber 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 14:57+0100\n"
+"PO-Revision-Date: 2023-03-17 15:49+0100\n"
+"Last-Translator: johannesdedoper <https://github.com/johannesdedoper>\n"
+"Language-Team: Dutch <>\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.2\n"
+
+#: ../gui_app.py:151
+msgid ""
+"Permission denied: {}\n"
+"\n"
+"Check execution permissions."
+msgstr ""
+"Toegang geweigerd: {}\n"
+"\n"
+"Controleer de uitvoeringsrechten."
+
+#: ../gui_app.py:231
+#, python-brace-format
+msgid ""
+"Unexpected error while deleting file contents:\n"
+"\n"
+"{0}"
+msgstr ""
+"Onverwachte fout bij het verwijderen van bestands inhoud:\n"
+"\n"
+"{0}"
+
+#: ../vdms_dialogs/wizard_dlg.py:57
+msgid "Please take a moment to set up the application"
+msgstr "Neem even de tijd om het programma in te stellen"
+
+#: ../vdms_dialogs/wizard_dlg.py:58
+msgid "Click the \"Next\" button to get started"
+msgstr "Druk de knop \"Volgende\" om te beginnen"
+
+#: ../vdms_dialogs/wizard_dlg.py:73
+msgid "Welcome to the Vidtuber Wizard!"
+msgstr "Welkom bij de Vidtuber Wizard!"
+
+#: ../vdms_dialogs/wizard_dlg.py:115
+msgid "Vidtuber is an application based on yt-dlp\n"
+msgstr "Vidtuber is gebaseerd op yt-dlp\n"
+
+#: ../vdms_dialogs/wizard_dlg.py:117
+msgid ""
+"yt-dlp strongly recommends FFmpeg and FFprobe, required for\n"
+"merging separate video and audio files as well as for various\n"
+"post-processing tasks."
+msgstr ""
+
+#: ../vdms_dialogs/wizard_dlg.py:121
+msgid ""
+"If you have already installed FFmpeg on your operating\n"
+"system, click the \"Auto-detection\" button."
+msgstr ""
+"Wanneer FFmpeg al op uw besturingssysteem is\n"
+"geïnstalleerd, druk de \"Auto-detectie\" knop."
+
+#: ../vdms_dialogs/wizard_dlg.py:124
+msgid ""
+"If you want to use a version of FFmpeg located on your\n"
+"filesystem but not installed on your operating system,\n"
+"click the \"Locate\" button."
+msgstr ""
+"Wanneer u een FFmpeg versie wilt gebruiken die aanwezig is\n"
+"op uw bestandssysteem, maar niet is geïnstalleerd op uw besturingssysteem,\n"
+"druk de \"Lokaliseer\" knop."
+
+#: ../vdms_dialogs/wizard_dlg.py:146
+msgid "Auto-detection"
+msgstr "Automatische detectie"
+
+#: ../vdms_dialogs/wizard_dlg.py:148
+msgid "Locate"
+msgstr "Lokaliseer"
+
+#: ../vdms_dialogs/wizard_dlg.py:199
+msgid "Click the \"Next\" button"
+msgstr "Druk de knop \"Volgende\""
+
+#: ../vdms_dialogs/wizard_dlg.py:220
+msgid ""
+"'{}' is not installed on your computer. Install it or indicate another "
+"location by clicking the 'Locate' button."
+msgstr ""
+"'{}' is niet op uw computer geïnstalleerd. Installeer het of geef een andere "
+"lokatie aan, door op de 'Lokaliseer' knop te drukken."
+
+#: ../vdms_dialogs/wizard_dlg.py:234
+msgid ""
+"Vidtuber already seems to include FFmpeg.\n"
+"\n"
+"Do you want to use that?"
+msgstr ""
+"Vidtuber blijkt reeds FFmpeg te bevatten.\n"
+"\n"
+"Wilt u deze gebruiken?"
+
+#: ../vdms_dialogs/wizard_dlg.py:236
+msgid "Vidtuber: Please Confirm"
+msgstr "Vidtuber: Gelieve te bevestigen"
+
+#: ../vdms_dialogs/wizard_dlg.py:259
+msgid "Locating FFmpeg executables\n"
+msgstr "Bezig FFmpeg programmabestanden te lokaliseren\n"
+
+#: ../vdms_dialogs/wizard_dlg.py:261
+msgid ""
+"\"ffmpeg\" and \"ffprobe\" are required. Complete all the text\n"
+"boxes below by clicking on the respective buttons."
+msgstr ""
+"\"ffmpeg\" en \"ffprobe\" zijn vereist. Vul alle onderstaande\n"
+"tekstkaders in, door op de betreffende knoppen te drukken."
+
+#: ../vdms_dialogs/wizard_dlg.py:330 ../vdms_dialogs/wizard_dlg.py:347
+#: ../vdms_dialogs/preferences.py:422 ../vdms_dialogs/preferences.py:464
+msgid "Choose the {} executable"
+msgstr "Kies het {} programmabestand"
+
+#: ../vdms_dialogs/wizard_dlg.py:369
+msgid "Wizard completed successfully!\n"
+msgstr "Wizard met succes afgerond!\n"
+
+#: ../vdms_dialogs/wizard_dlg.py:370
+msgid ""
+"Remember that you can always change these settings later, through the Setup "
+"dialog."
+msgstr ""
+"Bedenk dat u deze instellingen later altijd kunt wijzigen door het "
+"Installatie dialoogscherm."
+
+#: ../vdms_dialogs/wizard_dlg.py:372
+msgid "Thank You!"
+msgstr "Dank U!"
+
+#: ../vdms_dialogs/wizard_dlg.py:373
+msgid "To exit click the \"Finish\" button"
+msgstr "Klik op de knop \"Voltooi\" om af te sluiten"
+
+#: ../vdms_dialogs/wizard_dlg.py:461
+msgid "< Previous"
+msgstr "< Vorige"
+
+#: ../vdms_dialogs/wizard_dlg.py:464 ../vdms_dialogs/wizard_dlg.py:549
+msgid "Next >"
+msgstr "Volgende >"
+
+#: ../vdms_dialogs/wizard_dlg.py:469
+msgid "Vidtuber Wizard"
+msgstr "Vidtuber Wizard"
+
+#: ../vdms_dialogs/wizard_dlg.py:498 ../vdms_dialogs/wizard_dlg.py:517
+#: ../vdms_dialogs/wizard_dlg.py:525
+msgid "Finish"
+msgstr "Voltooi"
+
+#: ../vdms_dialogs/wizard_dlg.py:527
+msgid "Some text boxes are still incomplete"
+msgstr "Enkele tekstkaders zijn nog onvolledig"
+
+#: ../vdms_dialogs/wizard_dlg.py:576
+msgid "Re-start is required"
+msgstr "Herstart is vereist"
+
+#: ../vdms_dialogs/wizard_dlg.py:577
+msgid "Done!"
+msgstr "Klaar!"
+
+#: ../vdms_dialogs/infoprg.py:62
+msgid "A simple and cross-platform GUI for yt-dlp.\n"
+msgstr ""
+
+#: ../vdms_dialogs/playlist_indexing.py:50 ../vdms_dialogs/ydl_mediainfo.py:69
+msgid "URL"
+msgstr "URL"
+
+#: ../vdms_dialogs/playlist_indexing.py:51
+msgid "Playlist Items"
+msgstr "Afspeellijst Bestanden"
+
+#: ../vdms_dialogs/playlist_indexing.py:65
+msgid ""
+"Click on \"Playlist Items\" column to specify indices of the videos in the "
+"playlist separated by commas like: \"1,2,5,8\" if you want to download "
+"videos indexed 1, 2, 5, 8 in the playlist.\n"
+"\n"
+"You can specify range: \"1-3,7,10-13\" it will download the videos at index "
+"1, 2, 3, 7, 10, 11, 12 and 13.\n"
+msgstr ""
+"Klik op \"Afspeellijst Bestanden\" kolom om de index te specificeren voor de "
+"videos in de afspeellijst gescheiden door komma's bijvoorbeeld: \"1,2,5,8\" "
+"als u videos wilt downloaden met index 1, 2, 5, 8 in de afspeellijst.\n"
+"\n"
+"U kunt een specifieke range opgeven: \"1-3,7,10-13\" het zal de videos "
+"downloaden met de index 1, 2, 3, 7, 10, 11, 12 and 13.\n"
+
+#: ../vdms_dialogs/playlist_indexing.py:101
+msgid "Playlist video items to download"
+msgstr "Afspeellijst video's om te downloaden"
+
+#: ../vdms_dialogs/playlist_indexing.py:110 ../vdms_panels/youtubedl_ui.py:356
+msgid "Help viewer"
+msgstr "Hulp viewer"
+
+#: ../vdms_dialogs/playlist_indexing.py:121
+msgid "Reset"
+msgstr "Reset"
+
+#: ../vdms_dialogs/playlist_indexing.py:125
+msgid "Apply"
+msgstr "Toepassen"
+
+#: ../vdms_dialogs/playlist_indexing.py:215
+msgid "ERROR: Invalid option"
+msgstr "ERROR: Niet bestaande optie"
+
+#: ../vdms_dialogs/playlist_indexing.py:216
+msgid "please try again."
+msgstr "probeer het aub. nogmaals."
+
+#: ../vdms_dialogs/playlist_indexing.py:217
+msgid "OK: Indexes to download"
+msgstr "OK: Index om te downloaden"
+
+#: ../vdms_dialogs/playlist_indexing.py:246
+msgid ""
+"WARNING: The selected URL does not refer to a playlist. Only lines marked "
+"green can be indexed."
+msgstr ""
+"PAS OP: De gekozen URL verwijst NIET naar een afspeellijst. Alleen de groen "
+"gemarkeerde kunnen worden geindexeerd."
+
+#: ../vdms_dialogs/preferences.py:74
+msgid "Application Language"
+msgstr "Applicatie voorkeuren"
+
+#: ../vdms_dialogs/preferences.py:85
+msgid "Clear the cache when exiting the application"
+msgstr "Maak cache leeg als programma beëindigd wordt"
+
+#: ../vdms_dialogs/preferences.py:88
+msgid "Delete the contents of the log files when exiting the application"
+msgstr "Wis de log files als programma beëindigd wordt"
+
+#: ../vdms_dialogs/preferences.py:93
+msgid "Warn on exit"
+msgstr "Waarschuw bij afsluiten"
+
+#: ../vdms_dialogs/preferences.py:97
+msgid "Configuration folder"
+msgstr "Configuratie folder"
+
+#: ../vdms_dialogs/preferences.py:109
+msgid "Log folder"
+msgstr "Log folder"
+
+#: ../vdms_dialogs/preferences.py:121
+msgid "Miscellanea"
+msgstr "Diversen"
+
+#: ../vdms_dialogs/preferences.py:127
+msgid "Where do you prefer to save your downloads?"
+msgstr "Waar wilt u gedownloade bestanden bewaren?"
+
+#: ../vdms_dialogs/preferences.py:142
+msgid "Auto-create subfolders when downloading playlists"
+msgstr "Maak automatisch sub-mappen bij downloaden van afspeellijsten"
+
+#: ../vdms_dialogs/preferences.py:147
+msgid "File Preferences"
+msgstr "Bestands Voorkeuren"
+
+#: ../vdms_dialogs/preferences.py:154
+msgid "Path to the FFmpeg executables"
+msgstr "Pad naar de programmabestanden"
+
+#: ../vdms_dialogs/preferences.py:157
+msgid "Enable another location to run FFmpeg"
+msgstr "Activeer een andere lokatie om FFmpeg uit te voeren"
+
+#: ../vdms_dialogs/preferences.py:169
+msgid "Enable another location to run FFprobe"
+msgstr "Activeer een andere lokatie om FFprobe uit te voeren"
+
+#: ../vdms_dialogs/preferences.py:181
+msgid "FFmpeg"
+msgstr "FFmpeg"
+
+#: ../vdms_dialogs/preferences.py:187
+msgid "Icon themes"
+msgstr "Icoon thema's"
+
+#: ../vdms_dialogs/preferences.py:189
+msgid ""
+"The chosen icon theme will only change the icons,\n"
+"background and foreground of some text fields."
+msgstr ""
+"instellen van iconen zal ook de achtergrond\n"
+"en voorgrond wijzigen van bepaalde tekstvelden."
+
+#: ../vdms_dialogs/preferences.py:209
+msgid "Toolbar customization"
+msgstr "Knoppenbalk aanpassing"
+
+#: ../vdms_dialogs/preferences.py:211
+msgid "At the top of window (default)"
+msgstr "Bovenaan venster (standaard)"
+
+#: ../vdms_dialogs/preferences.py:212
+msgid "At the bottom of window"
+msgstr "Onderaan venster"
+
+#: ../vdms_dialogs/preferences.py:213
+msgid "At the right of window"
+msgstr "Rechts van venster"
+
+#: ../vdms_dialogs/preferences.py:214
+msgid "At the left of window"
+msgstr "Links van venster"
+
+#: ../vdms_dialogs/preferences.py:216
+msgid "Place the toolbar"
+msgstr "Plaats de knoppenbalk"
+
+#: ../vdms_dialogs/preferences.py:226
+msgid "Icon size:"
+msgstr "Icoon grootte:"
+
+#: ../vdms_dialogs/preferences.py:239
+msgid "Shows the text in the toolbar buttons"
+msgstr "Toont de tekst in de knoppenbalk knoppen"
+
+#: ../vdms_dialogs/preferences.py:244
+msgid "Appearance"
+msgstr "Uiterlijk"
+
+#: ../vdms_dialogs/preferences.py:265 ../vdms_main/main_frame.py:318
+msgid "Settings"
+msgstr "Instellingen"
+
+#: ../vdms_dialogs/preferences.py:375
+msgid "Set a persistent location to save the file downloads"
+msgstr "Geef een vaste lokatie waar u de download-bestanden wilt bewaren"
+
+#: ../vdms_dialogs/preferences.py:563
+msgid ""
+"Changes will take effect once the program has been restarted.\n"
+"\n"
+"Do you want to exit the application now?"
+msgstr ""
+"Wijzigingen worden pas doorgevoerd na herstart van dit programma.\n"
+"\n"
+"Wil je het programma nu sluiten?"
+
+#: ../vdms_dialogs/preferences.py:566 ../vdms_main/main_frame.py:237
+msgid "Exit"
+msgstr "Afsluiten"
+
+#: ../vdms_dialogs/vidtuber_check_version.py:63
+msgid "Get Latest Version"
+msgstr "Download laatste versie"
+
+#: ../vdms_dialogs/vidtuber_check_version.py:67
+msgid "Checking for newer version"
+msgstr "Controleren voor een nieuwere versie"
+
+#: ../vdms_dialogs/vidtuber_check_version.py:95
+msgid ""
+"\n"
+"\n"
+"New releases fix bugs and offer new features."
+msgstr ""
+"\n"
+"\n"
+"Nieuwe versies repareren bugs en brengen nieuwe features."
+
+#: ../vdms_dialogs/vidtuber_check_version.py:96
+#, python-brace-format
+msgid ""
+"\n"
+"\n"
+"This is Vidtuber v.{0}\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Dit is Vidtuber v.{0}\n"
+"\n"
+
+#: ../vdms_dialogs/ydl_mediainfo.py:65
+msgid "Statistics viewer"
+msgstr "Statistieken viewer"
+
+#: ../vdms_dialogs/ydl_mediainfo.py:68
+msgid "TITLE SELECTION"
+msgstr "TITEL SELECTIE"
+
+#: ../vdms_dialogs/showlogs.py:66
+msgid "Log file list"
+msgstr "Log bestanden lijst"
+
+#: ../vdms_dialogs/showlogs.py:68
+msgid "Log messages"
+msgstr "Log-berichten"
+
+#: ../vdms_dialogs/showlogs.py:91
+msgid "Refresh all log files"
+msgstr "Vernieuw alle log bestanden"
+
+#: ../vdms_dialogs/showlogs.py:96
+msgid "Clear selected log"
+msgstr "Wis geselecteerde log"
+
+#: ../vdms_dialogs/showlogs.py:106
+msgid "Showing log messages"
+msgstr "Log-berichten tonen"
+
+#: ../vdms_dialogs/showlogs.py:133
+msgid "Select a log file"
+msgstr "Selecteer een log bestand"
+
+#: ../vdms_dialogs/showlogs.py:140
+msgid "Are you sure you want to clear the selected log file?"
+msgstr "Wilt u echt dit log-bestand legen ?"
+
+#: ../vdms_io/io_tools.py:61
+msgid "Vidtuber - Loading..."
+msgstr "Vidtuber - Laden..."
+
+#: ../vdms_io/io_tools.py:62
+msgid ""
+"Wait....\n"
+"Retrieving required data."
+msgstr ""
+"Wacht....\n"
+"Vereiste data wordt opgehaald."
+
+#: ../vdms_main/main_frame.py:117 ../vdms_main/main_frame.py:166
+#: ../vdms_main/main_frame.py:772 ../vdms_main/main_frame.py:807
+#: ../vdms_panels/youtubedl_ui.py:666
+msgid "Ready"
+msgstr "Gereed"
+
+#: ../vdms_main/main_frame.py:165
+msgid "Vidtuber"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:236
+msgid "Are you sure you want to exit?"
+msgstr "Afsluiten : bent u zeker?"
+
+#: ../vdms_main/main_frame.py:268
+msgid "Downloads folder\tCtrl+D"
+msgstr "Downloads map\tCtrl+D"
+
+#: ../vdms_main/main_frame.py:269
+msgid "Open the default downloads folder"
+msgstr "Open de standaard downloads map"
+
+#: ../vdms_main/main_frame.py:272
+msgid "Open temporary downloads"
+msgstr "Open tijdelijke downloads"
+
+#: ../vdms_main/main_frame.py:273
+msgid "Open the temporary downloads folder"
+msgstr "Open de tijdelijke downloads map"
+
+#: ../vdms_main/main_frame.py:278
+msgid "Work Notes\tCtrl+N"
+msgstr "Notities\tCtrl+N"
+
+#: ../vdms_main/main_frame.py:279
+msgid "Read and write useful notes and reminders."
+msgstr "Lees en maak notities en reminders."
+
+#: ../vdms_main/main_frame.py:282
+msgid "Exit\tCtrl+Q"
+msgstr "Afsluiten\tCtrl+Q"
+
+#: ../vdms_main/main_frame.py:283
+msgid "Close Vidtuber"
+msgstr "Sluit Vidtuber af"
+
+#: ../vdms_main/main_frame.py:284
+msgid "File"
+msgstr "Bestand"
+
+#: ../vdms_main/main_frame.py:288
+msgid "Version in Use"
+msgstr "Gebruikte versie"
+
+#: ../vdms_main/main_frame.py:289
+msgid "Shows the version in use"
+msgstr "Toont de gebruikte versie"
+
+#: ../vdms_main/main_frame.py:291
+msgid "Show the latest version..."
+msgstr "Toon de laatste versie..."
+
+#: ../vdms_main/main_frame.py:292
+msgid "Shows the latest version available on github.com"
+msgstr "Toont de laatst beschikbare versie op github.com"
+
+#: ../vdms_main/main_frame.py:296
+msgid "Show Logs\tCtrl+L"
+msgstr "Toon Log-berichten\tCtrl+L"
+
+#: ../vdms_main/main_frame.py:297
+msgid "Viewing log messages"
+msgstr "Log-berichten bekijken"
+
+#: ../vdms_main/main_frame.py:299
+msgid "View"
+msgstr "Bekijk"
+
+#: ../vdms_main/main_frame.py:304 ../vdms_panels/textdrop.py:79
+msgid "Set up a temporary folder for downloads"
+msgstr "Stel een tijdelijke folder in voor downloads"
+
+#: ../vdms_main/main_frame.py:305
+msgid "Save all downloads to this temporary location"
+msgstr "Bewaar alle downloads in deze tijdelijke locatie"
+
+#: ../vdms_main/main_frame.py:308
+msgid "Restore the default destination folders"
+msgstr "Herstel de standaard bestemming-folders"
+
+#: ../vdms_main/main_frame.py:309
+msgid "Restore the default folders for file conversions and downloads"
+msgstr "Herstel de standaard folders voor bestand-conversie en downloads"
+
+#: ../vdms_main/main_frame.py:316
+msgid "Preferences\tCtrl+P"
+msgstr "Voorkeuren\tCtrl+P"
+
+#: ../vdms_main/main_frame.py:317
+msgid "Application preferences"
+msgstr "Applicatie voorkeuren"
+
+#: ../vdms_main/main_frame.py:322
+msgid "User Guide"
+msgstr "Handleiding"
+
+#: ../vdms_main/main_frame.py:323
+msgid "Wiki"
+msgstr "Wiki"
+
+#: ../vdms_main/main_frame.py:325
+msgid "Issue tracker"
+msgstr "Issue tracker"
+
+#: ../vdms_main/main_frame.py:327
+msgid "Translation..."
+msgstr "Vertaling..."
+
+#: ../vdms_main/main_frame.py:329
+msgid "Donation"
+msgstr "Donatie"
+
+#: ../vdms_main/main_frame.py:332
+msgid "Check for newer version"
+msgstr "Ga nieuwere versie na"
+
+#: ../vdms_main/main_frame.py:333
+msgid ""
+"Check for the latest Vidtuber version at <https://pypi.org/project/vidtuber/>"
+msgstr ""
+"Ga de nieuwste Vidtuber versie na op <https://pypi.org/project/vidtuber/>"
+
+#: ../vdms_main/main_frame.py:337
+msgid "System version"
+msgstr "Toont de gebruikte versie"
+
+#: ../vdms_main/main_frame.py:338
+msgid ""
+"Get version about your operating system, version of Python and wxPython."
+msgstr ""
+
+#: ../vdms_main/main_frame.py:341
+msgid "About Vidtuber"
+msgstr "Over Vidtuber"
+
+#: ../vdms_main/main_frame.py:342
+msgid "Help"
+msgstr "Help"
+
+#: ../vdms_main/main_frame.py:412
+#, python-brace-format
+msgid ""
+"Unexpected error while creating file:\n"
+"\n"
+"{0}"
+msgstr ""
+"Onverwachte fout bij het creeren van bestand:\n"
+"\n"
+"{0}"
+
+#: ../vdms_main/main_frame.py:427
+#, python-brace-format
+msgid "You are using '{0}' version {1}"
+msgstr "U gebruikt '{0}' versie {1}"
+
+#: ../vdms_main/main_frame.py:452
+#, python-brace-format
+msgid "{0}: Latest version available: {1}"
+msgstr "{0}:Laatst beschikbare versie: {1}"
+
+#: ../vdms_main/main_frame.py:482
+msgid "Choose a temporary destination for downloads"
+msgstr "Kies een tijdelijke bestemming voor de downloads"
+
+#: ../vdms_main/main_frame.py:511
+msgid "Default destination folders successfully restored"
+msgstr "Standaard bestemming-folders succesvol hersteld"
+
+#: ../vdms_main/main_frame.py:592
+#, python-brace-format
+msgid "A new release is available - v.{0}\n"
+msgstr "Er is een nieuwe versie beschikbaar - v.{0}\n"
+
+#: ../vdms_main/main_frame.py:595
+msgid "You are using a development version that has not yet been released!\n"
+msgstr "U gebruikt een ontwikkelaars versie die nog niet is vrijgegeven!\n"
+
+#: ../vdms_main/main_frame.py:598
+msgid "Congratulation! You are already using the latest version.\n"
+msgstr "Gefeliciteerd! U gebruikt al de laatste versie.\n"
+
+#: ../vdms_main/main_frame.py:682
+msgid "Go to the previous panel"
+msgstr "Ga naar vorig panel"
+
+#: ../vdms_main/main_frame.py:683
+msgid "Back"
+msgstr "Terug"
+
+#: ../vdms_main/main_frame.py:687
+msgid "Go to the next panel"
+msgstr "Ga naar volgende panel"
+
+#: ../vdms_main/main_frame.py:688
+msgid "Next"
+msgstr "Volgende"
+
+#: ../vdms_main/main_frame.py:692
+msgid "Shows statistics and information"
+msgstr "Toont download-statistieken en -informatie"
+
+#: ../vdms_main/main_frame.py:693
+msgid "Statistics"
+msgstr "Statistieken"
+
+#: ../vdms_main/main_frame.py:697
+msgid "Start downloading"
+msgstr "Start"
+
+#: ../vdms_main/main_frame.py:698
+msgid "Download"
+msgstr "Download"
+
+#: ../vdms_main/main_frame.py:702
+msgid "Stops current process"
+msgstr "Stopt huidige proces"
+
+#: ../vdms_main/main_frame.py:703
+msgid "Stop"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:706
+msgid "Clear the URL list"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:707
+msgid "Clear"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:748
+msgid "ERROR: Invalid URL: \"{}\""
+msgstr "Ongeldige URL: \"{}\""
+
+#: ../vdms_main/main_frame.py:752
+msgid "ERROR: Some equal URLs found"
+msgstr ""
+
+#: ../vdms_main/main_frame.py:773
+msgid "Vidtuber - Queued URLs"
+msgstr "Vidtuber - Wachtrij URLs"
+
+#: ../vdms_main/main_frame.py:794
+msgid "URL list changed, please check the settings again."
+msgstr "URL lijst gewijzigd, ga a.u.b. de instellingen na."
+
+#: ../vdms_main/main_frame.py:809
+msgid "Vidtuber - YouTube Downloader"
+msgstr "Vidtuber - YouTube Downloader"
+
+#: ../vdms_main/main_frame.py:825
+msgid "Viewing last log"
+msgstr "Laatste log-berichten bekijken"
+
+#: ../vdms_main/main_frame.py:834
+msgid "Vidtuber - Output Monitor"
+msgstr "Vidtuber - Output Monitor"
+
+#: ../vdms_panels/youtubedl_ui.py:132
+msgid ""
+"At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr ""
+"Minstens een \"Formaat Code\" moet gezet zijn voor elke URL, groen "
+"geselecteerd."
+
+#: ../vdms_panels/youtubedl_ui.py:166
+msgid "Precompiled Videos"
+msgstr "Gecompileerde Videos"
+
+#: ../vdms_panels/youtubedl_ui.py:167
+msgid "Download videos by resolution"
+msgstr "Download videos o.b.v. resolutie"
+
+#: ../vdms_panels/youtubedl_ui.py:168
+msgid "Download split audio and video"
+msgstr "Download audio en video afzonderlijk"
+
+#: ../vdms_panels/youtubedl_ui.py:169
+msgid "Download Audio only"
+msgstr "Download alleen Audio"
+
+#: ../vdms_panels/youtubedl_ui.py:170
+msgid "Download by format code"
+msgstr "Download op formaat code"
+
+#: ../vdms_panels/youtubedl_ui.py:208
+msgid "Options"
+msgstr "Opties"
+
+#: ../vdms_panels/youtubedl_ui.py:242
+msgid ""
+"When not available, the chosen video resolution will be replaced with the "
+"closest one"
+msgstr ""
+"Indien niet beschikbaar, wordt er gekozen voor de dichtstbijzijnde video "
+"resolutie"
+
+#: ../vdms_panels/youtubedl_ui.py:246
+msgid "Preferred video format"
+msgstr "Voorkeurs video formaat"
+
+#: ../vdms_panels/youtubedl_ui.py:279
+msgid "Download all videos in playlist"
+msgstr "Download alle videos in de playlist"
+
+#: ../vdms_panels/youtubedl_ui.py:284
+msgid "Playlist Editor"
+msgstr "Afspeellijst Editor"
+
+#: ../vdms_panels/youtubedl_ui.py:290
+msgid "Don’t check SSL certificate"
+msgstr "Controleer geen SSL certificaten"
+
+#: ../vdms_panels/youtubedl_ui.py:294
+msgid "Embed thumbnail in audio file"
+msgstr "Plaats thumbnail in audio bestand"
+
+#: ../vdms_panels/youtubedl_ui.py:298
+msgid "Add metadata to file"
+msgstr "Voeg metadata aan bestand toe"
+
+#: ../vdms_panels/youtubedl_ui.py:302
+msgid "Write subtitles to video"
+msgstr "Schrijf ondertitels naar video"
+
+#: ../vdms_panels/youtubedl_ui.py:307
+msgid "Download all available subtitles"
+msgstr "Download alle beschikbare ondertitelingen"
+
+#: ../vdms_panels/youtubedl_ui.py:315
+msgid "Download subtitles only"
+msgstr "Download alleen ondertitelingen"
+
+#: ../vdms_panels/youtubedl_ui.py:322
+msgid "Prevent overwriting files"
+msgstr "Voorkom overschrijven bestanden"
+
+#: ../vdms_panels/youtubedl_ui.py:326
+msgid ""
+"Include the video ID\n"
+"in the file names"
+msgstr ""
+"Voeg de video ID toe\n"
+"aan de bestandsnamen"
+
+#: ../vdms_panels/youtubedl_ui.py:332
+msgid "Restrict file names"
+msgstr "Beperk bestandsnamen"
+
+#: ../vdms_panels/youtubedl_ui.py:474
+msgid "Format Code"
+msgstr "Formaat Code"
+
+#: ../vdms_panels/youtubedl_ui.py:475 ../vdms_panels/youtubedl_ui.py:584
+msgid "Url"
+msgstr "Url"
+
+#: ../vdms_panels/youtubedl_ui.py:476 ../vdms_panels/youtubedl_ui.py:585
+msgid "Title"
+msgstr "Titel"
+
+#: ../vdms_panels/youtubedl_ui.py:477
+msgid "Extension"
+msgstr "Extensie"
+
+#: ../vdms_panels/youtubedl_ui.py:478
+msgid "Resolution"
+msgstr "Resolutie"
+
+#: ../vdms_panels/youtubedl_ui.py:479
+msgid "Video Codec"
+msgstr "Video Codec"
+
+#: ../vdms_panels/youtubedl_ui.py:480
+msgid "fps"
+msgstr "fps"
+
+#: ../vdms_panels/youtubedl_ui.py:481
+msgid "Audio Codec"
+msgstr "Audio Codec"
+
+#: ../vdms_panels/youtubedl_ui.py:482
+msgid "Size"
+msgstr "Grootte"
+
+#: ../vdms_panels/youtubedl_ui.py:520
+#, python-brace-format
+msgid ""
+"ERROR: Unable to get format codes.\n"
+"\n"
+"Unsupported URL:\n"
+"'{0}'"
+msgstr ""
+"FOUT: Format kan niet worden verkregen.\n"
+"\n"
+"Geen geldige URL:\n"
+"'{0}'"
+
+#: ../vdms_panels/youtubedl_ui.py:586
+msgid "Quality"
+msgstr "Kwaliteit"
+
+#: ../vdms_panels/youtubedl_ui.py:646
+#, python-brace-format
+msgid ""
+"Unable to get format codes on '{0}'\n"
+"\n"
+"Unsupported '{0}':\n"
+"'{1}'"
+msgstr ""
+"Format kan niet worden verkregen van '{0}'\n"
+"\n"
+"Niet ondersteund '{0}':\n"
+"'{1}"
+
+#: ../vdms_panels/youtubedl_ui.py:802
+msgid "URLs have no playlist references"
+msgstr "URLs staan niet in de afspeellijst"
+
+#: ../vdms_panels/youtubedl_ui.py:935
+msgid "The URLs contain playlists. Are you sure you want to continue?"
+msgstr "De URLs bevatten playlists. Wilt u toch doorgaan?"
+
+#: ../vdms_panels/youtubedl_ui.py:937 ../vdms_panels/youtubedl_ui.py:943
+#: ../vdms_panels/long_processing_task.py:274
+msgid "Please confirm"
+msgstr "Bevestig dit"
+
+#: ../vdms_panels/youtubedl_ui.py:941
+msgid "The URLs contain channels. Are you sure you want to continue?"
+msgstr "De URLs bevatten kanalen. Wilt u toch doorgaan?"
+
+#: ../vdms_panels/long_processing_task.py:43
+msgid "[Vidtuber]: SUCCESS !"
+msgstr "[Vidtuber]: SUCCES !"
+
+#: ../vdms_panels/long_processing_task.py:44
+msgid "[Vidtuber]: FAILED !"
+msgstr "[Vidtuber]: MISLUKT!"
+
+#: ../vdms_panels/long_processing_task.py:45
+msgid "Sorry, all task failed !"
+msgstr "Sorry, opdracht niet geslaagd !"
+
+#: ../vdms_panels/long_processing_task.py:46
+msgid "The process was stopped due to a fatal error."
+msgstr "Het proces is gestopt door een fatale fout."
+
+#: ../vdms_panels/long_processing_task.py:47
+msgid "Interrupted Process !"
+msgstr "Proces Onderbroken !"
+
+#: ../vdms_panels/long_processing_task.py:48
+msgid "Successfully completed !"
+msgstr "Succesvol afgerond !"
+
+#: ../vdms_panels/long_processing_task.py:49
+msgid "Not everything was successful."
+msgstr "Niet alles was succesvol."
+
+#: ../vdms_panels/long_processing_task.py:74
+msgid "Process log:"
+msgstr "Proces log:"
+
+#: ../vdms_panels/long_processing_task.py:204
+msgid "Fatal Error !"
+msgstr "Fatale Fout !"
+
+#: ../vdms_panels/long_processing_task.py:213
+msgid "Get your files at the destination you specified"
+msgstr "Uw bestanden staan op de door u aangegeven plek"
+
+#: ../vdms_panels/long_processing_task.py:221
+#: ../vdms_panels/long_processing_task.py:228
+msgid ""
+"Check the current output or read the related log file for more information."
+msgstr "Check de huidige output of bekijk de log file voor meer informatie."
+
+#: ../vdms_panels/long_processing_task.py:233
+msgid "...Finished"
+msgstr "...Afgerond"
+
+#: ../vdms_panels/long_processing_task.py:246
+msgid ""
+"wait... all operations will be stopped at the end of the download in "
+"progress "
+msgstr ""
+
+#: ../vdms_panels/long_processing_task.py:250
+msgid "...Interrupted"
+msgstr "...Onderbroken"
+
+#: ../vdms_panels/long_processing_task.py:271
+msgid ""
+"There are still processes running.. if you want to stop them, use the \"Abort"
+"\" button.\n"
+"\n"
+"Do you want to kill application?"
+msgstr ""
+"Er zijn nog processen bezig.. druk de knop \"Afbreken\" om deze te stoppen.\n"
+"\n"
+"Wilt u de applicatie afbreken?"
+
+#: ../vdms_panels/textdrop.py:47
+msgid "Enter URLs below"
+msgstr "Voeg URLs hieronder toe"
+
+#: ../vdms_panels/textdrop.py:81
+msgid "Destination folder"
+msgstr "Bestemming folder"
+
+#~ msgid ""
+#~ "Videomass supports mono and stereo audio channels. If you are not sure "
+#~ "set to \"Auto\" and source values will be copied."
+#~ msgstr ""
+#~ "Videomass ondersteunt mono en stereo audiokanalen. Als u niet zeker bent, "
+#~ "kies \"Auto\" en de bronwaarden zullen worden gekopiëerd."
+
+#~ msgid ""
+#~ "The audio Rate (or sample-rate) is the sound sampling frequency and is "
+#~ "measured in Hertz. The higher the frequency, the more true it will be to "
+#~ "the sound source and the more the file will increase in size. For audio "
+#~ "CD playback, set a sampling frequency of 44100 kHz. If you are not sure, "
+#~ "set to \"Auto\" and source values will be copied."
+#~ msgstr ""
+#~ "De audio rate (of sample rate) is de geluid-sampling frequentie, gemeten "
+#~ "in Hertz. Hoe hoger deze frequentie, hoe meer het audiosignaal overeen "
+#~ "zal komen met de geluidsbron en hoe groter het bestand zal worden. Zet de "
+#~ "sample frequentie op 44100 kHz om een audio CD normaal af te spelen. Als "
+#~ "u niet zeker bent, kies \"Auto\" en de bronwaarden worden gekopiëerd."
+
+#~ msgid ""
+#~ "The audio bitrate affects the file compression and thus the quality of "
+#~ "listening. The higher the value, the higher the quality."
+#~ msgstr ""
+#~ "De audio bitrate beïnvloedt de bestandscompressie en daarom de "
+#~ "geluidskwaliteit. Hoe hoger de waarde, hoe hoger de kwaliteit."
+
+#~ msgid ""
+#~ "Bit depth is the number of bits of information in each sample, and it "
+#~ "directly corresponds to the resolution of each sample. Bit depth is only "
+#~ "meaningful in reference to a PCM digital signal. Non-PCM formats, such as "
+#~ "lossy compression formats, do not have associated bit depths."
+#~ msgstr ""
+#~ "Bit depth is het aantal informatie-bits in elke sample en heeft direct "
+#~ "betrekking op de resolutie ervan. Bit depth is alleen relevant bij een "
+#~ "digitaal PCM signaal. Niet-PCM formaten, zoals lossy compressie formaten, "
+#~ "hebben geen bit depth."
+
+#, fuzzy
+#~| msgid "Cache Settings"
+#~ msgid "Confirm Settings"
+#~ msgstr "Cache Instellingen"
+
+#, python-brace-format
+#~ msgid "Source size: {0} x {1} pixels"
+#~ msgstr "Bron grootte: {0} x {1} pixels"
+
+#~ msgid "Search for a specific frame"
+#~ msgstr "Zoek naar een specifiek frame"
+
+#~ msgid "Load"
+#~ msgstr "Laad"
+
+#~ msgid "Cropping area selection "
+#~ msgstr "Gebied-selectie bijsnijden "
+
+#~ msgid "Height"
+#~ msgstr "Hoogte"
+
+#~ msgid "Center"
+#~ msgstr "Centrum"
+
+#~ msgid "Width"
+#~ msgstr "Breedte"
+
+#~ msgid "Crop Filter"
+#~ msgstr "Bijsnij Filter"
+
+#~ msgid "Crop to width"
+#~ msgstr "Snij breedte bij"
+
+#~ msgid "Move vertically - set to -1 to center the vertical axis"
+#~ msgstr "Verplaats verticaal - zet op -1 om de verticale as te centreren"
+
+#~ msgid "Move horizontally - set to -1 to center the horizontal axis"
+#~ msgstr "Verplaats horizontaal - zet op -1 om de horizontale as te centreren"
+
+#~ msgid "Crop to height"
+#~ msgstr "Snij hoogte bij"
+
+#~ msgid "Advanced Options"
+#~ msgstr "Geavanceerde Opties"
+
+#~ msgid "Deinterlace"
+#~ msgstr "Interlace ongedaan maken"
+
+#~ msgid "Interlace"
+#~ msgstr "Interlace"
+
+#~ msgid "Deinterlaces with w3fdif filter"
+#~ msgstr "Maakt interlace ongedaan met w3fdif filter"
+
+#~ msgid "Deinterlaces with yadif filter"
+#~ msgstr "Maakt interlace ongedaan met yadif filter"
+
+#~ msgid "Interlaces with interlace filter"
+#~ msgstr "Doet interlace met interlace filter"
+
+#~ msgid "Deinterlacing and Interlacing"
+#~ msgstr "Interlacen en ont-Interlacen"
+
+#~ msgid "Deinterlace the input video with `w3fdif` filter"
+#~ msgstr "Maak interlace van input video ongedaan met `w3fdif` filter"
+
+#~ msgid "Set the interlacing filter coefficients."
+#~ msgstr "Stel coëfficiënten van interlace filter in."
+
+#~ msgid "Specify which frames to deinterlace."
+#~ msgstr "Specificeer frames waarvan u interlace ongedaan wilt maken."
+
+#~ msgid ""
+#~ "Deinterlace the input video with `yadif` filter. Using FFmpeg, this is "
+#~ "the best and fastest choice"
+#~ msgstr ""
+#~ "Maak interlace van input video ongedaan met `yadif` filter. Voor FFmpeg "
+#~ "de beste en snelste keuze"
+
+#~ msgid ""
+#~ "mode\n"
+#~ "The interlacing mode to adopt."
+#~ msgstr ""
+#~ "modus\n"
+#~ "De interlacing modus die overnomen wordt."
+
+#~ msgid ""
+#~ "parity\n"
+#~ "The picture field parity assumed for the input interlaced video."
+#~ msgstr ""
+#~ "pariteit\n"
+#~ "De picture field parity voor de interlaced input video."
+
+#~ msgid "Simple interlacing filter from progressive contents."
+#~ msgstr "Simpel interlacing filter voor progressieve beelden."
+
+#~ msgid ""
+#~ "scan:\n"
+#~ "determines whether the interlaced frame is taken from the even (tff - "
+#~ "default) or odd (bff) lines of the progressive frame."
+#~ msgstr ""
+#~ "scan:\n"
+#~ "bepaalt of de interlaced frame genomen wordt van de even (tff - "
+#~ "standaard) of oneven (bff) lijnen van de progressieve frame."
+
+#~ msgid ""
+#~ "lowpass:\n"
+#~ "Enable (default) or disable the vertical lowpass filter to avoid twitter "
+#~ "interlacing and reduce moire patterns.\n"
+#~ "Default is no setting."
+#~ msgstr ""
+#~ "lowpass:\n"
+#~ "Aanzetten (standaard) of uitzetten van het verticale lowpass filter om "
+#~ "twitter interlacing te voorkomen en moire patronen te verminderen.\n"
+#~ "Geen instelling is de standaard."
+
+#~ msgid "Apply Denoisers Filters"
+#~ msgstr "Pas Denoisers Filters toe"
+
+#~ msgid "Enable nlmeans denoiser"
+#~ msgstr "Zet nlmeans denoiser aan"
+
+#~ msgid "nlmeans options"
+#~ msgstr "nlmeans opties"
+
+#~ msgid "Enable hqdn3d denoiser"
+#~ msgstr "Zet hqdn3d denoiser aan"
+
+#~ msgid "hqdn3d options"
+#~ msgstr "hqdn3d opties"
+
+#~ msgid "Denoiser filters"
+#~ msgstr "Denoiser filters"
+
+#~ msgid ""
+#~ "nlmeans:\n"
+#~ "Denoise frames using Non-Local Means algorithm is capable of restoring "
+#~ "video sequences, even with strong noise. It is ideal for enhancing the "
+#~ "quality of old VHS tapes."
+#~ msgstr ""
+#~ "nlmeans:\n"
+#~ "Ruis-reductie van frames door het Non-Local Means algoritme, kan een "
+#~ "beeldenreeks herstellen, zelfs bij sterke ruis. Het is ideaal voor "
+#~ "verbetering van de kwaliteit van oude VHS banden."
+
+#~ msgid ""
+#~ "hqdn3d:\n"
+#~ "This is a high precision/quality 3d denoise filter. It aims to reduce "
+#~ "image noise, producing smooth images and making still images really "
+#~ "still. It should enhance compressibility."
+#~ msgstr ""
+#~ "hqdn3d:\n"
+#~ "Dit is een 3d denoise filter met hoge nauwkeurigheid / kwaliteit. Het "
+#~ "beoogt beeldruis te verminderen, wat resulteert in vloeiende beelden, "
+#~ "waarbij stilstaande beelden echt stil staan. Compressie zal hierdoor "
+#~ "verbeteren."
+
+#~ msgid "New size in pixels"
+#~ msgstr "Nieuwe afmeting in pixels"
+
+#~ msgid "Width:"
+#~ msgstr "Breedte:"
+
+#~ msgid "Height:"
+#~ msgstr "Hoogte:"
+
+#~ msgid ""
+#~ "If you want to keep the aspect ratio, select \"Constrain proportions\" "
+#~ "below and\n"
+#~ "specify only one dimension, either width or height, and set the other "
+#~ "dimension\n"
+#~ "to -1 or -2 (some codecs require -2, so you should do some testing first)."
+#~ msgstr ""
+#~ "Wanneer u de beeldverhouding wilt behouden, selecteer hieronder \"Beperk "
+#~ "verhouding\" en\n"
+#~ "geef slechts 1 dimensie aan, dus breedte of hoogte, en zet de andere "
+#~ "dimensie\n"
+#~ "op -1 of -2 (sommige codecs vereisen -2, dus u zou dit eerst moeten "
+#~ "testen)."
+
+#~ msgid "Constrain proportions (keep aspect ratio)"
+#~ msgstr "Beperk verhouding (behoud beeldverhouding)"
+
+#~ msgid "Which dimension to adjust?"
+#~ msgstr "Welke dimensie aanpassen?"
+
+#~ msgid "Aspect Ratio"
+#~ msgstr "Beeldverhouding"
+
+#~ msgid "Setdar filter (display aspect ratio) example 16/9, 4/3 "
+#~ msgstr "Setdar filter (toon beeldverhouding) bijvoorbeeld 16/9, 4/3 "
+
+#~ msgid "Numerator"
+#~ msgstr "Teller"
+
+#~ msgid "Denominator"
+#~ msgstr "Noemer"
+
+#~ msgid "Setsar filter (sample aspect ratio) example 1/1"
+#~ msgstr "Setsar filter (sample beeldverhouding) bijvoorbeeld 1/1"
+
+#~ msgid "Resizing filters"
+#~ msgstr "Herschaling filters"
+
+#~ msgid "Scale filter, set to 0 to disable"
+#~ msgstr "Schaling filter, zet uit door 0"
+
+#~ msgid "Display Aspect Ratio. Set to 0 to disable"
+#~ msgstr "Toon beeldverhouding. Zet uit door 0"
+
+#~ msgid ""
+#~ "Sample (aka Pixel) Aspect Ratio.\n"
+#~ "Set to 0 to disable"
+#~ msgstr ""
+#~ "Sample Beeldverhouding (of Pixel Beeldverhouding).\n"
+#~ "Zet uit door 0"
+
+#~ msgid "Enable stabilizer"
+#~ msgstr "Activeer stabilisatie filter"
+
+#~ msgid "Generates duo video for comparison"
+#~ msgstr "Genereer duo video ter vergelijking"
+
+#~ msgid "Video Detect"
+#~ msgstr "Video Detecteren"
+
+#~ msgid "[TRIPOD] Enable tripod mode if checked"
+#~ msgstr "[TRIPOD] Activeer tripod modus wanneer geselecteerd"
+
+#~ msgid "Video transform"
+#~ msgstr "Video transformatie"
+
+#~ msgid "[OPTALGO] optimization algorithm"
+#~ msgstr "[OPTALGO] optimalisatie algoritme"
+
+#~ msgid "[CROP] Specify how to deal with borders at movement compensation"
+#~ msgstr ""
+#~ "[CROP] Specificeer hoe om te gaan met randen bij bewegings-compensatie"
+
+#~ msgid "[INVERT] Invert transforms if checked"
+#~ msgstr "[INVERT] Inverteer transformaties wanneer geselecteerd"
+
+#~ msgid ""
+#~ "[RELATIVE] Consider transforms as relative to previous frame if checked, "
+#~ "absolute if unchecked"
+#~ msgstr ""
+#~ "[RELATIVE] Beschouw transformaties als relatief tot vorige frame wanneer "
+#~ "geselecteerd, absoluut wanneer niet geselecteerd"
+
+#~ msgid "Specify type of interpolation"
+#~ msgstr "Specificeer interpolatie type"
+
+#~ msgid ""
+#~ "[TRIPOD2] virtual tripod mode, equivalent to relative=unchecked:"
+#~ "smoothing=0"
+#~ msgstr ""
+#~ "[TRIPOD2] virtuele tripod modus, gelijk aan relative=unchecked:smoothing=0"
+
+#~ msgid "Unsharp filter:"
+#~ msgstr "Ont-scherp filter:"
+
+#~ msgid ""
+#~ "Set how shaky the video is and how quick the camera is. A value of 1 "
+#~ "means little shakiness, a value of 10 means strong shakiness. Default "
+#~ "value is 5."
+#~ msgstr ""
+#~ "Stel in hoe bibberig de video is en hoe snel de camera is. Een waarde van "
+#~ "1 betekent weinig bibbering, een waarde van 10 betekent veel bibbering. "
+#~ "Standaard waarde is 5."
+
+#~ msgid ""
+#~ "Set the accuracy of the detection process. A value of 1 means low "
+#~ "accuracy, a value of 15 means high accuracy. Default value is 15."
+#~ msgstr ""
+#~ "Stel de nauwkeurigheid in van het detectie-proces. Een waarde van 1 "
+#~ "betekent lage nauwkeurigheid, een waarde van 15 betekent hoge "
+#~ "nauwkeurigheid. Standaard waarde is 15."
+
+#~ msgid ""
+#~ "Set stepsize of the search process. The region around minimum is scanned "
+#~ "with 1 pixel resolution. Default value is 6."
+#~ msgstr ""
+#~ "Stel de stapgrootte in van het zoek-proces. De regio rond het minimum is "
+#~ "ge-scan-d met 1 pixel resolutie. Standaard waarde is 6."
+
+#~ msgid ""
+#~ "Set minimum contrast. Below this value a local measurement field is "
+#~ "discarded. The range is 0-1. Default value is 0.25."
+#~ msgstr ""
+#~ "Stel minimum contrast in. Onder deze waarde wordt een lokaal meting-veld "
+#~ "verwijderd. Het bereik is 0-1. Standaard waarde is 0.25."
+
+#~ msgid ""
+#~ "Set reference frame number for tripod mode. If enabled, the motion of the "
+#~ "frames is compared to a reference frame in the filtered stream, "
+#~ "identified by the specified number. The idea is to compensate all "
+#~ "movements in a more-or-less static scene and keep the camera view "
+#~ "absolutely still. The frames are counted starting from 1."
+#~ msgstr ""
+#~ "Stel frame-nummer referentie in voor tripod modus. Wanneer geselecteerd, "
+#~ "wordt de beweging van de frames vergeleken met een referentie-frame in de "
+#~ "gefilterde stream, naar aanleiding van het opgegeven nummer. De bedoeling "
+#~ "is om alle bewegingen in een min of meer statische scene te compenseren "
+#~ "en het camera-beeld absoluut stil te houden. De frames worden geteld "
+#~ "vanaf 1."
+
+#~ msgid ""
+#~ "Set the number of frames (value*2 + 1) used for lowpass filtering the "
+#~ "camera movements. Default value is 15. For example a number of 10 means "
+#~ "that 21 frames are used (10 in the past and 10 in the future) to smoothen "
+#~ "the motion in the video. A larger value leads to a smoother video, but "
+#~ "limits the acceleration of the camera (pan/tilt movements). 0 is a "
+#~ "special case where a static camera is simulated."
+#~ msgstr ""
+#~ "Stel het aantal frames in (waarde*2 + 1) dat gebruikt wordt voor lowpass "
+#~ "filtering van de camera-bewegingen. Standaard is 15. Bijvoorbeeld een "
+#~ "aantal van 10 betekent dat 21 frames gebruikt worden (10 in het verleden "
+#~ "en 10 in de toekomst) om de bewegingen in de video te versoepelen. Een "
+#~ "hoge waarde geeft soepeler video-beelden, maar beperkt de pan/tilt "
+#~ "bewegings-versnellingen van de camera. Waarde 0 is een speciaal geval "
+#~ "waarbij een statische camera gesimuleerd wordt."
+
+#, fuzzy
+#~| msgid ""
+#~| "Set the camera path optimization algorithm. Values are: ‘gauss’: "
+#~| "gaussian kernel low-pass filter on camera motion (default), and ‘avg’: "
+#~| "averaging on transformations"
+#~ msgid ""
+#~ "Set the camera path optimization algorithm. Values are: `gauss`: gaussian "
+#~ "kernel low-pass filter on camera motion (default), and `avg`: averaging "
+#~ "on transformations"
+#~ msgstr ""
+#~ "Kies het algoritme voor camera path-optimisatie. Waarden zijn: ‘gauss’: "
+#~ "gaussian kernel low-pass filter voor camerabeweging (standaard) en ‘avg’: "
+#~ "gemiddelden voor transformaties"
+
+#~ msgid ""
+#~ "Set maximal angle in radians (degree*PI/180) to rotate frames. Default "
+#~ "value is -1, meaning no limit."
+#~ msgstr ""
+#~ "Kies maximale hoek, in radialen (graden*PI/180) om frames te roteren. "
+#~ "Standaard is -1 : geen limiet."
+
+#, fuzzy
+#~| msgid ""
+#~| "Specify how to deal with borders that may be visible due to movement "
+#~| "compensation. Values are: ‘keep’ keep image information from previous "
+#~| "frame (default), ‘black’ fill the border black"
+#~ msgid ""
+#~ "Specify how to deal with borders that may be visible due to movement "
+#~ "compensation. Values are: `keep` keep image information from previous "
+#~ "frame (default), `black` fill the border black"
+#~ msgstr ""
+#~ "Specificeer hoe om te gaan met randen die zichtbaar kunnen zijn door "
+#~ "bewegings-compensatie. Waarden zijn: ‘keep’: behoud beeld-informatie van "
+#~ "vorige frame (standaard) en ‘black’: vul de randen met zwart"
+
+#~ msgid "Invert transforms if checked. Default is unchecked."
+#~ msgstr ""
+#~ "Inverteer transformaties wanneer geselecteerd. Standaard is niet-"
+#~ "geselecteerd."
+
+#~ msgid ""
+#~ "Consider transforms as relative to previous frame if checked, absolute if "
+#~ "unchecked. Default is checked."
+#~ msgstr ""
+#~ "Beschouw transformaties als relatief tot vorige frame wanneer "
+#~ "geselecteerd, absoluut wanneer niet geselecteerd. Standaard is "
+#~ "geselecteerd."
+
+#~ msgid ""
+#~ "Set percentage to zoom. A positive value will result in a zoom-in effect, "
+#~ "a negative value in a zoom-out effect. Default value is 0 (no zoom)."
+#~ msgstr ""
+#~ "Kies zoom-percentage. Een positieve waarde geeft een zoom-in effect, "
+#~ "negatieve waarde is zoom-out. Standaard is 0 (geen zoom)."
+
+#, fuzzy
+#~| msgid ""
+#~| "Set optimal zooming to avoid borders. Accepted values are: ‘0’ disabled, "
+#~| "‘1’ optimal static zoom value is determined (only very strong movements "
+#~| "will lead to visible borders) (default), ‘2’ optimal adaptive zoom value "
+#~| "is determined (no borders will be visible), see zoomspeed. Note that the "
+#~| "value given at zoom is added to the one calculated here."
+#~ msgid ""
+#~ "Set optimal zooming to avoid borders. Accepted values are: `0` disabled, "
+#~ "`1` optimal static zoom value is determined (only very strong movements "
+#~ "will lead to visible borders) (default), `2` optimal adaptive zoom value "
+#~ "is determined (no borders will be visible), see zoomspeed. Note that the "
+#~ "value given at zoom is added to the one calculated here."
+#~ msgstr ""
+#~ "Kies de optimale zoom-instelling om randen te voorkomen. Mogelijke "
+#~ "waarden zijn: ‘0’ uitgeschakeld, ‘1’ optimale statische zoom-waarde wordt "
+#~ "bepaald (alleen heftige bewegingen zullen zichtbare randen te zien "
+#~ "geven), ‘2’ optimale aanpasbare zoom-waarde wordt bepaald (er zullen geen "
+#~ "randen zichtbaar zijn), zie zoom-snelheid. Bedenk dat de ingestelde zoom-"
+#~ "waarde opgeteld wordt bij de waarde die hier berekend wordt."
+
+#~ msgid ""
+#~ "Set percent to zoom maximally each frame (enabled when optzoom is set to "
+#~ "2). Range is from 0 to 5, default value is 0.25."
+#~ msgstr ""
+#~ "Kies maximaal zoom percentage van elk frame (actief als optzoom is 2). "
+#~ "Bereik is van 0 t/m 5, standaard is 0.25."
+
+#, fuzzy
+#~| msgid ""
+#~| "Specify type of interpolation. Available values are: ‘no’ no "
+#~| "interpolation, ‘linear’ linear only horizontal, ‘bilinear’ linear in "
+#~| "both directions (default), ‘bicubic’ cubic in both directions (slow)"
+#~ msgid ""
+#~ "Specify type of interpolation. Available values are: `no` no "
+#~ "interpolation, `linear` linear only horizontal, `bilinear` linear in both "
+#~ "directions (default), `bicubic` cubic in both directions (slow)"
+#~ msgstr ""
+#~ "Specificeer interpolatie type. Beschikbare waarden zijn: ‘no’ geen "
+#~ "interpolatie, ‘linear’ lineair alleen horizontaal, ‘bilinear’ lineair in "
+#~ "beide richtingen (standaard), ‘bicubic’ cubic in beide richtingen (traag)"
+
+#~ msgid ""
+#~ "Enable virtual tripod mode if checked, which is equivalent to relative=0:"
+#~ "smoothing=0. Default is unchecked. Use also tripod option of "
+#~ "vidstabdetect."
+#~ msgstr ""
+#~ "Activeer virtuele tripod modus als geselecteerd, wat gelijk is aan "
+#~ "relative=0:smoothing=0. Standaard is niet-geselecteerd. Gebruik dit als "
+#~ "tripod optie van vidstabdetect."
+
+#~ msgid ""
+#~ "Sharpen or blur the input video. Note the use of the unsharp filter which "
+#~ "is always recommended."
+#~ msgstr ""
+#~ "Verscherp of vervaag de input video. Het gebruik van het ont-scherp "
+#~ "filter, wordt altijd aanbevolen."
+
+#~ msgid "Video stabilizer filter"
+#~ msgstr "Video stabilisatie filter"
+
+#~ msgid "Default position"
+#~ msgstr "Standaard positie"
+
+#~ msgid "Load Frame"
+#~ msgstr "Laad Frame"
+
+#~ msgid "Rotation setting"
+#~ msgstr "Rotatie instelling"
+
+#~ msgid "90° (left)"
+#~ msgstr "90° (naar links)"
+
+#~ msgid "90° (right)"
+#~ msgstr "90° (naar rechts)"
+
+#~ msgid "180°"
+#~ msgstr "180°"
+
+#~ msgid "Transpose Filter"
+#~ msgstr "Transponeer Filter"
+
+#~ msgid "Rotate 90 degrees right"
+#~ msgstr "Roteer 90 graden naar rechts"
+
+#~ msgid "Rotate 180 degrees"
+#~ msgstr "Roteer 180 graden"
+
+#~ msgid "Rotate 90 degrees left"
+#~ msgstr "Roteer 90 graden naar links"
+
+#~ msgid "If FFmpeg is not on your computer, this application will be unusable"
+#~ msgstr "Zonder FFmpeg op uw computer zal dit programma onbruikbaar zijn"
+
+#~ msgid ""
+#~ "Videomass has a simple graphical\n"
+#~ "interface for youtube-dl and yt-dlp\n"
+#~ msgstr ""
+#~ "Videomass heeft een simpele grafische\n"
+#~ "gebruikersomgeving voor youtube-dl en yt-dlp\n"
+
+#~ msgid ""
+#~ "This feature allows you to download video and audio from\n"
+#~ "many sites, including YouTube.com and even Facebook."
+#~ msgstr ""
+#~ "Dit geeft u de mogelijkheid om video en audio te downloaden\n"
+#~ "van vele websites, inclusief YouTube en Facebook."
+
+#~ msgid " Do you want to enable this feature?"
+#~ msgstr " Wilt u deze mogelijkheid activeren?"
+
+#~ msgid "Downloader preferences"
+#~ msgstr "Downloader voorkeuren"
+
+#~ msgid "Cross-platform graphical interface for FFmpeg and youtube-dl.\n"
+#~ msgstr ""
+#~ "Multiplatform grafische gebruikersomgeving voor FFmpeg en youtube-dl.\n"
+
+#~ msgid ""
+#~ "One-Pass, Do not start with `ffmpeg -i filename`; do not end with `output-"
+#~ "filename`"
+#~ msgstr ""
+#~ "One-Pass, begin niet met `ffmpeg -i filename`; eindig niet met `output-"
+#~ "filename`"
+
+#~ msgid ""
+#~ "Two-Pass (optional), Do not start with `ffmpeg -i filename`; do not end "
+#~ "with `output-filename`"
+#~ msgstr ""
+#~ "Two-Pass (optioneel), begin niet met `ffmpeg -i filename`; eindig niet "
+#~ "met `output-filename`"
+
+#~ msgid "Supported Formats list (optional). Do not include the `.`"
+#~ msgstr "Lijst van ondersteunde formaten (optioneel). Laat de `.` achterwege"
+
+#~ msgid ""
+#~ "Output Format. Empty to copy format and codec. Do not include the `.`"
+#~ msgstr ""
+#~ "Output formaat. Bij weglaten worden formaat en codec gekopieerd. Laat de "
+#~ "`.` achterwege"
+
+#~ msgid "Profile Name"
+#~ msgstr "Profiel Naam"
+
+#~ msgid "Description"
+#~ msgstr "Beschrijving"
+
+#~ msgid "Save.."
+#~ msgstr "Bewaar.."
+
+#~ msgid "A short profile name"
+#~ msgstr "Een korte profiel naam"
+
+#~ msgid "A long description of the profile"
+#~ msgstr "Een uitgebreide beschrijving van het profiel"
+
+#~ msgid "Reserved arguments for the first pass"
+#~ msgstr "Gereserveerde parameters voor de eerste 'pass'"
+
+#~ msgid "Reserved arguments for the second pass"
+#~ msgstr "Gereserveerde parameters voor de tweede 'pass'"
+
+#~ msgid "One or more comma-separated format names to include in the profile"
+#~ msgstr "Een of meerdere komma-gescheiden formaat namen voor het profiel"
+
+#~ msgid "Output format extension. Leave empty to copy codec and format"
+#~ msgstr ""
+#~ "Bestandsextensie van output formaat. Laat leeg om codec en "
+#~ "bestandsformaat te kopiëren"
+
+#~ msgid "Incomplete profile assignments"
+#~ msgstr "Onvolledige profiel-toewijzingen"
+
+#~ msgid "Formats must be comma-separated"
+#~ msgstr "Formaten moeten gescheiden zijn door komma's"
+
+#~ msgid "Profile already stored with same name"
+#~ msgstr "Profiel reeds opgeslagen onder dezelfde naam"
+
+#~ msgid "Successful storing!"
+#~ msgstr "Opslag was succesvol!"
+
+#~ msgid "Successful changes!"
+#~ msgstr "Veranderingen waren succesvol!"
+
+#~ msgid "Font Size"
+#~ msgstr "Lettertype grootte"
+
+#~ msgid "Font Color"
+#~ msgstr "Lettertype kleur"
+
+#~ msgid "Shadow Color"
+#~ msgstr "Schaduw kleur"
+
+#~ msgid "Show text box"
+#~ msgstr "Toon tekstkader"
+
+#~ msgid "Box Color"
+#~ msgstr "Kader kleur"
+
+#~ msgid ""
+#~ "The timestamp size does not auto-adjust to the video size, you have to "
+#~ "set the size here"
+#~ msgstr ""
+#~ "De tijdcode-grootte past zich niet automatisch aan bij de video-grootte, "
+#~ "u moet het hier instellen"
+
+#~ msgid "Timestamp settings"
+#~ msgstr "Tijdcode instellingen"
+
+#~ msgid "Where do you prefer to save your transcodes?"
+#~ msgstr "Waar wilt u transcoderingen bewaren?"
+
+#~ msgid "Save each file in the same folder as input file"
+#~ msgstr "Bewaar elk bestand in dezelfde map als input bestand"
+
+#~ msgid "Assign optional suffix to output file names:"
+#~ msgstr "Ken optioneel achtervoegsel toe aan output-bestandsnamen:"
+
+#~ msgid ""
+#~ "Move source file to the Videomass trash folder after successful encoding"
+#~ msgstr ""
+#~ "Verplaats de orginele file naar de Videomass Prullenbak na een "
+#~ "succesvolle encoding"
+
+#~ msgid "Enable another location to run FFplay"
+#~ msgstr "Activeer een andere lokatie om FFplay uit te voeren"
+
+#~ msgid "Other options"
+#~ msgstr "Andere opties"
+
+#~ msgid "Threads used for transcoding (from 0 to 32):"
+#~ msgstr "Aantal threads voor transcoden (van 0 tot 32)"
+
+#~ msgid "How to upgrade a Python package"
+#~ msgstr "Hoe een Python pakket te upgraden is"
+
+#~ msgid ""
+#~ "Required: Microsoft Visual C++ 2010 Service Pack 1 Redistributable "
+#~ "Package (x86)"
+#~ msgstr ""
+#~ "Vereist: Microsoft Visual C++ 2010 Seervice Pack 1 Redistributable "
+#~ "Package (x86)"
+
+#~ msgid "How to install pip on your Linux distribution"
+#~ msgstr "Hoe pip te installeren is op uw Linux distributie"
+
+#~ msgid "Current path:"
+#~ msgstr "Huidig pad:"
+
+#~ msgid ""
+#~ "Make sure you are using the latest available version of\n"
+#~ "'{}'. This allows you to avoid download problems.\n"
+#~ msgstr ""
+#~ "Ga na of u de nieuwste '{}' versie gebruikt.\n"
+#~ "Dit voorkomt download problemen.\n"
+
+#~ msgid "Disabled"
+#~ msgstr "Uitgezet"
+
+#~ msgid "Not found"
+#~ msgstr "Niet gevonden"
+
+#~ msgid "Not Installed"
+#~ msgstr "Niet geïnstalleerd"
+
+#~ msgid "Downloader"
+#~ msgstr "Downloader"
+
+#~ msgid ""
+#~ "The following settings affect output messages and\n"
+#~ "the log messages during transcoding processes.\n"
+#~ "Change only if you know what you are doing.\n"
+#~ msgstr ""
+#~ "De volgende instellingen bepalen output-berichten\n"
+#~ "en log-berichten tijdens transcode-processen.\n"
+#~ "Wijzig alleen als u weet wat u doet.\n"
+
+#~ msgid "FFmpeg logging levels"
+#~ msgstr "FFmpeg log niveau's"
+
+#~ msgid "By assigning an additional suffix you could avoid overwriting files"
+#~ msgstr ""
+#~ "Door toewijzing van een achtervoegsel kunt u overschrijven van bestanden "
+#~ "voorkomen"
+
+#~ msgid "Set a persistent location to save exported files"
+#~ msgstr "Geef een vaste lokatie waar u export-bestanden wilt bewaren"
+
+#~ msgid ""
+#~ "Enter only alphanumeric characters. You can also use the hyphen (\"-\") "
+#~ "and the underscore (\"_\"). Spaces are not allowed."
+#~ msgstr ""
+#~ "Gebruik alleen alpha-numerieke tekens 0-9 A-Z. Het streepje (\"-\") en de "
+#~ "underscore (\"_\") kunt u ook gebruiken. Spaties zijn niet toegestaan."
+
+#~ msgid "Choose a new destination for the files to be trashed"
+#~ msgstr "Kies een bestemming voor de bestanden om te deleten"
+
+#~ msgid "Display of selected items in text format"
+#~ msgstr "Toon geselecteerde items in tekstformaat"
+
+#~ msgid "Select items to view them in text format"
+#~ msgstr "Selecteer items om in tekstformaat te tonen"
+
+#~ msgid "Data Format"
+#~ msgstr "Data formaat"
+
+#~ msgid "Video Stream"
+#~ msgstr "Video Stream"
+
+#~ msgid "Audio Streams"
+#~ msgstr "Audio Streams"
+
+#~ msgid "Subtitle Streams"
+#~ msgstr "Ondertitel Streams"
+
+#~ msgid "Enable text format"
+#~ msgstr "Activeer tekstformaat"
+
+#~ msgid "FILE SELECTION"
+#~ msgstr "BESTAND SELECTIE"
+
+#~ msgid "References"
+#~ msgstr "Referenties"
+
+#~ msgid "Parameters"
+#~ msgstr "Parameters"
+
+#~ msgid "Multimedia streams analyzer"
+#~ msgstr "Multimedia streams analyzer"
+
+#~ msgid "Informations"
+#~ msgstr "Informatie"
+
+#~ msgid "Flags settings"
+#~ msgstr "Markeer instellingen"
+
+#~ msgid "Flags enabled"
+#~ msgstr "Markeringen geactiveerd"
+
+#~ msgid "Flags disabled"
+#~ msgstr "Markeringen gedeactiveerd"
+
+#~ msgid "FFmpeg configuration"
+#~ msgstr "FFmpeg configuratie"
+
+#~ msgid "flags"
+#~ msgstr "markeringen"
+
+#~ msgid "options"
+#~ msgstr "opties"
+
+#~ msgid "status"
+#~ msgstr "status"
+
+#~ msgid "FFprobe   ...not found !"
+#~ msgstr "FFprobe   ...niet gevonden !"
+
+#~ msgid "FFplay   ...not found !"
+#~ msgstr "FFplay   ...niet gevonden !"
+
+#~ msgid "ENABLED:"
+#~ msgstr "GEACTIVEERD:"
+
+#~ msgid "Enabled"
+#~ msgstr "Geactiveerd"
+
+#~ msgid "DISABLED:"
+#~ msgstr "GEDEACTIVEERD:"
+
+#~ msgid "CODING CAPABILITY"
+#~ msgstr "MOGELIJKE DECODERINGEN"
+
+#~ msgid "FFmpeg encoders"
+#~ msgstr "FFmpeg encoders"
+
+#~ msgid "DECODING CAPABILITY"
+#~ msgstr "MOGELIJKE DECODERINGEN"
+
+#~ msgid "FFmpeg decoders"
+#~ msgstr "FFmpeg decoders"
+
+#~ msgid "Video"
+#~ msgstr "Video"
+
+#~ msgid "Audio"
+#~ msgstr "Audio"
+
+#~ msgid "Subtitle"
+#~ msgstr "Ondertitel"
+
+#~ msgid "description"
+#~ msgstr "beschrijving"
+
+#~ msgid "Demuxing only"
+#~ msgstr "Alleen Demuxen"
+
+#~ msgid "Muxing only"
+#~ msgstr "Alleen Muxen"
+
+#~ msgid "Demuxing/Muxing support"
+#~ msgstr "Demux/Mux ondersteuning"
+
+#~ msgid "FFmpeg file formats"
+#~ msgstr "FFmpeg bestandsformaten"
+
+#~ msgid "format"
+#~ msgstr "formaat"
+
+#~ msgid "File name"
+#~ msgstr "Bestandsnaam"
+
+#~ msgid "Max volume dBFS"
+#~ msgstr "Max volume dBFS"
+
+#~ msgid "Mean volume dBFS"
+#~ msgstr "Mean volume dBFS"
+
+#~ msgid "Offset dBFS"
+#~ msgstr "Offset dBFS"
+
+#~ msgid "Result dBFS"
+#~ msgstr "Resultaat dBFS"
+
+#~ msgid "Post-normalization references:"
+#~ msgstr "Post-normalizatie referenties:"
+
+#~ msgid "=  Clipped peaks"
+#~ msgstr "=  Clipped peaks"
+
+#~ msgid "=  No changes"
+#~ msgstr "=  Geen wijzigingen"
+
+#~ msgid "=  Below max peak"
+#~ msgstr "=  Onder max peak"
+
+#~ msgid "RMS-based volume statistics"
+#~ msgstr "RMS-gebaseerde volume statistieken"
+
+#~ msgid "PEAK-based volume statistics"
+#~ msgstr "PEAK-gebaseerde volume statistieken"
+
+#~ msgid ""
+#~ "When it's red...\n"
+#~ "\n"
+#~ "...It means the resulting audio will be clipped,\n"
+#~ "because its volume is higher than the maximum 0 db\n"
+#~ "level. This results in data loss and the audio may\n"
+#~ "sound distorted."
+#~ msgstr ""
+#~ "Als het rood is...\n"
+#~ "\n"
+#~ "...Dit betekent dat de resulterende audio ge-clip-t wordt,\n"
+#~ "omdat het geluidsniveau hoger is dan het maximale 0 db.\n"
+#~ "Dit geeft dataverlies en de audio kan vervormd klinken."
+
+#~ msgid ""
+#~ "When it's grey...\n"
+#~ "\n"
+#~ "...It means the resulting audio will not change,\n"
+#~ "because it's equal to the source."
+#~ msgstr ""
+#~ "Als het grijs is...\n"
+#~ "\n"
+#~ "...Dit betekent dat de audio niet verandert,\n"
+#~ "omdat ze gelijk is aan het bronsignaal."
+
+#~ msgid ""
+#~ "When it's yellow...\n"
+#~ "\n"
+#~ "...It means an audio signal will be produced with\n"
+#~ "a lower volume than the original."
+#~ msgstr ""
+#~ "Als het geel is...\n"
+#~ "\n"
+#~ "...Dit geeft een audio signaal met\n"
+#~ "een lager volume dan het origineel."
+
+#~ msgid ""
+#~ "q, ESC\n"
+#~ "f\n"
+#~ "p, SPC\n"
+#~ "m\n"
+#~ "9, 0\n"
+#~ "/, *\n"
+#~ "a\n"
+#~ "v\n"
+#~ "t\n"
+#~ "c\n"
+#~ "w\n"
+#~ "s\n"
+#~ "\n"
+#~ "left/right\n"
+#~ "down/up\n"
+#~ "page down/page up\n"
+#~ "\n"
+#~ "right mouse click\n"
+#~ "left mouse double-click"
+#~ msgstr ""
+#~ "q, ESC\n"
+#~ "f\n"
+#~ "p, SPC\n"
+#~ "m\n"
+#~ "9, 0\n"
+#~ "/, *\n"
+#~ "a\n"
+#~ "v\n"
+#~ "t\n"
+#~ "c\n"
+#~ "w\n"
+#~ "s\n"
+#~ "\n"
+#~ "links/rechts\n"
+#~ "down/up\n"
+#~ "page down/page up\n"
+#~ "\n"
+#~ "rechter muis klik\n"
+#~ "linker muis dubbel-klik"
+
+#~ msgid "Shortcut keys while playing with FFplay"
+#~ msgstr "Sneltoetsen bij afspelen met FFplay"
+
+#~ msgid "Topic List..."
+#~ msgstr "Onderwerpenlijst..."
+
+#~ msgid "print basic options"
+#~ msgstr "print basis opties"
+
+#~ msgid "print more options"
+#~ msgstr "print meer opties"
+
+#~ msgid "print all options (very long)"
+#~ msgstr "print alle opties (erg lang)"
+
+#~ msgid "show available devices"
+#~ msgstr "toon beschikbare randapparaten"
+
+#~ msgid "show available bit stream filters"
+#~ msgstr "toon beschikbare bit stream filters"
+
+#~ msgid "show available protocols"
+#~ msgstr "toon beschikbare protocollen"
+
+#~ msgid "show available filters"
+#~ msgstr "toon beschikbare filters"
+
+#~ msgid "show available pixel formats"
+#~ msgstr "toon beschikbare pixel formaten"
+
+#~ msgid "show available audio sample formats"
+#~ msgstr "toon beschikbare audio sample formaten"
+
+#~ msgid "show available color names"
+#~ msgstr "toon beschikbare kleurnamen"
+
+#~ msgid "list sources of the input device"
+#~ msgstr "geef lijst van sources voor het input randapparaat"
+
+#~ msgid "list sinks of the output device"
+#~ msgstr "geef lijst van sinks voor het input randapparaat"
+
+#~ msgid "show available HW acceleration methods"
+#~ msgstr "toon beschikbare HW acceleratie methodes"
+
+#~ msgid "help topic list"
+#~ msgstr "lijst help-onderwerpen"
+
+#~ msgid "Choose a topic in the list"
+#~ msgstr "Kies een onderwerp uit de lijst"
+
+#~ msgid "The search function allows you to find entries in the current topic"
+#~ msgstr "Met de zoekfunctie vind u items van het huidige onderwerp"
+
+#~ msgid "Ignore case"
+#~ msgstr "Geen onderscheid hoofd-/kleine letters"
+
+#~ msgid "Ignore case distinctions: characters with different case will match."
+#~ msgstr "Maak geen onderscheid tussen hoofd- en kleine letters."
+
+#~ msgid "FFmpeg help topics"
+#~ msgstr "FFmpeg help-onderwerpen"
+
+#~ msgid "First, choose a topic in the drop down list"
+#~ msgstr "Kies eerst een onderwerp uit de drop-down lijst"
+
+#~ msgid ""
+#~ "\n"
+#~ "  ..Nothing available"
+#~ msgstr ""
+#~ "\n"
+#~ "  ..Niets beschikbaar"
+
+#~ msgid ""
+#~ "\n"
+#~ "  ...Not found"
+#~ msgstr ""
+#~ "\n"
+#~ "  ...Niet gevonden"
+
+#~ msgid ""
+#~ "\n"
+#~ "First, choose a topic in the drop down list"
+#~ msgstr ""
+#~ "\n"
+#~ "Kies eerst een onderwerp uit de drop-down lijst"
+
+#~ msgid ""
+#~ "Already exist: \n"
+#~ "\n"
+#~ "{}\n"
+#~ "\n"
+#~ "Do you want to overwrite? "
+#~ msgstr ""
+#~ "Bestaat reeds: \n"
+#~ "\n"
+#~ "{}\n"
+#~ "\n"
+#~ "Overschrijven? "
+
+#~ msgid "Please Confirm"
+#~ msgstr "Bevestig aub"
+
+#~ msgid ""
+#~ "File does not exist:\n"
+#~ "\n"
+#~ "\"{}\"\n"
+#~ msgstr ""
+#~ "Bestand bestaat niet:\n"
+#~ "\n"
+#~ "\"{}\"\n"
+
+#~ msgid ""
+#~ "Output folder does not exist:\n"
+#~ "\n"
+#~ "\"{}\"\n"
+#~ msgstr ""
+#~ "Output map bestaat niet:\n"
+#~ "\n"
+#~ "\"{}\"\n"
+
+#, python-format
+#~ msgid "File does not exist or is invalid:  %s"
+#~ msgstr "Bestand bestaat niet of is ongeldig:  %s"
+
+#~ msgid ""
+#~ "Wait....\n"
+#~ "Audio peak analysis."
+#~ msgstr ""
+#~ "Wacht....\n"
+#~ "Audio peak analyse."
+
+#~ msgid "Videomass - Downloading..."
+#~ msgstr "Videomass - Bezig met downloaden..."
+
+#, python-format
+#~ msgid ""
+#~ "The selected profile is not suitable to convert the following file "
+#~ "formats:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Het geselecteerde profiel is ongeschikt voor converteren van de volgende "
+#~ "bestandsformaten:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Invalid preset loaded.\n"
+#~ "It is recommended to remove it or rewrite it into a JSON format "
+#~ "compatible with Videomass.\n"
+#~ "\n"
+#~ "Possible solution: open the Presets Manager panel, go to the presets "
+#~ "column and try to click the \"Restore\" button"
+#~ msgstr ""
+#~ "Ongeldige preset geladen.\n"
+#~ "Het is aanbevolen om deze te verwijderen of te overschrijven naar een "
+#~ "JSON formaat dat compatible is met Videomass.\n"
+#~ "\n"
+#~ "Mogelijke oplossing: open het Presets Manager paneel, ga naar de presets "
+#~ "kolom en probeer de \"Herstel\" knop te drukken"
+
+#~ msgid ""
+#~ "No presets found.\n"
+#~ "\n"
+#~ "Possible solution: open the Presets Manager panel, go to the presets "
+#~ "column and try to click the \"Restore all...\" button"
+#~ msgstr ""
+#~ "Geen presets gevonden.\n"
+#~ "\n"
+#~ "Mogelijke oplossing: open het Presets Manager paneel, ga naar de presets "
+#~ "kolom en probeer de \"Herstel allen...\" knop te drukken"
+
+#~ msgid "Videomass"
+#~ msgstr "Videomass"
+
+#~ msgid "Open...\tCtrl+O"
+#~ msgstr "Open...\tCtrl+O"
+
+#~ msgid "Open one or more files"
+#~ msgstr "Open een of meer bestanden"
+
+#~ msgid "Conversions folder\tCtrl+C"
+#~ msgstr "Conversie map\tCtrl+C"
+
+#~ msgid "Open the default file conversions folder"
+#~ msgstr "Open de standaard bestandsconversie map"
+
+#~ msgid "Open temporary conversions"
+#~ msgstr "Open tijdelijke conversies"
+
+#~ msgid "Open the temporary file conversions folder"
+#~ msgstr "Open de tijdelijke bestandsconversie map"
+
+#, fuzzy
+#~| msgid "Delete the selected profile"
+#~ msgid "Rename the selected file\tCtrl+I"
+#~ msgstr "Verwijder het geselecteerde profiel"
+
+#, fuzzy
+#~| msgid "A target file must be selected in the queued files"
+#~ msgid "Rename the file selected in the Queued Files panel"
+#~ msgstr "Een doel-bestand moet geselecteerd zijn in de wachtrij-bestanden"
+
+#, fuzzy
+#~| msgid "A target file must be selected in the queued files"
+#~ msgid "Rename all files listed in the Queued Files panel"
+#~ msgstr "Een doel-bestand moet geselecteerd zijn in de wachtrij-bestanden"
+
+#~ msgid "Trash folder"
+#~ msgstr "Videomass Prullenbak"
+
+#~ msgid "Open the Videomass Trash folder if it exists"
+#~ msgstr "Opent de Videomass Prullenbak folder, als deze bestaat"
+
+#~ msgid "Empty Trash"
+#~ msgstr "Prullenbak legen"
+
+#~ msgid "Delete all files in the Videomass Trash folder"
+#~ msgstr "Verwijder alle bestanden uit de Videomass Prullenbak"
+
+#~ msgid "A useful tool to search for FFmpeg help topics and options"
+#~ msgstr ""
+#~ "Een nuttig gereedschap om FFmpeg help-onderwerpen en opties te zoeken"
+
+#~ msgid "Check for new presets"
+#~ msgstr "Controleer op nieuwe presets"
+
+#~ msgid "Check new versions of Videomass presets from homepage"
+#~ msgstr "Check voor nieuwe Videomass presets"
+
+#~ msgid "Download the latest presets"
+#~ msgstr "Download de nieuwste presets"
+
+#~ msgid "Download all Videomass presets locally from the homepage"
+#~ msgstr "Download alle Videomass presets lokaal van de homepage"
+
+#~ msgid "Tools"
+#~ msgstr "Gereedschappen"
+
+#~ msgid "Show configuration"
+#~ msgstr "Toon configuratie"
+
+#~ msgid "Show FFmpeg's built-in configuration capabilities"
+#~ msgstr "Toon ingebouwde FFmpeg configuratie mogelijkheden"
+
+#~ msgid "Muxers and Demuxers"
+#~ msgstr "Muxers en Demuxers"
+
+#~ msgid "Muxers and demuxers available for used FFmpeg."
+#~ msgstr "Muxers en demuxers beschikbaar voor gebruikte FFmpeg."
+
+#~ msgid "Encoders"
+#~ msgstr "Encoders"
+
+#~ msgid "Shows available encoders for FFmpeg"
+#~ msgstr "Toont beschikbare encoders voor FFmpeg"
+
+#~ msgid "Decoders"
+#~ msgstr "Decoders"
+
+#~ msgid "Shows available decoders for FFmpeg"
+#~ msgstr "Toont beschikbare decoders voor FFmpeg"
+
+#~ msgid "FFplay"
+#~ msgstr "FFplay"
+
+#~ msgid "While playing"
+#~ msgstr "Tijdens afspelen"
+
+#~ msgid "Show useful shortcut keys when playing or previewing with FFplay"
+#~ msgstr "Toon nuttige sneltoetsen bij afspelen of preview met FFplay"
+
+#~ msgid "Displays timestamp"
+#~ msgstr "Toont tijdcode"
+
+#~ msgid "Displays timestamp when playing movies with FFplay"
+#~ msgstr "Toont tijdcode bij afspelen van films met FFplay"
+
+#~ msgid "Auto-exit after playback"
+#~ msgstr "Automatisch afsluiten na afspelen"
+
+#~ msgid "If checked, the FFplay window will auto-close at the end of playback"
+#~ msgstr ""
+#~ "Als geselecteerd, zal het FFplay window auto-sluiten als het afspelen "
+#~ "beëindigd is"
+
+#~ msgid "Setting timestamp"
+#~ msgstr "Tijdcode instellen"
+
+#~ msgid "Change the size and color of the timestamp during playback"
+#~ msgstr "Wijzig de grootte en kleur van de tijdcode tijdens afspelen"
+
+#~ msgid "Home panel\tShift+H"
+#~ msgstr "Home panel\tShift+H"
+
+#, fuzzy
+#~| msgid "Go to the next panel"
+#~ msgid "Go to the 'Home' panel"
+#~ msgstr "Ga naar volgende panel"
+
+#, fuzzy
+#~| msgid "Presets manager\tShift+P"
+#~ msgid "Presets Manager\tShift+P"
+#~ msgstr "Presets manager\tShift+P"
+
+#, fuzzy
+#~| msgid "jump to the Presets Manager panel"
+#~ msgid "Go to the 'Presets Manager' panel"
+#~ msgstr "spring naar het Presets Manager panel"
+
+#, fuzzy
+#~| msgid "A/V conversions\tShift+V"
+#~ msgid "A/V Conversions\tShift+V"
+#~ msgstr "A/V conversies\tShift+V"
+
+#, fuzzy
+#~| msgid "jump to the Audio/Video Conversion panel"
+#~ msgid "Go to the 'A/V Conversions' panel"
+#~ msgstr "spring naar het Audio/Video Conversie panel"
+
+#~ msgid "Concatenate Demuxer\tShift+D"
+#~ msgstr "Samenvoeg Demuxer\tShift+D"
+
+#, fuzzy
+#~| msgid "jump to the Concatenate Demuxer panel"
+#~ msgid "Go to the 'Concatenate Demuxer' panel"
+#~ msgstr "spring naar het Samenvoeg Demuxer panel"
+
+#, fuzzy
+#~| msgid "jump to the start panel"
+#~ msgid "Go to the 'Still Image Maker' panel"
+#~ msgstr "spring naar het start panel"
+
+#, fuzzy
+#~| msgid "From an image sequence to a video file"
+#~ msgid "From Movie to Pictures\tShift+S"
+#~ msgstr "Van afbeelingen serie naar een video file"
+
+#, fuzzy
+#~| msgid "jump to the Audio/Video Conversion panel"
+#~ msgid "Go to the 'From Movie to Pictures' panel"
+#~ msgstr "spring naar het Audio/Video Conversie panel"
+
+#~ msgid "YouTube downloader\tShift+Y"
+#~ msgstr "YouTube downloader\tShift+Y"
+
+#, fuzzy
+#~| msgid "jump to the YouTube Downloader panel"
+#~ msgid "Go to the 'YouTube Downloader' panel"
+#~ msgstr "spring naar het YouTube Downloader panel"
+
+#~ msgid "Output Monitor\tShift+O"
+#~ msgstr "Output Monitor\tShift+O"
+
+#~ msgid "Keeps track of the output for debugging errors"
+#~ msgstr "Inspecteert output voor debug-fouten"
+
+#~ msgid "Opens the Videomass configuration folder"
+#~ msgstr "Opent de Videomass configuratie folder"
+
+#~ msgid "Opens the Videomass log folder, if exists"
+#~ msgstr "Opent de Videomass log folder, als deze bestaat"
+
+#~ msgid "Cache folder"
+#~ msgstr "Cache folder"
+
+#~ msgid "Opens the Videomass cache folder, if exists"
+#~ msgstr "Opent de Videomass cache folder, als deze bestaat"
+
+#~ msgid "System"
+#~ msgstr "Systeem"
+
+#~ msgid "Goto"
+#~ msgstr "Ga naar"
+
+#~ msgid "Set up a temporary folder for conversions"
+#~ msgstr "Stel een tijdelijke folder in voor conversies"
+
+#~ msgid "Use a temporary location to save conversions"
+#~ msgstr "Gebruik een tijdelijke locatie om conversies te bewaren"
+
+#~ msgid "FFmpeg documentation"
+#~ msgstr "FFmpeg documentatie"
+
+#, fuzzy
+#~| msgid "Delete the selected profile"
+#~ msgid "Open the selected files"
+#~ msgstr "Verwijder het geselecteerde profiel"
+
+#~ msgid "No such folder '{}'"
+#~ msgstr "Er is geen folder '{}'"
+
+#~ msgid "Are you sure to empty trash folder?"
+#~ msgstr "Weet u zeker dat u de Videomass Prullenbak wilt legen?"
+
+#~ msgid "No files to delete"
+#~ msgstr "Geen bestanden om te deleten"
+
+#, python-brace-format
+#~ msgid "There is a new version available {0}"
+#~ msgstr "Er is een nieuwe versie beschikbaar {0}"
+
+#~ msgid "No new version available"
+#~ msgstr "Geen nieuwe versie beschikbaar"
+
+#~ msgid "Choose a download folder"
+#~ msgstr "Kies een download folder"
+
+#~ msgid ""
+#~ "Wait....\n"
+#~ "The archive is being downloaded"
+#~ msgstr ""
+#~ "Wacht....\n"
+#~ "Het archief wordt gedownload"
+
+#, python-brace-format
+#~ msgid "Successfully downloaded to \"{0}\""
+#~ msgstr "Succesvol gedownload naar \"{0}\""
+
+#~ msgid "cache folder has not been created yet."
+#~ msgstr "cache folder is nog niet gemaakt."
+
+#~ msgid "Choose a temporary destination for conversions"
+#~ msgstr "Kies een tijdelijke bestemming voor de conversies"
+
+#~ msgid "Gathers information of multimedia streams"
+#~ msgstr "Wint informatie in over multimedia streams"
+
+#~ msgid "Media Streams"
+#~ msgstr "Media Streams"
+
+#~ msgid "Add a new profile from this panel with the current settings"
+#~ msgstr ""
+#~ "Voeg een nieuw profiel toe van dit panel met de huidige instellingen"
+
+#~ msgid "Add Profile"
+#~ msgstr "Voeg profiel toe"
+
+#~ msgid "Convert using FFmpeg"
+#~ msgstr "Converteer met FFmpeg"
+
+#~ msgid "Convert"
+#~ msgstr "Converteer"
+
+#~ msgid "Download files using youtube-dl"
+#~ msgstr "Download bestanden met youtube-dl"
+
+#~ msgid "Videomass - Queued Files"
+#~ msgstr "Videomass - Wachtrij Bestanden"
+
+#~ msgid "File list changed, please check the settings again."
+#~ msgstr "Bestanden-lijst gewijzigd, ga a.u.b. de instellingen na."
+
+#~ msgid "Videomass - AV Conversions"
+#~ msgstr "Videomass - AV Conversies"
+
+#~ msgid "Videomass - Presets Manager"
+#~ msgstr "Videomass - Presets Manager"
+
+#~ msgid "Videomass - Concatenate Demuxer"
+#~ msgstr "Videomass - Samenvoeg Demuxer"
+
+#, fuzzy
+#~| msgid "From an image sequence to a video file"
+#~ msgid "Videomass - From Movie to Pictures"
+#~ msgstr "Van afbeelingen serie naar een video file"
+
+#, fuzzy
+#~| msgid "Videomass - Presets Manager"
+#~ msgid "Videomass - Still Image Maker"
+#~ msgstr "Videomass - Presets Manager"
+
+#~ msgid ""
+#~ "Cannot continue: The duration in the timeline exceeds the duration of "
+#~ "some queued files."
+#~ msgstr ""
+#~ "Doorgaan is onmogelijk: de duur op de tijdslijn overschrijdt de duur van "
+#~ "enkele wachtrij bestanden."
+
+#~ msgid "Processing..."
+#~ msgstr "Bezig..."
+
+#~ msgid "Media:"
+#~ msgstr "Media:"
+
+#~ msgid "Container:"
+#~ msgstr "Container:"
+
+#~ msgid "Use for Web"
+#~ msgstr "Gebruik voor Web"
+
+#, fuzzy
+#~| msgid "Target level:"
+#~ msgid "Target"
+#~ msgstr "Doel niveau:"
+
+#~ msgid "Video Encoder"
+#~ msgstr "Video Encoder"
+
+#~ msgid "Optimizations"
+#~ msgstr "Optimalisaties"
+
+#~ msgid "Deadline/Quality"
+#~ msgstr "Deadline/Kwaliteit"
+
+#~ msgid ""
+#~ "Quality/Speed\n"
+#~ "ratio modifier:"
+#~ msgstr ""
+#~ "Kwaliteit/Snelheid\n"
+#~ "ratio modificator:"
+
+#~ msgid "Activates row-mt 1"
+#~ msgstr "Activeert rij-mt 1"
+
+#~ msgid "Preset"
+#~ msgstr "Preset"
+
+#~ msgid "Profile"
+#~ msgstr "Profiel"
+
+#~ msgid "Level"
+#~ msgstr "Niveau"
+
+#~ msgid "Tune"
+#~ msgstr "Afstemmen"
+
+#~ msgid "Video Filters"
+#~ msgstr "Video Filters"
+
+#~ msgid "Preview"
+#~ msgstr "Voorvertoning"
+
+#~ msgid "Resizing"
+#~ msgstr "Herschalen bezig"
+
+#~ msgid "Cropping"
+#~ msgstr "Bijsnijden bezig"
+
+#~ msgid "Rotation"
+#~ msgstr "Rotatie"
+
+#~ msgid "Deinterlacing"
+#~ msgstr "Ont-interlacen"
+
+#~ msgid "Denoiser"
+#~ msgstr "Denoiser"
+
+#~ msgid "Stabilizer"
+#~ msgstr "Stabilisatie filter"
+
+#~ msgid "Audio Encoder"
+#~ msgstr "Audio Encoder"
+
+#~ msgid "Audio Properties"
+#~ msgstr "Audio Eigenschappen"
+
+#, fuzzy
+#~| msgid "Audio Streams Mapping"
+#~ msgid "Audio Streams Mapping"
+#~ msgstr "Audio Streams Mapping"
+
+#~ msgid "Index Selection:"
+#~ msgstr "Index Selectie:"
+
+#~ msgid "Map:"
+#~ msgstr "Map:"
+
+#~ msgid "Audio Filters"
+#~ msgstr "Audio Filters"
+
+#~ msgid "Listening"
+#~ msgstr "Beluister"
+
+#~ msgid "Normalization"
+#~ msgstr "Normalisatie"
+
+#~ msgid "Volume detect"
+#~ msgstr "Volume detectering"
+
+#~ msgid "Volume Statistics"
+#~ msgstr "Volume Statistieken"
+
+#~ msgid "Target level:"
+#~ msgstr "Doel niveau:"
+
+#~ msgid "Set integrated loudness target:"
+#~ msgstr "Stel geïntegreerde loudness doel in:"
+
+#~ msgid "Set maximum true peak:"
+#~ msgstr "Stel maximum ware peak in:"
+
+#~ msgid "Set loudness range target:"
+#~ msgstr "Stel loudness range doel in:"
+
+#~ msgid ""
+#~ "Available video codecs. \"Copy\" is not a codec but indicate that the "
+#~ "video stream is not to be re-encoded and allows changing the format or "
+#~ "other parameters"
+#~ msgstr ""
+#~ "Beschikbare video codecs. \"Copy\" is geen codec maar geeft aan dat de "
+#~ "video stream niet her-encoded dient te worden en staat toe het formaat of "
+#~ "andere parameters te wijzigen"
+
+#~ msgid ""
+#~ "\"Video\" to save the output file as a video; \"Audio\" to save as an "
+#~ "audio file only"
+#~ msgstr ""
+#~ "\"Video\" om het output-bestand te bewaren als video; \"Audio\" om te "
+#~ "bewaren als een (alleen-)audio bestand"
+
+#~ msgid "It can reduce the file size, but takes longer."
+#~ msgstr "Het kan de bestands-grootte reduceren, maar duurt langer."
+
+#~ msgid "Specifies a minimum tolerance to be used"
+#~ msgstr "Specificeert een minimum tolerantie om te gebruiken"
+
+#~ msgid ""
+#~ "Specifies a maximum tolerance. This is only used in conjunction with "
+#~ "buffer size"
+#~ msgstr ""
+#~ "Specificeert een maximale tolerantie. Dit wordt alleen gebruikt samen met "
+#~ "buffer-grootte"
+
+#~ msgid ""
+#~ "Specifies the decoder buffer size, which determines the variability of "
+#~ "the output bitrate "
+#~ msgstr ""
+#~ "Specificeert de buffer-grootte van de decoder, welke de veranderlijkheid "
+#~ "van de output bitrate bepaalt "
+
+#~ msgid ""
+#~ "\"good\" is the default and recommended for most applications; \"best\" "
+#~ "is recommended if you have lots of time and want the best compression "
+#~ "efficiency; \"realtime\" is recommended for live/fast encoding"
+#~ msgstr ""
+#~ "\"goed\" is de standaard en aanbevolen voor de meeste applicaties; \"best"
+#~ "\" is aanbevolen wanneer u geduld heeft en de beste compressie-"
+#~ "efficiëntie wenst; \"realtime\" is aanbevolen voor live/snelle encoding"
+
+#~ msgid ""
+#~ "\"cpu-used\" sets how efficient the compression will be. The meaning "
+#~ "depends on the mode above."
+#~ msgstr ""
+#~ "\"cpu-gebruikt\" stelt in hoe efficiënt de compressie zal zijn. De "
+#~ "betekenis hangt af van de modus hierboven."
+
+#~ msgid ""
+#~ "specifies the target (average) bit rate for the encoder to use. Higher "
+#~ "value = higher quality. Set -1 to disable this control."
+#~ msgstr ""
+#~ "specificeert de (gemiddelde) doel bit rate voor de te-gebruiken encoder. "
+#~ "Hogere waarde = hogere kwaliteit. Zet op -1 om dit niet te gebruiken."
+
+#~ msgid ""
+#~ "Constant rate factor. Lower values = higher quality and a larger file "
+#~ "size. Set -1 to disable this control."
+#~ msgstr ""
+#~ "Constante rate factor. Lagere waarden = hogere kwaliteit en een hogere "
+#~ "bestands-grootte. Zet op -1 om dit niet te gebruiken."
+
+#~ msgid "Preview video filters"
+#~ msgstr "Voorvertoon video filters"
+
+#~ msgid "Clear all enabled filters "
+#~ msgstr "Maak alle aangezette filters leeg "
+
+#~ msgid "Video width and video height ratio."
+#~ msgstr "Video breedte en video hoogte ratio."
+
+#~ msgid ""
+#~ "Frames repeat a given number of times per second. In some countries this "
+#~ "is 30 for NTSC, other countries (like Italy) use 25 for PAL"
+#~ msgstr ""
+#~ "Frames herhalen zich een opgegeven aantal maal per seconde. In sommige "
+#~ "landen is dit 30 voor NTSC, andere landen (zoals Italië) gebruiken 25 "
+#~ "voor PAL"
+
+#~ msgid ""
+#~ "Gets maximum volume and average volume data in dBFS, then calculates the "
+#~ "offset amount for audio normalization."
+#~ msgstr ""
+#~ "Verkrijgt maximum volume en gemiddelde volume data in dBFS, en berekent "
+#~ "vervolgens de hoeveelheid offset voor audio normalisatie."
+
+#~ msgid ""
+#~ "Limiter for the maximum peak level or the mean level (when switch to RMS) "
+#~ "in dBFS. From -99.0 to +0.0; default for PEAK level is -1.0; default for "
+#~ "RMS is -20.0"
+#~ msgstr ""
+#~ "Beperker voor het maximum peak level of het mean level (wanneer overgang "
+#~ "naar RMS) in dBFS. Van -99.0 tot +0.0; standaard voor PEAK level is -1.0; "
+#~ "standaard voor RMS is -20.0"
+
+#~ msgid ""
+#~ "Choose an index from the available audio streams. If the source file is a "
+#~ "video, it is recommended to select a numeric audio index. If the source "
+#~ "file is an audio file, leave this control to \"Auto\"."
+#~ msgstr ""
+#~ "Kies een index van de beschikbare audio streams. Als de bron een video "
+#~ "is, dan wordt aanbevolen om een nummer van de audio index te selecteren. "
+#~ "Als de bron een audio bestand is, laat het dan op \"Auto\" staan."
+
+#~ msgid ""
+#~ "\"Auto\" keeps all audio stream but processes only the one of the "
+#~ "selected index; \"All\" keeps all audio streams and processes them all "
+#~ "with the properties of the selected index; \"Index only\" processes and "
+#~ "keeps only the selected index audio stream."
+#~ msgstr ""
+#~ "\"Auto\" behoudt alle audio streams maar converteert alleen de "
+#~ "geselecteerde; \"Allemaal\" behoudt alle audio streams en converteert "
+#~ "deze allemaal; \"Index only\" behoudt en converteert alleen de "
+#~ "geselecteerde audio stream."
+
+#~ msgid ""
+#~ "Integrated Loudness Target in LUFS. From -70.0 to -5.0, default is -24.0"
+#~ msgstr ""
+#~ "Geïntegreerd Loudness Doel in LUFS. Van -70.0 tot -5.0, standaard is -24.0"
+
+#~ msgid "Maximum True Peak in dBTP. From -9.0 to +0.0, default is -2.0"
+#~ msgstr "Maximum Ware Peak in dBTP. Van -9.0 tot +0.0, standaard is -2.0"
+
+#~ msgid "Loudness Range Target in LUFS. From +1.0 to +20.0, default is +7.0"
+#~ msgstr "Loudness Bereik Doel in LUFS. Van +1.0 tot +20.0, standaard is +7.0"
+
+#~ msgid "Play and listen to the result of audio filters"
+#~ msgstr "Afspelen en luisteren naar het resultaat van de audio filters"
+
+#~ msgid ""
+#~ "Undetected volume values! Click the \"Volume detect\" button to analyze "
+#~ "audio volume data."
+#~ msgstr ""
+#~ "Volume waarden niet gedetecteerd! Druk de \"Volume detect\" knop om de "
+#~ "audio volume data te laten analyseren."
+
+#~ msgid "Unable to preview Video Stabilizer filter"
+#~ msgstr "Geen preview van Video Stabilisatie filter mogelijk"
+
+#~ msgid "A target file must be selected in the queued files"
+#~ msgstr "Een doel-bestand moet geselecteerd zijn in de wachtrij-bestanden"
+
+#~ msgid "Selected index does not exist or does not contain any audio streams"
+#~ msgstr "Gekozen index bestaat niet of bevat geen audio"
+
+#~ msgid ""
+#~ "ERROR: Missing audio stream:\n"
+#~ "\"{}\""
+#~ msgstr ""
+#~ "FOUT: Audio ontbreekt:\n"
+#~ "\"{}\""
+
+#~ msgid "The file is not a frame or a video file"
+#~ msgstr "Het bestand is geen frame en geen video bestand"
+
+#~ msgid "This filter is incompatible with 2-pass enabled"
+#~ msgstr "Dit filter is niet compatible met 2-pass activatie"
+
+#~ msgid "No Audio"
+#~ msgstr "Geen Audio"
+
+#~ msgid ""
+#~ "Activate peak level normalization, which will produce a maximum peak "
+#~ "level equal to the set target level."
+#~ msgstr ""
+#~ "Activeer peak level normalisatie, wat een maximum peak level zal geven "
+#~ "gelijk aan het ingestelde doel-level."
+
+#~ msgid ""
+#~ "Activate RMS-based normalization, which according to mean volume "
+#~ "calculates the amount of gain to reach same average power signal."
+#~ msgstr ""
+#~ "Activeer op RMS gebaseerde normalisatie, welke volgens het mean volume de "
+#~ "hoeveelheid gain berekent om dezelfde gemiddelde signaal-sterkte te "
+#~ "bereiken."
+
+#~ msgid ""
+#~ "Activate two passes normalization. It Normalizes the perceived loudness "
+#~ "using the \"​loudnorm\" filter, which implements the EBU R128 algorithm."
+#~ msgstr ""
+#~ "Activeer twee-pass normalisatie. Het normaliseert de ervaarde loudness "
+#~ "door gebruikmaking van het \"​loudnorm\" filter, wat het EBU R128 "
+#~ "algoritme toepast."
+
+#~ msgid "Audio normalization off"
+#~ msgstr "Audio normalisatie uit"
+
+#~ msgid "Audio normalization is required only for some files"
+#~ msgstr "Audio normalisatie is alleen vereist voor bepaalde bestanden"
+
+#~ msgid ""
+#~ "Audio normalization will not be applied because the source signal is equal"
+#~ msgstr ""
+#~ "Audio normalisatie zal niet toegepast worden omdat het bronsignaal gelijk "
+#~ "is"
+
+#~ msgid "{} file in queue"
+#~ msgstr "{} bestand in wachtrij"
+
+#~ msgid "Off"
+#~ msgstr "Uit"
+
+#~ msgid "Unset"
+#~ msgstr "Uitgezet"
+
+#~ msgid "start  {} | duration  {}"
+#~ msgstr "start  {} | duur  {}"
+
+#~ msgid ""
+#~ "Queued File\n"
+#~ "Output Format\n"
+#~ "Web Optimize\n"
+#~ "Audio Codec\n"
+#~ "Audio bit-rate\n"
+#~ "Audio Channels\n"
+#~ "Audio Rate\n"
+#~ "Bit per Sample\n"
+#~ "Audio Normalization\n"
+#~ "Time Period\n"
+#~ "Input Audio Map"
+#~ msgstr ""
+#~ "Wachtrij Bestand\n"
+#~ "Output Formaat\n"
+#~ "Web Optimalisatie\n"
+#~ "Audio Codec\n"
+#~ "Audio bit-rate\n"
+#~ "Audio Kanelen\n"
+#~ "Audio Rate\n"
+#~ "Bit per Sample\n"
+#~ "Audio Normalisatie\n"
+#~ "Tijdsperiode\n"
+#~ "Input Audio Map"
+
+#~ msgid ""
+#~ "Queued File\n"
+#~ "Web Optimize\n"
+#~ "Output Format\n"
+#~ "Video Codec\n"
+#~ "Aspect Ratio\n"
+#~ "FPS\n"
+#~ "Audio Codec\n"
+#~ "Audio Channels\n"
+#~ "Audio Rate\n"
+#~ "Audio bit-rate\n"
+#~ "Bit per Sample\n"
+#~ "Audio Normalization\n"
+#~ "Input Audio Map\n"
+#~ "Output Audio Map\n"
+#~ "Subtitles Map\n"
+#~ "Time Period"
+#~ msgstr ""
+#~ "Wachtrij Bestand\n"
+#~ "Web Optimalisatie\n"
+#~ "Output Formaat\n"
+#~ "Video Codec\n"
+#~ "Aspect Ratio\n"
+#~ "FPS\n"
+#~ "Audio Codec\n"
+#~ "Audio Kanalen\n"
+#~ "Audio Rate\n"
+#~ "Audio bit-rate\n"
+#~ "Bit per Sample\n"
+#~ "Audio Normalisatie\n"
+#~ "Input Audio Map\n"
+#~ "Output Audio Map\n"
+#~ "Ondertitels Map\n"
+#~ "Tijdsperiode"
+
+#~ msgid ""
+#~ "Queued File\n"
+#~ "Web Optimize\n"
+#~ "Pass Encoding\n"
+#~ "Output Format\n"
+#~ "Video Codec\n"
+#~ "Video bit-rate\n"
+#~ "CRF\n"
+#~ "Min Rate\n"
+#~ "Max Rate\n"
+#~ "Buffer size\n"
+#~ "VP8/VP9 Options\n"
+#~ "Video Filters\n"
+#~ "Aspect Ratio\n"
+#~ "FPS\n"
+#~ "Preset\n"
+#~ "Profile\n"
+#~ "Tune\n"
+#~ "Audio Codec\n"
+#~ "Audio Channels\n"
+#~ "Audio Rate\n"
+#~ "Audio bit-rate\n"
+#~ "Bit per Sample\n"
+#~ "Audio Normalization\n"
+#~ "Input Audio Map\n"
+#~ "Output Audio Map\n"
+#~ "Subtitles Map\n"
+#~ "Time Period"
+#~ msgstr ""
+#~ "Wachtrij Bestand\n"
+#~ "Web Optimalisatie\n"
+#~ "Pass Encoding\n"
+#~ "Output Formaat\n"
+#~ "Video Codec\n"
+#~ "Video bit-rate\n"
+#~ "CRF\n"
+#~ "Min Rate\n"
+#~ "Max Rate\n"
+#~ "Buffer grootte\n"
+#~ "VP8/VP9 Opties\n"
+#~ "Video Filters\n"
+#~ "Aspect Ratio\n"
+#~ "FPS\n"
+#~ "Preset\n"
+#~ "Profiel\n"
+#~ "Tune\n"
+#~ "Audio Codec\n"
+#~ "Audio Kanalen\n"
+#~ "Audio Rate\n"
+#~ "Audio bit-rate\n"
+#~ "Bit per Sample\n"
+#~ "Audio Normalisatie\n"
+#~ "Input Audio Map\n"
+#~ "Output Audio Map\n"
+#~ "Ondertitels Map\n"
+#~ "Tijdsperiode"
+
+#~ msgid ""
+#~ "Audio normalization processes cannot be saved on the Presets Manager."
+#~ msgstr ""
+#~ "Audio normalisatie processen kunnen niet in de Presets Manager bewaard "
+#~ "worden."
+
+#~ msgid "Save the new profile to..."
+#~ msgstr "Schrijf het nieuwe profiel naar..."
+
+#~ msgid "Create a new profile"
+#~ msgstr "Maak een nieuw profiel"
+
+#~ msgid "Welcome to Videomass"
+#~ msgstr "Welkom bij Videomass"
+
+#~ msgid "Version {}"
+#~ msgstr "Versie {}"
+
+#~ msgid "Presets Manager"
+#~ msgstr "Presets Manager"
+
+#~ msgid "AV-Conversions"
+#~ msgstr "AV-Conversies"
+
+#~ msgid "Concatenate media files"
+#~ msgstr "Media files samenvoegen"
+
+#~ msgid "YouTube Downloader"
+#~ msgstr "YouTube Downloader"
+
+#, fuzzy
+#~| msgid "From an image sequence to a video file"
+#~ msgid "From Movie to Pictures"
+#~ msgstr "Van afbeelingen serie naar een video file"
+
+#~ msgid ""
+#~ "Create, edit and use quickly your favorite FFmpeg presets and profiles "
+#~ "with full formats support and codecs."
+#~ msgstr ""
+#~ "Maak, edit en gebruik snel uw favoriete FFmpeg presets en profielen met "
+#~ "volledige ondersteuning van formaten en codecs."
+
+#~ msgid ""
+#~ "A set of useful tools for audio and video conversions. Save your profiles "
+#~ "and reuse them with Presets Manager."
+#~ msgstr ""
+#~ "Een stel handige gereedschappen voor audio en video conversies. Bewaar uw "
+#~ "profielen en gebruik ze met Presets Manager."
+
+#~ msgid ""
+#~ "Easily download videos and audio in different formats and quality from "
+#~ "YouTube, Facebook and more sites."
+#~ msgstr ""
+#~ "Gemakkelijk downloaden van video en audio in diverse formaten en "
+#~ "kwaliteit van YouTube, Facebook en meer websites."
+
+#~ msgid ""
+#~ "Concatenate multiple media files based on import order without re-encoding"
+#~ msgstr ""
+#~ "Schakel meerdere media files aaneen, gebaseerd op import volgorde zonder "
+#~ "her-encoding"
+
+#~ msgid "The downloader is disabled. Check your preferences."
+#~ msgstr "De youtube-dl is uitgezet. Controleer uw voorkeuren."
+
+#, python-brace-format
+#~ msgid ""
+#~ "ERROR: {0}\n"
+#~ "\n"
+#~ "{1} is not installed, use your package manager to install it."
+#~ msgstr ""
+#~ "ERROR: {0}\n"
+#~ "\n"
+#~ "{1} is niet geinstalleerd, gebruik uw package manager om het te "
+#~ "installeren."
+
+#, fuzzy
+#~| msgid ""
+#~| "NOTE:\n"
+#~| "\n"
+#~| "- The concatenation function is performed only with Audio files or only "
+#~| "with Video files.\n"
+#~| "\n"
+#~| "- The order of concatenation depends on the order in which the files "
+#~| "were added.\n"
+#~| "\n"
+#~| "- The output file name will have the same name as the first file added "
+#~| "(also depends\n"
+#~| "  on the settings made in the preferences dialog).\n"
+#~| "\n"
+#~| "- Video files must have exactly same streams, same codecs and same\n"
+#~| "  width/height, but can be wrapped in different container formats.\n"
+#~| "\n"
+#~| "- Audio files must have exactly the same formats, same codecs and same "
+#~| "sample rate."
+#~ msgid ""
+#~ "\n"
+#~ "- The concatenation function is performed only with Audio files or only "
+#~ "with Video files.\n"
+#~ "\n"
+#~ "- The order of concatenation depends on the order in which the files were "
+#~ "added.\n"
+#~ "\n"
+#~ "- The output file name will have the same name as the first file added "
+#~ "(also depends on the\n"
+#~ "  settings made in the preferences dialog or the renaming functions "
+#~ "used).\n"
+#~ "\n"
+#~ "- Video files must have exactly same streams, same codecs and same\n"
+#~ "  width/height, but can be wrapped in different container formats.\n"
+#~ "\n"
+#~ "- Audio files must have exactly the same formats, same codecs with equal "
+#~ "sample rate."
+#~ msgstr ""
+#~ "OPMERKING:\n"
+#~ "\n"
+#~ "- De samenvoeg functie wordt alleen uitgevoerd met Audio bestanden of "
+#~ "alleen met Video bestanden.\n"
+#~ "\n"
+#~ "- De samenvoeg volgorde wordt bepaald door de volgorde waarin de "
+#~ "bestanden werden toegevoegd.\n"
+#~ "\n"
+#~ "- De output bestandsnaam zal dezelfde zijn als die van het eerst "
+#~ "toegevoegde bestand (hangt ook af\n"
+#~ "  van de instellingen in het voorkeur scherm).\n"
+#~ "\n"
+#~ "- Streams van video bestanden moeten exact overeenkomen, evenals hun "
+#~ "codecs en breedte/hoogte,\n"
+#~ "  maar kunnen in andere container formaten ingesloten worden.\n"
+#~ "\n"
+#~ "- Audio bestanden moeten exact hetzelfde formaat hebben, evenals hun "
+#~ "codecs en sample rate."
+
+#~ msgid "From an image sequence to a video file"
+#~ msgstr "Van afbeelingen serie naar een video file"
+
+#~ msgid "Duration:"
+#~ msgstr "Duur:"
+
+#~ msgid "Output format:"
+#~ msgstr "Output Formaat:"
+
+#~ msgid "For more details, see the Videomass User Guide:"
+#~ msgstr "Voor meer details, zie de Videomass Gebruikers Handleiding:"
+
+#~ msgid "For more information, visit the official FFmpeg documentation:"
+#~ msgstr "Voor meer informatie, bezoek de officiele FFmpeg documentatie:"
+
+#, fuzzy
+#~| msgid ""
+#~| "Sets the duration between one image and another in seconds (from 1 to "
+#~| "100 sec.), default is 1 second"
+#~ msgid ""
+#~ "Set the time interval between images in seconds (from 1 to 100 sec.), "
+#~ "default is 1 second"
+#~ msgstr ""
+#~ "Bepaald de weergave duur van elke afbeelding in seconden (from 1 to 100 "
+#~ "sec.), standaard is 1 seconde"
+
+#~ msgid "At least two files are required to perform concatenation."
+#~ msgstr "Samevoegen vereist minstens twee bestanden."
+
+#~ msgid "ERROR"
+#~ msgstr "FOUT"
+
+#~ msgid ""
+#~ "The files do not have the same \"codec_types\", same \"sample_rate\" or "
+#~ "same \"width\" or \"height\". Unable to proceed."
+#~ msgstr ""
+#~ "De bestanden hebben niet dezelfde \"codec_types\", \"sample_rate\" of "
+#~ "\"breedte\" of \"hoogte\". Voortgang onmogelijk."
+
+#~ msgid ""
+#~ "File to concatenate\n"
+#~ "Output filename\n"
+#~ "Destination\n"
+#~ "Output Format\n"
+#~ "Time Period"
+#~ msgstr ""
+#~ "Bestand om aaneen te schakelen\n"
+#~ "Output bestandsnaam\n"
+#~ "Bestemming\n"
+#~ "Output Formaat\n"
+#~ "Tijd Periode"
+
+#~ msgid "Play selected url"
+#~ msgstr "Speel geselecteerde url af"
+
+#~ msgid "An item must be selected in the URLs checklist"
+#~ msgstr "Een item moet geselecteerd zijn in de URL lijst"
+
+#, python-brace-format
+#~ msgid ""
+#~ "Only one video can be played at a time.\n"
+#~ "\n"
+#~ "Unsupported '{0}':\n"
+#~ "'{1}'"
+#~ msgstr ""
+#~ "Slechts 1 video kan worden afgespeeld tegelijkertijd.\n"
+#~ "\n"
+#~ "Niet ondersteund '{0}':\n"
+#~ "'{1}'"
+
+#, fuzzy
+#~| msgid "Invalid filename. Contains double or single quotes"
+#~ msgid "Invalid path name. Contains double or single quotes"
+#~ msgstr "Ongeldige bestandsnaam. Bevat dubbele of enkele aanhalingstekens"
+
+#~ msgid "Directories are not allowed, just add files, please."
+#~ msgstr "Folders zijn niet toegestaan, voeg alleen bestanden toe."
+
+#~ msgid ""
+#~ "File without format extension: please give an appropriate extension to "
+#~ "the file name, example '.mkv', '.avi', '.mp3', etc."
+#~ msgstr ""
+#~ "Bestand zonder formaat extensie: u dient een treffende extensie te geven "
+#~ "aan de bestandsnaam, bijv. '.mkv', '.avi', '.mp3', etc."
+
+#~ msgid "File Name"
+#~ msgstr "Bestandsnaam"
+
+#~ msgid "Duration"
+#~ msgstr "Duur"
+
+#~ msgid "Media type"
+#~ msgstr "Media type"
+
+#, fuzzy
+#~| msgid "Output index:"
+#~ msgid "Output file name"
+#~ msgstr "Output index:"
+
+#~ msgid "Duplicate files are rejected: > {}"
+#~ msgstr "Gelijke bestanden zijn overgeslagen: > {}"
+
+#~ msgid "Drag one or more files below"
+#~ msgstr "Sleep een of meer bestanden hieronder"
+
+#~ msgid "Play"
+#~ msgstr "Speel"
+
+#, fuzzy
+#~| msgid "Remove the selected file from the list"
+#~ msgid "Remove the selected files from the list"
+#~ msgstr "Verwijder het geselecteerde bestand uit de lijst"
+
+#~ msgid "Delete all files from the list"
+#~ msgstr "Verwijder alle bestanden uit de lijst"
+
+#, fuzzy
+#~| msgid "Play the selected files in the list"
+#~ msgid "Play the selected file in the list"
+#~ msgstr "Speel de geselecteerde bestanden in de lijst af"
+
+#, fuzzy
+#~| msgid "File name"
+#~ msgid "File renaming..."
+#~ msgstr "Bestandsnaam"
+
+#, fuzzy
+#~| msgid "Delete the selected profile"
+#~ msgid "Rename the selected file to:"
+#~ msgstr "Verwijder het geselecteerde profiel"
+
+#~ msgid "Add Files"
+#~ msgstr "Voeg bestanden toe"
+
+#, fuzzy
+#~| msgid "File Name"
+#~ msgid "New Name #"
+#~ msgstr "Bestandsnaam"
+
+#~ msgid "Suppress excess output"
+#~ msgstr "Onderdruk overtollige output"
+
+#~ msgid "Abort"
+#~ msgstr "Afbreken"
+
+#~ msgid "If activated, hides some output messages."
+#~ msgstr "Verbergt bepaalde output berichten."
+
+#, fuzzy
+#~| msgid "wait... I'm aborting"
+#~ msgid "wait... I'm interrupting"
+#~ msgstr "wacht... bezig met afbreken"
+
+#~ msgid "Presets"
+#~ msgstr "Presets"
+
+#~ msgid "New"
+#~ msgstr "Nieuw"
+
+#~ msgid "Remove"
+#~ msgstr "Verwijder"
+
+#~ msgid "Export selected"
+#~ msgstr "Exporteer geselecteerden"
+
+#~ msgid "Export all..."
+#~ msgstr "Exporteer allen..."
+
+#~ msgid "Import preset"
+#~ msgstr "Importeer preset"
+
+#~ msgid "Import group"
+#~ msgstr "Importeer groep"
+
+#~ msgid "Restore"
+#~ msgstr "Herstel"
+
+#~ msgid "Restore all..."
+#~ msgstr "Herstel allen..."
+
+#~ msgid "Reload"
+#~ msgstr "Herlaad"
+
+#~ msgid "Profiles"
+#~ msgstr "Profielen"
+
+#~ msgid "Add"
+#~ msgstr "Voeg toe"
+
+#~ msgid "Delete"
+#~ msgstr "Verwijder"
+
+#~ msgid "Edit"
+#~ msgstr "Edit"
+
+#~ msgid "Duplicate"
+#~ msgstr "Kopieer"
+
+#~ msgid "One-Pass"
+#~ msgstr "Een-Pass"
+
+#~ msgid "Two-Pass"
+#~ msgstr "Twee-Pass"
+
+#~ msgid "Choose a preset and view its profiles"
+#~ msgstr "Kies een preset en bekijk de profielen ervan"
+
+#~ msgid "Create a new profile and save it in the selected preset"
+#~ msgstr "Maak een nieuw profiel en bewaar het in de geselecteerde preset"
+
+#~ msgid "Delete the selected profile"
+#~ msgstr "Verwijder het geselecteerde profiel"
+
+#~ msgid "Edit the selected profile"
+#~ msgstr "Edit het geselecteerde profiel"
+
+#~ msgid "Create a new preset"
+#~ msgstr "Maak een nieuwe preset"
+
+#~ msgid "Remove the selected preset from the Presets Manager"
+#~ msgstr "Verwijder de geselecteerde preset uit de Presets Manager"
+
+#~ msgid "Export selected preset as copy"
+#~ msgstr "Exporteer geselecteerde preset als copy"
+
+#~ msgid "Export entire presets folder as copy"
+#~ msgstr "Exporteer gehele presets folder als copy"
+
+#~ msgid "Import a new preset or update an existing one"
+#~ msgstr "Importeer een nieuwe preset of update een bestaande"
+
+#~ msgid "Import a group of presets from a folder and update existing ones"
+#~ msgstr "Importeer een groep presets van een folder en update bestaanden"
+
+#~ msgid "Replace the selected preset with the Videomass default one"
+#~ msgstr "Vervang de geselecteerde preset met de Videomass standaard"
+
+#~ msgid "Retrieve all Videomass default presets"
+#~ msgstr "Haal alle Videomass standaard presets op"
+
+#~ msgid "Update the presets list"
+#~ msgstr "Update de presets lijst"
+
+#~ msgid "First pass of the selected profile"
+#~ msgstr "Eerste pass van het geselecteerde profiel"
+
+#~ msgid "Second pass of the selected profile"
+#~ msgstr "Tweede pass van het geselecteerde profiel"
+
+#~ msgid "Name"
+#~ msgstr "Naam"
+
+#~ msgid "Output Format"
+#~ msgstr "Output Formaat"
+
+#~ msgid "Supported Format List"
+#~ msgstr "Lijst Ondersteunde Formaten"
+
+#~ msgid ""
+#~ "ERROR: Typing error on JSON keys: {}\n"
+#~ "\n"
+#~ "File: \"{}\"\n"
+#~ "key malformed ?"
+#~ msgstr ""
+#~ "ERROR: fout in JSON keys: {}\n"
+#~ "\n"
+#~ "Bestand: \"{}\"\n"
+#~ "sleutel misvormd ?"
+
+#~ msgid "Enter name for new preset"
+#~ msgstr "Voer naam in voor nieuwe preset"
+
+#~ msgid "Cannot save current data in file '{}'."
+#~ msgstr "Kan huidige data niet in bestand '{}' bewaren."
+
+#~ msgid ""
+#~ "'Successful!\n"
+#~ "\n"
+#~ "A new empty preset has been created."
+#~ msgstr ""
+#~ "'Succesvol!\n"
+#~ "\n"
+#~ "Een nieuwe lege preset is gemaakt."
+
+#~ msgid ""
+#~ "Are you sure you want to remove \"{}\" preset?\n"
+#~ "\n"
+#~ " It will be moved to the \"Removals\" subfolder of the presets folder."
+#~ msgstr ""
+#~ "Weet u zeker dat u preset \"{}\" wilt verwijderen?\n"
+#~ "\n"
+#~ "Deze wordt verplaatst naar de \"Verwijderd\" subfolder in de presets "
+#~ "folder."
+
+#~ msgid ""
+#~ "{}\n"
+#~ "\n"
+#~ "Sorry, removal failed, cannot continue.."
+#~ msgstr ""
+#~ "{}\n"
+#~ "\n"
+#~ "Sorry, verwijdering mislukt, kan niet verder gaan.."
+
+#, python-brace-format
+#~ msgid "The preset \"{0}\" was successfully removed"
+#~ msgstr "De preset \"{0}\" was succesvol verwijderd"
+
+#~ msgid "Choose a folder to save the selected preset"
+#~ msgstr "Kies een folder om de geselecteerde preset te bewaren"
+
+#~ msgid "A file with this name already exists, do you want to overwrite it?"
+#~ msgstr "Een bestand met deze naam bestaat al, wilt u het overschrijven?"
+
+#~ msgid "The preset was exported successfully"
+#~ msgstr "De preset was succesvol geëxporteerd"
+
+#~ msgid "Choose a folder to export all presets"
+#~ msgstr "Kies een folder om alle presets naar te exporteren"
+
+#~ msgid "All presets have been exported successfully"
+#~ msgstr "Alle presets zijn succesvol geëxporteerd"
+
+#~ msgid "Import a new preset"
+#~ msgstr "Importeer een nieuwe preset"
+
+#~ msgid "Error, invalid preset: \"{}\""
+#~ msgstr "Error, ongeldige preset: \"{}\""
+
+#~ msgid ""
+#~ "This preset already exists and is about to be updated. Don't worry, it "
+#~ "will keep all your saved profiles.\n"
+#~ "\n"
+#~ "Do you want to continue?"
+#~ msgstr ""
+#~ "Deze preset bestaat al en zal ge-update worden. Geen zorgen, alle "
+#~ "bewaarde profielen zullen behouden blijven.\n"
+#~ "\n"
+#~ "Wilt u verder gaan?"
+
+#~ msgid "A new preset was successfully imported"
+#~ msgstr "Een nieuwe preset is succesvol geïmporteerd"
+
+#~ msgid ""
+#~ "This will update the presets database. Don't worry, it will keep all your "
+#~ "saved profiles.\n"
+#~ "\n"
+#~ "Do you want to continue?"
+#~ msgstr ""
+#~ "Hierdoor zal de presets database worden ge-update. Geen zorgen, alle "
+#~ "bewaarde profielen zullen behouden blijven.\n"
+#~ "\n"
+#~ "Wilt u verder gaan?"
+
+#~ msgid "Import a new presets folder"
+#~ msgstr "Importeer een nieuwe preset folder"
+
+#~ msgid "The presets database has been successfully updated"
+#~ msgstr "De presets database is succesvol ge-update"
+
+#~ msgid ""
+#~ "Be careful! The selected preset will be overwritten with the default one. "
+#~ "Your profiles may be deleted!\n"
+#~ "\n"
+#~ "Do you want to continue?"
+#~ msgstr ""
+#~ "Voorzichtig! De geselecteerde preset zal overschreven worden door de "
+#~ "standaard. Uw profielen zouden verwijderd kunnen worden!\n"
+#~ "\n"
+#~ "Wilt u verder gaan?"
+
+#~ msgid "Warning"
+#~ msgstr "Waarschuwing"
+
+#~ msgid "Sorry, this preset is not part of default Videomass presets."
+#~ msgstr "Sorry, deze preset hoort niet tot standaard Videomass presets."
+
+#~ msgid "Successful recovery"
+#~ msgstr "Succesvol herstel"
+
+#~ msgid ""
+#~ "Be careful! This action will restore all presets to default ones. Your "
+#~ "profiles may be deleted!\n"
+#~ "\n"
+#~ "Do you want to continue?"
+#~ msgstr ""
+#~ "Voorzichtig! Hierdoor zullen alle presets door standaard waarden "
+#~ "vervangen worden. Uw profielen zouden verwijderd kunnen worden!\n"
+#~ "\n"
+#~ "Wilt u verder gaan?"
+
+#~ msgid "All default presets have been successfully recovered"
+#~ msgstr "Alle standaard presets zijn met succes hersteld"
+
+#~ msgid "Create a new profile on \"{}\" preset"
+#~ msgstr "Maak een nieuw profiel op \"{}\" preset"
+
+#~ msgid "First select a profile in the list"
+#~ msgstr "Selecteer eerst een profiel in de lijst"
+
+#~ msgid "Edit profile of the \"{}\" preset"
+#~ msgstr "Edit profiel van de \"{}\" preset"
+
+#~ msgid ""
+#~ "Are you sure you want to delete the selected profile? It will no longer "
+#~ "be possible to recover it."
+#~ msgstr ""
+#~ "Geselecteerde profiel verwijderen? Het zal niet meer hersteld kunnen "
+#~ "worden."
+
+#~ msgid ""
+#~ "The selected profile command has been changed manually.\n"
+#~ "Do you want to apply it during the conversion process?"
+#~ msgstr ""
+#~ "Het geselecteerde profiel commando is handmatig gewijzigd.\n"
+#~ "Wilt u dit toepassen voor het conversie proces?"
+
+#~ msgid "Don't show this dialog again"
+#~ msgstr "Toon dit dialoogscherm niet meer"
+
+#~ msgid ""
+#~ "Queued File\n"
+#~ "Pass Encoding\n"
+#~ "Profile Used\n"
+#~ "Output Format\n"
+#~ "Time Period"
+#~ msgstr ""
+#~ "Wachtrij Bestand\n"
+#~ "Pass Encoding\n"
+#~ "Gebruikt Profiel\n"
+#~ "Output Formaat\n"
+#~ "Tijdsduur"
+
+#~ msgid "Delete all text from the list"
+#~ msgstr "Verwijder alle tekst uit de lijst"
+
+#, fuzzy
+#~| msgid "Starts"
+#~ msgid "Start:"
+#~ msgstr "Start"
+
+#, fuzzy, python-brace-format
+#~| msgid "The maximum time refers to the file with the longest duration"
+#~ msgid ""
+#~ "Stream duration always refers to the file with the longest duration.\n"
+#~ "If the \"Duration\" data is missing, it will be set to {0}."
+#~ msgstr "De maximum tijd heeft betrekking op het bestand met de langste duur"
+
+#, fuzzy
+#~| msgid "Open one or more files"
+#~ msgid "Open an audio file"
+#~ msgstr "Open een of meer bestanden"
+
+#, fuzzy
+#~| msgid "Invalid URL: \"{}\""
+#~ msgid "Invalid file: '{}'"
+#~ msgstr "Ongeldige URL: \"{}\""
+
+#, fuzzy
+#~| msgid "Supported Format List"
+#~ msgid "Unsupported format '{}'"
+#~ msgstr "Lijst Ondersteunde Formaten"
+
+#~ msgid "Is 'ffmpeg' installed on your system?"
+#~ msgstr "Is 'ffmpeg' geïnstalleerd op uw systeem?"
+
+#, fuzzy
+#~| msgid "Duration"
+#~ msgid "Duration hours"
+#~ msgstr "Duur"
+
+#, fuzzy
+#~| msgid "Duration"
+#~ msgid "Duration minutes"
+#~ msgstr "Duur"
+
+#, fuzzy
+#~| msgid "Duration"
+#~ msgid "Duration seconds"
+#~ msgstr "Duur"
+
+#, fuzzy
+#~| msgid "Starts"
+#~ msgid "Start hours"
+#~ msgstr "Start"
+
+#, fuzzy
+#~| msgid "Starts"
+#~ msgid "Start minutes"
+#~ msgstr "Start"
+
+#~ msgid "Show timeline\tCtrl+T"
+#~ msgstr "Toon tijdslijn\tCtrl+T"
+
+#~ msgid "Show panel for editing timeline (seek/duration)"
+#~ msgstr "Toon panel voor tijdslijn edit (zoek/duur)"
+
+#~ msgid "Codec"
+#~ msgstr "Codec"
+
+#~ msgid "Two passes"
+#~ msgstr "Twee passes"
+
+#~ msgid "CRF"
+#~ msgstr "CRF"
+
+#~ msgid "Bit Rate (kb)"
+#~ msgstr "Bit Rate (kb)"
+
+#~ msgid "Min Rate (kb)"
+#~ msgstr "Minimale Rate (kb)"
+
+#~ msgid "Max Rate (kb)"
+#~ msgstr "Maximale Rate (kb)"
+
+#~ msgid "Buffer Size (kb)"
+#~ msgstr "Buffer Grootte (kb)"
+
+#~ msgid "Pixel Format"
+#~ msgstr "Pixel Formaat"
+
+#~ msgid "Subtitle Map"
+#~ msgstr "Ondertitel Map"
+
+#~ msgid ""
+#~ "Output format and file extension. The content may change based on the "
+#~ "codec and media"
+#~ msgstr ""
+#~ "Output formaat en bestands-extensie. De inhoud kan wijzigen naar "
+#~ "aanleiding van de codec en media"
+
+#, fuzzy
+#~| msgid "Total duration"
+#~ msgid ""
+#~ "Total Duration:\n"
+#~ "{}"
+#~ msgstr "Totale duur"
+
+#~ msgid "Audio/Video EBU normalization"
+#~ msgstr "Audio/Video EBU normalisatie"
+
+#~ msgid "Audio conversions"
+#~ msgstr "Audio conversies"
+
+#~ msgid "Audio EBU normalization"
+#~ msgstr "Audio EBU normalisatie"
+
+#~ msgid "No file selected"
+#~ msgstr "Geen bestand geselecteerd"
+
+#~ msgid "Seek"
+#~ msgstr "Zoek"
+
+#~ msgid "Seek to given time position"
+#~ msgstr "Zoek tot opgegeven tijdpositie"
+
+#~ msgid "Menu bar > Tools > Update {}"
+#~ msgstr "Menu balk > Gereedschappen > Update {}"
+
+#~ msgid ""
+#~ "Be patient...\n"
+#~ "this can take a few minutes."
+#~ msgstr ""
+#~ "Heb geduld...\n"
+#~ "dit kan enige minuten duren."
+
+#~ msgid "Videomass - Updating..."
+#~ msgstr "Videomass - Bezig met updaten..."
+
+#~ msgid "Update {}"
+#~ msgstr "Update {}"
+
+#, fuzzy
+#~| msgid "Update to latest youtube-dl version"
+#~ msgid "Update the downloader to the latest version"
+#~ msgstr "Update naar laatste youtube-dl versie"
+
+#, python-brace-format
+#~ msgid "{0} is already up-to-date {1}"
+#~ msgstr "{0} is reeds up-to-date {1}"
+
+#, python-brace-format
+#~ msgid ""
+#~ "{0} version {1} is available and will replace the old version {2}\n"
+#~ "\n"
+#~ "Do you want to update now?"
+#~ msgstr ""
+#~ "{0} versie {1} is beschikbaar en zal de oude versie {2} vervangen\n"
+#~ "\n"
+#~ "Wilt u nu updaten?"
+
+#~ msgid ""
+#~ "To update {} it is necessary to rebuild the Videomass AppImage. This "
+#~ "procedure will be completely automatic and will only require you to "
+#~ "select the location of the AppImage.\n"
+#~ "\n"
+#~ "Do you want to continue?"
+#~ msgstr ""
+#~ "Om  {} te updaten is het nodig de Videomass AppImage opnieuw samen te "
+#~ "stellen. Deze procedure zal volledig automatisch verlopen, u hoeft alleen "
+#~ "de locatie van de AppImage te selecteren.\n"
+#~ "\n"
+#~ "Wilt u doorgaan?"
+
+#~ msgid "Select the 'Videomass-{}-x86_64.AppImage' file to update"
+#~ msgstr "Selecteer het 'Videomass-{}-x86_64.AppImage' bestand om te updaten"
+
+#, python-brace-format
+#~ msgid ""
+#~ "Successful! {0} is up-to-date ({1})\n"
+#~ "\n"
+#~ "Re-start is required."
+#~ msgstr ""
+#~ "Succesvol! {0} is up-to-date ({1})\n"
+#~ "\n"
+#~ "Herstart is nodig."
+
+#~ msgid ""
+#~ "Failed! For details consult:\n"
+#~ "{}/AppImage_Updates.log"
+#~ msgstr ""
+#~ "Mislukt! Voor details raadpleeg:\n"
+#~ "{}/AppImage_Updates.log"
+
+#~ msgid "Failed! {}"
+#~ msgstr "Mislukt! {}"
+
+#, fuzzy
+#~| msgid "From an image sequence to a video file"
+#~ msgid "From movie to pictures"
+#~ msgstr "Van afbeelingen serie naar een video file"
+
+#, fuzzy
+#~| msgid "From an image sequence to a video file"
+#~ msgid "From movie to picture sheet (tiles)"
+#~ msgstr "Van afbeelingen serie naar een video file"
+
+#~ msgid "jump to the start panel"
+#~ msgstr "spring naar het start panel"
+
+#~ msgid "1.4 Concatenate media files (demuxer)"
+#~ msgstr "1.4 Media bestanden samenvoegen (demuxer)"
+
+#, fuzzy
+#~| msgid "Choose a folder to save the selected preset"
+#~ msgid "One image only (use the selected one)"
+#~ msgstr "Kies een folder om de geselecteerde preset te bewaren"
+
+#, fuzzy
+#~| msgid "From an image sequence to a video file"
+#~ msgid "Sequence to Video\tShift+I"
+#~ msgstr "Van afbeelingen serie naar een video file"
+
+#, fuzzy
+#~| msgid "From an image sequence to a video file"
+#~ msgid "jump to the Sequence to Video panel"
+#~ msgstr "Van afbeelingen serie naar een video file"
+
+#, fuzzy
+#~| msgid "From an image sequence to a video file"
+#~ msgid "Image Sequence to Video"
+#~ msgstr "Van afbeelingen serie naar een video file"
+
+#, fuzzy
+#~| msgid "First pass of the selected profile"
+#~ msgid "Create a static video from the selected image"
+#~ msgstr "Eerste pass van het geselecteerde profiel"
+
+#, fuzzy
+#~| msgid "Total duration"
+#~ msgid "Static video duration"
+#~ msgstr "Totale duur"
+
+#~ msgid "No files added yet"
+#~ msgstr "Nog geen bestanden toegevoegd"
+
+#~ msgid "ERROR: Multiple URL's are the same"
+#~ msgstr "FOUT: Meedere URL's zijn hetzelfde"
+
+#~ msgid "Append at least one URL"
+#~ msgstr "Voeg minstens een URL toe"
+
+#~ msgid "Drag at least one file"
+#~ msgstr "Sleep minstens een bestand"
+
+#~ msgid "Select one or more files to open"
+#~ msgstr "Kies een of meer bestanden om te openen"
+
+#~ msgid "No URLs added yet"
+#~ msgstr "Nog geen URLs toegevoegd"
+
+#~ msgid ""
+#~ "The maximum time selection is set to 24:00:00, allowing to make a "
+#~ "slideshow"
+#~ msgstr ""
+#~ "De maximum tijd-selectie is gezet op 24:00:00, om een slideshow te kunnen "
+#~ "maken"
+
+#, fuzzy
+#~| msgid "Choose a folder to save the selected preset"
+#~ msgid "Choose another folder to move files to delete"
+#~ msgstr "Kies een folder om de geselecteerde preset te bewaren"
+
+#~ msgid "Browse.."
+#~ msgstr "Blader.."
+
+#~ msgid "There are no logs to show."
+#~ msgstr "Er bestaan geen logs om te tonen."
+
+#~ msgid "Input index:"
+#~ msgstr "Input index:"
+
+#~ msgid ""
+#~ "Choose a specific audio stream to map from input file. If not more that "
+#~ "one audio stream, leave to \"Auto\"."
+#~ msgstr ""
+#~ "Kies een specifieke audio stream om van input bestand te map-pen. Wanneer "
+#~ "niet meer dan 1 audio stream, laat staan op Auto\"."
+
+#~ msgid ""
+#~ "Map on the output index. Keep same input map to preserve indexes; to save "
+#~ "as audio file always select \"all\" or \"Auto\""
+#~ msgstr ""
+#~ "Map op de output index. Houd dezelfde input map om indexen te behouden; "
+#~ "selecteer steeds \"all\" of \"Auto\" om te bewaren als audio bestand"
+
+#~ msgid "Videomass Setup"
+#~ msgstr "Videomass Instelling"
+
+#~ msgid "When it's red..."
+#~ msgstr "Als het rood is..."
+
+#~ msgid "When it's grey..."
+#~ msgstr "Als het grijs is..."
+
+#~ msgid "When it's yellow..."
+#~ msgstr "Als het geel is..."
+
+#, fuzzy
+#~| msgid "User Guide"
+#~ msgid "User Memos"
+#~ msgstr "Handleiding"
+
+#, fuzzy
+#~| msgid "Successful changes!"
+#~ msgid "Successfully saved!"
+#~ msgstr "Veranderingen waren succesvol!"
+
+#~ msgid "Files"
+#~ msgstr "Bestanden"
+
+#~ msgid "Refresh log messages"
+#~ msgstr "Ververs log-berichten"
+
+#~ msgid "Clear log messages"
+#~ msgstr "Wis log-berichten"
+
+#~ msgid "Default"
+#~ msgstr "Standaard"
+
+#, fuzzy
+#~| msgid "Unable to get format codes on playlists"
+#~ msgid ""
+#~ "Unable to get format codes on playlists / channels or URLs containing "
+#~ "multiple videos listed."
+#~ msgstr "Onmogelijk om playlist formaat codes te verkrijgen"
+
+#~ msgid "Function available only if you choose \"Download by format code\""
+#~ msgstr ""
+#~ "Functie is alleen beschikbaar als u \"Download op formaat code\" kiest"
+
+#~ msgid ""
+#~ "\n"
+#~ "Wait....\n"
+#~ "Upgrading {}\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Wacht....\n"
+#~ "Upgrade van {} bezig\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Wait....\n"
+#~ "Downloading {}\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Wacht....\n"
+#~ "Download van {} bezig\n"
+
+#~ msgid ""
+#~ "It looks like you installed youtube-dl with a package manager. Please use "
+#~ "that to update."
+#~ msgstr ""
+#~ "Het lijkt erop dat u youtube-dl geinstalleerd heeft met een package "
+#~ "manager. Gebruik die a.u.b. voor update."
+
+#~ msgid ""
+#~ "\n"
+#~ "Wait....\n"
+#~ "Check installed version\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Wacht....\n"
+#~ "Controleer geinstalleerde versie\n"
+
+#, fuzzy
+#~| msgid ""
+#~| "ERROR: {0}\n"
+#~| "\n"
+#~| "youtube-dl has not been installed yet."
+#~ msgid ""
+#~ "ERROR: {0}\n"
+#~ "\n"
+#~ "'{1}' has not been installed yet."
+#~ msgstr ""
+#~ "ERROR: {0}\n"
+#~ "\n"
+#~ "youtube-dl is nog niet geinstalleerd."
+
+#, fuzzy
+#~| msgid ""
+#~| "To download videos from YouTube.com and other video sites, you need an "
+#~| "updated version of youtube-dl.\n"
+#~| "\n"
+#~| "{}...Do you want to download youtube-dl locally now?"
+#~ msgid ""
+#~ "To download videos from YouTube.com and other video sites, you need an "
+#~ "updated version of {0}.\n"
+#~ "\n"
+#~ "...Do you want to download {0} locally now?"
+#~ msgstr ""
+#~ "Om videos te downloaden, van YouTube.com en andere video sites, is een ge-"
+#~ "update versie van youtube-dl nodig.\n"
+#~ "\n"
+#~ "{}...Wilt u youtube-dl nu downloaden?"
+
+#, fuzzy
+#~| msgid ""
+#~| "Successful! \n"
+#~| "\n"
+#~| "youtube-dl is very often updated, make sure you always use the latest "
+#~| "version available: menu bar > Tools > Update youtube-dl."
+#~ msgid ""
+#~ "Successful! \n"
+#~ "\n"
+#~ "Usually {0} is released very often, make sure you always use the latest "
+#~ "version available: menu bar -> Tools -> Update {0}."
+#~ msgstr ""
+#~ "Successvol! \n"
+#~ "\n"
+#~ "youtube-dl wordt zeer vaak ge-update, zorg altijd dat u de laatste versie "
+#~ "hebt: menu balk > Gereedschappen > Update youtube-dl."
+
+#, fuzzy
+#~| msgid "Re-start is required"
+#~ msgid ""
+#~ "{0}\n"
+#~ "\n"
+#~ "Re-start is required."
+#~ msgstr "Herstart is vereist"
+
+#, fuzzy
+#~| msgid ""
+#~| "ERROR: {}\n"
+#~| "\n"
+#~| "youtube-dl is not embedded in AppImage."
+#~ msgid ""
+#~ "ERROR: {0}\n"
+#~ "\n"
+#~ "{1} is not embedded in the AppImage."
+#~ msgstr ""
+#~ "ERROR: {}\n"
+#~ "\n"
+#~ "youtube-dl is niet besloten in AppImage."
+
+#~ msgid "Resolution note"
+#~ msgstr "Resolutie notitie"
+
+#~ msgid "Sorry, this feature is disabled."
+#~ msgstr "Sorry, deze mogelijkheid is afgesloten."
+
+#~ msgid "Unrecognized error"
+#~ msgstr "Onherkenbare error"
+
+#~ msgid ""
+#~ "\n"
+#~ "Requires MSVCR100.dll\n"
+#~ "To resolve this problem install: Microsoft Visual C++ 2010 "
+#~ "Redistributable Package (x86)"
+#~ msgstr ""
+#~ "\n"
+#~ "Vereist MSVCR100.dll\n"
+#~ "Om dit probleem op te lossen installeer Microsoft Visual C++ 2010 "
+#~ "Redistributable Package (x86)"
+
+#~ msgid ""
+#~ "Requires MSVCR100.dll\n"
+#~ "To resolve this problem install: Microsoft Visual C++ 2010 "
+#~ "Redistributable Package (x86)"
+#~ msgstr ""
+#~ "Vereist MSVCR100.dll\n"
+#~ "Om dit probleem op te lossen installeer Microsoft Visual C++ 2010 "
+#~ "Redistributable Package (x86)"
+
+#, fuzzy
+#~| msgid "Disabled"
+#~ msgid "Disable all"
+#~ msgstr "Uitgezet"
+
+#, fuzzy
+#~| msgid "Successful! youtube-dl is up-to-date"
+#~ msgid "Successful! {} is up-to-date"
+#~ msgstr "Succesvol! youtube-dl is up-to-date"
+
+#~ msgid "Disable youtube-dl"
+#~ msgstr "Deactiveer youtube-dl"
+
+#~ msgid "Enable youtube-dl"
+#~ msgstr "Activeer youtube-dl"
+
+#~ msgid "youtube-dl"
+#~ msgstr "youtube-dl"
+
+#~ msgid "Update youtube-dl"
+#~ msgstr "Update youtube-dl"
+
+#~ msgid "Youtube-dl"
+#~ msgstr "Youtube-dl"
+
+#~ msgid ""
+#~ "{0}\n"
+#~ "\n"
+#~ "Sorry, cannot continue.."
+#~ msgstr ""
+#~ "{0}\n"
+#~ "\n"
+#~ "Sorry, het proces kan niet verder gaan.."
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "New releases fix bugs and offer new features\n"
+#~ "\n"
+#~ "This is Videomass version {0}\n"
+#~ "\n"
+#~ "<https://pypi.org/project/videomass/>\n"
+#~ "\n"
+#~ "The latest version {1} is available\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "Nieuwe uitgaven herstellen fouten en bieden nieuwe mogelijkheden\n"
+#~ "\n"
+#~ "Dit is Videomass versie {0}\n"
+#~ "\n"
+#~ "<https://pypi.org/project/videomass/>\n"
+#~ "\n"
+#~ "De laatste versie {1} is beschikbaar\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "New releases fix bugs and offer new features\n"
+#~ "\n"
+#~ "This is Videomass version {0}\n"
+#~ "\n"
+#~ "<https://pypi.org/project/videomass/>\n"
+#~ "\n"
+#~ "You are using the latest version\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "Nieuwe uitgaven herstellen fouten en bieden nieuwe mogelijkheden\n"
+#~ "\n"
+#~ "Dit is Videomass versie {0}\n"
+#~ "\n"
+#~ "<https://pypi.org/project/videomass/>\n"
+#~ "\n"
+#~ "U gebruikt de laatste versie\n"
+
+#~ msgid ""
+#~ "- Requires: Microsoft Visual C++ 2010 Redistributable Package (x86)\n"
+#~ "\n"
+#~ "for major information visit: <http://ytdl-org.github.io/youtube-dl/"
+#~ "download.html>\n"
+#~ "\n"
+#~ msgstr ""
+#~ "- Vereist: Microsoft Visual C++ 2010 Redistributable Package (x86)\n"
+#~ "\n"
+#~ "informatie vindt u hier: <http://ytdl-org.github.io/youtube-dl/download."
+#~ "html>\n"
+#~ "\n"
+
+#, fuzzy
+#~ msgid "Videomass cannot play channels or playlists."
+#~ msgstr "Deze versie van Videomass kan geen playlist afspelen."
+
+#~ msgid "CODING ABILITY"
+#~ msgstr "MOGELIJKE CODERINGEN"
+
+#~ msgid "Choose how you want to use youtube-dl\n"
+#~ msgstr "Kies hoe u youtube-dl wilt gebruiken\n"
+
+#~ msgid ""
+#~ "Videomass can use youtube-dl internally as a Python\n"
+#~ "module (recommended) or as an executable file. The\n"
+#~ "executable file can be downloaded and updated from\n"
+#~ "Videomass itself and will be placed on:"
+#~ msgstr ""
+#~ "Videomass kan youtube-dl intern gebruiken als een Python\n"
+#~ "module (aanbevolen) of als een programmabestand wat door\n"
+#~ "Videomass zelf kan worden ge-download en ge-update\n"
+#~ "en zal worden geplaatst op:"
+
+#~ msgid ""
+#~ "Notice: This version of Videomass can\n"
+#~ "only use youtube-dl as local executable"
+#~ msgstr ""
+#~ "Let op: deze Videomass versie kan youtube-dl\n"
+#~ "alleen als lokaal programmabestand gebruiken"
+
+#~ msgid "Use the one included in the AppImage (recommended)"
+#~ msgstr "Gebruik degene in de AppImage (aanbevolen)"
+
+#~ msgid "Use a local copy of youtube-dl"
+#~ msgstr "Gebruik een lokaal exemplaar van youtube-dl"
+
+#~ msgid "Use the one installed in your O.S. (recommended)"
+#~ msgstr "Gebruik het exemplaar van uw besturingssysteem (aanbevolen)"
+
+#~ msgid "Use a local copy of youtube-dl updatable by Videomass"
+#~ msgstr ""
+#~ "Gebruik een lokaal youtube-dl exemplaar wat door Videomass ge-update kan "
+#~ "worden"
+
+#~ msgid ""
+#~ "Videomass would need volunteer translators. If you are interested you "
+#~ "could take a look at the "
+#~ msgstr ""
+#~ "Videomass zoekt vrijwilligers voor vertalingen. Mocht u dit willen, "
+#~ "bekijk dan eens de  "
+
+#~ msgid "Localization guidelines"
+#~ msgstr "Uitleg over Localisatie"
+
+#~ msgid "Command line"
+#~ msgstr "Commandoregel"
+
+#~ msgid "Audio Normalization"
+#~ msgstr "Audio Normalisatie"
+
+#~ msgid "Automations"
+#~ msgstr "Automaties"
+
+#~ msgid ""
+#~ "Invalid EBU normalization enabled for one-pass.\n"
+#~ "Turn off EBU normalization or choose a two-pass profile."
+#~ msgstr ""
+#~ "Ongeldige EBU normalisatie geactiveerd voor een-pass.\n"
+#~ "Zet de EBU normalisatie uit of kies een twee-pass profiel."
+
+#~ msgid ""
+#~ "EBU normalization is enabled twice in automation and command line. "
+#~ "Command line has priority.\n"
+#~ "\n"
+#~ "Do you wish to continue?"
+#~ msgstr ""
+#~ "EBU normalisatie is tweemaal geactiveerd in automatie en commandoregel. "
+#~ "Commandoregel heeft prioriteit.\n"
+#~ "\n"
+#~ "Wilt u verder gaan?"
+
+#~ msgid ""
+#~ "Quiet.\n"
+#~ "Togle full screen.\n"
+#~ "Pause.\n"
+#~ "Togle mute.\n"
+#~ "Decrease and increase volume respectively.\n"
+#~ "Decrease and increase volume respectively.\n"
+#~ "Cycle audio channel in the current program.\n"
+#~ "Cycle video channel.\n"
+#~ "Cycle subtitle channel in the current program.\n"
+#~ "Cycle program.\n"
+#~ "Cycle video filters or show modes.\n"
+#~ "Step to the next frame. Pause if the stream is not \n"
+#~ "already paused, step to the next video frame, and pause.\n"
+#~ "Seek backward/forward 10 seconds.\n"
+#~ "Seek backward/forward 1 minute.\n"
+#~ "Seek to the previous/next chapter. Or if there are no \n"
+#~ "chapters Seek backward/forward 10 minutes.\n"
+#~ "Seek to percentage in file corresponding to fraction of width.\n"
+#~ "Toggle full screen."
+#~ msgstr ""
+#~ "Geluidloos.\n"
+#~ "Toggle volledig scherm.\n"
+#~ "Pauzeer.\n"
+#~ "Toggle demping.\n"
+#~ "Volume resp. afnemen / toenemen.\n"
+#~ "Volume resp. afnemen / toenemen.\n"
+#~ "Cycle audio channel in the current program.\n"
+#~ "Cycle video channel.\n"
+#~ "Cycle subtitle channel in the current program.\n"
+#~ "Cycle program.\n"
+#~ "Cycle video filters or show modes.\n"
+#~ "Stap naar volgende frame. Pauzeer als de stream niet reeds\n"
+#~ "gepauzeerd is, stap naar volgende video frame, en pauzeer.\n"
+#~ "Zoek terug/heen 10 seconden.\n"
+#~ "Zoek terug/heen 1 minuut.\n"
+#~ "Zoek tot vorige/volgende chapter. Of zoek 10 minuten\n"
+#~ "terug/heen als er geen chapters zijn.\n"
+#~ "Zoek tot percentage in bestand, overeenkomstig breedte-fractie.\n"
+#~ "Toggle volledig scherm."
+
+#~ msgid "A log file must be selected"
+#~ msgstr "Een log-bericht moet geselecteerd worden"
+
+#~ msgid ""
+#~ "Is not a compatible Videomass presets. It is recommended removing it or "
+#~ "rewrite it with a compatible JSON data structure.\n"
+#~ "\n"
+#~ "Possible solution: open Presets Manager panel, then use menu \"File\" > "
+#~ "\"Reset all presets\" to safe repair all presets. Remember, those that "
+#~ "are not compatible you have to manually remove them."
+#~ msgstr ""
+#~ "Is geen compatibele Videomass preset. Verwijdering ervan is aanbevolen, "
+#~ "of herschrijf het naar een compatibele JSON data-structuur.\n"
+#~ "\n"
+#~ "Mogelijke oplossing: open Presets Manager panel en kies menu \"Bestand\" "
+#~ "> \"Reset alle presets\" om veilig alle presets te herstellen. U zult "
+#~ "handmatig alle presets moeten verwijderen die niet compatibel zijn."
+
+#~ msgid ""
+#~ "The presets folder is empty, or there are invalid files. Open the Presets "
+#~ "Manager panel, then Perform a repair in the \"File\" > \"Reset all presets"
+#~ "\" menu."
+#~ msgstr ""
+#~ "De presets map is leeg, of er zijn ongeldige bestanden. Open de Presets "
+#~ "Manager panel en kies menu item \"Bestand\" > \"Reset alle presets\" om "
+#~ "te herstellen."
+
+#~ msgid "Open a playable file with FFplay"
+#~ msgstr "Open een afspeelbaar bestand met FFplay"
+
+#~ msgid "&File"
+#~ msgstr "File"
+
+#~ msgid "&Settings"
+#~ msgstr "Settings"
+
+#~ msgid "File playback"
+#~ msgstr "Bestand afspelen"
+
+#~ msgid "Playback"
+#~ msgstr "Afspelen"
+
+#~ msgid "No video filter enabled"
+#~ msgstr "Geen video filter geactiveerd"
+
+#~ msgid ""
+#~ "Undetected volume values! use the \"Volumedetect\" control button to "
+#~ "analyze the data on the audio volume."
+#~ msgstr ""
+#~ "Volume waarden niet gedetecteerd! Gebruik de \"Volume detect\" knop om de "
+#~ "audio volume data te laten analyseren."
+
+#, fuzzy
+#~ msgid "Notice"
+#~ msgstr "Opmerking"
