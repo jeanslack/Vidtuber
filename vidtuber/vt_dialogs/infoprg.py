@@ -27,8 +27,8 @@ This file is part of Vidtuber.
 
 import wx
 import wx.adv
-from vidtuber.vdms_sys.msg_info import current_release
-from vidtuber.vdms_sys.msg_info import descriptions_release
+from vidtuber.vt_sys.msg_info import current_release
+from vidtuber.vt_sys.msg_info import descriptions_release
 
 
 def info(parent, vidtuber_icon):

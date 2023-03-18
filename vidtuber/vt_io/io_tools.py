@@ -26,14 +26,14 @@ This file is part of Vidtuber.
 """
 import requests
 import wx
-from vidtuber.vdms_utils.utils import open_default_application
-from vidtuber.vdms_threads.ydl_extractinfo import YdlExtractInfo
-from vidtuber.vdms_dialogs.widget_utils import PopupDialog
+from vidtuber.vt_utils.utils import open_default_application
+from vidtuber.vt_threads.ydl_extractinfo import YdlExtractInfo
+from vidtuber.vt_dialogs.widget_utils import PopupDialog
 
 
 def openpath(where):
     """
-    Call vdms_threads.opendir.browse to open file browser into
+    Call vt_threads.opendir.browse to open file browser into
     configuration directory or log directory.
 
     """

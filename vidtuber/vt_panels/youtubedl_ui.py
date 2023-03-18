@@ -27,11 +27,11 @@ This file is part of Vidtuber.
 import sys
 import wx
 import wx.lib.scrolledpanel as scrolled
-from vidtuber.vdms_io import io_tools
-from vidtuber.vdms_utils.utils import format_bytes
-from vidtuber.vdms_utils.utils import timehuman
-from vidtuber.vdms_utils.get_bmpfromsvg import get_bmp
-from vidtuber.vdms_dialogs.playlist_indexing import Indexing
+from vidtuber.vt_io import io_tools
+from vidtuber.vt_utils.utils import format_bytes
+from vidtuber.vt_utils.utils import timehuman
+from vidtuber.vt_utils.get_bmpfromsvg import get_bmp
+from vidtuber.vt_dialogs.playlist_indexing import Indexing
 
 
 def join_opts(optvideo=None, optaudio=None, vformat=None, selection=None):
@@ -194,7 +194,7 @@ class Downloader(wx.Panel):
 
         self.opt = {("NO_PLAYLIST"): True,
                     ("THUMB"): False,
-                    ("METADATA"): False,
+                    ("METADATA"): True,
                     ("V_QUALITY"): Downloader.VPCOMP['Best precompiled video'],
                     ("A_FORMAT"): "best",
                     ("A_QUALITY"): "bestaudio",
@@ -303,6 +303,7 @@ class Downloader(wx.Panel):
         self.ckbx_meta = wx.CheckBox(panelscroll, wx.ID_ANY,
                                      (_('Add metadata to file'))
                                      )
+        self.ckbx_meta.SetValue(True)
         fgs1.Add(self.ckbx_meta, 0, wx.ALL, 5)
         self.ckbx_sb = wx.CheckBox(panelscroll, wx.ID_ANY,
                                    (_('Write subtitles to video'))
@@ -325,7 +326,7 @@ class Downloader(wx.Panel):
         sizer_skipdl.Add(self.ckbx_skip_dl)
         fgs1.Add(sizer_skipdl, 0, wx.ALL, 5)
         self.ckbx_w = wx.CheckBox(panelscroll, wx.ID_ANY,
-                                  (_('Prevent overwriting files'))
+                                  (_('Overwrite all files and metadata'))
                                   )
         fgs1.Add(self.ckbx_w, 0, wx.ALL, 5)
         self.ckbx_id = wx.CheckBox(panelscroll, wx.ID_ANY,
@@ -338,6 +339,7 @@ class Downloader(wx.Panel):
                                             (_('Restrict file names'))
                                             )
         fgs1.Add(self.ckbx_restrict_fn, 0, wx.ALL, 5)
+        self.ckbx_restrict_fn.SetValue(True)
 
         boxoptions.Add(panelscroll, 0, wx.ALL | wx.CENTRE, 0)
 
@@ -979,7 +981,7 @@ class Downloader(wx.Panel):
             data = {'format': self.fcode.GetItemText(0, 3),
                     'noplaylist': self.opt["NO_PLAYLIST"],
                     'playlist_items': self.plidx,
-                    'nooverwrites': self.ckbx_w.GetValue(),
+                    'overwrites': self.ckbx_w.GetValue(),
                     'writethumbnail': self.opt["THUMB"],
                     'outtmpl': f'{_id}.%(ext)s',
                     'extractaudio': False,
@@ -998,7 +1000,7 @@ class Downloader(wx.Panel):
             data = {'format': self.fcode.GetItemText(0, 3),
                     'noplaylist': self.opt["NO_PLAYLIST"],
                     'playlist_items': self.plidx,
-                    'nooverwrites': self.ckbx_w.GetValue(),
+                    'overwrites': self.ckbx_w.GetValue(),
                     'writethumbnail': self.opt["THUMB"],
                     'outtmpl': f'{_id}.f%(format_id)s.%(ext)s',
                     'extractaudio': False,
@@ -1017,7 +1019,7 @@ class Downloader(wx.Panel):
             data = {'format': 'bestaudio',
                     'noplaylist': self.opt["NO_PLAYLIST"],
                     'playlist_items': self.plidx,
-                    'nooverwrites': self.ckbx_w.GetValue(),
+                    'overwrites': self.ckbx_w.GetValue(),
                     'writethumbnail': self.opt["THUMB"],
                     'outtmpl': f'{_id}.%(ext)s',
                     'extractaudio': True,
@@ -1042,7 +1044,7 @@ class Downloader(wx.Panel):
             data = {'format': '',
                     'noplaylist': self.opt["NO_PLAYLIST"],
                     'playlist_items': self.plidx,
-                    'nooverwrites': self.ckbx_w.GetValue(),
+                    'overwrites': self.ckbx_w.GetValue(),
                     'writethumbnail': self.opt["THUMB"],
                     'outtmpl': f'{_id}.f%(format_id)s.%(ext)s',
                     'extractaudio': False,

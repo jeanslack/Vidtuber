@@ -27,9 +27,9 @@ This file is part of Vidtuber.
 from __future__ import unicode_literals
 from pubsub import pub
 import wx
-from vidtuber.vdms_dialogs.widget_utils import notification_area
-from vidtuber.vdms_io.make_filelog import make_log_template
-from vidtuber.vdms_threads.ydl_downloader import YdlDownloader
+from vidtuber.vt_dialogs.widget_utils import notification_area
+from vidtuber.vt_io.make_filelog import make_log_template
+from vidtuber.vt_threads.ydl_downloader import YdlDownloader
 
 
 class LogOut(wx.Panel):
@@ -151,12 +151,12 @@ class LogOut(wx.Panel):
                                  f"{status} > {output}\n")
 
         elif status == 'DOWNLOAD':
-            perc = duration['_percent_str']
-            tbytes = duration['_total_bytes_str']
-            speed = duration['_speed_str']
-            eta = duration['_eta_str']
-            self.labprog.SetLabel(f'Downloading: {perc}  of  '
-                                  f'{tbytes}  at  {speed}  ETA: {eta}')
+            perc = duration['_percent_str'].strip()
+            tbytes = duration['_total_bytes_str'].strip()
+            speed = duration['_speed_str'].strip()
+            eta = duration['_eta_str'].strip()
+            self.labprog.SetLabel(f'Downloading: {perc}  |  Size: {tbytes}  '
+                                  f'|  Speed: {speed} |  ETA: {eta}')
 
         elif status == 'FINISHED':
             self.txtout.SetDefaultStyle(wx.TextAttr(self.clr['TXT1']))

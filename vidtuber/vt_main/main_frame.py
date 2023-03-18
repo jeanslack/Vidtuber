@@ -31,19 +31,19 @@ import webbrowser
 import wx
 from pubsub import pub
 import yt_dlp
-from vidtuber.vdms_utils.get_bmpfromsvg import get_bmp
-from vidtuber.vdms_dialogs import preferences
-from vidtuber.vdms_dialogs import infoprg
-from vidtuber.vdms_dialogs import vidtuber_check_version
-from vidtuber.vdms_dialogs.showlogs import ShowLogs
-from vidtuber.vdms_dialogs.ydl_mediainfo import YdlMediaInfo
-from vidtuber.vdms_panels import textdrop
-from vidtuber.vdms_panels import youtubedl_ui
-from vidtuber.vdms_panels.long_processing_task import LogOut
-from vidtuber.vdms_io import io_tools
-from vidtuber.vdms_sys.msg_info import current_release
-from vidtuber.vdms_sys.settings_manager import ConfigManager
-from vidtuber.vdms_sys.argparser import info_this_platform
+from vidtuber.vt_utils.get_bmpfromsvg import get_bmp
+from vidtuber.vt_dialogs import preferences
+from vidtuber.vt_dialogs import infoprg
+from vidtuber.vt_dialogs import vidtuber_check_version
+from vidtuber.vt_dialogs.showlogs import ShowLogs
+from vidtuber.vt_dialogs.ydl_mediainfo import YdlMediaInfo
+from vidtuber.vt_panels import textdrop
+from vidtuber.vt_panels import youtubedl_ui
+from vidtuber.vt_panels.long_processing_task import LogOut
+from vidtuber.vt_io import io_tools
+from vidtuber.vt_sys.msg_info import current_release
+from vidtuber.vt_sys.settings_manager import ConfigManager
+from vidtuber.vt_sys.argparser import info_this_platform
 
 
 class MainFrame(wx.Frame):

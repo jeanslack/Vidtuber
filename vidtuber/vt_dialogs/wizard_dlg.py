@@ -26,8 +26,8 @@ This file is part of Vidtuber.
 """
 import os
 import wx
-from vidtuber.vdms_utils.utils import detect_binaries
-from vidtuber.vdms_sys.settings_manager import ConfigManager
+from vidtuber.vt_utils.utils import detect_binaries
+from vidtuber.vt_sys.settings_manager import ConfigManager
 
 
 def write_changes(fileconf, ffmpeg, ffprobe, binfound):

@@ -29,7 +29,7 @@ import sys
 from shutil import which
 import argparse
 import platform
-from vidtuber.vdms_sys.msg_info import current_release
+from vidtuber.vt_sys.msg_info import current_release
 try:
     import wx
     MSGWX = f"{wx.version()}"

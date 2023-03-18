@@ -28,11 +28,11 @@ from threading import Thread
 import itertools
 import wx
 from pubsub import pub
-from vidtuber.vdms_io.make_filelog import logwrite
+from vidtuber.vt_io.make_filelog import logwrite
 import yt_dlp
 
 
-class MyLogger():
+class MyLogger:
     """
     Intercepts youtube-dl's output by setting a logger object;
     * Log messages to a logging.Logger instance.
@@ -48,7 +48,9 @@ class MyLogger():
 
     def debug(self, msg):
         """
-        Get debug messages
+        Get debug messages. Note, both debug and info
+        are passed into debug. You can distinguish them
+        by the prefix '[debug] '
         """
         wx.CallAfter(pub.sendMessage,
                      "UPDATE_YDL_EVT",
@@ -208,7 +210,7 @@ class YdlDownloader(Thread):
                 'writethumbnail': self.opt['writethumbnail'],
                 'noplaylist': self.opt['noplaylist'],
                 'playlist_items': self.opt['playlist_items'].get(url, None),
-                'nooverwrites': self.opt['nooverwrites'],
+                'overwrites': self.opt['overwrites'],
                 'no_color': True,
                 'nocheckcertificate': self.opt['nocheckcertificate'],
                 'ffmpeg_location': f'{YdlDownloader.FFMPEG_URL}',
