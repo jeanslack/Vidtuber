@@ -50,21 +50,9 @@ class MainFrame(wx.Frame):
     """
     This is the main frame top window for panels implementation.
     """
-    # colour rappresentetion in rgb
-    AZURE_NEON = 158, 201, 232
-    YELLOW_LMN = 255, 255, 0
-    BLUE = 0, 7, 12
-    # set widget colours with html rappresentation:
+    # set status bar colours in html rappresentation:
     ORANGE = '#f28924'
-    YELLOW = '#bd9f00'
-    LIMEGREEN = '#87A615'
-    DARK_BROWN = '#262222'
     WHITE = '#fbf4f4'
-    BLACK = '#060505'
-    # AZURE = '#d9ffff'  # rgb form (wx.Colour(217,255,255))
-    # RED = '#ea312d'
-    # GREENOLIVE = '#6aaf23'
-    # GREEN = '#268826'
     # -------------------------------------------------------------#
 
     def __init__(self):
@@ -74,6 +62,7 @@ class MainFrame(wx.Frame):
         get = wx.GetApp()
         self.appdata = get.appset
         self.icons = get.iconset
+
         # -------------------------------#
         self.data_url = None  # list of urls in text box
         self.filedldir = None  # download file destination dir
@@ -116,7 +105,7 @@ class MainFrame(wx.Frame):
         self.sb = self.CreateStatusBar(1)
         self.statusbar_msg(_('Ready'), None)
         # disable some toolbar item
-        [self.toolbar.EnableTool(x, False) for x in (3, 13, 18)]
+        [self.toolbar.EnableTool(x, False) for x in (3, 13, 14, 18)]
         self.Layout()
         # ---------------------- Binding (EVT) ----------------------#
         self.Bind(wx.EVT_BUTTON, self.on_outputdir)
@@ -765,8 +754,8 @@ class MainFrame(wx.Frame):
         if self.filedldir:
             self.textDnDTarget.text_path_save.SetValue("")
             self.textDnDTarget.text_path_save.AppendText(self.filedldir)
-        [self.toolbar.EnableTool(x, True) for x in (4, 14, 20)]
-        [self.toolbar.EnableTool(x, False) for x in (3, 13, 18)]
+        [self.toolbar.EnableTool(x, True) for x in (4, 20)]
+        [self.toolbar.EnableTool(x, False) for x in (3, 13, 14, 18)]
         self.toolbar.Realize()
         self.Layout()
         self.statusbar_msg(_('Ready'), None)

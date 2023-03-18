@@ -41,6 +41,8 @@ class YdlMediaInfo(wx.Dialog):
         self.data = data
         get = wx.GetApp()  # get data from bootstrap
         colorscheme = get.appset['icontheme'][1]
+        appicon = get.iconset['vidtuber']
+
         wx.Dialog.__init__(self, None,
                            style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER
                            )
@@ -89,6 +91,10 @@ class YdlMediaInfo(wx.Dialog):
         grid_buttons = wx.GridSizer(1, 1, 0, 0)
         grid_buttons.Add(button_close, 1, wx.ALL, 5)
         sizer_1.Add(grid_buttons, flag=wx.ALIGN_RIGHT | wx.RIGHT, border=0)
+
+        icon = wx.Icon()
+        icon.CopyFromBitmap(wx.Bitmap(appicon, wx.BITMAP_TYPE_ANY))
+        self.SetIcon(icon)
         self.SetSizer(sizer_1)
         sizer_1.Fit(self)
         self.Layout()

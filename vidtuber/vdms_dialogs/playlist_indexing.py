@@ -67,6 +67,7 @@ class Indexing(wx.Dialog):
         GREEN = '#4CDD67'
     else:
         GREEN = '#40804C'
+    appicon = get.iconset['vidtuber']
 
     HELPME = _('Click on "Playlist Items" column to specify indices of '
                'the videos in the playlist separated by commas like: '
@@ -134,6 +135,9 @@ class Indexing(wx.Dialog):
 
         # ------ final settings:
         sizer_1.Add(grid_btn, 0, wx.EXPAND)
+        icon = wx.Icon()
+        icon.CopyFromBitmap(wx.Bitmap(Indexing.appicon, wx.BITMAP_TYPE_ANY))
+        self.SetIcon(icon)
         self.SetSizer(sizer_1)
         sizer_1.Fit(self)
         self.Layout()

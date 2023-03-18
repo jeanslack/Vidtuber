@@ -50,6 +50,7 @@ class ShowLogs(wx.Dialog):
         self.selected = None
         get = wx.GetApp()  # get data from bootstrap
         colorscheme = get.appset['icontheme'][1]
+        appicon = get.iconset['vidtuber']
 
         wx.Dialog.__init__(self, None,
                            style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER
@@ -106,6 +107,9 @@ class ShowLogs(wx.Dialog):
         self.SetTitle(_('Showing log messages'))
         self.SetMinSize((700, 500))
         # ------ set sizer
+        icon = wx.Icon()
+        icon.CopyFromBitmap(wx.Bitmap(appicon, wx.BITMAP_TYPE_ANY))
+        self.SetIcon(icon)
         self.SetSizer(sizer_base)
         self.Fit()
         self.Layout()

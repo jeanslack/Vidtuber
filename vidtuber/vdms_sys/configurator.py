@@ -235,7 +235,7 @@ def get_color_scheme(theme):
                     'TXT0': '#FFFFFF',  # WHITE for titles
                     'TXT1': '#8AB8E6',  # light Blue
                     'ERR0': '#E95420',  # ORANGE for error text messages
-                    'WARN': '#dfb72f',  # YELLOW for warning messages
+                    'WARN': '#DFB72F',  # YELLOW for warning messages
                     'ERR1': '#F90808',  # RED_DEEP
                     'SUCCESS': '#ABD533',  # Light GREEN when it is successful
                     'TXT3': '#AEA79F',  # Ubuntu warm grey (base foreground)

@@ -115,19 +115,25 @@ if not hasattr(wx, 'EVT_LIST_ITEM_CHECKED'):
 
 class Downloader(wx.Panel):
     """
-    This panel gives a graphic layout to some features of youtube-dl
-
+    This panel Represents the features
+    and options supported by yt-dlp
     """
     get = wx.GetApp()  # get vidtuber wx.App attribute
     appdata = get.appset
     icons = get.iconset
-    BACKGRD = get.appset['icontheme'][1]['BACKGRD']
-    GREEN = get.appset['icontheme'][1]['TXT3']
-    RED = get.appset['icontheme'][1]['ERR1']
-    YELLOW = '#bd9f00'
-    WHITE = '#fbf4f4'  # white for background status bar
-    BLACK = '#060505'  # black for background status bar
-    VIOLET = '#D64E93'
+
+    if appdata['IS_DARK_THEME'] is True:
+        GREEN = '#136322'  # formatcode highlighted items
+    elif appdata['IS_DARK_THEME'] is False:
+        GREEN = '#4CDD67'
+    else:
+        GREEN = '#40804C'
+    BACKGRD = get.appset['icontheme'][1]['BACKGRD']  # help viewer backgrd
+    DONE = get.appset['icontheme'][1]['TXT3'] # code text done
+    WARN = get.appset['icontheme'][1]['WARN'] # code text warn
+    RED = get.appset['icontheme'][1]['ERR1']  # code text err + sb error
+    WHITE = '#fbf4f4'  # sb foreground
+    VIOLET = '#D64E93'  # activated playlist button
 
     MSG_1 = _('At least one "Format Code" must be checked for each '
               'URL selected in green.')
@@ -449,14 +455,14 @@ class Downloader(wx.Panel):
 
         for key, val in self.format_dict.items():
             if not val:
-                self.cod_text.SetDefaultStyle(wx.TextAttr(Downloader.YELLOW))
+                self.cod_text.SetDefaultStyle(wx.TextAttr(Downloader.WARN))
                 self.cod_text.AppendText(f'- {key} :\n')
             elif val[0].split(': ')[1] == 'UNSUPPORTED':
                 self.cod_text.SetDefaultStyle(wx.TextAttr(Downloader.RED))
                 self.cod_text.AppendText(f'- {key} :  '
                                          f'Unable to get format code\n')
             else:
-                self.cod_text.SetDefaultStyle(wx.TextAttr(Downloader.GREEN))
+                self.cod_text.SetDefaultStyle(wx.TextAttr(Downloader.DONE))
                 self.cod_text.AppendText(f'- {key} :  {val}\n')
         # print(self.format_dict)
     # ----------------------------------------------------------------------
