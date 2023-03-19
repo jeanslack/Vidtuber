@@ -64,8 +64,9 @@ class MainFrame(wx.Frame):
         self.icons = get.iconset
 
         # -------------------------------#
-        self.data_url = None  # list of urls in text box
-        self.filedldir = None  # download file destination dir
+        self.data_url = []  # list of urls in text box
+        self.changed = True  # previous list is different from new one
+        self.filedldir = self.appdata['dirdownload']  # file dest dir
         self.infomediadlg = False  # media info dialog
         self.showlogdlg = False
 
@@ -386,23 +387,16 @@ class MainFrame(wx.Frame):
 
     def reminder(self, event):
         """
-        Call `io_tools.openpath` to open a 'user_memos.txt' file
-        with default GUI text editor.
+        open a 'user_memos.txt' file with default text editor.
         """
         fname = os.path.join(self.appdata['confdir'], 'user_memos.txt')
 
         if os.path.exists(fname) and os.path.isfile(fname):
             io_tools.openpath(fname)
         else:
-            try:
-                with open(fname, "w", encoding='utf8') as text:
-                    text.write("")
-            except Exception as err:
-                wx.MessageBox(_("Unexpected error while creating file:\n\n"
-                                "{0}").format(err),
-                              'Vidtuber', wx.ICON_ERROR, self)
-            else:
-                io_tools.openpath(fname)
+            with open(fname, "w", encoding='utf8') as text:
+                text.write("")
+        io_tools.openpath(fname)
     # ------------------------------------------------------------------#
     # --------- Menu View ###
 
@@ -462,21 +456,16 @@ class MainFrame(wx.Frame):
 
     def on_outputdir(self, event):
         """
-        This is a menu event but also intercept the button 'save'
-        event in the textdrop panel and sets a new file destination
-        path for downloading
-
+        Event for button and menu to set a
+        temporary destination path of files.
         """
-        dpath = '' if not self.filedldir else self.filedldir
         dialdir = wx.DirDialog(self, _("Choose a temporary destination for "
-                                       "downloads"), dpath,
+                                       "downloads"), self.filedldir,
                                wx.DD_DEFAULT_STYLE
                                )
         if dialdir.ShowModal() == wx.ID_OK:
             getpath = self.appdata['getpath'](dialdir.GetPath())
-            self.filedldir = getpath
-            self.textDnDTarget.on_file_save(self.filedldir)
-            self.textDnDTarget.file_dest = self.filedldir
+            self.textDnDTarget.on_file_save(getpath)
 
             dialdir.Destroy()
 
@@ -486,17 +475,12 @@ class MainFrame(wx.Frame):
 
     def on_resetfolders_tmp(self, event):
         """
-        Restore the default file destination if saving temporary
-        files has been set.
-
+        Restore the default file destination if
+        saving temporary files has been set.
         """
-        self.filedldir = self.appdata['dirdownload']
         self.textDnDTarget.on_file_save(self.appdata['dirdownload'])
-        self.textDnDTarget.file_dest = self.appdata['dirdownload']
         self.fold_downloads_tmp.Enable(False)
-
         self.resetfolders_tmp.Enable(False)
-
         wx.MessageBox(_("Default destination folders successfully restored"),
                       "Vidtuber", wx.ICON_INFORMATION, self)
     # ------------------------------------------------------------------#
@@ -611,13 +595,9 @@ class MainFrame(wx.Frame):
 
     # -----------------  BUILD THE TOOL BAR  --------------------###
 
-    def vidtuber_tool_bar(self):
+    def toolbar_pos(self):
         """
-        Makes and attaches the toolsBtn bar.
-        To enable or disable styles, use method `SetWindowStyleFlag`
-        e.g.
-
-            self.toolbar.SetWindowStyleFlag(wx.TB_NODIVIDER | wx.TB_FLAT)
+        Return the toolbar style
         """
         if self.appdata['toolbarpos'] == 0:  # on top
             if self.appdata['toolbartext']:  # show text
@@ -643,8 +623,19 @@ class MainFrame(wx.Frame):
             else:
                 style = wx.TB_DEFAULT_STYLE | wx.TB_LEFT
 
-        self.toolbar = self.CreateToolBar(style=style)
+        return style
+    # ------------------------------------------------------------------#
 
+    def vidtuber_tool_bar(self):
+        """
+        Makes and attaches the toolsBtn bar.
+        To enable or disable styles, use method `SetWindowStyleFlag`
+        e.g.
+
+            self.toolbar.SetWindowStyleFlag(wx.TB_NODIVIDER | wx.TB_FLAT)
+        """
+        style = self.toolbar_pos()
+        self.toolbar = self.CreateToolBar(style=style)
         bmp_size = (int(self.appdata['toolbarsize']),
                     int(self.appdata['toolbarsize']))
         self.toolbar.SetToolBitmapSize(bmp_size)
@@ -729,19 +720,27 @@ class MainFrame(wx.Frame):
             self.switch_to_processing('Viewing last log')
             return
 
-        data = self.textDnDTarget.topic_Redirect()
-        if data:
-            for url in data:  # Check malformed url
+        lines = self.textDnDTarget.textctrl_urls.GetValue().split()
+        if lines:
+            for url in lines:  # Check malformed url
                 res = urlparse(url)
                 if not res[1]:  # if empty netloc given from ParseResult
                     wx.MessageBox(_('ERROR: Invalid URL: "{}"').format(
                                   url), "Vidtuber", wx.ICON_ERROR, self)
                     return
-            if len(set(data)) != len(data):  # equal URLS
+            if len(set(lines)) != len(lines):  # equal URLS
                 wx.MessageBox(_("ERROR: Some equal URLs found"),
                               "Vidtuber", wx.ICON_ERROR, self)
                 return
-        self.switch_youtube_downloader(self, data)
+
+            if not lines == self.data_url:
+                self.changed = True
+                self.destroy_orphaned_window()
+                self.data_url = lines.copy()
+        else:
+            del self.data_url[:]
+        self.switch_youtube_downloader(self)
+        self.changed = False
     # ------------------------------------------------------------------#
 
     def switch_text_import(self, event):
@@ -751,9 +750,6 @@ class MainFrame(wx.Frame):
         self.ProcessPanel.Hide()
         self.ytDownloader.Hide()
         self.textDnDTarget.Show()
-        if self.filedldir:
-            self.textDnDTarget.text_path_save.SetValue("")
-            self.textDnDTarget.text_path_save.AppendText(self.filedldir)
         [self.toolbar.EnableTool(x, True) for x in (4, 20)]
         [self.toolbar.EnableTool(x, False) for x in (3, 13, 14, 18)]
         self.toolbar.Realize()
@@ -762,11 +758,11 @@ class MainFrame(wx.Frame):
         self.SetTitle(_('Vidtuber - Queued URLs'))
     # ------------------------------------------------------------------#
 
-    def switch_youtube_downloader(self, event, data):
+    def switch_youtube_downloader(self, event):
         """
         Show youtube-dl downloader panel
         """
-        if not data:
+        if not self.data_url:
             self.ytDownloader.choice.SetSelection(0)
             self.ytDownloader.choice.Disable()
             self.ytDownloader.ckbx_pl.Disable()
@@ -777,27 +773,18 @@ class MainFrame(wx.Frame):
             self.ytDownloader.labtxt.Hide()
             self.ytDownloader.cmbx_vq.Clear()
             self.ytDownloader.fcode.ClearAll()
-
-        elif not data == self.data_url:
-            if self.data_url:
-                msg = (_('URL list changed, please check the settings '
-                         'again.'), MainFrame.ORANGE, MainFrame.WHITE)
-                self.statusbar_msg(msg[0], msg[1], msg[2])
-            self.data_url = data
-            self.ytDownloader.choice.Enable()
-            self.ytDownloader.ckbx_pl.Enable()
-            self.ytDownloader.choice.SetSelection(0)
-            self.ytDownloader.on_choicebox(self, statusmsg=False)
-            del self.ytDownloader.info[:]
-            self.ytDownloader.format_dict.clear()
-            self.ytDownloader.ckbx_pl.SetValue(False)
-            self.ytDownloader.on_playlist(self)
         else:
-            self.statusbar_msg(_('Ready'), None)
+            if self.changed:
+                self.ytDownloader.choice.Enable()
+                self.ytDownloader.ckbx_pl.Enable()
+                self.ytDownloader.choice.SetSelection(0)
+                self.ytDownloader.on_choicebox(self, statusmsg=False)
+                del self.ytDownloader.info[:]
+                self.ytDownloader.format_dict.clear()
+                self.ytDownloader.ckbx_pl.SetValue(False)
+                self.ytDownloader.on_playlist(self)
 
         self.SetTitle(_('Vidtuber - YouTube Downloader'))
-        self.filedldir = self.textDnDTarget.file_dest
-
         self.textDnDTarget.Hide()
         self.ytDownloader.Show()
         [self.toolbar.EnableTool(x, True) for x in (3, 4, 14, 13)]
@@ -868,7 +855,7 @@ class MainFrame(wx.Frame):
         provided by the menu bar (see `switch_to_processing` method above).
         """
         self.ProcessPanel.Hide()
-        self.switch_youtube_downloader(self, self.data_url)
+        self.switch_youtube_downloader(self)
 
         # Enable all top menu bar:
         self.menuBar.EnableTop(2, True)

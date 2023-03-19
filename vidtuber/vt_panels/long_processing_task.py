@@ -71,20 +71,21 @@ class LogOut(wx.Panel):
 
         wx.Panel.__init__(self, parent=parent)
 
+        sizer = wx.BoxSizer(wx.VERTICAL)
         infolbl = _("Process log:")
         lbl = wx.StaticText(self, label=infolbl)
         if self.appdata['ostype'] != 'Darwin':
             lbl.SetLabelMarkup(f"<b>{infolbl}</b>")
+        sizer.Add((0, 25))
+        sizer.Add(lbl, 0, wx.ALL, 5)
+        sizer.Add((0, 10))
         self.txtout = wx.TextCtrl(self, wx.ID_ANY, "",
                                   style=wx.TE_MULTILINE
                                   | wx.TE_READONLY
                                   | wx.TE_RICH2
                                   )
-        self.labprog = wx.StaticText(self, label="")
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add((0, 10))
-        sizer.Add(lbl, 0, wx.ALL, 5)
         sizer.Add(self.txtout, 1, wx.EXPAND | wx.ALL, 5)
+        self.labprog = wx.StaticText(self, label="")
         sizer.Add(self.labprog, 0, wx.ALL, 5)
         line = wx.StaticLine(self, wx.ID_ANY, pos=wx.DefaultPosition,
                              size=wx.DefaultSize, style=wx.LI_HORIZONTAL,

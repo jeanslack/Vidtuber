@@ -396,26 +396,10 @@ class Downloader(wx.Panel):
         self.ckbx_thumb.Bind(wx.EVT_CHECKBOX, self.on_thumbnails)
         self.ckbx_meta.Bind(wx.EVT_CHECKBOX, self.on_metadata)
         self.ckbx_sb.Bind(wx.EVT_CHECKBOX, self.on_subtitles)
-        self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select, self.fcode)
-        self.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.on_deselect, self.fcode)
+
         if not self.oldwx:
             self.fcode.Bind(wx.EVT_LIST_ITEM_CHECKED, self.on_checkbox)
             self.fcode.Bind(wx.EVT_LIST_ITEM_UNCHECKED, self.on_checkbox)
-    # -----------------------------------------------------------------#
-
-    def on_select(self, event):
-        """
-        self.fcod selection event that enables btn_play
-        """
-        pass
-    # ----------------------------------------------------------------------
-
-    def on_deselect(self, event):
-        """
-        self.fcod de-selection event that disables btn_play
-        """
-        pass
-    # ----------------------------------------------------------------------
 
     def on_checkbox(self, event):
         """
@@ -474,7 +458,7 @@ class Downloader(wx.Panel):
         Get URLs data and format codes by generator object
         *youtubedl_getstatistics* (using youtube_dl library) and set the list
         control with new entries. Return `True` if `meta[1]` (error),
-        otherwise return None as exit staus.
+        otherwise return None as exit status.
         """
         self.fcode.ClearAll()
         if not self.oldwx:
@@ -771,10 +755,8 @@ class Downloader(wx.Panel):
                                 vformat=vformat,
                                 selection=self.choice.GetSelection()
                                 )
-        index = 0
-        for link in self.parent.data_url:
+        for index in range(self.fcode.GetItemCount()):
             self.fcode.SetItem(index, 3, quality)
-            index += 1
     # -----------------------------------------------------------------#
 
     def on_aformat(self, event):
@@ -783,11 +765,9 @@ class Downloader(wx.Panel):
         and self.choice selection == 3
         """
         self.opt["A_FORMAT"] = Downloader.AFORMATS.get(self.cmbx_af.GetValue())
-        index = 0
-        for link in self.parent.data_url:
+        for index in range(self.fcode.GetItemCount()):
             self.fcode.SetItem(index, 3,
                                f'bestaudio (format={self.cmbx_af.GetValue()})')
-            index += 1
     # -----------------------------------------------------------------#
 
     def on_aquality(self, event):
@@ -876,14 +856,14 @@ class Downloader(wx.Panel):
             self.ckbx_skip_dl.SetValue(False)
     # -----------------------------------------------------------------#
 
-    def getformatcode(self, urls):
+    def getformatcode(self):
         """
         Called by `on_Start` method. Return format code list
 
         """
         format_code = []
 
-        for url, key, val in zip(urls,
+        for url, key, val in zip(self.parent.data_url,
                                  self.format_dict.keys(),
                                  self.format_dict.values()
                                  ):
@@ -1034,7 +1014,7 @@ class Downloader(wx.Panel):
                     'nocheckcertificate': self.ckbx_ssl.GetValue(),
                     }
         elif self.choice.GetSelection() == 4:  # format code
-            code = self.getformatcode(urls)
+            code = self.getformatcode()
             if not code:
                 self.parent.statusbar_msg(Downloader.MSG_1,
                                           Downloader.RED,
