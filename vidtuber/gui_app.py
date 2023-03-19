@@ -33,10 +33,10 @@ try:
     from wx.svg import SVGimage
 except ModuleNotFoundError:
     pass
-from vidtuber.vdms_sys.argparser import arguments
-from vidtuber.vdms_sys.configurator import DataSource
-from vidtuber.vdms_sys import app_const as appC
-from vidtuber.vdms_utils.utils import del_filecontents
+from vidtuber.vt_sys.argparser import arguments
+from vidtuber.vt_sys.configurator import DataSource
+from vidtuber.vt_sys import app_const as appC
+from vidtuber.vt_utils.utils import del_filecontents
 
 # add translation macro to builtin similar to what gettext does
 builtins.__dict__['_'] = wx.GetTranslation
@@ -106,7 +106,7 @@ class Vidtuber(wx.App):
             self.wizard(self.iconset['vidtuber'])
             return True
 
-        from vidtuber.vdms_main.main_frame import MainFrame
+        from vidtuber.vt_main.main_frame import MainFrame
         main_frame = MainFrame()
         main_frame.Show()
         self.SetTopWindow(main_frame)
@@ -169,7 +169,7 @@ class Vidtuber(wx.App):
         during the first start-up.
 
         """
-        from vidtuber.vdms_dialogs.wizard_dlg import Wizard
+        from vidtuber.vt_dialogs.wizard_dlg import Wizard
         main_frame = Wizard(wizardicon)
         main_frame.Show()
         self.SetTopWindow(main_frame)

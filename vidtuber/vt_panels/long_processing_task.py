@@ -27,9 +27,9 @@ This file is part of Vidtuber.
 from __future__ import unicode_literals
 from pubsub import pub
 import wx
-from vidtuber.vdms_dialogs.widget_utils import notification_area
-from vidtuber.vdms_io.make_filelog import make_log_template
-from vidtuber.vdms_threads.ydl_downloader import YdlDownloader
+from vidtuber.vt_dialogs.widget_utils import notification_area
+from vidtuber.vt_io.make_filelog import make_log_template
+from vidtuber.vt_threads.ydl_downloader import YdlDownloader
 
 
 class LogOut(wx.Panel):
@@ -71,20 +71,21 @@ class LogOut(wx.Panel):
 
         wx.Panel.__init__(self, parent=parent)
 
+        sizer = wx.BoxSizer(wx.VERTICAL)
         infolbl = _("Process log:")
         lbl = wx.StaticText(self, label=infolbl)
         if self.appdata['ostype'] != 'Darwin':
             lbl.SetLabelMarkup(f"<b>{infolbl}</b>")
+        sizer.Add((0, 25))
+        sizer.Add(lbl, 0, wx.ALL, 5)
+        sizer.Add((0, 10))
         self.txtout = wx.TextCtrl(self, wx.ID_ANY, "",
                                   style=wx.TE_MULTILINE
                                   | wx.TE_READONLY
                                   | wx.TE_RICH2
                                   )
-        self.labprog = wx.StaticText(self, label="")
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add((0, 10))
-        sizer.Add(lbl, 0, wx.ALL, 5)
         sizer.Add(self.txtout, 1, wx.EXPAND | wx.ALL, 5)
+        self.labprog = wx.StaticText(self, label="")
         sizer.Add(self.labprog, 0, wx.ALL, 5)
         line = wx.StaticLine(self, wx.ID_ANY, pos=wx.DefaultPosition,
                              size=wx.DefaultSize, style=wx.LI_HORIZONTAL,
@@ -99,8 +100,8 @@ class LogOut(wx.Panel):
         # ------------------------------------------
 
         pub.subscribe(self.downloader_activity, "UPDATE_YDL_EVT")
-        pub.subscribe(self.update_count, "COUNT_EVT")
-        pub.subscribe(self.end_proc, "END_EVT")
+        pub.subscribe(self.update_count, "COUNT_YTDL_EVT")
+        pub.subscribe(self.end_proc, "END_YTDL_EVT")
     # ----------------------------------------------------------------------
 
     def topic_thread(self, varargs):
@@ -151,12 +152,12 @@ class LogOut(wx.Panel):
                                  f"{status} > {output}\n")
 
         elif status == 'DOWNLOAD':
-            perc = duration['_percent_str']
-            tbytes = duration['_total_bytes_str']
-            speed = duration['_speed_str']
-            eta = duration['_eta_str']
-            self.labprog.SetLabel(f'Downloading: {perc}  of  '
-                                  f'{tbytes}  at  {speed}  ETA: {eta}')
+            perc = duration['_percent_str'].strip()
+            tbytes = duration['_total_bytes_str'].strip()
+            speed = duration['_speed_str'].strip()
+            eta = duration['_eta_str'].strip()
+            self.labprog.SetLabel(f'Downloading: {perc}  |  Size: {tbytes}  '
+                                  f'|  Speed: {speed} |  ETA: {eta}')
 
         elif status == 'FINISHED':
             self.txtout.SetDefaultStyle(wx.TextAttr(self.clr['TXT1']))
@@ -235,7 +236,7 @@ class LogOut(wx.Panel):
 
         self.txtout.AppendText('\n')
         self.reset_all()
-        pub.sendMessage("PROCESS TERMINATED", msg='Terminated')
+        pub.sendMessage("PROCESS_TERMINATED_YTDLP", msg='Terminated')
     # ----------------------------------------------------------------------
 
     def on_stop(self):

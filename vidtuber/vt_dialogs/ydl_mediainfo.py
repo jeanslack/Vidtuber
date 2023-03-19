@@ -148,4 +148,4 @@ class YdlMediaInfo(wx.Dialog):
         """
         Destroy mini frame
         """
-        pub.sendMessage("DESTROY_ORPHANED_WINDOWS", msg='YdlMediaInfo')
+        pub.sendMessage("DESTROY_ORPHANED_YTDLP", msg='YdlMediaInfo')

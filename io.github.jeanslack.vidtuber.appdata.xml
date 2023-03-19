@@ -4,7 +4,7 @@
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-3.0-only</project_license>
   <name>Vidtuber</name>
-  <summary>GUI for FFmpeg and Youtube-dl</summary>
+  <summary>A simple cross-platform GUI for yt-dlp</summary>
   <icon type="remote">https://raw.githubusercontent.com/jeanslack/Vidtuber/master/vidtuber/art/icons/hicolor/scalable/apps/vidtuber.svg</icon>
   <categories>
     <category>AudioVideo</category>
@@ -12,7 +12,7 @@
 
   <description>
     <p>
-      Vidtuber is a simple and cross-platform GUI for yt-dlp.
+      Vidtuber is a simple cross-platform GUI for yt-dlp.
     </p>
     <p>
       Vidtuber is written in Python3 using the wxPython-Phoenix GUI toolkit.

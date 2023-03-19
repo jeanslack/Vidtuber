@@ -28,10 +28,10 @@ import os
 import sys
 import webbrowser
 import wx
-from vidtuber.vdms_utils.utils import detect_binaries
-from vidtuber.vdms_sys.settings_manager import ConfigManager
-from vidtuber.vdms_sys.app_const import supLang
-from vidtuber.vdms_io import io_tools
+from vidtuber.vt_utils.utils import detect_binaries
+from vidtuber.vt_sys.settings_manager import ConfigManager
+from vidtuber.vt_sys.app_const import supLang
+from vidtuber.vt_io import io_tools
 
 
 class SetUp(wx.Dialog):

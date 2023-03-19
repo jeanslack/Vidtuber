@@ -27,19 +27,19 @@ elif [ "$PLATFORM" = "Linux" ]; then
 fi
 
 $XGETTEXT -d vidtuber "../gui_app.py" \
-"../vdms_dialogs/wizard_dlg.py" \
-"../vdms_dialogs/infoprg.py" \
-"../vdms_dialogs/playlist_indexing.py" \
-"../vdms_dialogs/preferences.py" \
-"../vdms_dialogs/vidtuber_check_version.py" \
-"../vdms_dialogs/ydl_mediainfo.py" \
-"../vdms_dialogs/widget_utils.py" \
-"../vdms_dialogs/showlogs.py" \
-"../vdms_io/io_tools.py" \
-"../vdms_main/main_frame.py" \
-"../vdms_panels/youtubedl_ui.py" \
-"../vdms_panels/long_processing_task.py" \
-"../vdms_panels/textdrop.py" \
+"../vt_dialogs/wizard_dlg.py" \
+"../vt_dialogs/infoprg.py" \
+"../vt_dialogs/playlist_indexing.py" \
+"../vt_dialogs/preferences.py" \
+"../vt_dialogs/vidtuber_check_version.py" \
+"../vt_dialogs/ydl_mediainfo.py" \
+"../vt_dialogs/widget_utils.py" \
+"../vt_dialogs/showlogs.py" \
+"../vt_io/io_tools.py" \
+"../vt_main/main_frame.py" \
+"../vt_panels/youtubedl_ui.py" \
+"../vt_panels/long_processing_task.py" \
+"../vt_panels/textdrop.py" \
 
 if [ $? != 0 ]; then
     echo 'Failed!'

@@ -33,7 +33,7 @@ this = os.path.realpath(os.path.abspath(__file__))
 HERE = os.path.dirname(os.path.dirname(os.path.dirname(this)))
 sys.path.insert(0, HERE)
 try:
-    from vidtuber.vdms_sys.msg_info import current_release
+    from vidtuber.vt_sys.msg_info import current_release
 except ModuleNotFoundError as modulerror:
     sys.exit(modulerror)
 

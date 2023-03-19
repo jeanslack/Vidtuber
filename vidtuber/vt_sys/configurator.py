@@ -29,8 +29,8 @@ import sys
 import site
 import shutil
 import platform
-from vidtuber.vdms_utils.utils import copydir_recursively
-from vidtuber.vdms_sys.settings_manager import ConfigManager
+from vidtuber.vt_utils.utils import copydir_recursively
+from vidtuber.vt_sys.settings_manager import ConfigManager
 
 
 def msg(arg):

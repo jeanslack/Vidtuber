@@ -30,7 +30,7 @@ from pubsub import pub
 import yt_dlp
 
 
-class MyLogger():
+class MyLogger:
     """
     Intercepts youtube-dl's output by setting a logger object .
     Log messages to a logging.Logger instance.

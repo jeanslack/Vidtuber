@@ -29,8 +29,8 @@ This file is part of Vidtuber.
 import sys
 import platform
 from setuptools import setup, find_packages
-from vidtuber.vdms_sys.msg_info import current_release
-from vidtuber.vdms_sys.msg_info import descriptions_release
+from vidtuber.vt_sys.msg_info import current_release
+from vidtuber.vt_sys.msg_info import descriptions_release
 
 
 def source_build():
