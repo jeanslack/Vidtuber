@@ -50,9 +50,9 @@ class TextDnD(wx.Panel):
         sizer.Add(lbl_info, 0, wx.ALL | wx.EXPAND, 5)
         sizer.Add((0, 10))
         self.textctrl_urls = wx.TextCtrl(self, wx.ID_ANY, "",
-                                    style=wx.TE_MULTILINE
-                                    | wx.TE_DONTWRAP,
-                                    )
+                                         style=wx.TE_MULTILINE
+                                         | wx.TE_DONTWRAP,
+                                         )
         sizer.Add(self.textctrl_urls, 1, wx.EXPAND | wx.ALL, 5)
         sizer.Add((0, 10))
         sizer_ctrl = wx.BoxSizer(wx.HORIZONTAL)

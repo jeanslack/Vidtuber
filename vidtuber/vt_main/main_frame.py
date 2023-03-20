@@ -81,11 +81,11 @@ class MainFrame(wx.Frame):
         self.ytDownloader.Hide()
         self.textDnDTarget.Show()
         # Layout toolbar buttons:
-        self.mainSizer = wx.BoxSizer(wx.VERTICAL)  # sizer base global
+        mainSizer = wx.BoxSizer(wx.VERTICAL)  # sizer base global
         # Layout external panels:
-        self.mainSizer.Add(self.textDnDTarget, 1, wx.EXPAND)
-        self.mainSizer.Add(self.ytDownloader, 1, wx.EXPAND)
-        self.mainSizer.Add(self.ProcessPanel, 1, wx.EXPAND)
+        mainSizer.Add(self.textDnDTarget, 1, wx.EXPAND)
+        mainSizer.Add(self.ytDownloader, 1, wx.EXPAND)
+        mainSizer.Add(self.ProcessPanel, 1, wx.EXPAND)
 
         # ----------------------Set Properties----------------------#
         self.SetTitle("Vidtuber")
@@ -94,7 +94,7 @@ class MainFrame(wx.Frame):
                                       wx.BITMAP_TYPE_ANY))
         self.SetIcon(icon)
         self.SetMinSize((850, 560))
-        self.SetSizer(self.mainSizer)
+        self.SetSizer(mainSizer)
         self.Fit()
         self.SetSize(tuple(self.appdata['window_size']))
         self.Move(tuple(self.appdata['window_position']))
@@ -112,8 +112,8 @@ class MainFrame(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.on_outputdir)
         self.Bind(wx.EVT_CLOSE, self.on_close)
 
-        pub.subscribe(self.check_modeless_window, "DESTROY_ORPHANED_WINDOWS")
-        pub.subscribe(self.process_terminated, "PROCESS TERMINATED")
+        pub.subscribe(self.check_modeless_window, "DESTROY_ORPHANED_YTDLP")
+        pub.subscribe(self.process_terminated, "PROCESS_TERMINATED_YTDLP")
 
     # -------------------Status bar settings--------------------#
 
@@ -161,7 +161,7 @@ class MainFrame(wx.Frame):
         """
         Receives a message from a modeless window close event.
         This method is called using pub/sub protocol subscribing
-        "DESTROY_ORPHANED_WINDOWS".
+        "DESTROY_ORPHANED_YTDLP".
         """
         if msg == 'YdlMediaInfo':
             self.infomediadlg.Destroy()
@@ -762,28 +762,7 @@ class MainFrame(wx.Frame):
         """
         Show youtube-dl downloader panel
         """
-        if not self.data_url:
-            self.ytDownloader.choice.SetSelection(0)
-            self.ytDownloader.choice.Disable()
-            self.ytDownloader.ckbx_pl.Disable()
-            self.ytDownloader.cmbx_af.Disable()
-            self.ytDownloader.cmbx_aq.Disable()
-            self.ytDownloader.rdbvideoformat.Disable()
-            self.ytDownloader.cod_text.Hide()
-            self.ytDownloader.labtxt.Hide()
-            self.ytDownloader.cmbx_vq.Clear()
-            self.ytDownloader.fcode.ClearAll()
-        else:
-            if self.changed:
-                self.ytDownloader.choice.Enable()
-                self.ytDownloader.ckbx_pl.Enable()
-                self.ytDownloader.choice.SetSelection(0)
-                self.ytDownloader.on_choicebox(self, statusmsg=False)
-                del self.ytDownloader.info[:]
-                self.ytDownloader.format_dict.clear()
-                self.ytDownloader.ckbx_pl.SetValue(False)
-                self.ytDownloader.on_playlist(self)
-
+        self.ytDownloader.clear_data_list(self.changed)
         self.SetTitle(_('Vidtuber - YouTube Downloader'))
         self.textDnDTarget.Hide()
         self.ytDownloader.Show()

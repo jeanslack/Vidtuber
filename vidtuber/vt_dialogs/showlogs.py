@@ -203,4 +203,4 @@ class ShowLogs(wx.Dialog):
         """
         Destroy this dialog
         """
-        pub.sendMessage("DESTROY_ORPHANED_WINDOWS", msg='ShowLogs')
+        pub.sendMessage("DESTROY_ORPHANED_YTDLP", msg='ShowLogs')

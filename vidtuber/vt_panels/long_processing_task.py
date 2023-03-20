@@ -100,8 +100,8 @@ class LogOut(wx.Panel):
         # ------------------------------------------
 
         pub.subscribe(self.downloader_activity, "UPDATE_YDL_EVT")
-        pub.subscribe(self.update_count, "COUNT_EVT")
-        pub.subscribe(self.end_proc, "END_EVT")
+        pub.subscribe(self.update_count, "COUNT_YTDL_EVT")
+        pub.subscribe(self.end_proc, "END_YTDL_EVT")
     # ----------------------------------------------------------------------
 
     def topic_thread(self, varargs):
@@ -236,7 +236,7 @@ class LogOut(wx.Panel):
 
         self.txtout.AppendText('\n')
         self.reset_all()
-        pub.sendMessage("PROCESS TERMINATED", msg='Terminated')
+        pub.sendMessage("PROCESS_TERMINATED_YTDLP", msg='Terminated')
     # ----------------------------------------------------------------------
 
     def on_stop(self):
