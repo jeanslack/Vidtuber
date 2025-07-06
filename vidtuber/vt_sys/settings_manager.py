@@ -32,7 +32,7 @@ class ConfigManager:
     """
     It represents the setting of the user parameters
     of the program and the configuration file in its
-    read and write aspects.
+    read and write fondamentals.
 
     Usage:
 
@@ -45,7 +45,7 @@ class ConfigManager:
         >>> settings = confmng.read_options()
 
     example of modify data into current file conf.json:
-        >>> settings['outputfile'] = '/home/user/MyVideos'
+        >>> settings['outputdir'] = '/home/user/MyVideos'
         >>> confmng.write_options(**settings)
     ------------------------------------------------------
 
@@ -97,14 +97,6 @@ class ConfigManager:
         with True, erases all log files content before exiting the
         application, default is False.
 
-    downloader (bool, str):
-        sets the downloader to use when application startup.
-        one of `disabled`,` youtube_dl`, `yt_dlp` or False
-        Where `disabled` means not load anything, `youtube_dl`
-        means load/use youtube-dl on sturtup, `yt_dlp` means load/use
-        yt_dl on sturtup, `false` means *not set at all* then
-        a wizard dialog will be displayed.
-
     playlistsubfolder (bool):
         Auto-create subfolders when download the playlists,
         default value is True.
@@ -118,9 +110,17 @@ class ConfigManager:
         "en_US" or "fr_FR".
 
     """
-    VERSION = 1.1
+    VERSION = 1.7
     DEFAULT_OPTIONS = {"confversion": VERSION,
-                       "dirdownload": f"{os.path.expanduser('~')}",
+                       "ytdlp-enable-exec": False,
+                       "ytdlp-exec-path": "",
+                       "ytdlp-usemodule": False,
+                       "ytdlp-module-path": "",
+
+                       "shutdown": False,
+                       "sudo_password": "",
+                       "auto_exit": False,
+                       "dirdownload": "",
                        "ffmpeg_cmd": "",
                        "ffmpeg_islocal": False,
                        "ffprobe_cmd": "",
@@ -134,24 +134,56 @@ class ConfigManager:
                        "window_position": [0, 0],
                        "clearcache": False,
                        "clearlogfiles": False,
-                       "downloader": False,
+                       "locale_name": "Default",
+                       "subtitles_options": {"writesubtitles": False,
+                                             "subtitleslangs": [],
+                                             "writeautomaticsub": False,
+                                             "embedsubtitle": False,
+                                             "skip_download": False
+                                             },
+                       "fcode_column_width": [120, 60, 200, 80, 160,
+                                              110, 80, 110, 100],
+                       "external_downloader": None,
+                       "external_downloader_args": None,
+                       "proxy": "",
+                       "username": "",
+                       "password": "",
+                       "videopassword": "",
+                       "geo_verification_proxy": "",
+                       "geo_bypass": "",
+                       "geo_bypass_country": "",
+                       "geo_bypass_ip_block": "",
+                       "use_cookie_file": False,
+                       "cookiefile": "",
+                       "autogen_cookie_file": False,
+                       "webbrowser": "firefox",
+                       "cookiesfrombrowser": [None, None, None, None],
                        "playlistsubfolder": True,
-                       "locale_name": "Default"
+                       "ssl_certificate": False,
+                       "add_metadata": False,
+                       "embed_thumbnails": False,
+                       "overwr_dl_files": False,
+                       "include_ID_name": False,
+                       "restrict_fname": False,
                        }
 
     def __init__(self, filename, makeportable=None):
         """
-        Accepts an existing `filename` on the file system paths
+        Expects an existing `filename` on the file system paths
         suffixed by `.json`. If `makeportable` is `True`, some
         paths on the `DEFAULT_OPTIONS` class attribute will be
         set as relative paths.
         """
         self.filename = filename
+        self.makeportable = makeportable
 
-        if makeportable:
-            path = os.path.join(makeportable, "My_Files")
-            outputdir = os.path.relpath(path)
+        if self.makeportable:
+            path = os.path.join(makeportable, "Media", "Downloads")
+            outputdir = os.path.relpath(dwldpath)
             ConfigManager.DEFAULT_OPTIONS['dirdownload'] = outputdir
+            self.dwlddir = outputdir
+        else:
+            self.dwlddir = os.path.expanduser('~')
 
     def write_options(self, **options):
         """
@@ -183,5 +215,22 @@ class ConfigManager:
                 options = json.load(settings_file)
             except json.JSONDecodeError:
                 return None
+
+        return options
+
+    def default_outputdirs(self, **options):
+        """
+        This method is useful for restoring consistent output
+        directories for file destinations, in case they were
+        previously set to physically non-existent file system paths
+        (such as pendrives, hard drives, etc.) or to deleted directories.
+        Returns a dict object.
+        """
+        dwldpath = options['dirdownload']
+        if not os.path.exists(dwldpath) and not os.path.isdir(dwldpath):
+            if self.makeportable:
+                options['dirdownload'] = self.dwlddir
+            else:
+                options['dirdownload'] = f"{os.path.expanduser('~')}"
 
         return options

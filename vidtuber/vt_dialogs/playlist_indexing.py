@@ -4,9 +4,9 @@ Name: playlist_indexing.py
 Porpose: shows a dialog box for setting playlist indexing
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: March.13.2022
+Rev: July.17.2022
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -69,20 +69,20 @@ class Indexing(wx.Dialog):
         GREEN = '#40804C'
     appicon = get.iconset['vidtuber']
 
-    HELPME = _('Click on "Playlist Items" column to specify indices of '
-               'the videos in the playlist separated by commas like: '
-               '"1,2,5,8" if you want to download videos indexed 1, 2, '
-               '5, 8 in the playlist.\n\n'
-               'You can specify range: "1-3,7,10-13" it will download the '
-               'videos at index 1, 2, 3, 7, 10, 11, 12 and 13.\n'
-               )
+    HELPME = (_('To index the media of a playlist, click on the "Playlist '
+                'Items" column of each corresponding URL and specify the '
+                'numerical indexes separated by commas, e.g. "1,2,5,8" if '
+                'you want to download the indexed media at 1, 2, 5, 8 of the '
+                'playlist.\nIt is also possible to specify intervals, e.g. '
+                '"1-3,7,10-13" with which the media at index 1, 2, 3, 7, 10, '
+                '11, 12 and 13 will be downloaded.\n'))
 
     def __init__(self, parent, url, data):
         """
         NOTE Use 'parent, -1' param. to make parent, use 'None' otherwise
 
         """
-        self.clrs = Indexing.appdata['icontheme'][1]
+        self.clrs = Indexing.appdata['colorscheme']
         self.urls = url
         self.data = data
 
@@ -105,7 +105,7 @@ class Indexing(wx.Dialog):
                                  )
 
         # ------ Properties
-        self.SetTitle(_('Playlist video items to download'))
+        self.SetTitle(_('Playlist Editor'))
         self.SetMinSize((800, 400))
         self.lctrl.SetMinSize((800, 200))
         self.tctrl.SetMinSize((800, 200))
@@ -125,13 +125,13 @@ class Indexing(wx.Dialog):
         # ------ bottom layout for buttons
         grid_btn = wx.GridSizer(1, 2, 0, 0)
         gridexit = wx.BoxSizer(wx.HORIZONTAL)
-        btn_reset = wx.Button(self, wx.ID_CLEAR, _("Reset"))
+        btn_reset = wx.Button(self, wx.ID_CLEAR, "")
         grid_btn.Add(btn_reset, 0, wx.ALL, 5)
-        btn_close = wx.Button(self, wx.ID_CANCEL, "")
-        gridexit.Add(btn_close, 0, wx.ALL, 5)
-        self.btn_ok = wx.Button(self, wx.ID_OK, _("Apply"))
-        gridexit.Add(self.btn_ok, 0, wx.ALL, 5)
-        grid_btn.Add(gridexit, 0, wx.ALL | wx.ALIGN_RIGHT | wx.RIGHT, 0)
+        btn_cancel = wx.Button(self, wx.ID_CANCEL, "")
+        gridexit.Add(btn_cancel, 0)
+        btn_ok = wx.Button(self, wx.ID_OK)
+        gridexit.Add(btn_ok, 0, wx.LEFT, 5)
+        grid_btn.Add(gridexit, 0, wx.ALL | wx.ALIGN_RIGHT | wx.RIGHT, 5)
 
         # ------ final settings:
         sizer_1.Add(grid_btn, 0, wx.EXPAND)
@@ -169,8 +169,8 @@ class Indexing(wx.Dialog):
         # ----------------------Binding (EVT)----------------------#
         self.lctrl.Bind(wx.EVT_LIST_BEGIN_LABEL_EDIT, self.on_edit_begin)
         self.lctrl.Bind(wx.EVT_LIST_END_LABEL_EDIT, self.on_edit_end)
-        self.Bind(wx.EVT_BUTTON, self.on_close, btn_close)
-        self.Bind(wx.EVT_BUTTON, self.on_ok, self.btn_ok)
+        self.Bind(wx.EVT_BUTTON, self.on_close, btn_cancel)
+        self.Bind(wx.EVT_BUTTON, self.on_ok, btn_ok)
         self.Bind(wx.EVT_BUTTON, self.on_reset, btn_reset)
 
         self.textstyle()
@@ -179,7 +179,6 @@ class Indexing(wx.Dialog):
         """
         clear log messages and set text style on textctrl box
         """
-
         self.tctrl.Clear()
         self.tctrl.SetDefaultStyle(wx.TextAttr(self.clrs['TXT1']))
         self.tctrl.AppendText(f'{Indexing.HELPME}')

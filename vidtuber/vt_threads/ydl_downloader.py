@@ -1,12 +1,12 @@
 # -*- coding: UTF-8 -*-
 """
 Name: ydl_downloader.py
-Porpose: long processing task with youtube_dl python library
+Porpose: long processing task using yt-dlp executable
 Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: March.17.2023
+Rev: June.05.2025
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -24,164 +24,66 @@ This file is part of Vidtuber.
    You should have received a copy of the GNU General Public License
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
+import os
 from threading import Thread
+import signal
+import time
 import itertools
+import platform
+import subprocess
 import wx
 from pubsub import pub
+from vidtuber.vt_utils.utils import Popen
 from vidtuber.vt_io.make_filelog import logwrite
-import yt_dlp
+if not platform.system() == 'Windows':
+    import shlex
 
 
-class MyLogger:
+def killbill(pid):
     """
-    Intercepts youtube-dl's output by setting a logger object;
-    * Log messages to a logging.Logger instance.
-    <https://github.com/ytdl-org/youtube-dl/tree/3e4cedf9e8cd315
-    7df2457df7274d0c842421945#embedding-youtube-dl>
+    kill the process sending a Ctrl+C event to yt-dlp
     """
-
-    def __init__(self):
-        """
-        define instace attributes
-        """
-        self.msg = None
-
-    def debug(self, msg):
-        """
-        Get debug messages. Note, both debug and info
-        are passed into debug. You can distinguish them
-        by the prefix '[debug] '
-        """
-        wx.CallAfter(pub.sendMessage,
-                     "UPDATE_YDL_EVT",
-                     output=msg,
-                     duration='',
-                     status='DEBUG',
-                     )
-        self.msg = msg
-
-    def warning(self, msg):
-        """
-        Get warning messages
-        """
-        msg = f'WARNING: {msg}'
-        wx.CallAfter(pub.sendMessage,
-                     "UPDATE_YDL_EVT",
-                     output=msg,
-                     duration='',
-                     status='WARNING',
-                     )
-
-    def error(self, msg):
-        """
-        Get error messages
-        """
-        wx.CallAfter(pub.sendMessage,
-                     "UPDATE_YDL_EVT",
-                     output=msg,
-                     duration='',
-                     status='ERROR',
-                     )
-# -------------------------------------------------------------------------#
+    lambda: os.kill(pid, signal.CTRL_C_EVENT)
 
 
-def my_hook(data):
+class YtdlExecDL(Thread):
     """
-    progress_hooks is A list of functions that get called on
-    download progress. See  `help(youtube_dl.YoutubeDL)`
-    """
-    if data['status'] == 'downloading':
-        keys = ('_percent_str', '_total_bytes_str', '_speed_str', '_eta_str')
-
-        wx.CallAfter(pub.sendMessage,
-                     "UPDATE_YDL_EVT",
-                     output='',
-                     duration={x: data.get(x, 'N/A') for x in keys},
-                     status='DOWNLOAD',
-                     )
-    if data['status'] == 'finished':
-        wx.CallAfter(pub.sendMessage,
-                     "COUNT_YTDL_EVT",
-                     count='',
-                     fsource='',
-                     destination='',
-                     duration='',
-                     end='ok',
-                     )
-        wx.CallAfter(pub.sendMessage,
-                     "UPDATE_YDL_EVT",
-                     output='',
-                     duration='Done downloading, now converting ...',
-                     status='FINISHED',
-                     )
-# -------------------------------------------------------------------------#
-
-
-class YdlDownloader(Thread):
-    """
-    Embed youtube-dl as module into a separated thread in order
-    to get output in real time during downloading and conversion .
-    For a list of available options see:
-
-    <https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/YoutubeDL.py#L129-L279>
-    <https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/options.py>
-
-    or by help(youtube_dl.YoutubeDL)
+    YtdlExecDL represents a separate thread for running
+    youtube-dl executable with subprocess class to download
+    media and capture its stdout/stderr output in real time .
 
     """
-    get = wx.GetApp()  # get vidtuber wx.App attribute
-    appdata = get.appset
-    FFMPEG_URL = appdata['ffmpeg_cmd']
-    DOWNLOADER = appdata['downloader']
+    STOP = '[Vidtuber]: STOP command received.'
+    # -----------------------------------------------------------------------#
 
-    if appdata['playlistsubfolder']:
-        SUBDIR = '%(uploader)s/%(playlist_title)s/%(playlist_index)s - '
-    else:
-        SUBDIR = ''
-
-    def __init__(self, varargs, logname):
+    def __init__(self, args, urls, logfile):
         """
         Attributes defined here:
-        self.stop_work_thread:  process terminate value
-        self.args['urls']:          urls list
-        self.opt:           option dict data type to adding
-        self.args['outdir']:     pathname destination
-        self.args['code']:          Format Code, else empty string ''
-        self.count:         increases progressive account elements
-        self.args['countmax']:      length of urls items list
-        self.args['logname']:       file name to log messages for logging
+        self.stop_work_thread -  boolean process terminate value
+        self.urls - type list
+        self.logfile - str path object to log file
+        self.arglist - option arguments list
         """
         self.stop_work_thread = False  # process terminate
-        self.opt = varargs[4]
+        self.urls = urls
+        self.logfile = logfile
+        self.arglist = args
+        self.countmax = len(self.arglist)
         self.count = 0
-        self.args = {'urls': varargs[1],
-                     'code': varargs[6],
-                     'outdir': varargs[3],
-                     'logname': logname,
-                     'countmax': len(varargs[1]),
-                     }
 
         Thread.__init__(self)
-        self.start()  # run()
+        self.start()  # start the thread (va in self.run())
 
     def run(self):
         """
-        Apply the options passed by the user for the
-        download process with youtube_dl
-
+        Subprocess run thread.
         """
-        for url, code in itertools.zip_longest(self.args['urls'],
-                                               self.args['code'],
+        for url, opts in itertools.zip_longest(self.urls,
+                                               self.arglist,
                                                fillvalue='',
                                                ):
-            if '/playlist' in url or not self.opt['noplaylist']:
-                outtmpl = YdlDownloader.SUBDIR + self.opt['outtmpl']
-            else:
-                outtmpl = self.opt['outtmpl']
-
-            format_code = code if code else self.opt['format']
             self.count += 1
-            count = f"URL {self.count}/{self.args['countmax']}"
+            count = f"URL {self.count}/{self.countmax}"
 
             wx.CallAfter(pub.sendMessage,
                          "COUNT_YTDL_EVT",
@@ -189,44 +91,81 @@ class YdlDownloader(Thread):
                          fsource=f'Source: {url}',
                          destination='',
                          duration=100,
-                         end='',
+                         end='CONTINUE',
                          )
+            cmd = f'{opts} "{url}"'
+            logwrite(f'{count}\n{cmd}\n', '', self.logfile)  # write log cmd
+            if not platform.system() == 'Windows':
+                cmd = shlex.split(cmd)
+            try:
+                with Popen(cmd,
+                           stdout=subprocess.PIPE,
+                           stderr=subprocess.STDOUT,
+                           bufsize=1,
+                           universal_newlines=True,
+                           encoding='utf-8',
+                           ) as proc:
+                    for line in proc.stdout:
+                        wx.CallAfter(pub.sendMessage,
+                                     "UPDATE_YDL_EXECUTABLE_EVT",
+                                     output=line,
+                                     duration=100,
+                                     status=0,
+                                     )
+                        if self.stop_work_thread:
+                            killbill(proc.pid)
+                            wx.CallAfter(pub.sendMessage,
+                                         "UPDATE_YDL_EXECUTABLE_EVT",
+                                         output='STOP',
+                                         duration=100,
+                                         status='ERROR',
+                                         )
+                            logwrite('', YtdlExecDL.STOP, self.logfile)
+                            time.sleep(.5)
+                            wx.CallAfter(pub.sendMessage, "END_YTDL_EVT")
+                            return
 
-            if self.stop_work_thread:
+                    if proc.wait():
+                        wx.CallAfter(pub.sendMessage,
+                                     "UPDATE_YDL_EXECUTABLE_EVT",
+                                     output='FAILED',
+                                     duration=100,
+                                     status='ERROR',
+                                     )
+                        logwrite('', (f"[VIDEOMASS]: Error Exit Status: "
+                                      f"{proc.wait()}"), self.logfile)
+                        time.sleep(1)
+                        continue
+
+            except (OSError, FileNotFoundError) as err:
+                wx.CallAfter(pub.sendMessage,
+                             "COUNT_YTDL_EVT",
+                             count=err,
+                             fsource='',
+                             destination='',
+                             duration=0,
+                             end='ERROR'
+                             )
+                logwrite('', err, self.logfile)
                 break
 
-            ydl_opts = {
-                'compat_opts': 'youtube-dl',
-                'format': format_code,
-                'extractaudio': self.opt['format'],
-                'outtmpl': f"{self.args['outdir']}/{outtmpl}",
-                'writesubtitles': self.opt['writesubtitles'],
-                'subtitleslangs': self.opt['subtitleslangs'],
-                'skip_download': self.opt['skip_download'],
-                'addmetadata': self.opt['addmetadata'],
-                'restrictfilenames': self.opt['restrictfilenames'],
-                'ignoreerrors': True,
-                'no_warnings': False,
-                'writethumbnail': self.opt['writethumbnail'],
-                'noplaylist': self.opt['noplaylist'],
-                'playlist_items': self.opt['playlist_items'].get(url, None),
-                'overwrites': self.opt['overwrites'],
-                'no_color': True,
-                'nocheckcertificate': self.opt['nocheckcertificate'],
-                'ffmpeg_location': f'{YdlDownloader.FFMPEG_URL}',
-                'postprocessors': self.opt['postprocessors'],
-                'logger': MyLogger(),
-                'progress_hooks': [my_hook],
-            }
-            logwrite(ydl_opts, '', self.args['logname'])  # write log cmd
-
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([f"{url}"])
-
+            if proc.wait() == 0:  # ..Finished
+                wx.CallAfter(pub.sendMessage,
+                             "COUNT_YTDL_EVT",
+                             count='',
+                             fsource='',
+                             destination='',
+                             duration=100,
+                             end='DONE',
+                             )
+                time.sleep(1)
+        time.sleep(.5)
         wx.CallAfter(pub.sendMessage, "END_YTDL_EVT")
+    # --------------------------------------------------------------------#
 
     def stop(self):
         """
         Sets the stop work thread to terminate the process
         """
         self.stop_work_thread = True
+# ------------------------------------------------------------------------#

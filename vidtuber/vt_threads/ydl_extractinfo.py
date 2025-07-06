@@ -4,7 +4,7 @@ Name: ydl_extractinfo.py
 Porpose: get informations data with youtube_dl
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: March.17.2023
 Code checker: flake8, pylint
@@ -27,7 +27,8 @@ This file is part of Vidtuber.
 from threading import Thread
 import wx
 from pubsub import pub
-import yt_dlp
+if wx.GetApp().appset['yt_dlp'] is True:
+    import yt_dlp
 
 
 class MyLogger:
@@ -36,7 +37,6 @@ class MyLogger:
     Log messages to a logging.Logger instance.
     <https://github.com/ytdl-org/youtube-dl/tree/3e4cedf9e8cd3157df2457df7274d0c842421945#embedding-youtube-dl>
     """
-
     def __init__(self):
         """
         make attribute to log messages error
@@ -74,7 +74,7 @@ class YdlExtractInfo(Thread):
     to get output during process (see help(youtube_dl.YoutubeDL) ) .
 
     """
-    def __init__(self, url, ssl):
+    def __init__(self, url, kwargs):
         """
         Attributes defined here:
         self.url  str('url')
@@ -84,7 +84,7 @@ class YdlExtractInfo(Thread):
         self.appdata = get.appset
         self.url = url
         self.data = None
-        self.nocheckcertificate = ssl
+        self.kwargs = kwargs
 
         Thread.__init__(self)
         self.start()  # start the thread (va in self.run())
@@ -93,22 +93,17 @@ class YdlExtractInfo(Thread):
         """
         Defines options to extract_info with youtube_dl
         """
-        mylogger = MyLogger()
-        ydl_opts = {'ignoreerrors': True,
-                    'noplaylist': True,
-                    'no_color': True,
-                    'nocheckcertificate': self.nocheckcertificate,
-                    'logger': mylogger,
-                    }
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            meta = ydl.extract_info(self.url, download=False)
+        if wx.GetApp().appset['yt_dlp'] is True:
+            mylogger = MyLogger()
+            ydl_opts = {**self.kwargs, 'logger': mylogger}
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                meta = ydl.extract_info(self.url, download=False)
+            error = mylogger.get_message()
 
-        error = mylogger.get_message()
-
-        if error:
-            self.data = (None, error)
-        elif meta:
-            self.data = (meta, None)
+            if error:
+                self.data = (None, error)
+            elif meta:
+                self.data = (meta, None)
 
         wx.CallAfter(pub.sendMessage,
                      "RESULT_EVT",

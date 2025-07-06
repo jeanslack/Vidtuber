@@ -4,9 +4,9 @@ Name: showlogs.py
 Porpose: show logs data
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: March.17.2023
+Rev: July.17.2023
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -35,7 +35,10 @@ class ShowLogs(wx.Dialog):
 
     """
     # list of logs files to include
-    LOGNAMES = ('yt_dlp.log')
+    LOGNAMES = ('generic_task.log',
+                'YouTube Downloader.log',
+                'Shutdown.log',
+                )
 
     def __init__(self, parent, dirlog, OS):
         """
@@ -43,17 +46,20 @@ class ShowLogs(wx.Dialog):
         self.dirlog > log location directory (depends from OS)
         self.logdata > dict object {KEY=file name.log: VAL=log data, ...}
         self.selected > None if item on listctrl is not selected
+        file > log file name to view
 
         """
         self.dirlog = dirlog
         self.logdata = {}
         self.selected = None
         get = wx.GetApp()  # get data from bootstrap
-        colorscheme = get.appset['icontheme'][1]
-        appicon = get.iconset['vidtuber']
+        colorscheme = get.appset['colorscheme']
+        vidicon = get.iconset['vidtuber']
 
         wx.Dialog.__init__(self, None,
-                           style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER
+                           style=wx.DEFAULT_DIALOG_STYLE
+                           | wx.RESIZE_BORDER
+                           | wx.DIALOG_NO_PARENT
                            )
         # ----------------------Layout----------------------#
         sizer_base = wx.BoxSizer(wx.VERTICAL)
@@ -85,31 +91,27 @@ class ShowLogs(wx.Dialog):
             self.textdata.SetFont(wx.Font(9, wx.MODERN, wx.NORMAL, wx.NORMAL))
 
         sizer_base.Add(self.textdata, 1, wx.ALL | wx.EXPAND, 5)
-        # ------ btns bottom
+        # ----- confirm buttons section
         grdBtn = wx.GridSizer(1, 2, 0, 0)
         grid_funcbtn = wx.BoxSizer(wx.HORIZONTAL)
         button_update = wx.Button(self, wx.ID_REFRESH,
-                                  _("Refresh all log files"))
-        grid_funcbtn.Add(button_update, 0, wx.ALL
-                         | wx.ALIGN_CENTER_VERTICAL, 5
-                         )
-        button_clear = wx.Button(self, wx.ID_CLEAR,
-                                 _("Clear selected log")
-                                 )
-        grid_funcbtn.Add(button_clear, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
-        grdBtn.Add(grid_funcbtn)
+                                  _("Refresh log messages"))
+        grid_funcbtn.Add(button_update, 0)
+        button_clear = wx.Button(self, wx.ID_CLEAR, _("Clear log messages"))
+        grid_funcbtn.Add(button_clear, 0, wx.LEFT, 5)
+        grdBtn.Add(grid_funcbtn, 0, wx.ALL, 5)
         grdexit = wx.BoxSizer(wx.HORIZONTAL)
         button_close = wx.Button(self, wx.ID_CLOSE, "")
-        grdexit.Add(button_close, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
-        grdBtn.Add(grdexit, flag=wx.ALL | wx.ALIGN_RIGHT | wx.RIGHT, border=0)
+        grdexit.Add(button_close, 0)
+        grdBtn.Add(grdexit, flag=wx.ALL | wx.ALIGN_RIGHT | wx.RIGHT, border=5)
         sizer_base.Add(grdBtn, 0, wx.ALL | wx.EXPAND, 0)
         # set caption and min size
-        self.SetTitle(_('Showing log messages'))
+        self.SetTitle(_('Log messages'))
         self.SetMinSize((700, 500))
-        # ------ set sizer
         icon = wx.Icon()
-        icon.CopyFromBitmap(wx.Bitmap(appicon, wx.BITMAP_TYPE_ANY))
+        icon.CopyFromBitmap(wx.Bitmap(vidicon, wx.BITMAP_TYPE_ANY))
         self.SetIcon(icon)
+        # ------ set sizer
         self.SetSizer(sizer_base)
         self.Fit()
         self.Layout()
@@ -128,6 +130,20 @@ class ShowLogs(wx.Dialog):
 
     # ----------------------Event handler (callback)----------------------#
 
+    # def on_flog_select(self, logfile):
+    #     """
+    #     Auto-Select a specified logfile name.
+    #     FindItem method:
+    #     <https://docs.wxpython.org/wx.ListCtrl.html#wx.ListCtrl.FindItem>
+    #     """
+    #     logname = os.path.basename(logfile)
+    #     idx = self.log_select.FindItem(-1, logname)
+    #
+    #     if not idx  == -1:
+    #         self.log_select.Focus(idx)  # make the line the current line
+    #         self.log_select.Select(idx, on=1)  # default event selection
+    # --------------------------------------------------------------------#
+
     def on_clear(self, event):
         """
         clear data logging from selected log file
@@ -142,12 +158,12 @@ class ShowLogs(wx.Dialog):
         name = self.log_select.GetItemText(index, 0)
 
         if wx.MessageBox(_('Are you sure you want to clear the selected '
-                           'log file?'), "Vidtuber",
-                         wx.ICON_QUESTION | wx.YES_NO, self) == wx.NO:
+                           'log file?'), _('Please confirm'), wx.ICON_QUESTION
+                         | wx.CANCEL | wx.YES_NO, self) != wx.YES:
             return
 
         with open(os.path.join(self.dirlog, name),
-                  'w', encoding='utf8') as log:
+                  'w', encoding='utf-8') as log:
             log.write('')
 
         self.on_update(self)
@@ -167,7 +183,7 @@ class ShowLogs(wx.Dialog):
         for f in os.listdir(self.dirlog):
             if os.path.basename(f) in ShowLogs.LOGNAMES:  # append listed only
                 with open(os.path.join(self.dirlog, f),
-                          'r', encoding='utf8') as log:
+                          'r', encoding='utf-8') as log:
                     self.logdata[f] = log.read()  # set value
                     self.log_select.InsertItem(index, f)
                 index += 1
@@ -201,6 +217,6 @@ class ShowLogs(wx.Dialog):
 
     def on_close(self, event):
         """
-        Destroy this dialog
+        Destroy this window
         """
-        pub.sendMessage("DESTROY_ORPHANED_YTDLP", msg='ShowLogs')
+        pub.sendMessage("DESTROY_ORPHANED_WINDOWS", msg='ShowLogs')

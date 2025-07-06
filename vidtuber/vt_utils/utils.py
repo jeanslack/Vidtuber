@@ -4,9 +4,9 @@ Name: utils.py
 Porpose: It groups useful functions that are called several times
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: March.17.2023
+Rev: Feb.05.2024
 Code checker: flake8, pylint .
 
 This file is part of Vidtuber.
@@ -26,6 +26,7 @@ This file is part of Vidtuber.
 """
 import subprocess
 import platform
+import re
 import shutil
 import os
 import glob
@@ -44,6 +45,7 @@ class Popen(subprocess.Popen):
 
     https://stackoverflow.com/questions/1813872/running-
     a-process-in-pythonw-with-popen-without-a-console?lq=1>
+
     """
     if platform.system() == 'Windows':
         _startupinfo = subprocess.STARTUPINFO()
@@ -85,7 +87,7 @@ def open_default_application(pathname):
     else:  # Linux, FreeBSD or any supported
         cmd = ['xdg-open', pathname]
     try:
-        subprocess.run(cmd, check=True, shell=False, encoding='utf8')
+        subprocess.run(cmd, check=True, shell=False, encoding='utf-8')
     except subprocess.CalledProcessError as error:
         return str(error)
 
@@ -127,12 +129,11 @@ def to_bytes(string, key='ydl'):
 
     """
     value = 0.0
+    unit = ["byte", "Kibyte", "Mibyte", "Gibyte", "Tibyte",
+            "Pibyte", "Eibyte", "Zibyte", "Yibyte"]
+
     if key == 'ydl':
         unit = ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"]
-
-    elif key == 'ffmpeg':
-        unit = ["byte", "Kibyte", "Mibyte", "Gibyte", "Tibyte",
-                "Pibyte", "Eibyte", "Zibyte", "Yibyte"]
 
     const = 1024.0
 
@@ -146,83 +147,194 @@ def to_bytes(string, key='ydl'):
 # ------------------------------------------------------------------------
 
 
-def timehuman(seconds):
+def time_to_integer(timef: str = '0', sec=False, rnd=False) -> int:
     """
-    This is the old implementation to converting seconds to
-    time format. Accept integear only e.g timehuman(2300).
-    Useb by youtube-dl downloader, returns a string object
-    in time format i.e '00:38:20' .
+    Converts strings representing the 24-hour format to an
+    integer equivalent to the time duration in milliseconds
+    (default).
+
+    ARGUMENTS:
+    ---------
+    timef: Accepts a string representing the 24-hour clock in the
+           following valid string formats:
+
+            '0' | '00' | '00.0' | '00.00' | 00:0 | '00:00:00'
+            '0:00:00' | '0:0:0' | '00:00.000' | '00:00:00.000
+
+           Default is '0' .
+           Any other representation passed as a string argument will
+           be returned as an integer object equal to 0 (int).
+           If the argument passed is an object other than the string
+           object (str) the exception `TypeError` will be raised.
+
+    sec: if `True`, returns the duration in seconds instead
+         of milliseconds.
+
+    rnd: if `True` rounds the result, i.e. "00:00:02.999" > 3000
+         milliseconds instead of 2999 milliseconds or 3 seconds
+         instead of 2 seconds using `sec=True` argument.
+
+    Return an int object.
+    Raise `TypeError` if argument != `str` .
 
     """
-    minutes, seconds = divmod(seconds, 60)
+    if not isinstance(timef, str):
+        raise TypeError("Only a string (str) object is expected.")
+
+    # adds leading zeros to fill up possibly non-existing fields.
+    hours, minutes, seconds = (["0", "0"] + timef.split(":"))[-3:]
+
+    try:
+        hours = int(hours)
+        minutes = int(minutes)
+        seconds = float(seconds)
+        if rnd:
+            seconds = round(seconds)
+    except ValueError:
+        return 0
+
+    if sec:
+        return int(hours * 3600 + minutes * 60 + seconds)
+    return int(hours * 3600000 + minutes * 60000 + seconds * 1000)
+
+# ------------------------------------------------------------------------
+
+
+def integer_to_time(integer: int = 0, mills=True, rnd=False) -> str:
+    """
+    Converts integers to 24-hour clock format calculating in
+    sexagesimal format. Accept an `int` object, such as 2998.
+    Float numbers, such as 2000.999, must be rounded using
+    `round()` function first.
+
+    ARGUMENTS:
+    ---------
+    integer: Any int object, default is 0.
+
+    mills: Include milliseconds like "HH:MM:SS.MIL" (default).
+           Milliseconds will be excluded and ignored if set
+           to `False`. You could instead use the `rnd` argument
+           to round them and add the offset to the seconds.
+
+    rnd: If `True` rounds the result. This argument will have
+         no effect with `mills=True` default argument.
+
+    Returns a string object.
+    Raise `TypeError` if argument != `int` .
+
+    """
+    if not isinstance(integer, int):
+        raise TypeError("An integer (int) object is expected.")
+
+    minutes, sec = divmod(integer, 60000)
     hours, minutes = divmod(minutes, 60)
-    # return "%02d:%02d:%02d" % (hours, minutes, seconds)
+
+    if mills:
+        seconds = float(sec) / 1000
+        # return "%02d:%02d:%06.3f" % (hours, minutes, seconds)
+        return f"{hours:02}:{minutes:02}:{seconds:06.3f}"
+
+    if rnd:
+        seconds = round(sec / 1000)
+    else:
+        seconds = int(sec / 1000)
+
     return f"{hours:02}:{minutes:02}:{seconds:02}"
 # ------------------------------------------------------------------------
 
 
-def copy_restore(src, dest):
+def copy_missing_data(srcd, destd):
     """
-    copy a specific file from src to dest. If dest exists,
-    it will be overwritten with src without confirmation.
+    Copy missing files and directories to a given destination
+    path using the same names as the source path.
+
+    """
+    srclist = os.listdir(srcd)
+    destlist = os.listdir(destd)
+    for f in srclist:
+        if f not in destlist:
+            if os.path.isfile(os.path.join(srcd, f)):
+                copy_restore(os.path.join(srcd, f), os.path.join(destd, f))
+            elif os.path.isdir(os.path.join(srcd, f)):
+                copydir_recursively(os.path.join(srcd, f), destd)
+# ------------------------------------------------------------------------
+
+
+def copy_restore(srcfile, destfile):
+    """
+    Copy the contents (no metadata) of the file named
+    srcfile to a file named destfile. Please visit doc webpage at
+    <https://docs.python.org/3/library/shutil.html#shutil.copyfile>
+
     """
     try:
-        shutil.copyfile(str(src), str(dest))
+        shutil.copyfile(str(srcfile), str(destfile))
     except FileNotFoundError as err:
-        # file src not exists
-        return err
-    except SameFileError as err:
-        # src and dest are the same file and same dir.
-        return err
+        # file srcfile not exists
+        return str(err)
+    except shutil.SameFileError as err:
+        # srcfile and destfile are the same file and same dir.
+        return str(err)
     except OSError as err:
-        # The dest location must be writable
-        return err
+        # The destfile location must be writable
+        return str(err)
 
     return None
 # ------------------------------------------------------------------#
 
 
-def copydir_recursively(source, destination, extraname=None):
+def copydir_recursively(srcdir, destdir, extraname=None):
     """
-    recursively copies an entire directory tree rooted at source.
-    If you do not provide the extraname argument, the destination
-    will have the same name as the source, otherwise extraname is
-    assumed as the final name.
+    recursively copies an entire directory tree rooted
+    at `srcdir`. If you do not provide the `extraname`
+    argument, the destination will have the same name as
+    the file in srcdir, otherwise `extraname` is assumed
+    as the final name.
 
     """
     if extraname:
-        dest = os.path.join(destination, extraname)
+        dest = os.path.join(destdir, extraname)
     else:
-        dest = os.path.join(destination, os.path.basename(source))
+        dest = os.path.join(destdir, os.path.basename(srcdir))
     try:
-        shutil.copytree(str(source), str(dest))
+        shutil.copytree(str(srcdir), str(dest))
 
     except FileExistsError as err:  # dest dir already exists
         return err
-    except FileNotFoundError as err:  # source dir not exists
+    except FileNotFoundError as err:  # srcdir not exists
         return err
 
     return None
 # ------------------------------------------------------------------#
 
 
-def copy_on(ext, source, destination):
+def copy_on(ext, sourcedir, destdir, overw=True):
     """
-    Given a source (dirname), use glob for a given file extension (ext)
-    and iterate to move files to another directory (destination).
-    Returns None on success, otherwise returns the error.
+    This function copy file based on given extension (`ext`).
+    It use `glob` module to finds in the `sourcedir` pathname
+    all the files matching a specified `ext`.
+    If default "overw" argument is `False`, it does not
+    overwrite existing file names in the destination path.
+
+    Returns None on success, returns the error otherwise.
 
     ARGUMENTS:
     ext: files extension without dot
-    source: path to the source directory
-    destination: path to the destination directory
+    sourcedir: path to the source directory
+    destdir: path to the destination directory
+    overw: `True`, overwrite file destination
+
     """
-    files = glob.glob(f"{source}/*.{ext}")
+    destpath = os.listdir(destdir)
+    files = glob.glob(f"{sourcedir}/*.{ext}")
     if not files:
-        return f'Error: No such file with ".{ext}" format found'
+        return f'ERROR: No files found in this format: ".{ext}"'
     for fln in files:
+        if not overw:
+            if os.path.basename(fln) in destpath:
+                continue
         try:
-            shutil.copy(fln, f'{destination}')
+            shutil.copy(fln, f'{destdir}')
         except IOError as error:
             # problems with permissions
             return error
@@ -256,7 +368,7 @@ def del_filecontents(filename):
     |    Point in the end    |      |      |      |      |  +   |  +   |
 
     """
-    with open(filename, "r+", encoding='utf8') as fname:
+    with open(filename, "r+", encoding='utf-8') as fname:
         content = fname.read()
         if content:
             fname.flush()  # clear previous content readed
@@ -266,62 +378,165 @@ def del_filecontents(filename):
 # ------------------------------------------------------------------#
 
 
-def detect_binaries(executable, additionaldir=None):
+def trailing_name_with_prog_digit(destpath, argname) -> str:
+    """
+    Returns a new name with the same name as `argname`
+    but adds a trailing progressive digit to the new name
+    starting from `01`. If the new name already exists, the
+    progressive digit will start from `02`, and so on.
+    This function is useful for renaming both files and
+    directories as it uses a filter to file system sanitize
+    to removing illegal chars for some OS like:
+
+            ^` ~ " # ' % & * : < > ? / \\ { | }.
+    Args:
+    -----
+    destpath (str): destination path as a string object.
+    argname (str): It expects an item name as a string object.
+
+    Raise `TypeError` if args not type `str`
+    Returns str(newdirname)
+    """
+    if not isinstance(destpath, str) or not isinstance(argname, str):
+        raise TypeError("Only a string (str) object is expected.")
+
+    name, ext = os.path.splitext(argname)
+    name = re.sub(r"[\'\^\`\~\"\#\'\%\&\*\:\<\>\?\/\\\{\|\}]", '', name)
+    name = name.strip().strip('.')  # removes lead./trail. spaces and dots
+    ext = ext.strip()  # removes lead./trail. spaces
+    alreadynumbered = []
+
+    for items in os.listdir(destpath):
+        match = items.rsplit(sep=' - ', maxsplit=1)
+        if len(match) == 2:
+            if match[0] == name and match[1].strip().isdigit():
+                alreadynumbered.append(int(match[1]))  # append digit as int
+
+    if alreadynumbered:
+        prog = max(alreadynumbered) + 1
+        newdirname = os.path.join(destpath,
+                                  f'{name} - {str(prog).zfill(2)}' + ext)
+    else:
+        newdirname = os.path.join(destpath, f'{name} - 01' + ext)
+
+    return newdirname
+# ------------------------------------------------------------------#
+
+
+def leading_name_with_prog_digit(destpath, argname) -> str:
+    """
+    Returns a new name with the same name as `argname`
+    but adds a leading progressive digit to the new name
+    starting from `01`. If the new name already exists, the
+    progressive digit will start from `02`, and so on.
+    This function is useful for renaming both files and
+    directories as it uses a filter to file system sanitize
+    to removing illegal chars for some OS like:
+
+            ^` ~ " # ' % & * : < > ? / \\ { | }.
+    Args:
+    -----
+    destpath (str): destination path as a string object.
+    argname (str): It expects an item name as a string object.
+
+    Raise `TypeError` if args not type `str`
+    Returns str(newdirname)
+    """
+    if not isinstance(destpath, str) or not isinstance(argname, str):
+        raise TypeError("Only a string (str) object is expected.")
+
+    name, ext = os.path.splitext(argname)
+    name = re.sub(r"[\'\^\`\~\"\#\'\%\&\*\:\<\>\?\/\\\{\|\}]", '', name)
+    name = name.strip().strip('.')  # removes lead./trail. spaces and dots
+    ext = ext.strip()  # removes lead./trail. spaces
+    alreadynumbered = []
+
+    for items in os.listdir(destpath):
+        match = items.split(sep=' - ', maxsplit=1)
+        if len(match) == 2:
+            if match[1] == name and match[0].strip().isdigit():
+                alreadynumbered.append(int(match[0]))
+
+    if alreadynumbered:
+        prog = max(alreadynumbered) + 1
+        newdirname = os.path.join(destpath,
+                                  f'{str(prog).zfill(2)} - {name}' + ext)
+    else:
+        newdirname = os.path.join(destpath, f'01 - {name}' + ext)
+
+    return newdirname
+# ------------------------------------------------------------------#
+
+
+def clockset(duration, fileclock):
+    """
+    Evaluate the consistency between overall tempo values on
+    different media that have the same name but different
+    contents and a possible time position previously saved to
+    file. Returns a clock object of type dict conforming to the
+    referenced media file.
+    """
+    duration = duration.split('.')[0]
+    millis = time_to_integer(duration)
+    if not millis:
+        clock = {'duration': '00:00:00', 'millis': 0}
+    else:
+        if os.path.exists(fileclock):
+            with open(fileclock, "r", encoding='utf-8') as atime:
+                clockread = atime.read().strip()
+                if time_to_integer(clockread) <= millis:
+                    clock = {'duration': clockread, 'millis': millis}
+                else:
+                    clock = {'duration': duration, 'millis': millis}
+        else:
+            clock = {'duration': '00:00:00', 'millis': millis}
+
+    return clock
+# ------------------------------------------------------------------#
+
+
+def update_timeseq_duration(time_seq, duration):
+    """
+    Return an updated dict with time/duration
+    """
+    if time_seq:
+        ms = time_to_integer(time_seq.split()[3])  # -t duration
+        splseq = time_seq.split()
+        tseq = f'{splseq[0]} {splseq[1]}', f'{splseq[2]} {splseq[3]}'
+        dur = [ms for n in duration]
+        duration = dur
+        timestart = tseq[0]
+        endtime = tseq[1]
+    else:
+        timestart, endtime = '', ''
+
+    return duration, timestart, endtime
+# ------------------------------------------------------------------#
+
+
+def detect_binaries(name, extradir=None):
     """
     <https://stackoverflow.com/questions/11210104/check-if
     -a-program-exists-from-a-python-script>
 
-    Given an executable name (binary), find it on the O.S.
-    via which function, if not found try to find it on the
-    optional `additionaldir` .
+    name = name of executable without extension
+    extradir = additional dirname to perform search
 
-        If both failed, return ('not installed', None)
-        If found on the O.S., return (None, executable)
-        If found on the additionaldir, return ('provided', executable).
+    Given an executable (binary) file name, it looks for it
+    in the operating system using the `which` function, if it
+    doesn't find it, it tries to look for it in the optional
+    `extradir` .
 
-    executable = name of executable without extension
-    additionaldir = additional dirname to perform search
+        Return (None, path) if found in the OS $PATH.
+        Return ('provided', path) if found on the `extradir`
+        Return ('not installed', None) if both failed.
 
     """
-    local = False
-
-    if shutil.which(executable):
-        installed = True
-
-    else:
-        if platform == 'Windows':
-            installed = False
-
-        elif platform == 'Darwin':
-
-            if os.path.isfile(f"/usr/local/bin/{executable}"):
-                local = True
-                installed = True
-            else:
-                local = False
-                installed = False
-
-        else:  # Linux, FreeBSD, etc.
-            installed = False
-
-    if not installed:
-
-        if additionaldir:  # check onto additionaldir
-
-            if not os.path.isfile(os.path.join(f"{additionaldir}", "bin",
-                                               f"{executable}")):
-                provided = False
-
-            else:
-                provided = True
-
-            if not provided:
-                return 'not installed', None
-            # only if ffmpeg is not installed, offer it if found
-            return 'provided', os.path.join(f"{additionaldir}",
-                                            "bin", f"{executable}")
-        return 'not installed', None
-
-    if local:  # only for MacOs
-        return None, f"/usr/local/bin/{executable}"
-    return None, shutil.which(executable)
+    execpath = shutil.which(name)
+    if execpath:
+        return None, execpath
+    if extradir:  # check onto extradir
+        execpath = os.path.join(extradir, "bin", name)
+        if os.path.isfile(execpath):
+            return 'provided', execpath
+    return 'not installed', None

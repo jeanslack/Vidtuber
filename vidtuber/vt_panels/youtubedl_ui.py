@@ -4,9 +4,9 @@ Name: youtubedl_ui.py
 Porpose: youtube-dl user interface
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: March.17.2023
+Rev: June.05.2025
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -25,86 +25,118 @@ This file is part of Vidtuber.
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
 import sys
+import shutil
+import itertools
 import wx
-import wx.lib.scrolledpanel as scrolled
-from vidtuber.vt_io import io_tools
-from vidtuber.vt_utils.utils import timehuman
+from vidtuber.vt_io.io_tools import youtubedl_getstatistics
+from vidtuber.vt_utils.utils import integer_to_time as totimesec
 from vidtuber.vt_utils.get_bmpfromsvg import get_bmp
 from vidtuber.vt_dialogs.playlist_indexing import Indexing
+from vidtuber.vt_dialogs.subtitles_editor import SubtitleEditor
 from vidtuber.vt_panels.formatcode import FormatCode
+from vidtuber.vt_sys.settings_manager import ConfigManager
 
 
-def join_opts(optvideo=None, optaudio=None, vformat=None, selection=None):
+def from_api_to_cli(data, execpath):
     """
-    Return a convenient string for audio/video selectors
-
-    - optvideo = string given by self.opt["V_QUALITY"]
-    - optaudio = string given by self.opt["A_QUALITY"] on choice 2 only
-    - vformat = Preferred video format (Default, webm, mp4)
-    - selection = Current choice list selection (0, 1, 2, 3, 4)
-
+    Revert API arguments to command line options
     """
-    if vformat == 'Default':  # Preferred video format
-        if selection == 1:
-            options = optvideo
-
-        elif selection == 2:
-            vqual = optvideo.split('+')[0]
-            aqual, lqual = optvideo.split('+')[1].split('/')
-            aqual = aqual if not optaudio else optaudio
-            options = f'{vqual},{aqual}/{lqual}'
-
+    if not data["format"]:
+        dformat = ''
     else:
-        vqual = optvideo.split('+')[0] + f'[ext={vformat}]'
-        aqual, lqual = optvideo.split('+')[1].split('/')
-        aqual = aqual if not optaudio else optaudio
+        dformat = f'--format "{data["format"]}"'
+    opt = (f'"{execpath}" {dformat} --progress-template '
+           f'"download-title:%(info.id)s-%(progress.eta)s" '
+           f'--newline --compat-options "{data["compat_opts"]}" '
+           f'--ignore-errors --ignore-config --no-color ')
 
-        if selection == 1:
-            aformat = 'm4a' if vformat == 'mp4' else 'webm'
-            aqual = aqual + f'[ext={aformat}]'
-            options = f'{vqual}+{aqual}/{lqual}'
+    if data['extractaudio']:
+        opt += '--extract-audio '
+    if data['postprocessors']:
+        for pp in data['postprocessors']:
+            for key, val in pp.items():
+                if 'preferredcodec' in key:
+                    opt += f'--audio-format {val} '
+                if 'EmbedThumbnail' in val:
+                    opt += '--embed-thumbnail '
+                if 'FFmpegEmbedSubtitle' in val:
+                    opt += '--embed-subs '
+    if data['addmetadata']:
+        opt += '--embed-metadata '
+    if data['external_downloader']:
+        opt += f'--downloader "{data["external_downloader"]}" '
+    if data['external_downloader_args']:
+        dwargs = ' '.join(data["external_downloader_args"])
+        opt += (f'--downloader-args "{data["external_downloader"]}:{dwargs}" ')
+    if data['noplaylist'] is False:
+        opt += '--yes-playlist '
+        if data['playlist_items']:
+            opt += f'--playlist-items "{data["playlist_items"]}" '
+    else:
+        opt += '--no-playlist '
+    if data['writesubtitles']:
+        opt += '--write-subs '
+        if data['subtitleslangs'][0]:
+            sublang = ','.join(data["subtitleslangs"])
+            opt += f'--sub-langs "{sublang}" '
+        if data['writeautomaticsub']:
+            opt += '--write-auto-subs '
+        if data['skip_download']:
+            opt += '--skip-download '
+    opt += '--restrict-filenames ' if data['restrictfilenames'] else ''
+    opt += '--write-thumbnail ' if data['writethumbnail'] else ''
+    opt += '--force-overwrites ' if data['overwrites'] else ''
+    opt += '--no-check-certificates ' if data['nocheckcertificate'] else ''
+    opt += f'--proxy "{data["proxy"]}" ' if data["proxy"] else ''
+    if data['geo_verification_proxy']:
+        opt += f'--geo-verification-proxy "{data["geo_verification_proxy"]}" '
+    geo = (f'{data["geo_bypass"]} {data["geo_bypass_country"]} '
+           f'{data["geo_bypass_ip_block"]}')
+    if geo.strip():
+        opt += f'--xff "{geo}" '
+    if data['username']:
+        opt += f'--username {data["username"]} '
+        opt += f'--password {data["password"]} '
+    if data['videopassword']:
+        opt += f'--video-password {data["videopassword"]} '
+    if data.get("cookiefile"):
+        opt += f'--cookies "{data["cookiefile"]}" '
+    if data.get("cookiesfrombrowser"):
+        opt += f'--cookies-from-browser "{data["cookiesfrombrowser"][0]}" '
+    opt += f'--ffmpeg-location "{data["ffmpeg_location"]}" '
+    opt += f'--output "{data["outtmpl"]}" '
 
-        elif selection == 2:
-            aqual = aqual + '[ext=m4a]'
-            options = f'{vqual},{aqual}/{lqual}'
-
-    return options
+    return opt
 
 
 class Downloader(wx.Panel):
     """
     This panel represents the main interface to yt-dlp
     """
-    get = wx.GetApp()
-    appdata = get.appset
-    icons = get.iconset
-    RED = get.appset['icontheme'][1]['ERR1']  # code text err + sb error
     WHITE = '#fbf4f4'  # sb foreground
-    VIOLET = '#D64E93'  # activated playlist button
+    VIOLET = '#D64E93'  # activated buttons
 
     MSG_1 = _('At least one "Format Code" must be checked for each '
               'URL selected in green.')
-
-    VQUAL = {('Best video resolution'): ('bestvideo+bestaudio/best'),
-             ('p1080'): ('bestvideo[height<=?1080]+bestaudio/best'),
-             ('p720'): ('bestvideo[height<=?720]+bestaudio/best'),
-             ('p480'): ('bestvideo[height<=?480]+bestaudio/best'),
-             ('p360'): ('bestvideo[height<=?360]+bestaudio/best'),
-             ('p240'): ('bestvideo[height<=?240]+bestaudio/best'),
-             ('p144'): ('worstvideo[height>=?144]+worstaudio/worst'),
-             ('Worst video resolution'): ('worstvideo+worstaudio/worst'),
+    # video resolution
+    VRES = {('p1080'): ('best[height<=?1080]'),
+            ('p720'): ('best[height<=?720]'),
+            ('p480'): ('best[height<=?480]'),
+            ('p360'): ('best[height<=?360]'),
+            ('p240'): ('best[height<=?240]'),
+            ('p144'): ('best[height>=?144]'),
+            }
+    # video qualities best or worst
+    VQUAL = {('Best quality video'): ('bestvideo'),
+             ('Worst quality video'): ('worstvideo'),
              }
-    if appdata['downloader'] == 'yt_dlp':
-        VPCOMP = {('Best precompiled video'): ('best'),
-                  ('Medium precompiled video'): ('18'),
-                  ('Worst precompiled video'): ('worst'),
-                  }
-    else:  # youtube-dl
-        VPCOMP = {('Best precompiled video'): ('best'),
-                  ('Worst precompiled video'): ('worst'),
-                  }
-
-    AFORMATS = {("Default audio format"): ("best"),
+    # precompiled video
+    VPCOMP = {('Best precompiled video'): ('bestvideo+bestaudio/best'),
+              ('Medium High precompiled video'): ('bestvideo*+bestaudio/best'),
+              ('Medium Low precompiled video'): ('18'),
+              ('Worst precompiled video'): ('worstvideo+worstaudio/worst'),
+              }
+    AFORMATS = {("Default"): ("best"),
                 ("wav"): ("wav"),
                 ("mp3"): ("mp3"),
                 ("aac"): ("aac"),
@@ -113,6 +145,7 @@ class Downloader(wx.Panel):
                 ("opus"): ("opus"),
                 ("flac"): ("flac"),
                 }
+    # audio qualities best or worst
     AQUAL = {('Best quality audio'): ('bestaudio'),
              ('Worst quality audio'): ('worstaudio')}
 
@@ -130,22 +163,28 @@ class Downloader(wx.Panel):
         informations getting by extract_info method from youtube_dl
         module.
         """
+        get = wx.GetApp()  # get data from bootstrap
+        icons = get.iconset
+        self.appdata = get.appset
+        self.execname = ('yt-dlp.exe' if self.appdata['ostype']
+                         == 'Windows' else 'yt-dlp')
         self.parent = parent
+        self.red = self.appdata['colorscheme']['ERR1']  # code err + sb error
+        confmanager = ConfigManager(self.appdata['fileconfpath'])
+        sett = confmanager.read_options()
 
         if 'wx.svg' in sys.modules:  # available only in wx version 4.1 to up
-
-            bmplistindx = get_bmp(Downloader.icons['playlist'], ((16, 16)))
+            bmplistindx = get_bmp(icons['playlist'], ((16, 16)))
+            bmpsubtitles = get_bmp(icons['subtitles'], ((16, 16)))
         else:
-            bmplistindx = wx.Bitmap(Downloader.icons['playlist'],
-                                    wx.BITMAP_TYPE_ANY)
+            bmplistindx = wx.Bitmap(icons['playlist'], wx.BITMAP_TYPE_ANY)
+            bmpsubtitles = wx.Bitmap(icons['subtitles'], wx.BITMAP_TYPE_ANY)
 
         self.opt = {("NO_PLAYLIST"): True,
-                    ("THUMB"): False,
-                    ("METADATA"): True,
                     ("V_QUALITY"): Downloader.VPCOMP['Best precompiled video'],
                     ("A_FORMAT"): "best",
                     ("A_QUALITY"): "bestaudio",
-                    ("SUBTITLES"): False,
+                    ("SUBS"): sett['subtitles_options'],
                     }
         self.plidx = {'': ''}
         self.info = []  # has data information for Statistics button
@@ -154,54 +193,63 @@ class Downloader(wx.Panel):
         self.oldwx = None  # test result of hasattr EVT_LIST_ITEM_CHECKED
 
         wx.Panel.__init__(self, parent, -1, style=wx.TAB_TRAVERSAL)
-
         sizer_base = wx.BoxSizer(wx.VERTICAL)
-        sizer_div = wx.BoxSizer(wx.HORIZONTAL)
-        sizer_base.Add(sizer_div, 1, wx.EXPAND)
-        box = wx.StaticBox(self, wx.ID_ANY, _('Options'))
-        boxoptions = wx.StaticBoxSizer(box, wx.VERTICAL)
-        sizer_div.Add(boxoptions, 0, wx.ALL | wx.EXPAND, 5)
-
         # ------------- choice and comboboxes
+        fgs1 = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_base.Add(fgs1, 0, wx.ALL | wx.CENTRE, 5)
         self.choice = wx.Choice(self, wx.ID_ANY,
                                 choices=Downloader.CHOICE,
                                 size=(-1, -1),
                                 )
         self.choice.SetSelection(0)
-        boxoptions.Add(self.choice, 0, wx.ALL | wx.EXPAND, 5)
-        boxoptions.Add((5, 5))
-        line0 = wx.StaticLine(self, wx.ID_ANY, pos=wx.DefaultPosition,
-                              size=wx.DefaultSize, style=wx.LI_HORIZONTAL,
-                              name=wx.StaticLineNameStr
-                              )
-        boxoptions.Add(line0, 0, wx.ALL | wx.EXPAND, 5)
-        boxoptions.Add((5, 5))
-        panelscroll = scrolled.ScrolledPanel(self, -1, size=(300, 1000),
-                                             style=wx.TAB_TRAVERSAL
-                                             | wx.BORDER_THEME,
-                                             name="panelscr",
-                                             )
-        fgs1 = wx.BoxSizer(wx.VERTICAL)
-        # fgs1.Add((5, 5))
-        self.cmbx_vq = wx.ComboBox(panelscroll, wx.ID_ANY,
+        fgs1.Add(self.choice, 0, wx.LEFT | wx.CENTRE, 5)
+
+        self.ckbx_pl = wx.CheckBox(self, wx.ID_ANY,
+                                   (_('Include playlists'))
+                                   )
+        fgs1.Add(self.ckbx_pl, 0, wx.LEFT | wx.CENTRE, 20)
+        self.btn_plidx = wx.Button(self, wx.ID_ANY, "", size=(40, -1))
+        self.btn_plidx.SetToolTip(_('Playlist Editor'))
+        self.btn_plidx.SetBitmap(bmplistindx, wx.LEFT)
+        fgs1.Add(self.btn_plidx, 0, wx.LEFT | wx.CENTRE, 2)
+        self.btn_plidx.Disable()
+        self.btn_subeditor = wx.Button(self, wx.ID_ANY, "",
+                                       size=(40, -1))
+        self.btn_subeditor.SetBitmap(bmpsubtitles, wx.LEFT)
+        self.btn_subeditor.SetToolTip(_('Subtitles Editor'))
+        fgs1.Add(self.btn_subeditor, 0, wx.LEFT | wx.CENTRE, 20)
+        if sett['subtitles_options']['writesubtitles']:
+            self.btn_subeditor.SetBackgroundColour(
+                wx.Colour(Downloader.VIOLET))
+
+        # ------------- quality pref
+        box = wx.StaticBox(self, wx.ID_ANY, _('Quality settings'))
+        boxoptions = wx.StaticBoxSizer(box, wx.VERTICAL)
+        sizer_base.Add(boxoptions, 0, wx.ALL | wx.EXPAND, 5)
+        fgs2 = wx.BoxSizer(wx.HORIZONTAL)
+        boxoptions.Add(fgs2, 0, wx.ALL | wx.EXPAND, 0)
+        self.cmbx_vq = wx.ComboBox(self, wx.ID_ANY,
                                    choices=(),
                                    size=(-1, -1), style=wx.CB_DROPDOWN
                                    | wx.CB_READONLY
                                    )
         # grid_v.Add((20, 20), 0,)
-        fgs1.Add(self.cmbx_vq, 0, wx.ALL | wx.EXPAND, 5)
+        fgs2.Add(self.cmbx_vq, 0, wx.ALL | wx.CENTRE, 5)
         tip = (_('When not available, the chosen video resolution will '
                  'be replaced with the closest one'))
         self.cmbx_vq.SetToolTip(tip)
-        self.rdbvideoformat = wx.RadioBox(panelscroll, wx.ID_ANY,
-                                          (_("Preferred video format")),
-                                          choices=['Default', 'webm', 'mp4'],
-                                          majorDimension=1,
-                                          style=wx.RA_SPECIFY_COLS
-                                          )
-        fgs1.Add(self.rdbvideoformat, 0, wx.ALL | wx.EXPAND, 5)
 
-        self.cmbx_aq = wx.ComboBox(panelscroll, wx.ID_ANY,
+        txtvformat = wx.StaticText(self, wx.ID_ANY, _('Video format:'))
+        fgs2.Add(txtvformat, 0, wx.LEFT | wx.CENTRE, 5)
+        self.cmbx_vformat = wx.ComboBox(self, wx.ID_ANY,
+                                        choices=['Default', 'webm', 'mp4'],
+                                        size=(-1, -1), style=wx.CB_DROPDOWN
+                                        | wx.CB_READONLY
+                                        )
+        self.cmbx_vformat.SetSelection(0)
+        fgs2.Add(self.cmbx_vformat, 0, wx.ALL | wx.CENTRE, 5)
+        fgs2.Add((20, 20), 0,)
+        self.cmbx_aq = wx.ComboBox(self, wx.ID_ANY,
                                    choices=list(Downloader.AQUAL.keys()),
                                    size=(-1, -1),
                                    style=wx.CB_DROPDOWN
@@ -210,8 +258,11 @@ class Downloader(wx.Panel):
         self.cmbx_aq.SetSelection(0)
         self.cmbx_aq.Disable()
         # grid_v.Add((20, 20), 0,)
-        fgs1.Add(self.cmbx_aq, 0, wx.ALL | wx.EXPAND, 5)
-        self.cmbx_af = wx.ComboBox(panelscroll, wx.ID_ANY,
+        fgs2.Add(self.cmbx_aq, 0, wx.ALL | wx.CENTRE, 5)
+
+        txtaformat = wx.StaticText(self, wx.ID_ANY, _('Audio format:'))
+        fgs2.Add(txtaformat, 0, wx.LEFT | wx.CENTRE, 5)
+        self.cmbx_af = wx.ComboBox(self, wx.ID_ANY,
                                    choices=list(Downloader.AFORMATS.keys()),
                                    size=(-1, -1),
                                    style=wx.CB_DROPDOWN
@@ -219,148 +270,63 @@ class Downloader(wx.Panel):
                                    )
         self.cmbx_af.Disable()
         self.cmbx_af.SetSelection(0)
-        fgs1.Add(self.cmbx_af, 0, wx.ALL | wx.EXPAND, 5)
-        # ------------- checkboxes
-        line1 = wx.StaticLine(panelscroll, wx.ID_ANY, pos=wx.DefaultPosition,
-                              size=wx.DefaultSize, style=wx.LI_HORIZONTAL,
-                              name=wx.StaticLineNameStr
-                              )
-        fgs1.Add(line1, 0, wx.ALL | wx.EXPAND, 10)
-        self.ckbx_pl = wx.CheckBox(panelscroll, wx.ID_ANY,
-                                   (_('Download all videos in playlist'))
-                                   )
-        fgs1.Add(self.ckbx_pl, 0, wx.ALL, 5)
-
-        self.btn_plidx = wx.Button(panelscroll, wx.ID_ANY,
-                                   (_('Playlist Editor'))
-                                   )
-        self.btn_plidx.SetBitmap(bmplistindx, wx.LEFT)
-        fgs1.Add(self.btn_plidx, 0, wx.ALL | wx.EXPAND, 5)
-        self.btn_plidx.Disable()
-        self.ckbx_ssl = wx.CheckBox(panelscroll, wx.ID_ANY,
-                                    (_('Don’t check SSL certificate'))
-                                    )
-        fgs1.Add(self.ckbx_ssl, 0, wx.ALL, 5)
-        self.ckbx_thumb = wx.CheckBox(panelscroll, wx.ID_ANY,
-                                      (_('Embed thumbnail in audio file'))
-                                      )
-        fgs1.Add(self.ckbx_thumb, 0, wx.ALL, 5)
-        self.ckbx_meta = wx.CheckBox(panelscroll, wx.ID_ANY,
-                                     (_('Add metadata to file'))
-                                     )
-        self.ckbx_meta.SetValue(True)
-        fgs1.Add(self.ckbx_meta, 0, wx.ALL, 5)
-        self.ckbx_sb = wx.CheckBox(panelscroll, wx.ID_ANY,
-                                   (_('Write subtitles to video'))
-                                   )
-        fgs1.Add(self.ckbx_sb, 0, wx.ALL, 5)
-        sizer_subtitles = wx.BoxSizer(wx.HORIZONTAL)
-        self.ckbx_all_sb = wx.CheckBox(panelscroll, wx.ID_ANY,
-                                       (_('Download all available subtitles'))
-                                       )
-        self.ckbx_all_sb.Disable()
-        sizer_subtitles.Add((20, 20), 0,)
-        sizer_subtitles.Add(self.ckbx_all_sb)
-        fgs1.Add(sizer_subtitles, 0, wx.ALL, 5)
-        sizer_skipdl = wx.BoxSizer(wx.HORIZONTAL)
-        self.ckbx_skip_dl = wx.CheckBox(panelscroll, wx.ID_ANY,
-                                        (_('Download subtitles only'))
-                                        )
-        self.ckbx_skip_dl.Disable()
-        sizer_skipdl.Add((20, 20), 0,)
-        sizer_skipdl.Add(self.ckbx_skip_dl)
-        fgs1.Add(sizer_skipdl, 0, wx.ALL, 5)
-        self.ckbx_w = wx.CheckBox(panelscroll, wx.ID_ANY,
-                                  (_('Overwrite all files and metadata'))
-                                  )
-        fgs1.Add(self.ckbx_w, 0, wx.ALL, 5)
-        self.ckbx_id = wx.CheckBox(panelscroll, wx.ID_ANY,
-                                   (_('Include the video ID\n'
-                                      'in the file names'))
-                                   )
-        fgs1.Add(self.ckbx_id, 0, wx.ALL, 5)
-
-        self.ckbx_restrict_fn = wx.CheckBox(panelscroll, wx.ID_ANY,
-                                            (_('Restrict file names'))
-                                            )
-        fgs1.Add(self.ckbx_restrict_fn, 0, wx.ALL, 5)
-        self.ckbx_restrict_fn.SetValue(True)
-        boxoptions.Add(panelscroll, 0, wx.ALL | wx.CENTRE, 0)
-
-        panelscroll.SetSizer(fgs1)
-        panelscroll.SetAutoLayout(1)
-        panelscroll.SetupScrolling()
+        fgs2.Add(self.cmbx_af, 0, wx.ALL | wx.CENTRE, 5)
 
         # ------------- simple listctrl
         box = wx.StaticBox(self, wx.ID_ANY, '')
         boxpanel = wx.StaticBoxSizer(box, wx.VERTICAL)
-        sizer_div.Add(boxpanel, 1, wx.ALL | wx.EXPAND, 5)
-        self.panel1 = wx.Panel(self, wx.ID_ANY, style=wx.TAB_TRAVERSAL)
-        boxpanel.Add(self.panel1, 1, wx.EXPAND)
-        sizerpan1 = wx.BoxSizer(wx.VERTICAL)
-        self.mainlist = wx.ListCtrl(self.panel1,
-                                    wx.ID_ANY,
-                                    style=wx.LC_REPORT
-                                    | wx.SUNKEN_BORDER,
-                                    )
-        self.mainlist.InsertColumn(0, ('#'), width=30)
-        self.mainlist.InsertColumn(1, (_('Url')), width=400)
-        sizerpan1.Add(self.mainlist, 1, wx.ALL | wx.EXPAND, 5)
-        self.panel1.SetSizer(sizerpan1)  # set panel
-        self.panel2 = FormatCode(self, self.format_dict)
-        self.panel2.Hide()
-        boxpanel.Add(self.panel2, 1, wx.EXPAND)
-
+        sizer_base.Add(boxpanel, 1, wx.ALL | wx.EXPAND, 5)
+        self.panel_cod = FormatCode(self, self.format_dict)
+        self.panel_cod.enable_widgets(False)
+        boxpanel.Add(self.panel_cod, 1, wx.EXPAND)
         self.SetSizer(sizer_base)
         self.Layout()
 
         # ----------------------Binder (EVT)----------------------#
         self.choice.Bind(wx.EVT_CHOICE, self.on_choicebox)
         self.cmbx_vq.Bind(wx.EVT_COMBOBOX, self.on_vquality)
-        self.rdbvideoformat.Bind(wx.EVT_RADIOBOX, self.on_vformat)
+        self.cmbx_vformat.Bind(wx.EVT_COMBOBOX, self.on_quality)
         self.cmbx_af.Bind(wx.EVT_COMBOBOX, self.on_aformat)
         self.cmbx_aq.Bind(wx.EVT_COMBOBOX, self.on_aquality)
         self.ckbx_pl.Bind(wx.EVT_CHECKBOX, self.on_playlist)
         self.btn_plidx.Bind(wx.EVT_BUTTON, self.on_playlist_idx)
-        self.ckbx_thumb.Bind(wx.EVT_CHECKBOX, self.on_thumbnails)
-        self.ckbx_meta.Bind(wx.EVT_CHECKBOX, self.on_metadata)
-        self.ckbx_sb.Bind(wx.EVT_CHECKBOX, self.on_subtitles)
+        self.btn_subeditor.Bind(wx.EVT_BUTTON, self.on_subtitles_editor)
+
+    # ----------------------------------------------------------------------
+    def on_subtitles_editor(self, event):
+        """
+        Event by clicking on the subtitles button
+        """
+        with SubtitleEditor(self, self.opt["SUBS"]) as subeditor:
+            if subeditor.ShowModal() == wx.ID_OK:
+                data = subeditor.getvalue()
+                self.opt["SUBS"] = data
+        if not self.opt["SUBS"]["writesubtitles"]:
+            self.btn_subeditor.SetBackgroundColour(wx.NullColour)
+        else:
+            self.btn_subeditor.SetBackgroundColour(
+                wx.Colour(Downloader.VIOLET))
     # ----------------------------------------------------------------------
 
     def clear_data_list(self, changed):
         """
-        Reset all required data if changes is True,
-        delete data  and set to Disable otherwise.
+        Reset all required data if `changed` arg is True,
+        delete data and set to Disable otherwise.
         """
         if not self.parent.data_url:
-            self.choice.SetSelection(0)
-            self.choice.Disable()
-            self.ckbx_pl.Disable()
-            self.cmbx_af.Disable()
-            self.cmbx_aq.Disable()
-            self.rdbvideoformat.Disable()
-            self.cmbx_vq.Clear()
             del self.info[:]
             self.format_dict.clear()
-            self.mainlist.DeleteAllItems()
-            self.panel2.fcode.DeleteAllItems()
-            self.panel2.Hide()
-            self.panel1.Show()
-
+            self.panel_cod.fcode.DeleteAllItems()
+            self.on_choicebox(self, statusmsg=False)
         else:
             if changed:
-                self.choice.Enable()
-                self.ckbx_pl.Enable()
                 self.ckbx_pl.SetValue(False)
                 self.on_playlist(self)
-                self.mainlist.DeleteAllItems()
-                self.panel2.fcode.DeleteAllItems()
+                self.panel_cod.fcode.DeleteAllItems()
                 self.choice.SetSelection(0)
                 self.on_choicebox(self, statusmsg=False)
                 del self.info[:]
                 self.format_dict.clear()
-                self.panel2.Hide()
-                self.panel1.Show()
     # -----------------------------------------------------------------#
 
     def get_statistics(self, link):
@@ -372,7 +338,11 @@ class Downloader(wx.Panel):
         Check the first item of list to recognize the exit
         status, which is 'ERROR' or None.
         """
-        data = io_tools.youtubedl_getstatistics(link, self.ckbx_ssl.GetValue())
+        kwa = self.default_statistics_options()
+        data = youtubedl_getstatistics(link,
+                                       kwa,
+                                       parent=self.GetParent(),
+                                       )
         for meta in data:
             if meta[1]:
                 return ('ERROR', meta[1])
@@ -382,10 +352,9 @@ class Downloader(wx.Panel):
                     meta[0]['entries'][0]  # don't parse all playlist
                 except IndexError:
                     pass
-
             if 'duration' in meta[0]:
 
-                ftime = (f"{timehuman(meta[0]['duration'])} "
+                ftime = (f"{totimesec(round(meta[0]['duration'] * 1000))} "
                          f"({meta[0]['duration']} sec.)")
             else:
                 ftime = 'N/A'
@@ -408,22 +377,6 @@ class Downloader(wx.Panel):
                            })
     # -----------------------------------------------------------------#
 
-    def on_urls_list(self, quality=''):
-        """
-        Populate list control with new incoming urls.
-        """
-        if self.mainlist.GetItemCount():  # not changed
-            return None
-
-        if self.parent.data_url:
-            index = 0
-            for link in self.parent.data_url:
-                self.mainlist.InsertItem(index, str(index + 1))
-                self.mainlist.SetItem(index, 1, link)
-                index += 1
-        return None
-    # -----------------------------------------------------------------#
-
     def on_show_statistics(self):
         """
         show URL data information. This method is called by
@@ -433,7 +386,8 @@ class Downloader(wx.Panel):
             for link in self.parent.data_url:
                 ret = self.get_statistics(link)
                 if ret[0] == 'ERROR':
-                    wx.MessageBox(ret[1], 'Vidtuber', wx.ICON_ERROR)
+                    wx.MessageBox(ret[1], _('Vidtuber - Error!'),
+                                  wx.ICON_ERROR, self)
                     del self.info[:]
                     return None
                 self.info.append(ret[1])
@@ -443,18 +397,15 @@ class Downloader(wx.Panel):
 
     def on_format_codes(self):
         """
-        Check data given from `self.panel2.set_formatcode()` method
+        Check data given from `self.panel_cod.set_formatcode()` method
         which allow to enabling download by "Format Code".
         """
-        if self.panel2.fcode.GetItemCount():  # not changed, already set
+        if self.panel_cod.fcode.GetItemCount():  # not changed, already set
             return None
+        kwa = self.default_statistics_options()
 
-        def _error(msg, infoicon):
-            if infoicon == 'information':
-                icon = wx.ICON_INFORMATION
-            elif infoicon == 'error':
-                icon = wx.ICON_ERROR
-            wx.MessageBox(msg, "Vidtuber", icon, self)
+        def _error(msg, icon, cap):
+            wx.MessageBox(msg, cap, icon, self)
             self.choice.SetSelection(0)
             self.on_choicebox(self, False)
             return True
@@ -467,15 +418,15 @@ class Downloader(wx.Panel):
                            '/videos',
                            ):
                 if unsupp in url:
-                    msg = _("Unable to get format codes on '{0}'\n\n"
-                            "Unsupported '{0}':\n'{1}'"
+                    msg = _("Unable to get format codes on {0}, "
+                            "unsupported URL:\n\n{1}"
                             ).format(unsupp.split('/')[1], url)
-                    return _error(msg, 'information')
+                    return _error(msg, wx.ICON_WARNING,
+                                  _('Vidtuber - Warning!'))
 
-        ret = self.panel2.set_formatcode(self.parent.data_url,
-                                         self.ckbx_ssl.GetValue())
+        ret = self.panel_cod.set_formatcode(self.parent.data_url, kwa)
         if ret:
-            return _error(ret, 'error')
+            return _error(ret, wx.ICON_ERROR, _('Vidtuber - Error!'))
         return None
     # -----------------------------------------------------------------#
 
@@ -492,65 +443,56 @@ class Downloader(wx.Panel):
             self.cmbx_af.Disable()
             self.cmbx_aq.Disable()
             self.cmbx_vq.Enable()
-            self.rdbvideoformat.Disable()
-            self.panel2.Hide()
-            self.panel1.Show()
+            self.cmbx_vformat.Disable()
+            self.panel_cod.enable_widgets(False)
             self.cmbx_vq.Clear()
             self.cmbx_vq.Append(list(Downloader.VPCOMP.keys()))
             self.cmbx_vq.SetSelection(0)
             self.Layout()
-            self.on_urls_list()
             self.on_vquality(self)
 
         elif self.choice.GetSelection() == 1:
             self.cmbx_af.Disable()
             self.cmbx_aq.Disable()
             self.cmbx_vq.Enable()
-            self.rdbvideoformat.Enable()
-            self.panel2.Hide()
-            self.panel1.Show()
+            self.cmbx_vformat.Enable()
+            self.panel_cod.enable_widgets(False)
             self.cmbx_vq.Clear()
-            self.cmbx_vq.Append(list(Downloader.VQUAL.keys()))
+            self.cmbx_vq.Append(list(Downloader.VRES.keys()))
             self.cmbx_vq.SetSelection(0)
             self.Layout()
-            self.on_urls_list()
             self.on_vquality(self)
 
         elif self.choice.GetSelection() == 2:
             self.cmbx_af.Disable()
             self.cmbx_aq.Enable()
             self.cmbx_vq.Enable()
-            self.rdbvideoformat.Enable()
-            self.panel2.Hide()
-            self.panel1.Show()
+            self.cmbx_vformat.Disable()
+            self.panel_cod.enable_widgets(False)
             self.cmbx_vq.Clear()
             self.cmbx_vq.Append(list(Downloader.VQUAL.keys()))
             self.cmbx_vq.SetSelection(0)
             self.Layout()
-            self.on_urls_list()
             self.on_vquality(self)
 
         elif self.choice.GetSelection() == 3:
             self.cmbx_vq.Disable()
-            self.cmbx_aq.Disable()
+            self.cmbx_aq.Enable()
             self.cmbx_af.Enable()
-            self.rdbvideoformat.Disable()
-            self.panel2.Hide()
-            self.panel1.Show()
+            self.cmbx_vformat.Disable()
+            self.panel_cod.enable_widgets(False)
             self.Layout()
-            self.on_urls_list(f'bestaudio (format={self.cmbx_af.GetValue()})')
+            self.on_aformat(self)
 
         elif self.choice.GetSelection() == 4:
             self.cmbx_vq.Disable()
             self.cmbx_aq.Disable()
             self.cmbx_af.Disable()
-            self.ckbx_thumb.Enable()
-            self.rdbvideoformat.Disable()
+            self.cmbx_vformat.Disable()
+            self.panel_cod.enable_widgets()
             ret = self.on_format_codes()
             if ret:
                 return
-            self.panel1.Hide()
-            self.panel2.Show()
             self.Layout()
     # -----------------------------------------------------------------#
 
@@ -560,61 +502,68 @@ class Downloader(wx.Panel):
         """
         if self.choice.GetSelection() == 0:
             self.opt["V_QUALITY"] = Downloader.VPCOMP[self.cmbx_vq.GetValue()]
-        else:
+        elif self.choice.GetSelection() == 1:
+            self.opt["V_QUALITY"] = Downloader.VRES[self.cmbx_vq.GetValue()]
+        elif self.choice.GetSelection() == 2:
             self.opt["V_QUALITY"] = Downloader.VQUAL[self.cmbx_vq.GetValue()]
-        self.on_vformat(self)
+        self.on_quality(self)
     # -----------------------------------------------------------------#
 
-    def on_vformat(self, event):
+    def on_quality(self, event):
         """
-        Set preferring video format during radiobox event
+        Set preferring video and audio format on combobox event
         """
-        index = self.rdbvideoformat.GetSelection()
-        vformat = self.rdbvideoformat.GetString(index)
+        vformat = self.cmbx_vformat.GetValue()
 
         if self.choice.GetSelection() == 0:
             quality = self.opt["V_QUALITY"]
+            self.parent.statusbar_msg(f'Quality: {quality}', None)
 
         elif self.choice.GetSelection() == 1:
-            quality = join_opts(optvideo=self.opt["V_QUALITY"],
-                                vformat=vformat,
-                                selection=self.choice.GetSelection()
-                                )
+            vf = '' if vformat == 'Default' else f'[ext={vformat}]'
+            quality = self.opt["V_QUALITY"] + vf
+            self.parent.statusbar_msg(f'Quality: {quality}', None)
+
         elif self.choice.GetSelection() == 2:
-            quality = join_opts(optvideo=self.opt["V_QUALITY"],
-                                optaudio=self.opt["A_QUALITY"],
-                                vformat=vformat,
-                                selection=self.choice.GetSelection()
-                                )
-        self.parent.statusbar_msg(f'Quality: {quality}', None)
+            quality = f'{self.opt["V_QUALITY"]},{self.opt["A_QUALITY"]}'
+            self.parent.statusbar_msg(f'Quality: {quality}', None)
+
+        elif self.choice.GetSelection() == 3:
+            quality = f'{self.opt["A_QUALITY"]}/worst'
+            msg = f'Quality: {quality} (format={self.cmbx_af.GetValue()})'
+            self.parent.statusbar_msg(msg, None)
+
         self.quality = quality
     # -----------------------------------------------------------------#
 
     def on_aformat(self, event):
         """
-        Set audio format to exporting during combobox event
-        and self.choice selection == 3
+        Set audio format extension to exporting on combobox event.
+        This is related to "Download Audio only" choice.
         """
         self.opt["A_FORMAT"] = Downloader.AFORMATS.get(self.cmbx_af.GetValue())
-
-        quality = f'Quality: bestaudio (format={self.cmbx_af.GetValue()})'
-        self.parent.statusbar_msg(f'Quality: {quality}', None)
-        self.quality = quality
+        self.on_quality(None)
     # -----------------------------------------------------------------#
 
     def on_aquality(self, event):
         """
-        Set audio qualities during combobox event
-        and self.choice selection == 1
+        Set audio qualities on combobox event.
+        This is related to "Download spilt audio and video" and
+        "Download Audio only" choices.
         """
         self.opt["A_QUALITY"] = Downloader.AQUAL.get(self.cmbx_aq.GetValue())
-        self.on_vformat(self)
+        self.on_quality(self)
     # -----------------------------------------------------------------#
 
     def on_playlist(self, event):
         """
         Enable or disable playlists downloading
         """
+        if not self.parent.data_url:
+            self.ckbx_pl.SetValue(False)
+            self.parent.click_start(None)
+            return
+
         if self.ckbx_pl.IsChecked():
             playlist = [url for url in self.parent.data_url
                         if '/playlist' in url]
@@ -651,179 +600,239 @@ class Downloader(wx.Panel):
                     self.plidx = data
     # -----------------------------------------------------------------#
 
-    def on_thumbnails(self, event):
+    def check_for_playlist(self):
         """
-        Enable or disable the tumbnails downloading
-        """
-        if self.ckbx_thumb.IsChecked():
-            self.opt["THUMB"] = True
-        else:
-            self.opt["THUMB"] = False
-    # -----------------------------------------------------------------#
-
-    def on_metadata(self, event):
-        """
-        Enable or disable writing metadata
-        """
-        if self.ckbx_meta.IsChecked():
-            self.opt["METADATA"] = True
-        else:
-            self.opt["METADATA"] = False
-    # -----------------------------------------------------------------#
-
-    def on_subtitles(self, event):
-        """
-        enable or disable writing subtitles
-        """
-        if self.ckbx_sb.IsChecked():
-            self.opt["SUBTITLES"] = True
-            self.ckbx_all_sb.Enable()
-            self.ckbx_skip_dl.Enable()
-
-        else:
-            self.opt["SUBTITLES"] = False
-            self.ckbx_all_sb.Disable()
-            self.ckbx_skip_dl.Disable()
-            self.ckbx_all_sb.SetValue(False)
-            self.ckbx_skip_dl.SetValue(False)
-    # -----------------------------------------------------------------#
-
-    def on_start(self):
-        """
-        Builds command string to use with an embed youtube_dl as
-        python library or using standard youtube-dl command line.
+        Check for playlists and warn the user before continue.
         """
         urls = self.parent.data_url
-
-        if not self.ckbx_pl.IsChecked():
-            if [url for url in urls if 'playlist' in url]:
+        if [url for url in urls if 'playlist' in url]:
+            if not self.ckbx_pl.IsChecked():
                 if wx.MessageBox(_('The URLs contain playlists. '
                                    'Are you sure you want to continue?'),
-                                 _('Please confirm'),
-                                 wx.ICON_QUESTION | wx.YES_NO, self) == wx.NO:
-                    return
+                                 _('Please confirm'), wx.ICON_QUESTION
+                                 | wx.CANCEL | wx.YES_NO, self) == wx.YES:
+                    return False
+                return True
+
+        return False
+    # -----------------------------------------------------------------#
+
+    def check_for_channels(self):
+        """
+        Check for channels and warn the user before continue.
+        """
+        urls = self.parent.data_url
         if [url for url in urls if 'channel' in url]:
             if wx.MessageBox(_('The URLs contain channels. '
                                'Are you sure you want to continue?'),
-                             _('Please confirm'),
-                             wx.ICON_QUESTION | wx.YES_NO, self) == wx.NO:
-                return
+                             _('Please confirm'), wx.ICON_QUESTION
+                             | wx.CANCEL | wx.YES_NO, self) == wx.YES:
+                return False
+            return True
 
-        if self.ckbx_id.IsChecked():
-            _id = '%(title).100s-%(id)s'
-        else:
-            _id = '%(title).100s'
+        return False
+    # -----------------------------------------------------------------#
 
-        logname = f"{Downloader.appdata['downloader']}.log"
+    def default_statistics_options(self):
+        """
+
+        Main mapping for Statistics options used by to
+        get info and format code datas.
+        return a type dict object.
+        """
+        kwa = {}
+        if (self.appdata["use_cookie_file"]
+                and self.appdata["cookiefile"].strip()):
+            kwa["cookiefile"] = self.appdata["cookiefile"]
+        if self.appdata["autogen_cookie_file"]:
+            cfb = tuple(self.appdata["cookiesfrombrowser"])
+            kwa["cookiesfrombrowser"] = cfb
+        kwa['no_color'] = True
+        kwa['nocheckcertificate'] = self.appdata["ssl_certificate"]
+        kwa['ignoreerrors'] = True  # exit code 1 if any errors
+        kwa['noplaylist'] = True
+        kwa['no_color'] = True
+        kwa['proxy'] = self.appdata["proxy"]
+        kwa['username'] = self.appdata["username"]
+        kwa['password'] = self.appdata["password"]
+        kwa['videopassword'] = self.appdata["videopassword"]
+        kwa["geo_verification_proxy"] = self.appdata["geo_verification_proxy"]
+        kwa["geo_bypass"] = self.appdata["geo_bypass"]
+        kwa["geo_bypass_country"] = self.appdata["geo_bypass_country"]
+        kwa["geo_bypass_ip_block"] = self.appdata["geo_bypass_ip_block"]
+
+        return kwa
+    # -----------------------------------------------------------------#
+
+    def default_download_options(self):
+        """
+        default_options
+        Main mapping for download options.
+        return a type dict object.
+        """
+        data = {}
         postprocessors = []
-
         if self.choice.GetSelection() == 3:
             postprocessors.append({'key': 'FFmpegExtractAudio',
                                    'preferredcodec': self.opt["A_FORMAT"],
                                    })
-        if self.opt["METADATA"]:
+        if self.appdata['add_metadata']:
             postprocessors.append({'key': 'FFmpegMetadata'})
-
-        if self.opt["THUMB"]:
-            postprocessors.append({'key': 'EmbedThumbnail',
-                                   'already_have_thumbnail': False
-                                   })
-        if self.opt["SUBTITLES"]:
+        if self.appdata["embed_thumbnails"]:
+            postprocessors.append({'key': 'EmbedThumbnail'})
+        if self.opt["SUBS"]["embedsubtitle"]:
             postprocessors.append({'key': 'FFmpegEmbedSubtitle'})
+        if (self.appdata["use_cookie_file"]
+                and self.appdata["cookiefile"].strip()):
+            data["cookiefile"] = self.appdata["cookiefile"]
+        if self.appdata["autogen_cookie_file"]:
+            cfb = tuple(self.appdata["cookiesfrombrowser"])
+            data["cookiesfrombrowser"] = cfb
+        data['compat_opts'] = 'youtube-dl'
+        data['external_downloader'] = (
+            self.appdata["external_downloader"])
+        data['external_downloader_args'] = (
+            self.appdata["external_downloader_args"])
+        # data['noplaylist'] = self.opt["NO_PLAYLIST"]
+        data['writesubtitles'] = self.opt["SUBS"]["writesubtitles"]
+        data['subtitleslangs'] = self.opt["SUBS"]["subtitleslangs"]
+        data['writeautomaticsub'] = self.opt["SUBS"]["writeautomaticsub"]
+        data['skip_download'] = self.opt["SUBS"]["skip_download"]
+        data['addmetadata'] = self.appdata['add_metadata']
+        data['restrictfilenames'] = self.appdata["restrict_fname"]
+        data['ignoreerrors'] = True
+        data['no_warnings'] = False
+        data['writethumbnail'] = self.appdata["embed_thumbnails"]
+        data['overwrites'] = self.appdata["overwr_dl_files"]
+        data['no_color'] = True
+        data['nocheckcertificate'] = self.appdata["ssl_certificate"]
+        data['proxy'] = self.appdata["proxy"]
+        data['username'] = self.appdata["username"]
+        data['password'] = self.appdata["password"]
+        data['videopassword'] = self.appdata["videopassword"]
+        data["geo_verification_proxy"] = self.appdata["geo_verification_proxy"]
+        data["geo_bypass"] = self.appdata["geo_bypass"]
+        data["geo_bypass_country"] = self.appdata["geo_bypass_country"]
+        data["geo_bypass_ip_block"] = self.appdata["geo_bypass_ip_block"]
+        data['ffmpeg_location'] = f'{self.appdata["ffmpeg_cmd"]}'
+        data['postprocessors'] = postprocessors
 
-        sublang = ['all'] if self.ckbx_all_sb.IsChecked() else ''
+        return data
+    # -----------------------------------------------------------------#
 
-        if self.choice.GetSelection() in (0, 1):  # precompiled or quality
+    def build_args(self, *args, **data):
+        """
+        Build the options list for yt_dlp,
+        return a type list object.
+        """
+        datalist = []
+        urlslist = self.parent.data_url
+
+        if self.appdata['playlistsubfolder']:
+            subdir = ('%(uploader)s/%(playlist_title)'
+                      's/%(playlist_index)s - ')
+        else:
+            subdir = ''
+
+        for url, code in itertools.zip_longest(urlslist,
+                                               args[2],
+                                               fillvalue='',
+                                               ):
+            if not self.opt["NO_PLAYLIST"]:
+                if '/playlist' in url:
+                    template = subdir + args[0]
+                    playlistitems = self.plidx.get(url, None)
+                    noplaylist = False
+                else:
+                    template = args[0]
+                    playlistitems = None
+                    noplaylist = True
+            else:
+                template = args[0]
+                playlistitems = None
+                noplaylist = True
+
+            format_code = code if code else args[1]
+            datalist.append(
+                {'format': format_code,
+                 'extractaudio': args[1],
+                 'outtmpl': f"{self.appdata['dirdownload']}/{template}",
+                 'noplaylist': noplaylist,
+                 'playlist_items': playlistitems,
+                 'postprocessors': data['postprocessors'],
+                 **data
+                 })
+        return datalist
+    # -----------------------------------------------------------------#
+
+    def on_start(self):
+        """
+        Pass options list to processing.
+        """
+        if self.check_for_playlist() or self.check_for_channels():
+            return
+
+        data = self.default_download_options()
+
+        if self.appdata["include_ID_name"]:
+            _id = '%(title).100s-%(id)s'
+        else:
+            _id = '%(title).100s'
+
+        formatquality = self.quality
+        outtmpl = f'{_id}.%(ext)s'
+
+        if self.choice.GetSelection() == 0:  # precompiled or quality
             code = []
-            data = {'format': self.quality,
-                    'noplaylist': self.opt["NO_PLAYLIST"],
-                    'playlist_items': self.plidx,
-                    'overwrites': self.ckbx_w.GetValue(),
-                    'writethumbnail': self.opt["THUMB"],
-                    'outtmpl': f'{_id}.%(ext)s',
-                    'extractaudio': False,
-                    'addmetadata': self.opt["METADATA"],
-                    'writesubtitles': self.opt["SUBTITLES"],
-                    'subtitleslangs': sublang,
-                    'skip_download': self.ckbx_skip_dl.GetValue(),
-                    'writeautomaticsub': self.opt["SUBTITLES"],
-                    'allsubtitles': self.opt["SUBTITLES"],
-                    'postprocessors': postprocessors,
-                    'restrictfilenames': self.ckbx_restrict_fn.GetValue(),
-                    'nocheckcertificate': self.ckbx_ssl.GetValue(),
-                    }
+            data['extractaudio'] = False
+
+        elif self.choice.GetSelection() == 1:  # by video resolution
+            code = []
+            data['extractaudio'] = False
+
         elif self.choice.GetSelection() == 2:  # audio and video splitted
             code = []
-            data = {'format': self.quality,
-                    'noplaylist': self.opt["NO_PLAYLIST"],
-                    'playlist_items': self.plidx,
-                    'overwrites': self.ckbx_w.GetValue(),
-                    'writethumbnail': self.opt["THUMB"],
-                    'outtmpl': f'{_id}.f%(format_id)s.%(ext)s',
-                    'extractaudio': False,
-                    'addmetadata': self.opt["METADATA"],
-                    'writesubtitles': self.opt["SUBTITLES"],
-                    'subtitleslangs': sublang,
-                    'skip_download': self.ckbx_skip_dl.GetValue(),
-                    'writeautomaticsub': self.opt["SUBTITLES"],
-                    'allsubtitles': self.opt["SUBTITLES"],
-                    'postprocessors': postprocessors,
-                    'restrictfilenames': self.ckbx_restrict_fn.GetValue(),
-                    'nocheckcertificate': self.ckbx_ssl.GetValue(),
-                    }
+            outtmpl = f'{_id}.f%(format_id)s.%(ext)s'
+            data['extractaudio'] = False
+
         elif self.choice.GetSelection() == 3:  # audio only
             code = []
-            data = {'format': 'bestaudio',
-                    'noplaylist': self.opt["NO_PLAYLIST"],
-                    'playlist_items': self.plidx,
-                    'overwrites': self.ckbx_w.GetValue(),
-                    'writethumbnail': self.opt["THUMB"],
-                    'outtmpl': f'{_id}.%(ext)s',
-                    'extractaudio': True,
-                    'addmetadata': self.opt["METADATA"],
-                    'writesubtitles': self.opt["SUBTITLES"],
-                    'subtitleslangs': sublang,
-                    'skip_download': self.ckbx_skip_dl.GetValue(),
-                    'writeautomaticsub': self.opt["SUBTITLES"],
-                    'allsubtitles': self.opt["SUBTITLES"],
-                    'postprocessors': postprocessors,
-                    'restrictfilenames': self.ckbx_restrict_fn.GetValue(),
-                    'nocheckcertificate': self.ckbx_ssl.GetValue(),
-                    }
+            data['extractaudio'] = True
+
         elif self.choice.GetSelection() == 4:  # format code
-            code = self.panel2.getformatcode()
+            code = self.panel_cod.getformatcode()
+            formatquality = ''
+            outtmpl = f'{_id}.f%(format_id)s.%(ext)s'
+            data['extractaudio'] = False
             if not code:
                 self.parent.statusbar_msg(Downloader.MSG_1,
-                                          Downloader.RED,
+                                          self.red,
                                           Downloader.WHITE
                                           )
                 return
 
-            data = {'format': '',
-                    'noplaylist': self.opt["NO_PLAYLIST"],
-                    'playlist_items': self.plidx,
-                    'overwrites': self.ckbx_w.GetValue(),
-                    'writethumbnail': self.opt["THUMB"],
-                    'outtmpl': f'{_id}.f%(format_id)s.%(ext)s',
-                    'extractaudio': False,
-                    'addmetadata': self.opt["METADATA"],
-                    'writesubtitles': self.opt["SUBTITLES"],
-                    'subtitleslangs': sublang,
-                    'skip_download': self.ckbx_skip_dl.GetValue(),
-                    'writeautomaticsub': self.opt["SUBTITLES"],
-                    'allsubtitles': self.opt["SUBTITLES"],
-                    'postprocessors': postprocessors,
-                    'restrictfilenames': self.ckbx_restrict_fn.GetValue(),
-                    'nocheckcertificate': self.ckbx_ssl.GetValue(),
-                    }
-        self.parent.switch_to_processing('youtube_dl downloading',
-                                         urls,
-                                         '',
-                                         self.parent.filedldir,
-                                         data,
-                                         None,
-                                         code,
-                                         '',
-                                         logname,
-                                         len(urls),
-                                         )
+        self.to_processing(self.build_args(outtmpl,
+                                           formatquality,
+                                           code,
+                                           **data
+                                           ))
+    # -----------------------------------------------------------------#
+
+    def to_processing(self, datalist):
+        """
+        Call `main_ytdlp.switch_to_processing`
+        """
+        execlist = []
+        execpath = self.appdata['ytdlp-exec-path']
+        if (not execpath.strip().endswith(self.execname)
+                or not shutil.which(execpath)):
+            wx.MessageBox(_('Missing executable: «{0}».\nBefore '
+                            'continuing, be sure to make the correct '
+                            'settings in the preferences dialog.'
+                            ).format(self.execname),
+                          _('Vidtuber - Warning!'), wx.ICON_WARNING, self)
+            return
+
+        for args in datalist:
+            execlist.append(from_api_to_cli(args, execpath))
+        self.parent.switch_to_processing('YouTube Downloader', execlist)

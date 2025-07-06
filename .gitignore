@@ -1,9 +1,11 @@
 #Files mentioned in this file will be ignored by git
+*__pycache__
 *.pyc
 *.eggs
 *.log
 *.mbtree
 *.cutree
+transforms.trf
 dist
 build
 vidtuber.egg-info
@@ -24,3 +26,4 @@ Pipfile.lock
 portable_data
 My_Files
 *~
+*.mo

@@ -37,6 +37,7 @@ from vidtuber.vt_sys.argparser import arguments
 from vidtuber.vt_sys.configurator import DataSource
 from vidtuber.vt_sys import app_const as appC
 from vidtuber.vt_utils.utils import del_filecontents
+from vidtuber.vt_sys.external_package import importer_init_file
 
 # add translation macro to builtin similar to what gettext does
 builtins.__dict__['_'] = wx.GetTranslation
@@ -59,7 +60,7 @@ class Vidtuber(wx.App):
         - filename='path/to/file.txt' Redirect sys.stdout
           and sys.stderr to file
 
-        See main() function below to settings it.
+        Also see main() function.
 
         """
         self.locale = None
@@ -71,7 +72,7 @@ class Vidtuber(wx.App):
                        # supported langs for online help (user guide)
                        }
         self.data = DataSource(kwargs)  # instance data
-        self.appset.update(self.data.get_fileconf())  # data system
+        self.appset.update(self.data.get_configuration())  # data system
         self.iconset = None
 
         wx.App.__init__(self, redirect, filename)  # constructor
@@ -91,75 +92,52 @@ class Vidtuber(wx.App):
             appear = wx.SystemSettings.GetAppearance()
             self.appset['IS_DARK_THEME'] = appear.IsDark()
 
-        self.iconset = self.data.icons_set(self.appset['icontheme'][0])
+        self.iconset = self.data.icons_set(self.appset['icontheme'])
 
         # locale
         wx.Locale.AddCatalogLookupPathPrefix(self.appset['localepath'])
         self.update_language(self.appset['locale_name'])
 
-        ytdlp = self.check_youtube_dl()
-        if ytdlp is False:
-            return False
+        if self.check_ytdlp() is False:
+            self.appset['yt_dlp'] = 'no module'
 
-        noffmpeg = self.check_ffmpeg()
-        if noffmpeg:
+        if self.check_ffmpeg():
             self.wizard(self.iconset['vidtuber'])
             return True
 
         from vidtuber.vt_main.main_frame import MainFrame
-        main_frame = MainFrame()
+        main_frame = MainFrame(self.appset)
         main_frame.Show()
         self.SetTopWindow(main_frame)
         return True
     # -------------------------------------------------------------------
 
-    def check_youtube_dl(self):
+    def check_ytdlp(self):
         """
         Check for `yt_dlp` python module.
         """
-        if self.appset['downloader'] == 'yt_dlp':
-            try:
-                import yt_dlp
-            except ModuleNotFoundError as err:
-                wx.MessageBox(f"ERROR: {err}\n\nyt-dlp is missing, "
-                              f"please install it.", 'Vidtuber - ERROR',
-                              wx.ICON_STOP)
-                return False
+        #if self.appset['downloader'] == 'yt_dlp':
+        try:
+            import yt_dlp
+            self.appset['yt_dlp'] = True
+        except ModuleNotFoundError as err:
+            wx.MessageBox(f"ERROR: {err}\n\nyt-dlp is missing, "
+                          f"please install it.", 'Vidtuber - ERROR',
+                          wx.ICON_STOP)
+            return False
         return None
     # -------------------------------------------------------------------
 
     def check_ffmpeg(self):
         """
-        Get the FFmpeg's executables. A permission check
-        is also performed on Unix/Unix-like systems.
+        Check the FFmpeg's executables (ffmpeg, ffprobe, ffplay).
+        Returns True if one of the executables is missing or if
+        one of the executables doesn't have execute permission.
+        Returns None otherwise.
         """
-        for link in [self.appset['ffmpeg_cmd'],
-                     self.appset['ffprobe_cmd'],
-                     ]:
-            if self.appset['ostype'] == 'Windows':  # check for exe
-                # HACK use even for unix, if not permission is equal
-                # to not binaries
-                if not which(link, mode=os.F_OK | os.X_OK, path=None):
-                    return True
-            else:
-                if not os.path.isfile(f"{link}"):
-                    return True
-
-        if not self.appset['ostype'] == 'Windows':
-            # check for permissions when linked locally
-            for link in [self.appset['ffmpeg_cmd'],
-                         self.appset['ffprobe_cmd'],
-                         ]:
-                if which(link, mode=os.F_OK | os.X_OK, path=None):
-                    permissions = True
-                else:
-                    wx.MessageBox(_('Permission denied: {}\n\n'
-                                    'Check execution permissions.').format
-                                  (link), 'Vidtuber', wx.ICON_STOP)
-                    permissions = False
-                    break
-
-            return False if not permissions else None
+        for link in [self.appset['ffmpeg_cmd'], self.appset['ffprobe_cmd']]:
+            if not which(link, mode=os.F_OK | os.X_OK, path=None):
+                return True
         return None
     # -------------------------------------------------------------------
 
@@ -238,8 +216,35 @@ class Vidtuber(wx.App):
                                             "{0}").format(err),
                                           'Vidtuber', wx.ICON_STOP)
                             return False
+
+        if self.appset['auto-restart-app']:
+            auto_restart(self.appset['app'], self.appset['make_portable'])
+            return True
         return True
     # -------------------------------------------------------------------
+
+def auto_restart(apptype, portmode):
+    """
+    This function spawn the same executable again, automatically
+    restarting this application if required, for example after
+    the wizard dialog ends or after applying settings that require
+    the application to be restarted. Note that this behavior
+    it is disabled using the Python interpreter (interactive
+    mode).
+    """
+    if not ''.join(sys.argv) or sys.argv[0].startswith('-'):
+        sys.exit()
+
+    if apptype == 'pyinstaller':
+        wx.Execute(f'{sys.executable}', flags=wx.EXEC_SYNC)
+    else:
+        makeportable = '' if not portmode else fr'--make-portable "{portmode}"'
+
+        if os.path.basename(sys.argv[0]) == 'launcher':
+            cmdargs = f'{sys.executable} {sys.argv[0]} {makeportable}'
+        else:
+            cmdargs = f'{sys.argv[0]} {makeportable}'
+        wx.Execute(f'{cmdargs}', flags=wx.EXEC_SYNC)
 
 
 def main():

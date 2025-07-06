@@ -3,14 +3,12 @@ exclude = develop/tools/generate_INNO_setup.py,
           tests,
           debian,
           docs,
+          xdg,
           .git,
           __pycache__,
           build,
           dist,
-          vidtuber/art,
-          vidtuber/FFMPEG,
-          vidtuber/locale,
-          vidtuber/share
+          vidtuber/data
 per-file-ignores=vidtuber/gui_app.py:F401
 count = True
 #select=E9,F63,F7,F82

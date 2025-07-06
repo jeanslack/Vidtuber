@@ -4,9 +4,9 @@ Name: argparser.py
 Porpose: Vidtuber Command line arguments
 Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Jan.11.2023
+Rev: May.29.2023
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -29,7 +29,7 @@ import sys
 from shutil import which
 import argparse
 import platform
-from vidtuber.vt_sys.msg_info import current_release
+from vidtuber.vt_sys.about_app import PRGNAME, VERSION, RELSTATE
 try:
     import wx
     MSGWX = f"{wx.version()}"
@@ -58,8 +58,7 @@ def info_this_platform():
 
 def arguments():
     """Parser for command line options"""
-    parser = argparse.ArgumentParser(description=('GUI for FFmpeg and '
-                                                  'youtube-dl/yt-dlp'),)
+    parser = argparse.ArgumentParser(description=('GUI for yt-dlp'),)
     parser.add_argument('-v', '--version',
                         help="Show the current version and exit",
                         action="store_true",
@@ -70,27 +69,28 @@ def arguments():
                         action="store_true",
                         )
     parser.add_argument('--make-portable',
-                        help=('In order to make the application fully '
-                              'portable and stealth, this option can keeps '
-                              'all application data stored separately from '
-                              'conventional platform directories and provide '
-                              'only relative paths. It expects you to specify '
-                              'a preferred location of data used by the '
-                              'application. Note that a new output folder '
-                              '("My_Files") will be created ONLY during the '
-                              'first startup of the application through the '
-                              'Wizard. In all other cases the relative paths '
-                              'may not be fully updated on the configuration '
-                              'file.'
+                        help=('Make the application fully portable and '
+                              'stealth. Use this option whenever you want to '
+                              'keep all application data stored separately '
+                              'from conventional platform directories and '
+                              'provide only relative paths. It expects you to '
+                              'specify a preferred location where storing the '
+                              'new application data as user preferences, '
+                              'cache files, log files and default output '
+                              'folder. The first time, all of this involves '
+                              'reconfiguring the application through the '
+                              'wizard dialog.'
                               ),
-                        metavar='URL',
+                        metavar='DIRNAME',
                         )
 
     argmts = parser.parse_args()
 
     if argmts.check:
-        deps = {'Required': {'ffmpeg': None, 'ffprobe': None},
-                'Recommended': {'youtube-dl': None, 'yt-dlp': None},
+        deps = {'Required': {'ffmpeg': None,
+                             'ffprobe': None,
+                             'ffplay': None},
+                'Recommended': {'yt-dlp': None},
                 'Optional': {'atomicparsley': None}
                 }
         for key, val in deps.items():
@@ -109,8 +109,7 @@ def arguments():
         parser.exit(status=0, message=None)
 
     elif argmts.version:
-        crel = current_release()
-        print(f'{crel[0]}: {crel[2]} ({crel[3]})')
+        print(f'{PRGNAME}: {VERSION} ({RELSTATE})')
         print(info_this_platform())
         parser.exit(status=0, message=None)
 

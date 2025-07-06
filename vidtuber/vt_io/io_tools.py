@@ -4,9 +4,9 @@ Name: io_tools.py
 Porpose: input/output redirection to processes (aka threads)
 Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: March.17.2023
+Rev: June.06.2025
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -26,24 +26,14 @@ This file is part of Vidtuber.
 """
 import requests
 import wx
+from vidtuber.vt_threads import generic_downloads
+from vidtuber.vt_threads.check_bin import subp
 from vidtuber.vt_utils.utils import open_default_application
-from vidtuber.vt_threads.ydl_extractinfo import YdlExtractInfo
 from vidtuber.vt_dialogs.widget_utils import PopupDialog
+from vidtuber.vt_threads.ydl_extractinfo import YdlExtractInfo
 
 
-def openpath(where):
-    """
-    Call vt_threads.opendir.browse to open file browser into
-    configuration directory or log directory.
-
-    """
-    ret = open_default_application(where)
-    if ret:
-        wx.MessageBox(ret, 'Vidtuber', wx.ICON_ERROR, None)
-# -------------------------------------------------------------------------#
-
-
-def youtubedl_getstatistics(url, ssl):
+def youtubedl_getstatistics(url, kwargs, parent=None):
     """
     Call `YdlExtractInfo` thread to extract data info.
     During this process a wait pop-up dialog is shown.
@@ -56,8 +46,8 @@ def youtubedl_getstatistics(url, ssl):
         data = thread.data
         yield data
     """
-    thread = YdlExtractInfo(url, ssl)
-    dlgload = PopupDialog(None,
+    thread = YdlExtractInfo(url, kwargs)
+    dlgload = PopupDialog(parent,
                           _("Vidtuber - Loading..."),
                           _("Wait....\nRetrieving required data."))
     dlgload.ShowModal()
@@ -68,6 +58,26 @@ def youtubedl_getstatistics(url, ssl):
 # --------------------------------------------------------------------------#
 
 
+def youtubedl_get_executable_version(execpath):
+    """
+    Call `check_bin.subp` to get yt-dlp executable version.
+    """
+    get = wx.GetApp()
+    res = subp([execpath, '--version'], get.appset['ostype'])
+    return res[1] if res[0] == 'None' else f'{res[0]} [ERROR]\n'
+# --------------------------------------------------------------------------#
+
+
+def openpath(where):
+    """
+    Call `vdms_threads.opendir.open_default_application`.
+    """
+    ret = open_default_application(where)
+    if ret:
+        wx.MessageBox(ret, _('Vidtuber - Error!'), wx.ICON_ERROR, None)
+# -------------------------------------------------------------------------#
+
+
 def get_github_releases(url, keyname):
     """
     Check for releases data on github page using github API:
@@ -75,20 +85,15 @@ def get_github_releases(url, keyname):
 
     see keyname examples here:
     <https://api.github.com/repos/jeanslack/Vidtuber/releases>
-
     """
     try:
         response = requests.get(url, timeout=15)
         not_found = None, None
-
     except Exception as err:
         not_found = 'request error:', err
-
     else:
-
         try:
             version = response.json()[f"{keyname}"]
-
         except Exception as err:
             not_found = 'response error:', err
 
@@ -96,4 +101,19 @@ def get_github_releases(url, keyname):
         return not_found
 
     return version, None
+# --------------------------------------------------------------------------#
+
+
+def get_presets(url, dest, msg, parent=None):
+    """
+    get latest Vidtuber presets
+    """
+    thread = generic_downloads.FileDownloading(url, dest)
+    dlgload = PopupDialog(parent, _("Vidtuber - Downloading..."), msg)
+    dlgload.ShowModal()
+    # thread.join()
+    status = thread.data
+    dlgload.Destroy()
+
+    return status
 # --------------------------------------------------------------------------#

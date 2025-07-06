@@ -4,9 +4,9 @@ File Name: make_filelog.py
 Porpose: log file generator
 Compatibility: Python3, Python2
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Feb.20.2022
+Rev: Mar.08.2024
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -29,21 +29,23 @@ import time
 import os
 
 
-def logwrite(cmd, stderr, logfile):
+def logwrite(cmd, stderr, logfile, txtenc="utf-8"):
     """
     This function writes status messages
     to a given `logfile` during a process.
     """
+    sep = ('\n==============================================='
+           '==============================================\n')
     if stderr:
-        apnd = f"...{stderr}\n\n"
+        apnd = f"\n{stderr}\n"
     else:
-        apnd = f"{cmd}\n\n"
+        apnd = f"{sep}{cmd}\n\n"
 
-    with open(logfile, "a", encoding='utf8') as log:
+    with open(logfile, "a", encoding=txtenc) as log:
         log.write(apnd)
 
 
-def make_log_template(logname, logdir):
+def make_log_template(logname, logdir, mode="a", txtenc="utf-8"):
     """
     Most log files are initialized from a template
     before starting a process and writing status
@@ -52,21 +54,17 @@ def make_log_template(logname, logdir):
     - logname,  example: `mylog.log`
     - logdir, log files location
 
-    Returns the absolute/relative pathname of the log
+    Returns an absolute/relative pathname of the logfile.
     """
     current_date = time.strftime("%c")  # date/time
     logfile = os.path.join(logdir, logname)
 
-    with open(logfile, "a", encoding='utf8') as log:
+    with open(logfile, mode, encoding=txtenc) as log:
         log.write(f"""
-==============================================================================
-[DATE]:
-{current_date}
+[DATE]: {current_date}
 
-[LOCATION]:
-{logfile}
+[LOCATION]: "{logfile}"
 
 [VIDEOMASS]:
 """)
-
     return logfile

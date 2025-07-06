@@ -2,24 +2,27 @@
 # -*- coding: UTF-8 -*-
 """
 Name: pyinstaller_setup.py
-Porpose: Setup the vidtuber.spec and build bundle via Pyinstaller
-Compatibility: Python3
+Porpose: Provide build options to bundle the Vidtuber application.
+Platform: Gnu-Linux, MacOs, MS-Windows
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: March.17.2023
-########################################################
+Rev: Aug.04.2024
+
 This file is part of Vidtuber.
-    Vidtuber is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-    Vidtuber is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    You should have received a copy of the GNU General Public License
-    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
+
+   Vidtuber is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Vidtuber is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 import sys
@@ -29,54 +32,93 @@ import argparse
 import time
 import subprocess
 
-this = os.path.realpath(os.path.abspath(__file__))
-HERE = os.path.dirname(os.path.dirname(os.path.dirname(this)))
-sys.path.insert(0, HERE)
+for x in ('pyinstaller', 'pyi-makespec'):
+    if not shutil.which(x):
+        sys.exit(f'ERROR: {x} is required, please install '
+                 f'`pyinstaller` before launch this script.')
 try:
-    from vidtuber.vt_sys.msg_info import current_release
+    from babel.messages.frontend import compile_catalog
 except ModuleNotFoundError as modulerror:
-    sys.exit(modulerror)
+    sys.exit(f'ERROR: {modulerror}\nBabel for Python3 is required, '
+             f'please install babel before launch this script.')
 
+THIS = os.path.realpath(os.path.abspath(__file__))
+sys.path.insert(0, os.getcwd())
+try:
+    from vidtuber.vt_sys import about_app
+except ModuleNotFoundError as modulerror:
+    sys.exit(f'ERROR: {modulerror}\nMake sure to cd to Vidtuber source '
+             f'directory first.')
 SCRIPT = 'launcher'
-NAME = 'vidtuber'
-BINARY = os.path.join(HERE, SCRIPT)
-SPECFILE = os.path.join(HERE, f'{NAME}.spec')
+NAME = about_app.PRGNAME
+BINARY = SCRIPT
+SPECFILE = f'{NAME}.spec'
 
 
-def vidtuber_data_source(here=HERE, name=NAME):
+def build_language_catalog():
+    """
+    Before build standalone App make sure to compile
+    MO files for this macchine.
+    """
+    while True:
+        quest = input('\nDo you want to compile MO files for '
+                      'this macchine? (y/n)? ')
+        if quest.strip() in ('Y', 'y', 'n', 'N'):
+            break
+        print(f"\nInvalid option '{quest}'")
+        continue
+
+    if quest in ('y', 'Y'):
+        try:
+            cmd = compile_catalog()
+            cmd.directory = os.path.join('vidtuber', 'data', 'locale')
+            cmd.domain = "vidtuber"
+            cmd.statistics = True
+            cmd.finalize_options()
+            cmd.run()
+        except Exception as err:
+            sys.exit(err)
+
+        print("....MO files Compiled successfully!")
+
+
+def vidtuber_data_source(name=NAME, release=about_app):
     """
     Returns a dict object of the Vidtuber data
     and pathnames needed to spec file.
     """
-    release = current_release()  # Gets data list
-
-    return dict(RLS_NAME=release[0],  # first letter is Uppercase
-                PRG_NAME=release[1],  # first letter is lower
-                NAME=name,
-                VERSION=release[2],
-                RELEASE=release[3],
-                COPYRIGHT=release[4],
-                WEBSITE=release[5],
-                AUTHOR=release[6],
-                EMAIL=release[7],
-                COMMENT=release[8],
-                ART=os.path.join(here, 'vidtuber', 'art'),
-                LOCALE=os.path.join(here, 'vidtuber', 'locale'),
-                SHARE=os.path.join(here, 'vidtuber', 'share'),
-                FFMPEG=os.path.join(here, 'vidtuber', 'FFMPEG'),
-                NOTICE=os.path.join(here, 'vidtuber',
-                                    'FFMPEG', 'NOTICE.rtf'),
-                AUTH=os.path.join(here, 'AUTHORS'),
-                BUGS=os.path.join(here, 'BUGS'),
-                CHANGELOG=os.path.join(here, 'CHANGELOG'),
-                COPYING=os.path.join(here, 'LICENSE'),
-                INSTALL=os.path.join(here, 'INSTALL'),
-                README=os.path.join(here, 'README.md'),
-                TODO=os.path.join(here, 'TODO'),
-                ICNS=os.path.join(here, 'vidtuber',
-                                  'art', 'vidtuber.icns'),
-                ICO=os.path.join(here, 'vidtuber', 'art', 'vidtuber.ico'),
-                )
+    return {"RLS_NAME": release.RELNAME,  # first letter is Uppercase
+            "PRG_NAME": release.PRGNAME,  # first letter is lower
+            "NAME": name,
+            "VERSION": release.VERSION,
+            "RELEASE": release.RELSTATE,
+            "COPYRIGHT": release.COPYRIGHT,
+            "WEBSITE": release.WEBSITE,
+            "AUTHOR": release.AUTHOR,
+            "EMAIL": release.MAIL,
+            "COMMENT": release.COMMENT,
+            "ART": os.path.join('vidtuber', 'data', 'icons'),
+            "LOCALE": os.path.join('vidtuber', 'data', 'locale'),
+            "SHARE": os.path.join('vidtuber', 'data', 'presets'),
+            "FFMPEG": os.path.join('vidtuber', 'data', 'FFMPEG'),
+            "NOTICE": os.path.join('vidtuber', 'data',
+                                   'FFMPEG', 'README'),
+            "AUTH": 'AUTHORS',
+            "BUGS": 'BUGS',
+            "CHANGELOG": 'CHANGELOG',
+            "COPYING": 'LICENSE',
+            "INSTALL": 'INSTALL',
+            "README": 'README.md',
+            "TODO": 'TODO',
+            "ICNS": os.path.join('vidtuber',
+                                 'data',
+                                 'icons',
+                                 'vidtuber.icns'),
+            "ICO": os.path.join('vidtuber',
+                                'data',
+                                'icons',
+                                'vidtuber.ico')
+            }
 
 
 class PyinstallerSpec():
@@ -97,9 +139,9 @@ class PyinstallerSpec():
         self.getdata = vidtuber_data_source()
         sep = ';' if platform.system() == 'Windows' else ':'
 
-        self.datas = (f"--add-data {self.getdata['ART']}{sep}art "
+        self.datas = (f"--add-data {self.getdata['ART']}{sep}icons "
                       f"--add-data {self.getdata['LOCALE']}{sep}locale "
-                      f"--add-data {self.getdata['SHARE']}{sep}share "
+                      f"--add-data {self.getdata['SHARE']}{sep}presets "
                       f"--add-data {self.getdata['FFMPEG']}{sep}FFMPEG "
                       f"--add-data {self.getdata['AUTH']}{sep}DOC "
                       f"--add-data {self.getdata['BUGS']}{sep}DOC "
@@ -118,7 +160,7 @@ class PyinstallerSpec():
         """
         options = (f"--name {self.getdata['RLS_NAME']} {self.onedf} "
                    f"--windowed --noconsole --icon {self.getdata['ICO']} "
-                   # f"--exclude-module youtube_dl --exclude-module 'yt_dlp' "
+                   # f"--exclude-module 'yt_dlp' "
                    f"{self.datas} ")
 
         return options
@@ -140,7 +182,6 @@ class PyinstallerSpec():
                 f"'com.jeanslack.vidtuber' "
                 # f"--codesign-identity IDENTITY "
                 # f"--osx-entitlements-file FILENAME "
-                # f"--exclude-module 'youtube_dl' --exclude-module 'yt_dlp' "
                 f"{self.datas} ")
 
         plist = (
@@ -174,15 +215,15 @@ class PyinstallerSpec():
 # --------------------------------------------------------#
 
 
-def onefile_onedir():
+def onefile_or_onedir():
     """
     Pyinstaller offer two options to generate stand-alone executables.
     The `--onedir` option is the default.
     """
     text = ('\nChoose from the following options:\n'
-            '[1] Create a one-folder bundle containing an '
-            'executable (default)\n'
-            '[2] Create a one-file bundled executable\n'
+            '[1] Build a one-folder bundle containing an '
+            'executable (default).\n'
+            '[2] Build a one-file bundled executable\n'
             '(1/2) ')
 
     while True:
@@ -225,7 +266,7 @@ def genspec(options, specfile=SPECFILE, addplist=None, script=SCRIPT):
         sys.exit(f'\nERROR: {err}\n')
 
     if platform.system() == 'Darwin' and addplist is not None:
-        with open(specfile, 'r', encoding='utf8') as specf:
+        with open(specfile, 'r', encoding='utf-8') as specf:
             arr = specf.readlines()
 
         idx = arr.index("             bundle_identifier='com."
@@ -233,18 +274,18 @@ def genspec(options, specfile=SPECFILE, addplist=None, script=SCRIPT):
         arr[idx] = ("             bundle_identifier='com."
                     "jeanslack.vidtuber',\n")
         newspec = ''.join(arr) + addplist
-        with open(specfile, 'w', encoding='utf8') as specf:
+        with open(specfile, 'w', encoding='utf-8') as specf:
             specf.write(newspec)
 # --------------------------------------------------------#
 
 
-def clean_buildingdirs(here=HERE, name=NAME):
+def clean_buildingdirs(name=NAME):
     """
     Asks the user if they want to clean-up building
     directories, usually "dist", "build", "*.egg-info" dirs.
     """
-    target = ('dist', 'build', f'{NAME}.egg-info')
-    aredirs = [x for x in os.listdir(HERE) if os.path.isdir(x)]
+    target = ('dist', 'build', f'{name}.egg-info')
+    aredirs = [x for x in os.listdir() if os.path.isdir(x)]
     toremove = [t for t in aredirs if t in target]
 
     if toremove:
@@ -257,15 +298,14 @@ def clean_buildingdirs(here=HERE, name=NAME):
 
         if clean in ('y', 'Y'):
             for names in toremove:
-                dirname = os.path.join(HERE, names)
-                print('Removing: ', dirname)
-                shutil.rmtree(os.path.join(HERE, dirname), ignore_errors=True)
+                print('Removing: ', names)
+                shutil.rmtree(names, ignore_errors=True)
             print('\n')
 
 # --------------------------------------------------------#
 
 
-def run_pyinst(specfile=SPECFILE):
+def run_pyinst(specfile=SPECFILE, this=THIS):
     """
     wrap `pyinstaller --clean vidtuber.spec`
     """
@@ -276,15 +316,19 @@ def run_pyinst(specfile=SPECFILE):
             subprocess.run(f'pyinstaller --clean {specfile}',
                            shell=True, check=True)
         except subprocess.CalledProcessError as err:
-            sys.exit(f'\nERROR: {err}\n')
+            return f'\nERROR: {err}\n'
 
-        print("\nSUCCESS: pyinstaller_setup.py: Build finished.\n")
+        print(f"\nSUCCESS: {os.path.basename(THIS)}: Build finished.\n")
     else:
-        sys.exit(f"ERROR: no such file {specfile}")
+        return (f"\nERROR: no such file \"{specfile}\", Make sure to generate "
+                f"a *.spec file first. You can use the `-g`, `--gen-spec` "
+                f"option along with the `-b`, `--build` option.")
+
+    return None
 # --------------------------------------------------------#
 
 
-def make_portable(here=HERE):
+def make_portable():
     """
     If you plan to make definively fully portable the application
     bundled, use this function to implements this feature.
@@ -307,13 +351,13 @@ def make_portable(here=HERE):
     if portable in ('n', 'N'):
         return False
 
-    error = False
+    idx = None
     row = "        kwargs = {'make_portable': None}"
     code = ("        data = os.path.join(os.path.dirname(sys.executable), "
             "'portable_data')\n        kwargs = {'make_portable': data}\n")
-    filename = os.path.join(here, 'vidtuber', 'gui_app.py')
+    filename = os.path.join('vidtuber', 'gui_app.py')
 
-    with open(filename, 'r+', encoding='utf8') as gui_app:
+    with open(filename, 'r+', encoding='utf-8') as gui_app:
         data = gui_app.readlines()
 
         for line in data:
@@ -326,32 +370,29 @@ def make_portable(here=HERE):
             gui_app.writelines(data)
             gui_app.truncate()
         else:
-            error = True
-
-    if error:
-        sys.exit("\nERROR on writing file `gui_app.py`")
+            sys.exit("\nERROR on writing file `gui_app.py`")
 
     return True
 # --------------------------------------------------------#
 
 
-def restore_sources(data, here=HERE):
+def restore_sources(data):
     """
     Restore source file `gui_app.py`
     """
-    filename = os.path.join(here, 'vidtuber', 'gui_app.py')
-    with open(filename, 'w', encoding='utf8') as bak:
+    filename = os.path.join('vidtuber', 'gui_app.py')
+    with open(filename, 'w', encoding='utf-8') as bak:
         bak.write(''.join(data))
 # --------------------------------------------------------#
 
 
-def backup_sources(here=HERE):
+def backup_sources():
     """
     Backup source file `gui_app.py`
     """
     data = None
-    filename = os.path.join(here, 'vidtuber', 'gui_app.py')
-    with open(filename, 'r', encoding='utf8') as gui_app:
+    filename = os.path.join('vidtuber', 'gui_app.py')
+    with open(filename, 'r', encoding='utf-8') as gui_app:
         data = gui_app.readlines()
     return data
 # --------------------------------------------------------#
@@ -367,7 +408,7 @@ def get_data_platform():
                  "following command:\n"
                  "\"pyi-makespec [options] vidtuber.py\"\n"
                  )
-    wrap = PyinstallerSpec(onefile_onedir())
+    wrap = PyinstallerSpec(onefile_or_onedir())
 
     if platform.system() == 'Linux':
         getopts = wrap.linux_platform()
@@ -385,53 +426,53 @@ def get_data_platform():
 
 def main():
     """
-    Users inputs parser (positional/optional arguments)
+    Inputs parser (positional/optional arguments)
     """
-    descr = 'Wrap the pyinstaller setup for Vidtuber application'
-    parser = argparse.ArgumentParser(prog=NAME,
+    descr = ('Provides build options to help bundle a Vidtuber application. '
+             'A bundle application is a stand-alone application that '
+             'can be run on the same operating system it is created on. '
+             'Currently supported operating systems are Gnu-Linux, '
+             'MacOs, MS-Windows.')
+    parser = argparse.ArgumentParser(prog=THIS,
                                      description=descr,
                                      add_help=True,
                                      )
     parser.add_argument(
-        '-g', '--gen_spec',
-        help="Generates a ready-to-use vidtuber.spec file.",
+        '-g', '--gen-spec',
+        help=("Generate a `vidtuber.spec` file only. A *.spec file is "
+              "only specific for the operating system in use and is required "
+              "by pyinstaller to bundle the stand-alone application. This "
+              "option can be given alone."),
         action="store_true",
     )
     parser.add_argument(
-        '-gb', '--genspec_build',
-        help="Generate a vidtuber.spec file and start building bundle.",
-        action="store_true",
-    )
-    parser.add_argument(
-        '-s', '--start_build',
-        help="Start the building bundle by an existing vidtuber.spec file.",
+        '-b', '--build',
+        help=("Build the bundle application. Can be used with `--gen-spec` "
+              "option before starting the build to generate a "
+              "`vidtuber.spec` file if not present or if you want to "
+              "overwrite the existing one."),
         action="store_true",
     )
 
     args = parser.parse_args()
 
-    if args.gen_spec:
+    if args.gen_spec and not args.build:
         get_data_platform()
 
-    elif args.genspec_build:
-        get_data_platform()
+    elif args.build:
+        build_language_catalog()
+        if args.gen_spec:
+            get_data_platform()
         clean_buildingdirs()
         backup = backup_sources()
         ret = make_portable()
-        run_pyinst()
+        startpyinst = run_pyinst()
         if ret:
             restore_sources(backup)
-
-    elif args.start_build:
-        clean_buildingdirs()
-        backup = backup_sources()
-        ret = make_portable()
-        run_pyinst()
-        if ret:
-            restore_sources(backup)
+        if startpyinst:
+            sys.exit(startpyinst)
     else:
         print("\nType 'pyinstaller_setup.py -h' for help.\n")
-        return
 
 
 if __name__ == '__main__':

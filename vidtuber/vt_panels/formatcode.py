@@ -4,9 +4,9 @@ Name: formatcodelist.py
 Porpose: user interface panel for format codes tasks
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: March.19.2023
+Rev: Feb.07.2024
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -25,7 +25,7 @@ This file is part of Vidtuber.
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
 import wx
-from vidtuber.vt_io import io_tools
+from vidtuber.vt_io.io_tools import youtubedl_getstatistics
 from vidtuber.vt_utils.utils import format_bytes
 
 
@@ -73,7 +73,10 @@ if not hasattr(wx, 'EVT_LIST_ITEM_CHECKED'):
 
 class FormatCode(wx.Panel):
     """
-    This panel is responsible to execute format codes tasks
+    This panel implements a kind of wx.ListCtrl for
+    the format codes tasks. Format codes are identifier
+    codes (ID) used in choosing multimedia contents according
+    to the yt-dlp standards.
 
     """
     get = wx.GetApp()  # get vidtuber wx.App attribute
@@ -86,10 +89,11 @@ class FormatCode(wx.Panel):
         GREEN = '#4CDD67'
     else:
         GREEN = '#40804C'
-    BACKGRD = get.appset['icontheme'][1]['BACKGRD']  # help viewer backgrd
-    DONE = get.appset['icontheme'][1]['TXT3']  # code text done
-    WARN = get.appset['icontheme'][1]['WARN']  # code text warn
-    RED = get.appset['icontheme'][1]['ERR1']   # code text err + sb error
+
+    BACKGRD = get.appset['colorscheme']['BACKGRD']  # help viewer backgrd
+    DONE = get.appset['colorscheme']['TXT3']  # code text done
+    WARN = get.appset['colorscheme']['WARN']  # code text warn
+    RED = get.appset['colorscheme']['ERR1']   # code text err + sb error
 
     MSG_1 = _('At least one "Format Code" must be checked for each '
               'URL selected in green.')
@@ -121,41 +125,49 @@ class FormatCode(wx.Panel):
                                       )
         if not self.oldwx:
             self.fcode.EnableCheckBoxes(enable=True)
-        self.fcode.InsertColumn(0, (_('Format Code')), width=120)
-        self.fcode.InsertColumn(1, (_('Url')), width=60)
-        self.fcode.InsertColumn(2, (_('Title')), width=200)
-        self.fcode.InsertColumn(3, (_('Extension')), width=80)
-        self.fcode.InsertColumn(4, (_('Resolution')), width=160)
-        self.fcode.InsertColumn(5, (_('Video Codec')), width=110)
-        self.fcode.InsertColumn(6, (_('fps')), width=80)
-        self.fcode.InsertColumn(7, (_('Audio Codec')), width=110)
-        self.fcode.InsertColumn(8, (_('Size')), width=100)
+        colw = FormatCode.appdata['fcode_column_width']
+        self.fcode.InsertColumn(0, (_('Format Code')), width=colw[0])
+        self.fcode.InsertColumn(1, (_('Url')), width=colw[1])
+        self.fcode.InsertColumn(2, (_('Title')), width=colw[2])
+        self.fcode.InsertColumn(3, (_('Extension')), width=colw[3])
+        self.fcode.InsertColumn(4, (_('Resolution')), width=colw[4])
+        self.fcode.InsertColumn(5, (_('Video Codec')), width=colw[5])
+        self.fcode.InsertColumn(6, (_('fps')), width=colw[6])
+        self.fcode.InsertColumn(7, (_('Audio Codec')), width=colw[7])
+        self.fcode.InsertColumn(8, (_('Size')), width=colw[8])
 
         sizer_base.Add(self.fcode, 1, wx.ALL | wx.EXPAND, 5)
-        # -------------textctrl
-        labtstr = _('Help viewer')
-        self.labtxt = wx.StaticText(self, label=labtstr)
-        sizer_base.Add(self.labtxt, 0, wx.LEFT, 5)
-        self.cod_text = wx.TextCtrl(self, wx.ID_ANY, "",
-                                    style=wx.TE_MULTILINE
-                                    | wx.TE_READONLY
-                                    | wx.TE_RICH2,
-                                    size=(-1, 100)
-                                    )
-        sizer_base.Add(self.cod_text, 0, wx.ALL | wx.EXPAND, 5)
+        sizeropt = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_base.Add(sizeropt, 0)
+        msg = _("Don't merge any files")
+        self.ckbx_nomerge = wx.CheckBox(self, wx.ID_ANY, msg)
+        sizeropt.Add(self.ckbx_nomerge, 0, wx.ALL | wx.EXPAND, 5)
+        msg = _("Download only the best selected qualities")
+        self.ckbx_best = wx.CheckBox(self, wx.ID_ANY, msg)
+        sizeropt.Add(self.ckbx_best, 0, wx.ALL | wx.EXPAND, 5)
+        self.ckbx_best.SetValue(True)
         # -----------------------
         self.SetSizer(sizer_base)
         self.Layout()
-        # ----------------------- Properties
-
-        self.cod_text.SetBackgroundColour(FormatCode.BACKGRD)
-        if FormatCode.appdata['ostype'] != 'Darwin':
-            self.labtxt.SetLabelMarkup(f"<b>{labtstr}</b>")
 
         # ----------------------Binder (EVT)----------------------#
         if not self.oldwx:
             self.fcode.Bind(wx.EVT_LIST_ITEM_CHECKED, self.on_checkbox)
             self.fcode.Bind(wx.EVT_LIST_ITEM_UNCHECKED, self.on_checkbox)
+
+    def enable_widgets(self, enable=True):
+        """
+        Enable if download by format code is used.
+        """
+        if enable:
+            self.fcode.Enable()
+            self.ckbx_best.Enable()
+            self.ckbx_nomerge.Enable()
+        else:
+            self.fcode.Disable()
+            self.ckbx_best.Disable()
+            self.ckbx_nomerge.Disable()
+    # ----------------------------------------------------------------------
 
     def on_checkbox(self, event):
         """
@@ -186,34 +198,22 @@ class FormatCode(wx.Panel):
                         else:
                             dispv = self.fcode.GetItemText(i, 0)
                             self.format_dict[url].append('Video: ' + dispv)
-
-        self.cod_text.Clear()
-
-        for key, val in self.format_dict.items():
-            if not val:
-                self.cod_text.SetDefaultStyle(wx.TextAttr(FormatCode.WARN))
-                self.cod_text.AppendText(f'- {key} :\n')
-            elif val[0].split(': ')[1] == 'UNSUPPORTED':
-                self.cod_text.SetDefaultStyle(wx.TextAttr(FormatCode.RED))
-                self.cod_text.AppendText(f'- {key} :  '
-                                         f'Unable to get format code\n')
-            else:
-                self.cod_text.SetDefaultStyle(wx.TextAttr(FormatCode.DONE))
-                self.cod_text.AppendText(f'- {key} :  {val}\n')
     # ----------------------------------------------------------------------
 
-    def set_formatcode(self, data_url, ssl):
+    def set_formatcode(self, data_url, kwargs):
         """
         Get URLs data and format codes by generator object
         `youtubedl_getstatistics`. Return `True` if `meta[1]`
         (error), otherwise return None as exit status.
         """
-        self.cod_text.Clear()
         self.urls = data_url.copy()
         meta = None, None
         index = 0
         for link in data_url:
-            data = io_tools.youtubedl_getstatistics(link, ssl)
+            data = youtubedl_getstatistics(link,
+                                           kwargs,
+                                           parent=self.GetParent(),
+                                           )
             for meta in data:
                 if meta[1]:
                     return meta[1]
@@ -221,7 +221,7 @@ class FormatCode(wx.Panel):
             formats = iter(meta[0].get('formats', [meta[0]]))
             for n, f in enumerate(formats):
                 if f.get('vcodec'):
-                    vcodec, fps = f['vcodec'], f"{f.get('fps')}fps"
+                    vcodec, fps = f['vcodec'], f"{f.get('fps')}"
                 else:
                     vcodec, fps = '', ''
                 if f.get('acodec'):
@@ -259,6 +259,8 @@ class FormatCode(wx.Panel):
         Called by `on_Start` parent method. Return format code list.
         """
         format_code = []
+        sep = ',' if self.ckbx_nomerge.GetValue() else '+'
+        sepany = '/' if self.ckbx_best.GetValue() else sep
 
         for url, key, val in zip(self.urls,
                                  self.format_dict.keys(),
@@ -275,29 +277,29 @@ class FormatCode(wx.Panel):
                         video = val[0].split('Video: ')[1]
                 else:
                     index_1, index_2 = 0, 0
-                    for i in val:
-                        if i.startswith('Video: '):
+                    for idx in val:
+                        if idx.startswith('Video: '):
                             index_1 += 1
                             if index_1 > 1:
-                                video += f"/{i.split('Video: ')[1]}"
+                                video += f"{sepany}{idx.split('Video: ')[1]}"
                             else:
-                                video = i.split('Video: ')[1]
+                                video = idx.split('Video: ')[1]
 
-                        elif i.startswith('Audio: '):
+                        elif idx.startswith('Audio: '):
                             index_2 += 1
                             if index_2 > 1:
-                                audio += f"/{i.split('Audio: ')[1]}"
+                                audio += f"{sepany}{idx.split('Audio: ')[1]}"
                             else:
-                                audio = i.split('Audio: ')[1]
+                                audio = idx.split('Audio: ')[1]
                         else:
                             index_1 += 1
                             if index_1 > 1:
-                                video += f"/{i.split('Video: ')[1]}"
+                                video += f"{sepany}{idx.split('Video: ')[1]}"
                             else:
-                                video = i.split('Video: ')[1]
+                                video = idx.split('Video: ')[1]
 
                 if video and audio:
-                    format_code.append(f'{video}+{audio}')
+                    format_code.append(f'{video}{sep}{audio}')
                 elif video:
                     format_code.append(f'{video}')
                 elif audio:

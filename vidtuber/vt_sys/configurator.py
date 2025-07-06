@@ -26,8 +26,6 @@ Code checker: flake8, pylint
 """
 import os
 import sys
-import site
-import shutil
 import platform
 from vidtuber.vt_utils.utils import copydir_recursively
 from vidtuber.vt_sys.settings_manager import ConfigManager
@@ -51,25 +49,45 @@ def create_dirs(dirname, fconf):
     if not os.path.exists(dirname):
         try:
             os.makedirs(dirname, mode=0o777)
-        except FileExistsError as err:
+        except Exception as err:
             return {'ERROR': err}
-        except OSError as err:
-            os.remove(fconf)  # force to restart on deleting
-            thismsg = ('Please try restarting Vidtuber to '
-                       'restore default settings now.')
-            return {'ERROR': f'{err}\n{thismsg}'}
 
     return {'R': None}
 
 
-def get_options(dirconf, fileconf, srcpath, makeportable):
+def restore_dirconf(dirconf, srcdata, portable):
+    """
+    This function is responsible for restoring the
+    configuration directory if it is missing and
+    populating it with its essential files.
+    Returns dict:
+        key == 'R'
+        key == ERROR (if any errors)
+    """
+    if not os.path.exists(dirconf):  # create the configuration directory
+        try:
+            os.mkdir(dirconf, mode=0o777)
+        except FileNotFoundError as err:  # parent directory does not exist
+            return {'ERROR': err}
+
+    if portable:
+        dwlddir = os.path.join(dirconf, "Media", "Downloads")
+        try:
+            if not os.path.exists(dwlddir):
+                os.makedirs(dwlddir, mode=0o777)
+        except Exception as err:
+            return {'ERROR': err}
+
+    return {'R': None}
+
+
+def get_options(fileconf, makeportable):
     """
     Check the application options. Reads the `settings.json`
     file; if it does not exist or is unreadable try to restore
-    it. If `dirconf` does not exist try to restore both `dirconf`
-    and `settings.json`. If VERSION is not the same as the version
-    readed, it adds new missing items while preserving the old ones
-    with the same values.
+    it. If VERSION is not the same as the version readed, it adds
+    new missing items while preserving the old ones with the same
+    values.
 
     Returns dict:
         key == 'R'
@@ -78,57 +96,26 @@ def get_options(dirconf, fileconf, srcpath, makeportable):
     conf = ConfigManager(fileconf, makeportable)
     version = ConfigManager.VERSION
 
-    if os.path.exists(dirconf):  # i.e ~/.conf/vidtuber dir
-        if os.path.isfile(fileconf):
-            data = {'R': conf.read_options()}
-            if not data['R']:
-                conf.write_options()
-                data = {'R': conf.read_options()}
-            if float(data['R']['confversion']) != version:  # conf version
-                data['R']['confversion'] = version
-                new = ConfigManager.DEFAULT_OPTIONS  # model
-                data = {'R': {**new, **data['R']}}
-                conf.write_options(**data['R'])
-        else:
+    if os.path.isfile(fileconf):
+        data = {'R': conf.read_options()}
+        if not data['R']:
             conf.write_options()
             data = {'R': conf.read_options()}
+        if float(data['R']['confversion']) != version:  # conf version
+            data['R']['confversion'] = version
+            new = ConfigManager.DEFAULT_OPTIONS  # model
+            data = {'R': {**new, **data['R']}}
+            conf.write_options(**data['R'])
+    else:
+        conf.write_options()
+        data = {'R': conf.read_options()}
 
-    else:  # try to restore entire configuration directory
-        dconf = copydir_recursively(srcpath,
-                                    os.path.dirname(dirconf),
-                                    "vidtuber",
-                                    )
-        if dconf:
-            data = {'ERROR': dconf}
-        else:
-            conf.write_options()
-            data = {'R': conf.read_options()}
+    diff = conf.default_outputdirs(**data['R'])
+    if diff != data['R']:
+        conf.write_options(**diff)  # write default outputdirs
+        data = {'R': conf.read_options()}
 
     return data
-
-
-def get_pyinstaller():
-    """
-    Get pyinstaller-based package attributes to determine
-    how to use sys.executable
-    When a bundled app starts up, the bootloader sets the sys.frozen
-    attribute and stores the absolute path to the bundle folder
-    in sys._MEIPASS.
-    For a one-folder bundle, this is the path to that folder.
-    For a one-file bundle, this is the path to the temporary folder
-    created by the bootloader.
-    """
-    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
-        frozen, meipass = True, True
-        this = getattr(sys, '_MEIPASS', os.path.abspath(__file__))
-        data_locat = this
-
-    else:
-        frozen, meipass = False, False
-        this = os.path.realpath(os.path.abspath(__file__))
-        data_locat = os.path.dirname(os.path.dirname(this))
-
-    return frozen, meipass, this, data_locat
 
 
 def conventional_paths():
@@ -172,18 +159,15 @@ def portable_paths(portdirname):
     log_dir = os.path.join(dir_conf, 'log')  # logs
     cache_dir = os.path.join(dir_conf, 'cache')  # updates executable
 
-    if not os.path.exists(dir_conf):
-        os.makedirs(dir_conf, mode=0o777)
-
     return file_conf, dir_conf, log_dir, cache_dir
 
 
 def get_color_scheme(theme):
     """
     Returns the corrisponding colour scheme according to
-    chosen theme in ("Videomass-Light",
-                     "Videomass-Dark",
-                     "Videomass-Colours",
+    chosen theme in ("Vidtuber-Light",
+                     "Vidtuber-Dark",
+                     "Vidtuber-Colours",
                      "Ubuntu-Light-Aubergine",
                      "Ubuntu-Dark-Aubergine",
                      )
@@ -200,7 +184,7 @@ def get_color_scheme(theme):
                     'INFO': '#194c7e',  # Blue: other info messages
                     'DEBUG': '#333333',  # light green
                     'FAILED': '#D21814',  # RED_DEEP if failed
-                    'ABORT': '#D21814',  # RED_DEEP if abort
+                    'ABORT': '#A41EA4',  # RED_DEEP if abort
                     }
     elif theme == 'Vidtuber-Dark':
         c_scheme = {'BACKGRD': '#232424',  # DARK Grey background color
@@ -235,7 +219,7 @@ def get_color_scheme(theme):
                     'TXT0': '#FFFFFF',  # WHITE for titles
                     'TXT1': '#8AB8E6',  # light Blue
                     'ERR0': '#E95420',  # ORANGE for error text messages
-                    'WARN': '#DFB72F',  # YELLOW for warning messages
+                    'WARN': '#dfb72f',  # YELLOW for warning messages
                     'ERR1': '#F90808',  # RED_DEEP
                     'SUCCESS': '#ABD533',  # Light GREEN when it is successful
                     'TXT3': '#AEA79F',  # Ubuntu warm grey (base foreground)
@@ -250,17 +234,14 @@ def get_color_scheme(theme):
     return c_scheme
 
 
-def data_location(args):
+def data_location(kwargs):
     """
     Determines data location and modes to make the app
     portable, fully portable or using conventional paths.
-    return data location.
+    Returns data location dict.
     """
-    frozen, meipass, this, locat = get_pyinstaller()
-    workdir = os.path.dirname(os.path.dirname(os.path.dirname(this)))
-
-    if args['make_portable']:
-        portdir = args['make_portable']
+    if kwargs['make_portable']:
+        portdir = kwargs['make_portable']
         conffile, confdir, logdir, cachedir = portable_paths(portdir)
     else:
         conffile, confdir, logdir, cachedir = conventional_paths()
@@ -269,116 +250,65 @@ def data_location(args):
             "confdir": confdir,
             "logdir": logdir,
             "cachedir": cachedir,
-            "this": this,
-            "frozen": frozen,
-            "meipass": meipass,
-            "locat": locat,
-            "localepath": os.path.join(locat, 'locale'),
-            "workdir": workdir,
-            "srcpath": os.path.join(locat, 'share'),
-            "icodir": os.path.join(locat, 'art', 'icons'),
-            "ffmpeg_pkg": os.path.join(locat, 'FFMPEG'),
             }
 
 
 class DataSource():
     """
-    DataSource class determines the Vidtuber's configuration
-    according to the used Operating System (Linux/*BSD, MacOS, Windows).
-    Remember that all specifications defined in this class refer
-    only to the following packaging methods:
-
-        - Vidtuber Python package by PyPi (cross-platform, multiuser/user)
-        - Linux's distributions packaging (multiuser)
-        - Bundled app by pyinstaller (windowed for MacOs and Windows)
-        - AppImage for Linux (user)
-
-        * multiuser: system installation
-        * user: local installation
+    DataSource class determines the Vidtuber's
+    configuration according to the used Operating
+    System and installed package.
 
     """
-    # -------------------------------------------------------------------
-
     def __init__(self, kwargs):
         """
-        Having the pathnames returned by `dataloc` it
-        performs the initialization described in DataSource.
+        Having the pathnames returned by `dataloc`
+        it performs the initialization described in
+        DataSource.
 
         """
         self.dataloc = data_location(kwargs)
         self.relativepaths = bool(kwargs['make_portable'])
         self.makeportable = kwargs['make_portable']
-        self.apptype = None  # appimage, pyinstaller on None
-        launcher = os.path.isfile(f"{self.dataloc['workdir']}/launcher")
 
-        if self.dataloc['frozen'] and self.dataloc['meipass'] or launcher:
-            msg(f"frozen={self.dataloc['frozen']} "
-                f"meipass={self.dataloc['meipass']} "
-                f"launcher={launcher}")
-
-            self.apptype = 'pyinstaller' if not launcher else None
-            self.prg_icon = f"{self.dataloc['icodir']}/vidtuber.png"
-
-        elif ('/tmp/.mount_' in sys.executable or os.path.exists(
-              os.path.dirname(os.path.dirname(os.path.dirname(
-                  sys.argv[0])))
-              + '/AppRun')):
-            # embedded on python appimage
-            msg('Embedded on python appimage')
-            self.apptype = 'appimage'
-            userbase = os.path.dirname(os.path.dirname(sys.argv[0]))
-            pixmaps = '/share/pixmaps/vidtuber.png'
-            self.prg_icon = os.path.join(userbase + pixmaps)
-
+        if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+            sitepkg = getattr(sys, '_MEIPASS', os.path.abspath(__file__))
+            srcdata = sitepkg
+            self.dataloc["app"] = 'pyinstaller'
+            msg('Info: Stand-Alone application bundle (build by pyinstaller)')
         else:
-            binarypath = shutil.which('vidtuber')
-            if platform.system() == 'Windows':  # any other packages
-                exe = binarypath if binarypath else sys.executable
-                msg(f'Win32 executable={exe}')
-                # HACK check this
-                # dirname = os.path.dirname(sys.executable)
-                # pythonpath = os.path.join(dirname, 'Script', 'vidtuber')
-                # self.icodir = dirname + '\\share\\vidtuber\\icons'
-                self.prg_icon = self.dataloc['icodir'] + "\\vidtuber.png"
+            sitepkg = os.path.dirname(
+                os.path.dirname(os.path.dirname(__file__)))
+            srcdata = os.path.join(sitepkg, 'vidtuber', 'data')
+            self.dataloc["app"] = None
+            msg(f"Info: Package: «vidtuber»\nInfo: Location: «{sitepkg}»")
 
-            elif binarypath == '/usr/local/bin/vidtuber':
-                msg(f'executable={binarypath}')
-                # pip as super user, usually Linux, MacOs, Unix
-                share = '/usr/local/share/pixmaps'
-                self.prg_icon = share + '/vidtuber.png'
+        self.dataloc["localepath"] = os.path.join(srcdata, 'locale')
+        self.dataloc["srcdata"] = srcdata
+        self.dataloc["icodir"] = os.path.join(srcdata, 'icons')
+        self.dataloc["FFMPEG_DIR"] = os.path.join(srcdata, 'FFMPEG')
 
-            elif binarypath == '/usr/bin/vidtuber':
-                msg(f'executable={binarypath}')
-                # installed via apt, rpm, etc, usually Linux
-                share = '/usr/share/pixmaps'
-                self.prg_icon = share + "/vidtuber.png"
-
-            else:
-                msg(f'executable={binarypath}')
-                # pip as normal user, usually Linux, MacOs, Unix
-                if binarypath is None:
-                    # need if user $PATH is not set yet
-                    userbase = site.getuserbase()
-                else:
-                    userbase = os.path.dirname(os.path.dirname(binarypath))
-                pixmaps = '/share/pixmaps/vidtuber.png'
-                self.prg_icon = os.path.join(userbase + pixmaps)
+        self.prg_icon = os.path.join(self.dataloc['icodir'], "vidtuber.png")
     # ---------------------------------------------------------------------
 
-    def get_fileconf(self):
+    def get_configuration(self):
         """
-        Get settings.json configuration data and returns a dict object
-        with current data-set for bootstrap.
+        Get configuration data of the application.
+        Returns a dict object with current data-set for bootstrap.
 
         Note: If returns a dict key == ERROR it will raise a windowed
         fatal error in the gui_app bootstrap.
         """
+        # checks configuration directory
+        ckdconf = restore_dirconf(self.dataloc['confdir'],
+                                  self.dataloc['srcdata'],
+                                  self.makeportable,
+                                  )
+        if ckdconf.get('ERROR'):
+            return ckdconf
+
         # handle configuration file
-        userconf = get_options(self.dataloc['confdir'],
-                               self.dataloc['conffile'],
-                               self.dataloc['srcpath'],
-                               self.makeportable,
-                               )
+        userconf = get_options(self.dataloc['conffile'], self.makeportable)
         if userconf.get('ERROR'):
             return userconf
         userconf = userconf['R']
@@ -386,7 +316,7 @@ class DataSource():
         # create required directories if them not exist
         requiredirs = (os.path.join(self.dataloc['cachedir'], 'tmp'),
                        self.dataloc['logdir'],
-                       userconf['dirdownload']
+                       #userconf['dirdownload']
                        )
         for dirs in requiredirs:
             create = create_dirs(dirs, self.dataloc['conffile'],)
@@ -395,7 +325,7 @@ class DataSource():
 
         # set color scheme
         theme = get_color_scheme(userconf['icontheme'])
-        userconf['icontheme'] = (userconf['icontheme'], theme)
+        userconf['colorscheme'] = theme
         if theme.get('ERROR'):
             return theme
 
@@ -413,20 +343,24 @@ class DataSource():
                 return path
 
         return ({'ostype': platform.system(),
-                 'srcpath': _relativize(self.dataloc['srcpath']),
+                 'app': self.dataloc['app'],
+                 'srcdata': _relativize(self.dataloc['srcdata']),
                  'localepath': _relativize(self.dataloc['localepath']),
                  'fileconfpath': _relativize(self.dataloc['conffile']),
-                 'workdir': _relativize(self.dataloc['workdir']),
                  'confdir': _relativize(self.dataloc['confdir']),
                  'logdir': _relativize(self.dataloc['logdir']),
                  'cachedir': _relativize(self.dataloc['cachedir']),
-                 'FFMPEG_vidtuber_pkg':
-                     _relativize(self.dataloc['ffmpeg_pkg']),
-                 'app': self.apptype,
+                 'FFMPEG_DIR': _relativize(self.dataloc['FFMPEG_DIR']),
+                 #'FFMPEG_vidtuber_pkg':
+                     #_relativize(self.dataloc['ffmpeg_pkg']),
+
                  'relpath': self.relativepaths,
                  'getpath': _relativize,
+                 'yt_dlp': '',
                  'ffmpeg_cmd': _relativize(userconf['ffmpeg_cmd']),
                  'ffprobe_cmd': _relativize(userconf['ffprobe_cmd']),
+                 'auto-restart-app': False,
+                 'make_portable': self.makeportable,
                  **userconf
                  })
     # --------------------------------------------------------------------
@@ -440,10 +374,9 @@ class DataSource():
 
         """
         keys = ('vidtuber', 'previous', 'next', 'download', 'statistics',
-                'playlist', 'logpanel', 'stop', 'clear',
+                'playlist', 'subtitles','logpanel', 'stop', 'clear',
+                'options',
                 )  # must match with items on `iconset` tuple, see following
-
-        ext = 'svg' if 'wx.svg' in sys.modules else 'png'
         icodir = self.dataloc['icodir']
         iconames = {'Vidtuber-Light':  # Vidtuber icons for light themes
                     {'x16': f'{icodir}/Vidtuber-Light/16x16',
@@ -454,24 +387,26 @@ class DataSource():
                     'Vidtuber-Colours':  # Vidtuber icons for all themes
                     {'x16': f'{icodir}/Vidtuber-Colours/16x16',
                      'x22': f'{icodir}/Vidtuber-Colours/24x24'},
-                    'Ubuntu-Dark-Aubergine':  # Videomass icons for all themes
+                    'Ubuntu-Dark-Aubergine':  # Vidtuber icons for all themes
                     {'x16': f'{icodir}/Vidtuber-Dark/16x16',
                      'x22': f'{icodir}/Vidtuber-Dark/24x24'},
-                    'Ubuntu-Light-Aubergine':  # Videomass icons for all themes
+                    'Ubuntu-Light-Aubergine':  # Vidtuber icons for all themes
                     {'x16': f'{icodir}/Vidtuber-Light/16x16',
                      'x22': f'{icodir}/Vidtuber-Light/24x24'},
                     }
         choose = iconames.get(icontheme)  # set appropriate icontheme
-
+        ext = 'svg' if 'wx.svg' in sys.modules else 'png'
         iconset = (self.prg_icon,
                    f"{choose.get('x22')}/go-previous.{ext}",
                    f"{choose.get('x22')}/go-next.{ext}",
                    f"{choose.get('x22')}/download.{ext}",
                    f"{choose.get('x22')}/statistics.{ext}",
-                   f"{choose.get('x16')}/playlist-append.{ext}",
+                   f"{choose.get('x16')}/playlist.{ext}",
+                   f"{choose.get('x16')}/subtitles.{ext}",
                    f"{choose.get('x22')}/logpanel.{ext}",
                    f"{choose.get('x22')}/stop.{ext}",
                    f"{choose.get('x22')}/clear.{ext}",
+                   f"{choose.get('x22')}/options.{ext}",
                    )
         values = [os.path.join(norm) for norm in iconset]  # normalize pathns
 
