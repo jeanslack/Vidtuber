@@ -26,7 +26,6 @@ This file is part of Vidtuber.
 """
 import os
 import wx
-from vidtuber.vt_dialogs.list_warning import ListWarning
 
 
 def check_destination_dir(file_dest):

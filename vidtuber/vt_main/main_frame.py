@@ -326,9 +326,9 @@ class MainFrame(wx.Frame):
                                          ('https://github.com/jeanslack/'
                                           'Vidtuber/pulls'))
         spons = helpButton.Append(wx.ID_ANY, _("Sponsor this project"),
-                                             _("Become a developer supporter"))
+                                  _("Become a developer supporter"))
         donat = helpButton.Append(wx.ID_ANY, _("Donate"),
-                                             _("Donate to the app developer"))
+                                  _("Donate to the app developer"))
         helpButton.AppendSeparator()
         infoItem = helpButton.Append(wx.ID_ABOUT, _("About Vidtuber"), "")
         dscrp = (_("Check latest version"),

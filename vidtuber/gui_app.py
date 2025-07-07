@@ -235,6 +235,7 @@ class Vidtuber(wx.App):
         return True
     # -------------------------------------------------------------------
 
+
 def auto_restart(apptype, portmode):
     """
     This function spawn the same executable again, automatically

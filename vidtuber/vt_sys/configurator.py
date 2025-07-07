@@ -27,7 +27,6 @@ Code checker: flake8, pylint
 import os
 import sys
 import platform
-from vidtuber.vt_utils.utils import copydir_recursively
 from vidtuber.vt_sys.settings_manager import ConfigManager
 
 
@@ -316,7 +315,6 @@ class DataSource():
         # create required directories if them not exist
         requiredirs = (os.path.join(self.dataloc['cachedir'], 'tmp'),
                        self.dataloc['logdir'],
-                       #userconf['dirdownload']
                        )
         for dirs in requiredirs:
             create = create_dirs(dirs, self.dataloc['conffile'],)
@@ -351,9 +349,6 @@ class DataSource():
                  'logdir': _relativize(self.dataloc['logdir']),
                  'cachedir': _relativize(self.dataloc['cachedir']),
                  'FFMPEG_DIR': _relativize(self.dataloc['FFMPEG_DIR']),
-                 #'FFMPEG_vidtuber_pkg':
-                     #_relativize(self.dataloc['ffmpeg_pkg']),
-
                  'relpath': self.relativepaths,
                  'getpath': _relativize,
                  'yt_dlp': '',
@@ -373,9 +368,9 @@ class DataSource():
         Returns a icontheme dict object.
 
         """
-        keys = ('vidtuber', 'previous', 'next', 'download', 'statistics',
-                'playlist', 'subtitles','logpanel', 'stop', 'clear',
-                'options',
+        keys = ('vidtuber', 'previous', 'next', 'download',
+                'statistics', 'playlist', 'subtitles', 'logpanel',
+                'stop', 'clear', 'options',
                 )  # must match with items on `iconset` tuple, see following
         icodir = self.dataloc['icodir']
         iconames = {'Vidtuber-Light':  # Vidtuber icons for light themes

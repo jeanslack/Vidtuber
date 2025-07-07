@@ -51,17 +51,32 @@ class ConfigManager:
 
     Options description:
 
+    shutdown (bool):
+        If True turn off the system when operation is finished.
+        Name space only, the setting will not be stored in the
+        configuration file.
+
+    sudo_password (str):
+        SUDO password for the shutdown process if the user does
+        not have elevated privileges. Name space only, the setting
+        will not be stored in the configuration file.
+
+    auto_exit (bool):
+        exit the application programmatically when processing is
+        finished. Name space only, the setting will not be stored
+        in the configuration file.
+
     confversion (float):
         current version of this configuration file
 
     dirdownload (str):
-        file destination path used by the downloader
+        file destination path
 
     ffmpeg_cmd, ffprobe_cmd, (str):
         Absolute or relative path name of the executable.
         If an empty ("") string is found, starts the wizard.
 
-    ffmpeg_islocal, ffprobe_islocal, (bool):
+    ffmpeg_islocal, ffplay_islocal, ffprobe_islocal, (bool):
         With True the user enables the executable locally
 
     warnexiting (bool):
@@ -76,30 +91,23 @@ class ConfigManager:
     toolbarpos (int):
         Set toolbar positioning. 0 placed on top side;
         1 placed at the bottom side; 2 placed at the rigth side;
-        3 is placed at the left side. default is 0 .
+        3 is placed at the left side. default is 3 .
 
-    toolbartext (bool):
-        True, enables text alongside toolbar buttons. Default is False.
-
-    window_size (list):
+    main_window_size (list):
         [int(Height), int(Width)] last current window dimension before
         exiting the application.
 
-    window_position (list):
+    main_window_pos (list):
         [int(x), in(y)] last current window position on monitor screen
         before exiting the application.
 
     clearcache (bool):
         with True, clear the cache before exiting the application,
-        default is False
+        default is True
 
     clearlogfiles (bool):
         with True, erases all log files content before exiting the
         application, default is False.
-
-    playlistsubfolder (bool):
-        Auto-create subfolders when download the playlists,
-        default value is True.
 
     locale_name (str):
         "Default", set system language to vidtuber message catalog
@@ -107,7 +115,70 @@ class ConfigManager:
         It supports canonical form of locale names as used on UNIX systems,
         eg. xx or xx_YY format, where xx is ISO 639 code of language and
         YY is ISO 3166 code of the country. Examples are "en", "en_GB",
-        "en_US" or "fr_FR".
+        "en_US" or "fr_FR", etc.
+
+    ytdlp-enable-exec (bool):
+        If `True`, the user enable a custom location (pathname) for
+        yt-dlp executable. Default is `False`.
+
+    ytdlp-exec-path (str):
+        Path to the yt-dlp (yt-dlp.exe on Windows) executable.
+
+    ytdlp-usemodule (bool):
+        If True, allow to open specified yt_dlp module dir
+
+    ytdlp-module-path (str),
+        Path to the yt-dlp dir
+
+    playlistsubfolder (bool):
+        Auto-create subfolders when download the playlists,
+        default value is True.
+
+    ("ssl_certificate", "add_metadata", "embed_thumbnails",
+    "overwr_dl_files", "include_ID_name", "restrict_fname")
+    (bool):
+        Checkboxes option (see YouTube Downloader)
+
+    subtitles_options (dict):
+        (see YouTube Downloader)
+
+    external_downloader (str):
+        external downloader used by yt-dlp. Default is None
+
+    external_downloader_args (list):
+        args used by external downloader in yt-dlp. Default is None
+        List of options should be passed using aria2c:
+        ["-j", "1","-x", "1", "-s", "1"]
+
+    proxy (str):
+        Use the specified HTTP/HTTPS/SOCKS proxy. To enable SOCKS proxy,
+        specify a proper scheme, e.g. socks5://user:pass@127.0.0.1:1080/ .
+        Pass in an empty string (--proxy "") for direct connection
+
+    username (str):
+        Login with this account ID
+
+    password (str):
+        Account password. If this option is left out, yt-dlp will ask
+        interactively
+
+    videopassword (str):
+        for Video-specific password
+
+    geo-restriction setup options:
+        geo_verification_proxy (str)
+        geo_bypass (str)
+        geo_bypass_country (str)
+        geo_bypass_ip_block (str)
+
+    cookie file setup options:
+        cookiefile (str)
+        autogen_cookie_file (bool)
+        webbrowser (str),
+        cookiesfrombrowser (list)
+
+    fcode_column_width (list of int)
+        column width in the format code panel (ytdownloader).
 
     """
     VERSION = 1.7
@@ -178,7 +249,7 @@ class ConfigManager:
         self.makeportable = makeportable
 
         if self.makeportable:
-            path = os.path.join(makeportable, "Media", "Downloads")
+            dwldpath = os.path.join(makeportable, "Media", "Downloads")
             outputdir = os.path.relpath(dwldpath)
             ConfigManager.DEFAULT_OPTIONS['dirdownload'] = outputdir
             self.dwlddir = outputdir

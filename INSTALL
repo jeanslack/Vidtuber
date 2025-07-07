@@ -5,8 +5,8 @@ VIDTUBER INSTALLATION INSTRUCTIONS AND BUILDINGS
 Executable packages availables
 ==============================
 
-If you are not a developer and just want to install Videomass on your operating
-system, please download the executable file for your OS at: 
+If you are not a developer and just want to install Vidtuber on your operating
+system, please download the executable file for your OS at:
 
     https://github.com/jeanslack/Vidtuber/releases
 
@@ -36,7 +36,7 @@ and executing the "launcher" script inside the source Vidtuber directory.
     cd Vidtuber (source directory)
 
     python launcher
-    
+
 Vidtuber can also be imported from the Python3 console (interactive mode):
 
     >>> from vidtuber import gui_app
@@ -83,11 +83,11 @@ Installation using pip
 
         source VENV/bin/activate
     ------------------------------------------------------------------------
-    
+
 If you want install dependencies only, inside source directory type:
 
     python3 -m pip install -r requirements.txt
-    
+
 If you want install dependencies + Vidtuber, Use like this:
 
     python3 -m pip install git+https://github.com/jeanslack/Vidtuber.git@main -r requirements.txt
