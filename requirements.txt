@@ -1,0 +1,10 @@
+# If you want install dependencies only, Use like this:
+#    python3 -m pip install -r requirements.txt
+
+# If you want install dependencies + Vidtuber, Use like this:
+#   python3 -m pip install git+https://github.com/jeanslack/Vidtuber.git@main -r requirements.txt
+
+# On some systems, you may need to use "py" or "python" instead of "python3"
+
+
+-r requirements/installation.txt

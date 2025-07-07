@@ -5,7 +5,7 @@
   <project_license>GPL-3.0-only</project_license>
   <name>Vidtuber</name>
   <summary>A simple cross-platform GUI for yt-dlp</summary>
-  <icon type="remote">https://raw.githubusercontent.com/jeanslack/Vidtuber/master/vidtuber/art/icons/hicolor/scalable/apps/vidtuber.svg</icon>
+  <icon type="remote">https://raw.githubusercontent.com/jeanslack/Vidtuber/master/vidtuber/data/hicolor/scalable/apps/vidtuber.svg</icon>
   <categories>
     <category>AudioVideo</category>
   </categories>
@@ -34,7 +34,7 @@
 
   <url type="homepage">https://github.com/jeanslack/Vidtuber/</url>
   <url type="bugtracker">https://github.com/jeanslack/Vidtuber/issues</url>
-  <url type="translate">https://github.com/jeanslack/Vidtuber/tree/master/docs/localization_guidelines.md</url>
+  <url type="translate">https://github.com/jeanslack/Vidtuber/tree/master/docs/Localization_Guidelines.md</url>
 
   <provides>
     <binary>vidtuber</binary>

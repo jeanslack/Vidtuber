@@ -43,6 +43,7 @@ from vidtuber.vt_sys.settings_manager import ConfigManager
 from vidtuber.vt_dialogs.settings_ytdlp import YtdlpSettings
 from vidtuber.vt_dialogs import settings_vidtuber
 from vidtuber.vt_threads.shutdown import shutdown_system
+from vidtuber.vt_dialogs.widget_utils import CountDownDlg
 from vidtuber.vt_sys.argparser import info_this_platform
 from vidtuber.vt_sys.about_app import VERSION
 if wx.GetApp().appset['yt_dlp'] is True:
@@ -73,7 +74,6 @@ class MainFrame(wx.Frame):
         wx.Frame.__init__(self, None, -1, style=wx.DEFAULT_FRAME_STYLE)
 
         # ---------- panel instances:
-        #self.parent = parent
         self.ytDownloader = Downloader(self)
         self.textDnDTarget = Url_DnD_Panel(self)
         self.ProcessPanel = LogOut(self)
@@ -89,7 +89,7 @@ class MainFrame(wx.Frame):
         mainSizer.Add(self.ProcessPanel, 1, wx.EXPAND)
 
         # ----------------------Set Properties----------------------#
-        self.SetTitle("Vidtuber - YouTube Downloader")
+        self.SetTitle(_("Vidtuber - List of URLs"))
         icon = wx.Icon()
         icon.CopyFromBitmap(wx.Bitmap(self.icons['vidtuber'],
                                       wx.BITMAP_TYPE_ANY))
@@ -753,7 +753,7 @@ class MainFrame(wx.Frame):
         Show youtube-dl downloader panel
         """
         self.ytDownloader.clear_data_list(self.changed)
-        self.SetTitle(_('Vidtuber - YouTube Downloader'))
+        self.SetTitle(_('Vidtuber - Download Settings'))
         self.textDnDTarget.Hide()
         self.ytDownloader.Show()
         (self.delete.Enable(False),
@@ -827,10 +827,10 @@ class MainFrame(wx.Frame):
         self.toolbar.EnableTool(23, True)
         self.setupItem.Enable(True)
 
-        #if self.appdata['shutdown']:
-            #self.parent.auto_shutdown()
-        #elif self.appdata['auto_exit']:
-            #self.parent.auto_exit()
+        if self.appdata['shutdown']:
+            self.auto_shutdown()
+        elif self.appdata['auto_exit']:
+            self.auto_exit()
     # ------------------------------------------------------------------#
 
     def panelShown(self):

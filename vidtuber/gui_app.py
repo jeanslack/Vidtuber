@@ -116,16 +116,28 @@ class Vidtuber(wx.App):
         """
         Check for `yt_dlp` python module.
         """
-        #if self.appset['downloader'] == 'yt_dlp':
+        msg = (_("To suppress this message on startup, please install "
+                 "yt-dlp or disable it from the preferences."))
+
+        if (self.appset['ytdlp-module-path']
+                and self.appset['ytdlp-usemodule']):
+            check = importer_init_file(self.appset['ytdlp-module-path'],
+                                       test=['yt_dlp.YoutubeDL',
+                                             'yt_dlp.version']
+                                       )
+            if check:
+                wx.MessageBox(f"ERROR: {check}\n\n{msg}",
+                              _('Vidtuber - Error!'), wx.ICON_ERROR)
+                return False
         try:
             import yt_dlp
             self.appset['yt_dlp'] = True
+            return True
         except ModuleNotFoundError as err:
-            wx.MessageBox(f"ERROR: {err}\n\nyt-dlp is missing, "
-                          f"please install it.", 'Vidtuber - ERROR',
-                          wx.ICON_STOP)
+            wx.MessageBox(f"ERROR: {err}\n\n{msg}",
+                          _('Vidtuber - Error!'), wx.ICON_ERROR)
             return False
-        return None
+        return False
     # -------------------------------------------------------------------
 
     def check_ffmpeg(self):

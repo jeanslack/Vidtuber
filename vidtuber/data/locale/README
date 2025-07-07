@@ -3,8 +3,8 @@
 NOTE FOR VOLUNTARY TRANSLATORS:
 
 If you are interested in translating any language or adding a new translation,
-please see `localization_guidelines.md` on
-<https://github.com/jeanslack/Vidtuber/blob/master/docs/localization_guidelines.md>
+please see `Localization_Guidelines.md` on
+<https://github.com/jeanslack/Vidtuber/blob/master/docs/Localization_Guidelines.md>
 web page, thanks.
 
 IMPORTANT! Before translate, update in place the vidtuber.po strings:

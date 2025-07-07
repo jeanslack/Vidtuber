@@ -7,5 +7,7 @@ Comment=Vidtuber is a simple and cross-platform GUI for yt-dlp
 Categories=AudioVideo;
 
 Icon=vidtuber
+StartupNotify=true
+StartupWMClass=vidtuber
 Exec=vidtuber
 Terminal=false
