@@ -56,6 +56,7 @@ dependencies = [
 
 [project.optional-dependencies]
 cli = []
+
 build = [
     "build",
     "hatchling",

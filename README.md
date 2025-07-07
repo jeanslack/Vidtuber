@@ -12,7 +12,7 @@ written in [Python3](https://www.python.org/) using the
 ### installing and requirements
 Please read [INSTALL](https://github.com/jeanslack/Vidtuber/blob/main/INSTALL) file.
 
-# Help translate the program into other languages
+### Help translate the program into other languages
 DISCLAIMER: By sending a translation you agree to publish your work under the GPL3 license!
 - [Localization_Guidelines](https://github.com/jeanslack/Vidtuber/tree/main/docs/Localization_Guidelines)
 
