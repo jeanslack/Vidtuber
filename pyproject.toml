@@ -1,0 +1,136 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vidtuber"
+dynamic = ["version"]
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  {name = "Gianluca Pernigotto", email = "jeanlucperni@gmail.com"}
+]
+maintainers = [
+  {name = "Gianluca Pernigotto", email = "jeanlucperni@gmail.com"}
+]
+description = "Vidtuber is a simple, cross-platform graphical user interface for yt-dlp"
+license =  {text = "GNU General Public License v3 (GPLv3)"}
+keywords = [
+    "vidtuber",
+    "wxpython",
+    "yt-dlp",
+    "youtube-dl"]
+classifiers = [
+    "Environment :: X11 Applications :: GTK",
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: Arabic",
+    "Natural Language :: Chinese (Simplified)",
+    "Natural Language :: Czech",
+    "Natural Language :: Dutch",
+    "Natural Language :: English",
+    "Natural Language :: French",
+    "Natural Language :: German",
+    "Natural Language :: Hungarian",
+    "Natural Language :: Italian",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Natural Language :: Russian",
+    "Natural Language :: Spanish",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Video"
+]
+dependencies = [
+    "wxpython>=4.0.7;platform_system == 'Windows' or platform_system == 'Darwin'",
+    "pypubsub>=4.0.3",
+    "requests>=2.28.1",
+    "yt-dlp"
+]
+
+[project.optional-dependencies]
+cli = []
+
+build = [
+    "build",
+    "hatchling",
+    "pip",
+    "six",
+    "wheel",
+    "setuptools",
+    "babel",
+]
+pyinstaller = [
+    "pyinstaller",
+]
+
+[tool.hatch.build.hooks.custom]  # see hatch_build.py file
+# https://github.com/pypa/hatch/discussions/1047
+dependencies = [
+    "babel"
+]
+
+[tool.hatch.version]
+path = "vidtuber/vt_sys/about_app.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "vidtuber",
+    "debian",
+    "docs/man",
+    "develop",
+    "tests",
+    "AUTHORS",
+    "BUGS",
+    "CHANGELOG",
+    "INSTALL",
+    "LICENSE",
+    "README.md",  # already included as readme
+    "TODO",
+    "launcher",
+    "requirements",
+    "requirements.txt",
+    "xdg",
+    ".gitignore",  # already included by default, needed for auto-excludes
+    ".flake8",
+    ".pylintrc",
+]
+exclude = [
+    "vidtuber/data/icons/vidtuber.icns",
+    "vidtuber/data/icons/vidtuber.ico",
+    "vidtuber/data/locale/vidtuber.pot",
+    "vidtuber/data/locale/README",
+    "vidtuber/data/FFMPEG",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["vidtuber"]
+artifacts = [
+    # https://hatch.pypa.io/latest/config/build/#artifacts
+    "*.mo",
+]
+
+[tool.hatch.build.targets.wheel.shared-data]
+"docs/man/vidtuber.1.gz" = "share/man/man1/vidtuber.1.gz"
+"xdg/io.github.jeanslack.vidtuber.appdata.xml" = "share/metainfo/io.github.jeanslack.vidtuber.appdata.xml"
+"xdg/io.github.jeanslack.vidtuber.desktop" = "share/applications/io.github.jeanslack.vidtuber.desktop"
+"vidtuber/data/icons/vidtuber.png" = "share/pixmaps/vidtuber.png"
+"vidtuber/data/hicolor/48x48/apps/vidtuber.xpm" = "share/icons/hicolor/48x48/apps/vidtuber.xpm"
+"vidtuber/data/hicolor/48x48/apps/vidtuber.png" = "share/icons/hicolor/48x48/apps/vidtuber.png"
+"vidtuber/data/hicolor/256x256/apps/vidtuber.png" = "share/icons/hicolor/256x256/apps/vidtuber.png"
+"vidtuber/data/hicolor/scalable/apps/vidtuber.svg" = "share/icons/hicolor/scalable/apps/vidtuber.svg"
+
+[project.gui-scripts]
+vidtuber = "vidtuber.gui_app:main"
+
+[project.urls]
+Homepage = "https://github.com/jeanslack/Vidtuber"
+Documentation = "https://github.com/jeanslack/Vidtuber"
+Repository = "https://github.com/jeanslack/Vidtuber"
+Issues = "https://github.com/jeanslack/Vidtuber/issues"

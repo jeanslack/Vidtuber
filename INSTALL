@@ -1,86 +1,96 @@
-Vidtuber Installation Instructions and buildings
 
-BASE DEPENDENCIES
------------------
+VIDTUBER INSTALLATION INSTRUCTIONS AND BUILDINGS
 
-    Required:
-        - Python >=3.7.0
-        - wxPython-Phoenix >=4.0.7
-        - PyPubSub
-        - yt-dlp
-        - requests
-        - FFmpeg >=4.3
+==============================
+Executable packages availables
+==============================
+
+If you are not a developer and just want to install Vidtuber on your operating
+system, please download the executable file for your OS at:
+
+    https://github.com/jeanslack/Vidtuber/releases
+
+
+=============================
+Base application dependencies
+=============================
+
+    Requires:
+        - Python >=3.9.0
+        - wxPython >=4.0.7
+        - PyPubSub >=4.0.3
+        - requests >=2.28.1
+        - yt-dlp >=2025.06.30
+        - FFmpeg (included ffprobe) >=5.1
     Optionals:
-        - atomicparsley (to embed thumbnail in audio file)
+        - atomicparsley (http://atomicparsley.sourceforge.net/)
 
-Vidtuber can be run without installing by unpack the source package archive
-and executing the "launcher" script inside the root Vidtuber directory.
 
-    cd Vidtuber
+=========================
+Run from source directory
+=========================
 
-    python3 launcher
+Vidtuber can be run without installing by extracting the source archive
+and executing the "launcher" script inside the source Vidtuber directory.
+
+    cd Vidtuber (source directory)
+
+    python launcher
 
 Vidtuber can also be imported from the Python3 console (interactive mode):
 
     >>> from vidtuber import gui_app
     >>> gui_app.main()
 
-#--------------------------------------------------------------------------#
 
-Installing with pip tool: (Linux, MacOs, FreeBSD, Windows, etc.)
+=====================================
+Compiles language translation catalog
+=====================================
 
-    $ python3 -m pip install --user vidtuber
+By default Vidtuber does not include the compiled catalog for language
+translations, i.e. `vidtuber.mo` files, especially on development source code.
+If you want to compile the language catalog to make the translations available
+on Vidtuber, use one of the following options based on your operating system
+requirements:
 
-Upgrading with pip tool: (Linux, MacOs, FreeBSD, Windows, etc.)
+Using `babelutils.py` python script (multi-platform)
+----------------------------------------------------
 
-    $ python3 -m pip install --user -U vidtuber
+    Requires:
+        - babel (also installable via pip)
 
-- To uninstall:
+    cd Vidtuber (source directory)
 
-    $ python3 -m pip uninstall vidtuber
+    python3 develop/gettext_utils/babelutils.py --compile-catalogs --output-dir vidtuber/data/locale --domain vidtuber
 
-Please, Visit the Wiki page for more info:
 
-<https://github.com/jeanslack/Vidtuber/wiki/Installation-using-pip>
+======================
+Installation using pip
+======================
 
-#--------------------------------------------------------------------------#
+    -----------------------------------------------------------------------
+    If you are a Linux/FreeBSD user, the standard installation procedure
+    will not install wxPython, as wxPython's PyPi wheels provides support for
+    Windows and MacOS only. Please install wxPython manually using your OS's
+    package manager.
 
-Build as wheel: (Linux, MacOs, FreeBSD, Windows, etc.)
+    Then, this assumes a virtual environment activated using python-venv
+    module with `--system-site-package` option to share wxPython module
+    installed in your OS,
+    like this:
 
-    $ python3 setup.py sdist bdist_wheel
+        python -m venv --system-site-packages --upgrade-deps VENV
 
-    or
+        source VENV/bin/activate
+    ------------------------------------------------------------------------
 
-    $ python3 -m build
+If you want install dependencies only, inside source directory type:
 
-    For more info visit: <https://packaging.python.org/tutorials/packaging-projects/>
-#--------------------------------------------------------------------------#
+    python3 -m pip install -r requirements.txt
 
-Make a Debian source package from upstream source code:
+If you want install dependencies + Vidtuber, Use like this:
 
-This will transform upstream source code into policy-compliant binary packages.
+    python3 -m pip install git+https://github.com/jeanslack/Vidtuber.git@main -r requirements.txt
 
-Please, Visit the Vidtuber Wiki page for istructions:
+On some systems, you may need to use "py" or "python" instead of "python3"
 
-<https://github.com/jeanslack/Vidtuber/wiki/Packaging-for-Debian-and-derivatives>
-
-#--------------------------------------------------------------------------#
-
-Build as executable (Linux, Windows, MacOs)
-
-require: pyinstaller
-
-Use the 'develop/tools/pyinstaller_setup.py' script like this
-
-    $ python3 develop/tools/pyinstaller_setup.py -h
-
-Then choose the option you want.
-
-#--------------------------------------------------------------------------#
-
-Build as AppImage (only Linux)
-
-Use the 'develop/tools/AppImage_build.sh' script
-
-It will make a Vidtuber AppImage on current directory by installing the latest
-version on PyPi.
