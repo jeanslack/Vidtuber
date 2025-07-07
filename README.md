@@ -14,5 +14,5 @@ Please read [INSTALL](https://github.com/jeanslack/Vidtuber/blob/main/INSTALL) f
 
 ### Help translate the program into other languages
 DISCLAIMER: By sending a translation you agree to publish your work under the GPL3 license!
-- [Localization_Guidelines](https://github.com/jeanslack/Vidtuber/tree/main/docs/Localization_Guidelines)
+- [Localization_Guidelines](https://github.com/jeanslack/Vidtuber/blob/main/docs/Localization_Guidelines.md)
 
