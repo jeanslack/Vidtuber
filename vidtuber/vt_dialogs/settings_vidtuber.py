@@ -259,7 +259,7 @@ class SetUp(wx.Dialog):
                                   name='config dir')
         self.txtctrl_conf = wx.TextCtrl(tabSix, wx.ID_ANY,
                                         self.appdata['confdir'],
-                                        size=(500, -1),
+                                        size=(350, -1),
                                         style=wx.TE_READONLY,
                                         )
         griddefdirs = wx.FlexGridSizer(3, 3, 5, 0)
@@ -272,7 +272,7 @@ class SetUp(wx.Dialog):
                                    name='cache dir')
         self.txtctrl_cache = wx.TextCtrl(tabSix, wx.ID_ANY,
                                          self.appdata['cachedir'],
-                                         size=(500, -1),
+                                         size=(350, -1),
                                          style=wx.TE_READONLY,
                                          )
         griddefdirs.Add(labcache, 0, wx.LEFT | wx.TOP, 5)
@@ -284,7 +284,7 @@ class SetUp(wx.Dialog):
                                  name='log dir')
         self.txtctrl_log = wx.TextCtrl(tabSix, wx.ID_ANY,
                                        self.appdata['logdir'],
-                                       size=(500, -1),
+                                       size=(350, -1),
                                        style=wx.TE_READONLY,
                                        )
         griddefdirs.Add(lablog, 0, wx.LEFT | wx.TOP, 5)
@@ -339,7 +339,7 @@ class SetUp(wx.Dialog):
         self.SetTitle(_("Application Preferences"))
 
         # ------ set sizer
-        self.SetMinSize((750, 550))
+        self.SetMinSize((700, 500))
         self.SetSizer(sizer_base)
         sizer_base.Fit(self)
         self.Layout()

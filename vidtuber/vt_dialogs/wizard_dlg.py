@@ -202,7 +202,7 @@ class PageTwo(wx.Panel):
             fname = '*yt-dlp;*yt-dlp_linux;'
             wild = f"Binary/Executable ({fname})|{fname}| All files (**)|**"
         else:
-            fname = '*yt-dlp;'
+            fname = f'*{PageTwo.YTDLP};'
             wild = f"Binary/Executable ({fname})|{fname}| All files (**)|**"
 
         with wx.FileDialog(self, _('{} location').format(PageTwo.YTDLP),

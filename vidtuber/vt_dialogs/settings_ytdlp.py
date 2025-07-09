@@ -403,7 +403,7 @@ class YtdlpSettings(wx.Dialog):
         self.SetTitle(_("Yt-dlp options setting"))
 
         # ------ set sizer
-        self.SetMinSize((700, 550))
+        self.SetMinSize((700, 450))
         self.SetSizer(sizer_base)
         sizer_base.Fit(self)
         self.Layout()

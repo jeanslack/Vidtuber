@@ -91,7 +91,7 @@ class MainFrame(wx.Frame):
         icon.CopyFromBitmap(wx.Bitmap(self.icons['vidtuber'],
                                       wx.BITMAP_TYPE_ANY))
         self.SetIcon(icon)
-        self.SetMinSize((1100, 715))
+        self.SetMinSize((850, 560))
         self.SetSizer(mainSizer)
         self.Fit()
         self.SetSize(tuple(self.appdata['window_size']))
