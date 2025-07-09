@@ -36,8 +36,9 @@ class ShowLogs(wx.Dialog):
     """
     # list of logs files to include
     LOGNAMES = ('generic_task.log',
-                'YouTube Downloader.log',
+                'Download_yt-dlp.log',
                 'Shutdown.log',
+                'Format_Codes.log',
                 )
 
     def __init__(self, parent, dirlog, OS):

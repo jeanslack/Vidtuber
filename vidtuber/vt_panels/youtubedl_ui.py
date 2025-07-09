@@ -28,12 +28,10 @@ import sys
 import shutil
 import itertools
 import wx
-from vidtuber.vt_io.io_tools import youtubedl_getstatistics
-from vidtuber.vt_utils.utils import integer_to_time as totimesec
 from vidtuber.vt_utils.get_bmpfromsvg import get_bmp
 from vidtuber.vt_dialogs.playlist_indexing import Indexing
 from vidtuber.vt_dialogs.subtitles_editor import SubtitleEditor
-from vidtuber.vt_panels.formatcode import FormatCode
+from vidtuber.vt_panels.formatcode_exec import FormatCode
 from vidtuber.vt_sys.settings_manager import ConfigManager
 
 
@@ -159,9 +157,7 @@ class Downloader(wx.Panel):
 
     def __init__(self, parent):
         """
-        The first item of the self.info is a complete list of all
-        informations getting by extract_info method from youtube_dl
-        module.
+        Initialization: the parent is the main frame
         """
         get = wx.GetApp()  # get data from bootstrap
         icons = get.iconset
@@ -187,7 +183,6 @@ class Downloader(wx.Panel):
                     ("SUBS"): sett['subtitles_options'],
                     }
         self.plidx = {'': ''}
-        self.info = []  # has data information for Statistics button
         self.format_dict = {}  # format codes order with URL matching
         self.quality = 'best'
         self.oldwx = None  # test result of hasattr EVT_LIST_ITEM_CHECKED
@@ -314,7 +309,6 @@ class Downloader(wx.Panel):
         delete data and set to Disable otherwise.
         """
         if not self.parent.data_url:
-            del self.info[:]
             self.format_dict.clear()
             self.panel_cod.fcode.DeleteAllItems()
             self.on_choicebox(self, statusmsg=False)
@@ -325,74 +319,7 @@ class Downloader(wx.Panel):
                 self.panel_cod.fcode.DeleteAllItems()
                 self.choice.SetSelection(0)
                 self.on_choicebox(self, statusmsg=False)
-                del self.info[:]
                 self.format_dict.clear()
-    # -----------------------------------------------------------------#
-
-    def get_statistics(self, link):
-        """
-        Get media URLs informations by generator object
-        `youtubedl_getstatistics`: This method `Return` a
-        two elements list ['ERROR', (message error)]
-        if `meta[1]` (error), [None, dictobject] otherwise.
-        Check the first item of list to recognize the exit
-        status, which is 'ERROR' or None.
-        """
-        kwa = self.default_statistics_options()
-        data = youtubedl_getstatistics(link,
-                                       kwa,
-                                       parent=self.GetParent(),
-                                       )
-        for meta in data:
-            if meta[1]:
-                return ('ERROR', meta[1])
-
-            if 'entries' in meta[0]:
-                try:
-                    meta[0]['entries'][0]  # don't parse all playlist
-                except IndexError:
-                    pass
-            if 'duration' in meta[0]:
-
-                ftime = (f"{totimesec(round(meta[0]['duration'] * 1000))} "
-                         f"({meta[0]['duration']} sec.)")
-            else:
-                ftime = 'N/A'
-
-            date = meta[0].get('upload_date')
-            return (None, {'url': link,
-                           'title': meta[0].get('title'),
-                           'categories': meta[0].get('categories'),
-                           'license': meta[0].get('license'),
-                           'format': meta[0].get('format'),
-                           'upload_date': date,
-                           'uploader': meta[0].get('uploader'),
-                           'view': meta[0].get('view_count'),
-                           'like': meta[0].get('like_count'),
-                           'dislike': meta[0].get('dislike_count'),
-                           'avr_rat': meta[0].get('average_rating'),
-                           'id': meta[0].get('id'),
-                           'duration': ftime,
-                           'description': meta[0].get('description'),
-                           })
-    # -----------------------------------------------------------------#
-
-    def on_show_statistics(self):
-        """
-        show URL data information. This method is called by
-        main frame when the 'Statistics' button is pressed.
-        """
-        if not self.info:
-            for link in self.parent.data_url:
-                ret = self.get_statistics(link)
-                if ret[0] == 'ERROR':
-                    wx.MessageBox(ret[1], _('Vidtuber - Error!'),
-                                  wx.ICON_ERROR, self)
-                    del self.info[:]
-                    return None
-                self.info.append(ret[1])
-
-        return self.info
     # -----------------------------------------------------------------#
 
     def on_format_codes(self):
@@ -402,7 +329,9 @@ class Downloader(wx.Panel):
         """
         if self.panel_cod.fcode.GetItemCount():  # not changed, already set
             return None
-        kwa = self.default_statistics_options()
+        cmd = self.default_statistics_options()
+        if not cmd:
+            return
 
         def _error(msg, icon, cap):
             wx.MessageBox(msg, cap, icon, self)
@@ -424,7 +353,7 @@ class Downloader(wx.Panel):
                     return _error(msg, wx.ICON_WARNING,
                                   _('Vidtuber - Warning!'))
 
-        ret = self.panel_cod.set_formatcode(self.parent.data_url, kwa)
+        ret = self.panel_cod.set_formatcode(self.parent.data_url, cmd)
         if ret:
             return _error(ret, wx.ICON_ERROR, _('Vidtuber - Error!'))
         return None
@@ -640,6 +569,16 @@ class Downloader(wx.Panel):
         get info and format code datas.
         return a type dict object.
         """
+        execpath = self.appdata['yt-dlp_cmd']
+        if (not execpath.strip().endswith(self.execname)
+                or not shutil.which(execpath)):
+            wx.MessageBox(_('Missing executable: «{0}».\nBefore '
+                            'continuing, be sure to make the correct '
+                            'settings in the preferences dialog.'
+                            ).format(self.execname),
+                          _('Vidtuber - Warning!'), wx.ICON_WARNING, self)
+            return None
+
         kwa = {}
         if (self.appdata["use_cookie_file"]
                 and self.appdata["cookiefile"].strip()):
@@ -647,11 +586,7 @@ class Downloader(wx.Panel):
         if self.appdata["autogen_cookie_file"]:
             cfb = tuple(self.appdata["cookiesfrombrowser"])
             kwa["cookiesfrombrowser"] = cfb
-        kwa['no_color'] = True
         kwa['nocheckcertificate'] = self.appdata["ssl_certificate"]
-        kwa['ignoreerrors'] = True  # exit code 1 if any errors
-        kwa['noplaylist'] = True
-        kwa['no_color'] = True
         kwa['proxy'] = self.appdata["proxy"]
         kwa['username'] = self.appdata["username"]
         kwa['password'] = self.appdata["password"]
@@ -661,7 +596,31 @@ class Downloader(wx.Panel):
         kwa["geo_bypass_country"] = self.appdata["geo_bypass_country"]
         kwa["geo_bypass_ip_block"] = self.appdata["geo_bypass_ip_block"]
 
-        return kwa
+        opt = (f'"{execpath}" --newline --compat-options "youtube-dl" '
+               f'--ignore-errors --ignore-config --no-color '
+               f'--restrict-filenames --no-playlist ')
+
+        opt += '--no-check-certificates ' if kwa['nocheckcertificate'] else ''
+        opt += f'--proxy "{kwa["proxy"]}" ' if kwa["proxy"] else ''
+        if kwa['geo_verification_proxy']:
+            opt += (f'--geo-verification-proxy '
+                    f'"{kwa["geo_verification_proxy"]}" ')
+        geo = (f'{kwa["geo_bypass"]} {kwa["geo_bypass_country"]} '
+               f'{kwa["geo_bypass_ip_block"]}')
+        if geo.strip():
+            opt += f'--xff "{geo}" '
+        if kwa['username']:
+            opt += f'--username {kwa["username"]} '
+            opt += f'--password {kwa["password"]} '
+        if kwa['videopassword']:
+            opt += f'--video-password {kwa["videopassword"]} '
+        if kwa.get("cookiefile"):
+            opt += f'--cookies "{kwa["cookiefile"]}" '
+        if kwa.get("cookiesfrombrowser"):
+            opt += f'--cookies-from-browser "{kwa["cookiesfrombrowser"][0]}" '
+        opt += '-F '
+
+        return opt
     # -----------------------------------------------------------------#
 
     def default_download_options(self):
@@ -823,7 +782,7 @@ class Downloader(wx.Panel):
         Call `main_ytdlp.switch_to_processing`
         """
         execlist = []
-        execpath = self.appdata['ytdlp-exec-path']
+        execpath = self.appdata['yt-dlp_cmd']
         if (not execpath.strip().endswith(self.execname)
                 or not shutil.which(execpath)):
             wx.MessageBox(_('Missing executable: «{0}».\nBefore '

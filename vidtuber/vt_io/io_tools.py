@@ -26,14 +26,13 @@ This file is part of Vidtuber.
 """
 import requests
 import wx
-from vidtuber.vt_threads import generic_downloads
 from vidtuber.vt_threads.check_bin import subp
 from vidtuber.vt_utils.utils import open_default_application
 from vidtuber.vt_dialogs.widget_utils import PopupDialog
-from vidtuber.vt_threads.ydl_extractinfo import YdlExtractInfo
+from vidtuber.vt_threads.ydl_get_formatcode import YdlExtractInfo
 
 
-def youtubedl_getstatistics(url, kwargs, parent=None):
+def youtubedl_getstatistics(url, args, logfile, parent=None):
     """
     Call `YdlExtractInfo` thread to extract data info.
     During this process a wait pop-up dialog is shown.
@@ -46,7 +45,7 @@ def youtubedl_getstatistics(url, kwargs, parent=None):
         data = thread.data
         yield data
     """
-    thread = YdlExtractInfo(url, kwargs)
+    thread = YdlExtractInfo(url, args, logfile)
     dlgload = PopupDialog(parent,
                           _("Vidtuber - Loading..."),
                           _("Wait....\nRetrieving required data."))
@@ -101,19 +100,4 @@ def get_github_releases(url, keyname):
         return not_found
 
     return version, None
-# --------------------------------------------------------------------------#
-
-
-def get_presets(url, dest, msg, parent=None):
-    """
-    get latest Vidtuber presets
-    """
-    thread = generic_downloads.FileDownloading(url, dest)
-    dlgload = PopupDialog(parent, _("Vidtuber - Downloading..."), msg)
-    dlgload.ShowModal()
-    # thread.join()
-    status = thread.data
-    dlgload.Destroy()
-
-    return status
 # --------------------------------------------------------------------------#

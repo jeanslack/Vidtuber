@@ -73,7 +73,7 @@ class SetUp(wx.Dialog):
         tabOne = wx.Panel(notebook, wx.ID_ANY)
         sizerytdlp = wx.BoxSizer(wx.VERTICAL)
         sizerytdlp.Add((0, 10))
-        msg = _('yt-dlp executable settings')
+        msg = _('Specify the {0} executable'.format(self.ytdlp))
         labytdlpexe = wx.StaticText(tabOne, wx.ID_ANY, msg)
         sizerytdlp.Add(labytdlpexe, 0, wx.ALL | wx.EXPAND, 5)
         msg = (_('Here you can provide the path to the latest version of the '
@@ -82,8 +82,8 @@ class SetUp(wx.Dialog):
         labytexec = wx.StaticText(tabOne, wx.ID_ANY, msg)
         sizerytdlp.Add(labytexec, 0, wx.ALL | wx.EXPAND, 5)
         msg = _('Enable a custom location to run yt-dlp executable.')
-        self.ckbx_ytexe = wx.CheckBox(tabOne, wx.ID_ANY, (msg))
-        sizerytdlp.Add(self.ckbx_ytexe, 0, wx.LEFT | wx.TOP, 5)
+        self.ckbx_exeytdlp = wx.CheckBox(tabOne, wx.ID_ANY, (msg))
+        sizerytdlp.Add(self.ckbx_exeytdlp, 0, wx.LEFT | wx.TOP, 5)
 
         self.btn_ytexec = wx.Button(tabOne, wx.ID_ANY, _('Change'))
         self.txtctrl_ytexec = wx.TextCtrl(tabOne, wx.ID_ANY, "",
@@ -93,28 +93,7 @@ class SetUp(wx.Dialog):
         sizerytdlp.Add(gridytdlp, 0, wx.EXPAND)
         gridytdlp.Add(self.txtctrl_ytexec, 1, wx.ALL, 5)
         gridytdlp.Add(self.btn_ytexec, 0, wx.RIGHT | wx.CENTER, 5)
-        sizerytdlp.Add((0, 20))
-        msg = _('External Python package\n(requires application restart)')
-        labytdlppkg = wx.StaticText(tabOne, wx.ID_ANY, msg)
-        sizerytdlp.Add(labytdlppkg, 0, wx.ALL | wx.EXPAND, 5)
-        msg = (_('Import the yt_dlp Python package externally. E.g, you can '
-                 'include the source package\ndirectory or the path '
-                 'to the package installed in an external virtual '
-                 'environment.'))
-        labytmod = wx.StaticText(tabOne, wx.ID_ANY, msg)
-        sizerytdlp.Add(labytmod, 0, wx.ALL | wx.EXPAND, 5)
-        msg = _('Enable external import of yt_dlp package')
-        self.ckbx_ytmod = wx.CheckBox(tabOne, wx.ID_ANY, (msg))
-        sizerytdlp.Add(self.ckbx_ytmod, 0, wx.LEFT | wx.TOP, 5)
-
-        self.btn_ytmod = wx.Button(tabOne, wx.ID_ANY, _('Change'))
-        self.txtctrl_ytmod = wx.TextCtrl(tabOne, wx.ID_ANY, "",
-                                         style=wx.TE_READONLY
-                                         )
-        gridytmod = wx.BoxSizer(wx.HORIZONTAL)
-        sizerytdlp.Add(gridytmod, 0, wx.EXPAND)
-        gridytmod.Add(self.txtctrl_ytmod, 1, wx.ALL, 5)
-        gridytmod.Add(self.btn_ytmod, 0, wx.RIGHT | wx.CENTER, 5)
+        # sizerytdlp.Add((0, 20))
         tabOne.SetSizer(sizerytdlp)
         notebook.AddPage(tabOne, "yt-dlp")
 
@@ -123,12 +102,11 @@ class SetUp(wx.Dialog):
         sizerFFmpeg = wx.BoxSizer(wx.VERTICAL)
         sizerFFmpeg.Add((0, 10))
         labFFexec = wx.StaticText(tabTwo, wx.ID_ANY,
-                                  _('Location of executables'))
+                                  _('Specifying FFmpeg executables'))
         sizerFFmpeg.Add(labFFexec, 0, wx.ALL | wx.EXPAND, 5)
-        msg = (_('FFmpeg can be built by enabling/disabling its options '
-                 'and this depends on your needs.\nFor some use cases it '
-                 'is possible to provide a custom build of FFmpeg where you '
-                 'can specify\nit in this preferences tab.'))
+        msg = (_('For various post-processing tasks, yt-dlp requires '
+                 'the ffmpeg and ffprobe executables.\nHere you can '
+                 'customize the paths to these executables.'))
         labffdescr = wx.StaticText(tabTwo, wx.ID_ANY, msg)
         sizerFFmpeg.Add(labffdescr, 0, wx.ALL | wx.EXPAND, 5)
         sizerFFmpeg.Add((0, 20))
@@ -342,8 +320,6 @@ class SetUp(wx.Dialog):
             labffdescr.SetFont(wx.Font(11, wx.SWISS, wx.NORMAL, wx.NORMAL))
             labytdlpexe.SetFont(wx.Font(13, wx.DEFAULT, wx.NORMAL, wx.BOLD))
             labytexec.SetFont(wx.Font(11, wx.SWISS, wx.NORMAL, wx.NORMAL))
-            labytdlppkg.SetFont(wx.Font(13, wx.DEFAULT, wx.NORMAL, wx.BOLD))
-            labytmod.SetFont(wx.Font(11, wx.SWISS, wx.NORMAL, wx.NORMAL))
             labappe.SetFont(wx.Font(13, wx.DEFAULT, wx.NORMAL, wx.BOLD))
         else:
             lablang.SetFont(wx.Font(10, wx.DEFAULT, wx.NORMAL, wx.BOLD))
@@ -355,8 +331,6 @@ class SetUp(wx.Dialog):
             labffdescr.SetFont(wx.Font(8, wx.SWISS, wx.NORMAL, wx.NORMAL))
             labytdlpexe.SetFont(wx.Font(10, wx.DEFAULT, wx.NORMAL, wx.BOLD))
             labytexec.SetFont(wx.Font(8, wx.SWISS, wx.NORMAL, wx.NORMAL))
-            labytdlppkg.SetFont(wx.Font(10, wx.DEFAULT, wx.NORMAL, wx.BOLD))
-            labytmod.SetFont(wx.Font(8, wx.SWISS, wx.NORMAL, wx.NORMAL))
             labappe.SetFont(wx.Font(10, wx.DEFAULT, wx.NORMAL, wx.BOLD))
 
         tip = (_("Type sudo password here, only for Unix-like operating "
@@ -379,10 +353,8 @@ class SetUp(wx.Dialog):
         self.Bind(wx.EVT_BUTTON, self.open_path_ffmpeg, self.btn_ffmpeg)
         self.Bind(wx.EVT_CHECKBOX, self.exeFFprobe, self.ckbx_exeFFprobe)
         self.Bind(wx.EVT_BUTTON, self.open_path_ffprobe, self.btn_ffprobe)
-        self.Bind(wx.EVT_CHECKBOX, self.on_ytdlp_exec, self.ckbx_ytexe)
+        self.Bind(wx.EVT_CHECKBOX, self.on_ytdlp_exec, self.ckbx_exeytdlp)
         self.Bind(wx.EVT_BUTTON, self.open_ytdlp_exec, self.btn_ytexec)
-        self.Bind(wx.EVT_CHECKBOX, self.on_ytdlp_package, self.ckbx_ytmod)
-        self.Bind(wx.EVT_BUTTON, self.open_ytdlp_package, self.btn_ytmod)
         self.Bind(wx.EVT_COMBOBOX, self.on_Iconthemes, self.cmbx_icons)
         self.Bind(wx.EVT_RADIOBOX, self.on_toolbarPos, self.rdbTBpref)
         self.Bind(wx.EVT_COMBOBOX, self.on_toolbarSize, self.cmbx_iconsSize)
@@ -430,21 +402,14 @@ class SetUp(wx.Dialog):
         Performs the current settings for the yt_dlp tab in
         the preferences dialog
         """
-        self.ckbx_ytexe.SetValue(self.appdata['ytdlp-enable-exec'])
-        execstr = ('Not found' if self.appdata['ytdlp-exec-path'] == ''
-                   else self.appdata['ytdlp-exec-path'])
-        self.txtctrl_ytexec.SetValue(execstr)
-        self.ckbx_ytmod.SetValue(self.settings['ytdlp-usemodule'])
-        self.txtctrl_ytmod.SetValue(self.appdata['ytdlp-module-path'])
-
-        if self.ckbx_ytexe.IsChecked():
-            self.txtctrl_ytexec.Enable(), self.btn_ytexec.Enable()
+        if not self.appdata['ytdlp_islocal']:
+            self.txtctrl_ytexec.Disable()
+            self.btn_ytexec.Disable()
+            self.txtctrl_ytexec.AppendText(self.appdata['yt-dlp_cmd'])
+            self.ckbx_exeytdlp.SetValue(False)
         else:
-            self.txtctrl_ytexec.Disable(), self.btn_ytexec.Disable()
-        if self.ckbx_ytmod.IsChecked():
-            self.txtctrl_ytmod.Enable(), self.btn_ytmod.Enable()
-        else:
-            self.txtctrl_ytmod.Disable(), self.btn_ytmod.Disable()
+            self.txtctrl_ytexec.AppendText(self.appdata['yt-dlp_cmd'])
+            self.ckbx_exeytdlp.SetValue(True)
     # --------------------------------------------------------------------#
 
     def ffmpeg_current_settings(self):
@@ -510,6 +475,12 @@ class SetUp(wx.Dialog):
                 self.txtctrl_ffmpeg.write('Not found')
                 self.settings['ffmpeg_cmd'] = ''
             else:
+                if not os.access(status[1], os.X_OK):
+                    msg = _('Execute permission is not granted for this file:')
+                    wx.MessageBox('{0}\n\n«{1}»'.format(msg, status[1]),
+                                  _('Vidtuber - Warning!'),
+                                  wx.ICON_WARNING, self)
+                    return
                 self.txtctrl_ffmpeg.Clear()
                 getpath = self.appdata['getpath'](status[1])
                 self.txtctrl_ffmpeg.write(getpath)
@@ -525,6 +496,12 @@ class SetUp(wx.Dialog):
                            wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fdlg:
 
             if fdlg.ShowModal() == wx.ID_OK:
+                if not os.access(fdlg.GetPath(), os.X_OK):
+                    msg = _('Execute permission is not granted for this file:')
+                    wx.MessageBox('{0}\n\n«{1}»'.format(msg, fdlg.GetPath()),
+                                  _('Vidtuber - Warning!'),
+                                  wx.ICON_WARNING, self)
+                    return
                 if os.path.basename(fdlg.GetPath()) == self.ffmpeg:
                     self.txtctrl_ffmpeg.Clear()
                     getpath = self.appdata['getpath'](fdlg.GetPath())
@@ -550,6 +527,12 @@ class SetUp(wx.Dialog):
                 self.txtctrl_ffprobe.write('Not found')
                 self.settings['ffprobe_cmd'] = ''
             else:
+                if not os.access(status[1], os.X_OK):
+                    msg = _('Execute permission is not granted for this file:')
+                    wx.MessageBox('{0}\n\n«{1}»'.format(msg, status[1]),
+                                  _('Vidtuber - Warning!'),
+                                  wx.ICON_WARNING, self)
+                    return
                 self.txtctrl_ffprobe.Clear()
                 getpath = self.appdata['getpath'](status[1])
                 self.txtctrl_ffprobe.write(getpath)
@@ -565,6 +548,12 @@ class SetUp(wx.Dialog):
                            wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fdlg:
 
             if fdlg.ShowModal() == wx.ID_OK:
+                if not os.access(fdlg.GetPath(), os.X_OK):
+                    msg = _('Execute permission is not granted for this file:')
+                    wx.MessageBox('{0}\n\n«{1}»'.format(msg, fdlg.GetPath()),
+                                  _('Vidtuber - Warning!'),
+                                  wx.ICON_WARNING, self)
+                    return
                 if os.path.basename(fdlg.GetPath()) == self.ffprobe:
                     self.txtctrl_ffprobe.Clear()
                     getpath = self.appdata['getpath'](fdlg.GetPath())
@@ -577,71 +566,63 @@ class SetUp(wx.Dialog):
         Sets whether to use yt-dlp as a Python
         module or as an executable.
         """
-        if self.ckbx_ytexe.GetValue():
-            self.txtctrl_ytexec.Enable(), self.btn_ytexec.Enable()
-            self.settings['ytdlp-enable-exec'] = True
+        if self.ckbx_exeytdlp.IsChecked():
+            self.txtctrl_ytexec.Enable()
+            self.btn_ytexec.Enable()
+            self.settings['ytdlp_islocal'] = True
         else:
-            self.txtctrl_ytexec.Disable(), self.btn_ytexec.Disable()
+            self.txtctrl_ytexec.Disable()
+            self.btn_ytexec.Disable()
             self.txtctrl_ytexec.Clear()
-            self.settings['ytdlp-enable-exec'] = False
+            self.settings['ytdlp_islocal'] = False
 
-        status = detect_binaries(self.ytdlp)
+        status = detect_binaries(self.ytdlp, self.appdata['YTDLP_DIR'])
         if status[0] == 'not installed':
             self.txtctrl_ytexec.Clear()
             self.txtctrl_ytexec.write('Not found')
-            self.settings['ytdlp-exec-path'] = ''
+            self.settings['yt-dlp_cmd'] = ''
         else:
+            if not os.access(status[1], os.X_OK):
+                msg = _('Execute permission is not granted for this file:')
+                wx.MessageBox('{0}\n\n«{1}»'.format(msg, status[1]),
+                              _('Vidtuber - Warning!'),
+                              wx.ICON_WARNING, self)
+                return
             self.txtctrl_ytexec.Clear()
             getpath = self.appdata['getpath'](status[1])
             self.txtctrl_ytexec.write(getpath)
-            self.settings['ytdlp-exec-path'] = getpath
+            self.settings['yt-dlp_cmd'] = getpath
     # --------------------------------------------------------------------#
 
     def open_ytdlp_exec(self, event):
         """
         Indicates a new yt-dlp executable path-name
         """
-        fmt = f'*{self.ytdlp};'
-        wild = f"Executable ({fmt})|{fmt}| All files (*.*)|*.*"
+        if self.appdata['ostype'] == 'Darwin':
+            fname = f'*{self.ytdlp};*yt-dlp_macos;'
+            wild = f"Binary/Executable ({fname})|{fname}| All files (**)|**"
+        elif self.appdata['ostype'] == 'Linux':
+            fname = f'*{self.ytdlp};*yt-dlp_linux;'
+            wild = f"Binary/Executable ({fname})|{fname}| All files (**)|**"
+        else:
+            fname = f'*{self.ytdlp};'
+            wild = f"Binary/Executable ({fname})|{fname}| All files (**)|**"
         msg = _('Open «{}» executable file'.format(self.ytdlp))
 
         with wx.FileDialog(self, msg, "", "", wildcard=wild,
                            style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fdlg:
 
             if fdlg.ShowModal() == wx.ID_OK:
+                if not os.access(fdlg.GetPath(), os.X_OK):
+                    msg = _('Execute permission is not granted for this file:')
+                    wx.MessageBox('{0}\n\n«{1}»'.format(msg, fdlg.GetPath()),
+                                  _('Vidtuber - Warning!'),
+                                  wx.ICON_WARNING, self)
+                    return
                 self.txtctrl_ytexec.Clear()
                 getpath = self.appdata['getpath'](fdlg.GetPath())
                 self.txtctrl_ytexec.write(getpath)
-                self.settings['ytdlp-exec-path'] = getpath
-    # --------------------------------------------------------------------#
-
-    def on_ytdlp_package(self, event):
-        """
-        Enables external yt_dlp .
-        """
-        if self.ckbx_ytmod.GetValue():
-            self.txtctrl_ytmod.Enable(), self.btn_ytmod.Enable()
-        else:
-            self.txtctrl_ytmod.Disable(), self.btn_ytmod.Disable()
-            self.txtctrl_ytmod.Clear()
-            self.settings['ytdlp-module-path'] = ""
-            self.settings['ytdlp-usemodule'] = self.ckbx_ytmod.GetValue()
-    # --------------------------------------------------------------------#
-
-    def open_ytdlp_package(self, event):
-        """
-        Sets path to yt-dlp module.
-        """
-        dlg = wx.DirDialog(self, _("Open «yt_dlp» python package directory"),
-                           "", wx.DD_DEFAULT_STYLE
-                           )
-        if dlg.ShowModal() == wx.ID_OK:
-            self.txtctrl_ytmod.Clear()
-            getpath = self.appdata['getpath'](dlg.GetPath())
-            self.txtctrl_ytmod.AppendText(getpath)
-            self.settings['ytdlp-module-path'] = getpath
-            self.settings['ytdlp-usemodule'] = self.ckbx_ytmod.GetValue()
-            dlg.Destroy()
+                self.settings['yt-dlp_cmd'] = getpath
     # --------------------------------------------------------------------#
 
     def on_Iconthemes(self, event):
@@ -737,8 +718,6 @@ class SetUp(wx.Dialog):
         """
         self.retcode = (
             self.settings['locale_name'] == self.appdata['locale_name'],
-            (self.settings['ytdlp-module-path']
-             == self.appdata['ytdlp-module-path']),
             self.settings['icontheme'] == self.appdata['icontheme'],
             self.settings['toolbarsize'] == self.appdata['toolbarsize'],
             self.settings['toolbarpos'] == self.appdata['toolbarpos'])

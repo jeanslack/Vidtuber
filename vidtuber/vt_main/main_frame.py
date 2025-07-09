@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: main_ytdlp.py
-Porpose: window main frame for yt_dlp library
+Porpose: window main frame for yt-dlp
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
@@ -30,7 +30,6 @@ import webbrowser
 import wx
 from pubsub import pub
 from vidtuber.vt_utils.get_bmpfromsvg import get_bmp
-from vidtuber.vt_dialogs.ydl_mediainfo import YdlMediaInfo
 from vidtuber.vt_dialogs.showlogs import ShowLogs
 from vidtuber.vt_dialogs import about_dialog
 from vidtuber.vt_dialogs import check_new_version
@@ -46,8 +45,6 @@ from vidtuber.vt_threads.shutdown import shutdown_system
 from vidtuber.vt_dialogs.widget_utils import CountDownDlg
 from vidtuber.vt_sys.argparser import info_this_platform
 from vidtuber.vt_sys.about_app import VERSION
-if wx.GetApp().appset['yt_dlp'] is True:
-    import yt_dlp
 
 
 class MainFrame(wx.Frame):
@@ -107,7 +104,7 @@ class MainFrame(wx.Frame):
         self.sb = self.CreateStatusBar(1)
         self.statusbar_msg(_('Ready'), None)
         # disable some toolbar item
-        [self.toolbar.EnableTool(x, False) for x in (20, 22, 23, 24)]
+        [self.toolbar.EnableTool(x, False) for x in (20, 23, 24)]
         self.Layout()
         # ---------------------- Binding (EVT) ----------------------#
         self.Bind(wx.EVT_BUTTON, self.on_outputdir)
@@ -148,10 +145,7 @@ class MainFrame(wx.Frame):
         This method is called using pub/sub protocol subscribing
         "DESTROY_ORPHANED_WINDOWS".
         """
-        if msg == 'YdlMediaInfo':
-            self.infomediadlg.Destroy()
-            self.infomediadlg = False
-        elif msg == 'ShowLogs':
+        if msg == 'ShowLogs':
             self.showlogs.Destroy()
             self.showlogs = False
     # ------------------------------------------------------------------#
@@ -161,9 +155,6 @@ class MainFrame(wx.Frame):
         Destroys all orphaned modeless windows,
         ie. on application exit or on editing URLs text.
         """
-        if self.infomediadlg:
-            self.infomediadlg.Destroy()
-            self.infomediadlg = False
         if self.showlogs:
             self.showlogs.Destroy()
             self.showlogs = False
@@ -184,11 +175,6 @@ class MainFrame(wx.Frame):
                          self.ytDownloader.panel_cod.fcode.GetColumnWidth(1),
                          self.ytDownloader.panel_cod.fcode.GetColumnWidth(2),
                          self.ytDownloader.panel_cod.fcode.GetColumnWidth(3),
-                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(4),
-                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(5),
-                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(6),
-                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(7),
-                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(8),
                          ]
         sett['fcode_column_width'] = fcodecolwidth
         confmanager.write_options(**sett)
@@ -399,30 +385,17 @@ class MainFrame(wx.Frame):
         """
         Displays a dialog box that gathers useful information about yt-dlp.
         """
-        pkg_version = 'Not found' if not self.ytdl_pkg() else self.ytdl_pkg()
-
-        execpath = wx.GetApp().appset['ytdlp-exec-path']
+        execpath = wx.GetApp().appset['yt-dlp_cmd']
         exec_version = io_tools.youtubedl_get_executable_version(execpath)
 
         latest = self.ydl_latest()
         url = '<https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest>'
-        wx.MessageBox(_("- Version of the package currently used: {0}\n"
-                        "- Executable version currently used: {1}\n"
-                        "Latest version available on github.com: {2}\n"
-                        "{3}").format(pkg_version, exec_version, latest, url),
+        wx.MessageBox(_("- Executable version currently used: {0}\n"
+                        "Latest version available on github.com: {1}\n"
+                        "{2}").format(exec_version, latest, url),
                       _('Vidtuber - About «yt-dlp»'),
                       wx.ICON_INFORMATION, self)
     # ------------------------------------------------------------------#
-
-    def ytdl_pkg(self):
-        """
-        Retrieve the version of yt_dlp from Python package
-        currently used.
-        """
-        if wx.GetApp().appset['yt_dlp'] is True:
-            return yt_dlp.version.__version__
-        return None
-    # -----------------------------------------------------------------#
 
     def ydl_latest(self):
         """
@@ -624,7 +597,6 @@ class MainFrame(wx.Frame):
         if 'wx.svg' in sys.modules:  # available only in wx version 4.1 to up
             bmpback = get_bmp(self.icons['previous'], bmp_size)
             bmpnext = get_bmp(self.icons['next'], bmp_size)
-            bmpstat = get_bmp(self.icons['statistics'], bmp_size)
             bmpydl = get_bmp(self.icons['download'], bmp_size)
             bmpstop = get_bmp(self.icons['stop'], bmp_size)
             bmpopt = get_bmp(self.icons['options'], bmp_size)
@@ -632,7 +604,6 @@ class MainFrame(wx.Frame):
         else:
             bmpback = wx.Bitmap(self.icons['previous'], wx.BITMAP_TYPE_ANY)
             bmpnext = wx.Bitmap(self.icons['next'], wx.BITMAP_TYPE_ANY)
-            bmpstat = wx.Bitmap(self.icons['statistics'], wx.BITMAP_TYPE_ANY)
             bmpydl = wx.Bitmap(self.icons['download'], wx.BITMAP_TYPE_ANY)
             bmpstop = wx.Bitmap(self.icons['stop'], wx.BITMAP_TYPE_ANY)
             bmpopt = wx.Bitmap(self.icons['options'], wx.BITMAP_TYPE_ANY)
@@ -650,11 +621,6 @@ class MainFrame(wx.Frame):
                                        bmpnext,
                                        tip, wx.ITEM_NORMAL,
                                        )
-        tip = _("Shows statistics and information")
-        self.btn_ydlstatistics = self.toolbar.AddTool(22, _('Statistics'),
-                                                      bmpstat,
-                                                      tip, wx.ITEM_NORMAL,
-                                                      )
         tip = _("yt-dlp options setting")
         options = self.toolbar.AddTool(26, _('Options'),
                                        bmpopt, tip, wx.ITEM_NORMAL)
@@ -672,7 +638,6 @@ class MainFrame(wx.Frame):
         self.Bind(wx.EVT_TOOL, self.click_start, self.run_download)
         self.Bind(wx.EVT_TOOL, self.on_back, back)
         self.Bind(wx.EVT_TOOL, self.on_forward, forward)
-        self.Bind(wx.EVT_TOOL, self.on_statistics, self.btn_ydlstatistics)
         self.Bind(wx.EVT_TOOL, self.click_stop, stop)
         self.Bind(wx.EVT_TOOL, self.on_options, options)
 
@@ -702,24 +667,6 @@ class MainFrame(wx.Frame):
         self.changed = False
     # ------------------------------------------------------------------#
 
-    def on_statistics(self, event):
-        """
-        Redirect input files at stream_info for media information
-        """
-        if self.infomediadlg:
-            self.infomediadlg.Raise()
-            return
-
-        info = []
-        if self.data_url:
-            info = self.ytDownloader.on_show_statistics()
-            if not info:
-                return
-
-        self.infomediadlg = YdlMediaInfo(info)
-        self.infomediadlg.Show()
-    # ------------------------------------------------------------------#
-
     def on_options(self, event):
         """
         Setting dialog event.
@@ -741,7 +688,7 @@ class MainFrame(wx.Frame):
          self.clearall.Enable(True)
          )
         self.toolbar.EnableTool(21, True)
-        [self.toolbar.EnableTool(x, False) for x in (20, 22, 23, 24)]
+        [self.toolbar.EnableTool(x, False) for x in (20, 23, 24)]
         self.toolbar.Realize()
         self.Layout()
         self.statusbar_msg(_('Ready'), None)
@@ -760,7 +707,7 @@ class MainFrame(wx.Frame):
          self.paste.Enable(False),
          self.clearall.Enable(False)
          )
-        [self.toolbar.EnableTool(x, True) for x in (20, 21, 22, 23)]
+        [self.toolbar.EnableTool(x, True) for x in (20, 21, 23)]
         self.toolbar.EnableTool(24, False)
         self.Layout()
     # ------------------------------------------------------------------#
@@ -772,7 +719,7 @@ class MainFrame(wx.Frame):
         if args[0] == 'Viewing last log':
             self.statusbar_msg(_('Viewing last log'), None)
             [self.toolbar.EnableTool(x, False) for x in (21, 24)]
-            [self.toolbar.EnableTool(x, True) for x in (20, 22, 23)]
+            [self.toolbar.EnableTool(x, True) for x in (20, 23)]
 
         elif args[0] == 'YouTube Downloader':
             (self.delete.Enable(False),
@@ -781,7 +728,7 @@ class MainFrame(wx.Frame):
              self.setupItem.Enable(False)
              )
             [self.toolbar.EnableTool(x, False) for x in (20, 21, 23, 26)]
-            [self.toolbar.EnableTool(x, True) for x in (22, 24)]
+            self.toolbar.EnableTool(22, True)
 
         self.SetTitle(_('Vidtuber - Downloader Message Monitoring'))
         self.textDnDTarget.Hide()
