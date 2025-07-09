@@ -1,0 +1,50 @@
+vidtuber for Debian
+
+Please edit this to provide information specific to
+this vidtuber Debian package.
+
+    Vidtuber is a simple, cross-platform graphical user interface for yt-dlp
+    It features graphical tools to downloading audio, videos, subtitles and
+    more via yt-dlp.
+
+    Vidtuber is Free (libre) Software, created and maintained by Gianluca
+    (jeanslack) Pernigotto; it was written in Python3 using the wxPython4
+    toolkit; it is cross-platform and works on Linux, MacOs, Windows and
+    FreeBSD.
+
+    Main features:
+
+    - No ads
+    - Multi-Platform, work on Linux, MacOs, Windows, FreeBsd.
+    - Batch processing.
+    - Multi languages support.
+
+    Downloading audio and video
+
+    - Download using multiple URLs from YouTube to all websites supported by
+      yt-dlp.
+    - Precompiled Videos, from best to worst qualities.
+    - Download by format and resolution.
+    - Download audio and video separately.
+    - Download Audio only.
+    - Download subtitles only.
+    - Download by ID selecting “format codes” and ability to download both
+      separated or merged files.
+    - Ability to download entire playlists.
+    - Playlists can be indexed to download only the files you are interested in.
+    - Ability to enable/disable the SSL certificate.
+    - Ability to embed thumbnail in audio file.
+    - Can include the origin metadata to files.
+    - Ability to set preferred subtitles.
+    - Ability to include IDs in filenames.
+    - Ability to restrict filenames to only ASCII characters.
+    - Ability to set alternative downloaders such as aria2c, avconv, axel, curl,
+      ffmpeg, httpie, wget.
+    - Ability to specify a proxy server.
+    - Various options provided for geo restriction.
+    - Login using authentication is possible (e.g. username/password and video
+      password).
+    - Easy and friendly access via cookies.
+    - and many more…
+
+ -- Gianluca Pernigotto <jeanlucperni@gmail.com>  Sun, 29 Jun 2025 10:09:27 +0200
