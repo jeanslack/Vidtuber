@@ -99,13 +99,10 @@ def vidtuber_data_source(name=NAME, release=about_app):
             "COMMENT": release.COMMENT,
             "ART": os.path.join('vidtuber', 'data', 'icons'),
             "LOCALE": os.path.join('vidtuber', 'data', 'locale'),
-            "SHARE": os.path.join('vidtuber', 'data', 'presets'),
             "FFMPEG": os.path.join('vidtuber', 'data', 'FFMPEG'),
             "YT-DLP": os.path.join('vidtuber', 'data', 'YT-DLP'),
-            "NOTICE": os.path.join('vidtuber', 'data',
-                                   'FFMPEG', 'README'),
-            "NOTICE": os.path.join('vidtuber', 'data',
-                                   'YT-DLP', 'README'),
+            "NOTICE": os.path.join('vidtuber', 'data', 'FFMPEG', 'README'),
+            "YDLNOTICE": os.path.join('vidtuber', 'data', 'YT-DLP', 'README'),
             "AUTH": 'AUTHORS',
             "BUGS": 'BUGS',
             "CHANGELOG": 'CHANGELOG',
@@ -144,7 +141,7 @@ class PyinstallerSpec():
 
         self.datas = (f"--add-data {self.getdata['ART']}{sep}icons "
                       f"--add-data {self.getdata['LOCALE']}{sep}locale "
-                      f"--add-data {self.getdata['SHARE']}{sep}presets "
+                      f"--add-data {self.getdata['YT-DLP']}{sep}YT-DLP "
                       f"--add-data {self.getdata['FFMPEG']}{sep}FFMPEG "
                       f"--add-data {self.getdata['AUTH']}{sep}DOC "
                       f"--add-data {self.getdata['BUGS']}{sep}DOC "
