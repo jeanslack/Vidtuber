@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber - IT - 10.06.2025\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-07 12:39+0200\n"
-"PO-Revision-Date: 2025-07-07 13:11+0200\n"
+"POT-Creation-Date: 2025-07-09 21:32+0200\n"
+"PO-Revision-Date: 2025-07-09 21:39+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it_IT\n"
@@ -19,19 +19,7 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: ../../gui_app.py:119
-msgid ""
-"To suppress this message on startup, please install yt-dlp or disable it "
-"from the preferences."
-msgstr ""
-"Per non visualizzare questo messaggio all'avvio, installa yt-dlp o "
-"disabilitalo dalle preferenze."
-
-#: ../../gui_app.py:130 ../../gui_app.py:138
-msgid "Vidtuber - Error!"
-msgstr "Vidtuber - Errore!"
-
-#: ../../gui_app.py:226
+#: ../../gui_app.py:198
 #, python-brace-format
 msgid ""
 "Unexpected error while deleting file contents:\n"
@@ -64,8 +52,20 @@ msgstr ""
 "\n"
 "Le nuove versioni risolvono bug e offrono nuove funzionalità."
 
+#: ../../vt_dialogs/check_new_version.py:95
+#, python-brace-format
+msgid ""
+"\n"
+"\n"
+"This is Vidtuber v.{0}\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Questo è Vidtuber v.{0}\n"
+"\n"
+
 #: ../../vt_dialogs/playlist_indexing.py:50
-#: ../../vt_dialogs/ydl_mediainfo.py:71
 msgid "URL"
 msgstr "URL"
 
@@ -75,23 +75,14 @@ msgstr "Contenuto della playlist"
 
 #: ../../vt_dialogs/playlist_indexing.py:72
 msgid ""
-"To index the media of a playlist, click on the \"Playlist Items\" column of "
-"each corresponding URL and specify the numerical indexes separated by "
-"commas, e.g. \"1,2,5,8\" if you want to download the indexed media at 1, 2, "
-"5, 8 of the playlist.\n"
-"It is also possible to specify intervals, e.g. \"1-3,7,10-13\" with which "
-"the media at index 1, 2, 3, 7, 10, 11, 12 and 13 will be downloaded.\n"
+"To index the media of a playlist, click on the \"Playlist Items\" column of each corresponding URL and specify the numerical indexes separated by commas, e.g. \"1,2,5,8\" if you want to download the indexed media at 1, 2, 5, 8 of the playlist.\n"
+"It is also possible to specify intervals, e.g. \"1-3,7,10-13\" with which the media at index 1, 2, 3, 7, 10, 11, 12 and 13 will be downloaded.\n"
 msgstr ""
-"Per indicizzare i media di una playlist, clicca sulla colonna \"Contenuto "
-"della playlist\" di ogni URL corrispondente e specifica gli indici numerici "
-"separati da virgole, esempio: \"1,2,5,8\" se vuoi scaricare i media "
-"indicizzati a 1, 2, 5, 8 della playlist.\n"
-"È possibile, inoltre, specificare degli intervalli, esempio: \"1-3,7,10-13\" "
-"con i quali verranno scaricati i media all'indice 1, 2, 3, 7, 10, 11, 12 e "
-"13.\n"
+"Per indicizzare i media di una playlist, clicca sulla colonna \"Contenuto della playlist\" di ogni URL corrispondente e specifica gli indici numerici separati da virgole, esempio: \"1,2,5,8\" se vuoi scaricare i media indicizzati a 1, 2, 5, 8 della playlist.\n"
+"È possibile, inoltre, specificare degli intervalli, esempio: \"1-3,7,10-13\" con i quali verranno scaricati i media all'indice 1, 2, 3, 7, 10, 11, 12 e 13.\n"
 
 #: ../../vt_dialogs/playlist_indexing.py:108
-#: ../../vt_panels/youtubedl_ui.py:212
+#: ../../vt_panels/youtubedl_ui.py:207
 msgid "Playlist Editor"
 msgstr "Editor Playlist"
 
@@ -112,26 +103,21 @@ msgid "OK: Indexes to download"
 msgstr "OK: Indici da scaricare"
 
 #: ../../vt_dialogs/playlist_indexing.py:255
-msgid ""
-"WARNING: The selected URL does not refer to a playlist. Only lines marked "
-"green can be indexed."
-msgstr ""
-"ATTENZIONE: L'URL selezionato non fa riferimento a una playlist. È possibile "
-"indicizzare solo le righe contrassegnate in verde."
+msgid "WARNING: The selected URL does not refer to a playlist. Only lines marked green can be indexed."
+msgstr "ATTENZIONE: L'URL selezionato non fa riferimento a una playlist. È possibile indicizzare solo le righe contrassegnate in verde."
 
 #: ../../vt_dialogs/settings_vidtuber.py:76
-msgid "yt-dlp executable settings"
-msgstr "impostazioni dell'eseguibile yt-dlp"
+#, python-brace-format
+msgid "Specify the {0} executable"
+msgstr "Specificare l'eseguibile {0}"
 
 #: ../../vt_dialogs/settings_vidtuber.py:79
 #, python-brace-format
 msgid ""
-"Here you can provide the path to the latest version of the {0} executable, "
-"this allows you\n"
+"Here you can provide the path to the latest version of the {0} executable, this allows you\n"
 "to always keep it up to date."
 msgstr ""
-"Specifica qui il percorso all'ultima versione dell'eseguibile {0}, in modo "
-"da mantenerlo\n"
+"Specifica qui il percorso all'ultima versione dell'eseguibile {0}, in modo da mantenerlo\n"
 "sempre aggiornato."
 
 #: ../../vt_dialogs/settings_vidtuber.py:84
@@ -139,198 +125,178 @@ msgid "Enable a custom location to run yt-dlp executable."
 msgstr "Abilita percorso personalizzato esecuzione yt-dlp."
 
 #: ../../vt_dialogs/settings_vidtuber.py:88
-#: ../../vt_dialogs/settings_vidtuber.py:110
-#: ../../vt_dialogs/settings_vidtuber.py:137
-#: ../../vt_dialogs/settings_vidtuber.py:149
+#: ../../vt_dialogs/settings_vidtuber.py:115
+#: ../../vt_dialogs/settings_vidtuber.py:127
 #: ../../vt_dialogs/settings_ytdlp.py:123 ../../vt_panels/textdrop.py:153
 msgid "Change"
 msgstr "Modifica"
 
-#: ../../vt_dialogs/settings_vidtuber.py:97
+#: ../../vt_dialogs/settings_vidtuber.py:105
+msgid "Specifying FFmpeg executables"
+msgstr "Specificazione degli eseguibili FFmpeg"
+
+#: ../../vt_dialogs/settings_vidtuber.py:107
 msgid ""
-"External Python package\n"
-"(requires application restart)"
+"For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables.\n"
+"Here you can customize the paths to these executables."
 msgstr ""
-"Pacchetto Python Esterno\n"
-"(richiede riavvio dell'applicazione)"
+"Per varie attività di post-elaborazione, yt-dlp richiede gli eseguibili ffmpeg e ffprobe.\n"
+"Qui è possibile personalizzare i percorsi di questi eseguibili."
 
-#: ../../vt_dialogs/settings_vidtuber.py:100
-msgid ""
-"Import the yt_dlp Python package externally. E.g, you can include the source "
-"package\n"
-"directory or the path to the package installed in an external virtual "
-"environment."
-msgstr ""
-"Importa il pacchetto Python yt_dlp esternamente. \n"
-"Ad esempio, puoi includere la cartella dei sorgenti del pacchetto oppure "
-"il \n"
-"percorso del pacchetto installato su un ambiente virtuale esterno."
-
-#: ../../vt_dialogs/settings_vidtuber.py:106
-msgid "Enable external import of yt_dlp package"
-msgstr "Abilita l'importazione esterna del pacchetto yt_dlp"
-
-#: ../../vt_dialogs/settings_vidtuber.py:126
-msgid "Location of executables"
-msgstr "Individuazione eseguibili"
-
-#: ../../vt_dialogs/settings_vidtuber.py:128
-msgid ""
-"FFmpeg can be built by enabling/disabling its options and this depends on "
-"your needs.\n"
-"For some use cases it is possible to provide a custom build of FFmpeg where "
-"you can specify\n"
-"it in this preferences tab."
-msgstr ""
-"FFmpeg può essere costruito abilitando/disabilitando le sue opzioni e questo "
-"dipende dalle\n"
-"tue necessità. Per alcuni casi d'uso è possibile fornire una build "
-"personalizzata di FFmpeg dove\n"
-"puoi specificarla in questa tabella delle preferenze."
-
-#: ../../vt_dialogs/settings_vidtuber.py:135
+#: ../../vt_dialogs/settings_vidtuber.py:113
 msgid "Enable a custom location to run FFmpeg"
 msgstr "Abilita percorso personalizzato esecuzione FFmpeg"
 
-#: ../../vt_dialogs/settings_vidtuber.py:147
+#: ../../vt_dialogs/settings_vidtuber.py:125
 msgid "Enable a custom location to run FFprobe"
 msgstr "Abilita percorso personalizzato esecuzione FFprobe"
 
-#: ../../vt_dialogs/settings_vidtuber.py:160
+#: ../../vt_dialogs/settings_vidtuber.py:138
 msgid "FFmpeg"
 msgstr "FFmpeg"
 
-#: ../../vt_dialogs/settings_vidtuber.py:166
+#: ../../vt_dialogs/settings_vidtuber.py:144
 msgid "Look and Feel (requires application restart)"
 msgstr "Aspetto (richiede il riavvio dell'applicazione)"
 
-#: ../../vt_dialogs/settings_vidtuber.py:171
+#: ../../vt_dialogs/settings_vidtuber.py:149
 msgid "Icon themes"
 msgstr "Temi icona"
 
-#: ../../vt_dialogs/settings_vidtuber.py:185
+#: ../../vt_dialogs/settings_vidtuber.py:163
 msgid "At the top of window (default)"
 msgstr "Sopra alla finestra (predefinito)"
 
-#: ../../vt_dialogs/settings_vidtuber.py:186
+#: ../../vt_dialogs/settings_vidtuber.py:164
 msgid "At the bottom of window"
 msgstr "Sotto alla finestra"
 
-#: ../../vt_dialogs/settings_vidtuber.py:187
+#: ../../vt_dialogs/settings_vidtuber.py:165
 msgid "At the right of window"
 msgstr "A destra della finestra"
 
-#: ../../vt_dialogs/settings_vidtuber.py:188
+#: ../../vt_dialogs/settings_vidtuber.py:166
 msgid "At the left of window"
 msgstr "A sinistra della finestra"
 
-#: ../../vt_dialogs/settings_vidtuber.py:190
+#: ../../vt_dialogs/settings_vidtuber.py:168
 msgid "Place the toolbar"
 msgstr "Posiziona barra strumenti"
 
-#: ../../vt_dialogs/settings_vidtuber.py:199
+#: ../../vt_dialogs/settings_vidtuber.py:177
 msgid "Toolbar's icons size:"
 msgstr "Dimensioni icone barra strumenti:"
 
-#: ../../vt_dialogs/settings_vidtuber.py:213
+#: ../../vt_dialogs/settings_vidtuber.py:191
 msgid "Application Language (requires application restart)"
 msgstr "Lingua applicazione (richiede il riavvio dell'applicazione)"
 
-#: ../../vt_dialogs/settings_vidtuber.py:225
+#: ../../vt_dialogs/settings_vidtuber.py:203
 msgid "Look and Language"
 msgstr "Aspetto e lingua"
 
-#: ../../vt_dialogs/settings_vidtuber.py:231
+#: ../../vt_dialogs/settings_vidtuber.py:209
 msgid "Upon exiting the application"
 msgstr "All'uscita dall'applicazione"
 
-#: ../../vt_dialogs/settings_vidtuber.py:236
+#: ../../vt_dialogs/settings_vidtuber.py:214
 msgid "Always ask me to confirm"
 msgstr "Chiedimi sempre di confermare"
 
-#: ../../vt_dialogs/settings_vidtuber.py:238
+#: ../../vt_dialogs/settings_vidtuber.py:216
 msgid "Clean the log files"
 msgstr "Pulisci i file registro"
 
-#: ../../vt_dialogs/settings_vidtuber.py:241
+#: ../../vt_dialogs/settings_vidtuber.py:219
 msgid "Remove cached files"
 msgstr "Rimuovi i file memorizzati nella cache"
 
-#: ../../vt_dialogs/settings_vidtuber.py:245
+#: ../../vt_dialogs/settings_vidtuber.py:223
 msgid "On operations completion"
 msgstr "Al termine delle operazioni"
 
-#: ../../vt_dialogs/settings_vidtuber.py:248
-msgid ""
-"These settings will remain active until the application is closed, If "
-"necessary, remember to reactivate them."
+#: ../../vt_dialogs/settings_vidtuber.py:226
+msgid "These settings will remain active until the application is closed, If necessary, remember to reactivate them."
 msgstr ""
 "Queste impostazioni saranno attive fino alla chiusura dell'applicazione. \n"
 "Se necessario, ricordati di riattivarle."
 
-#: ../../vt_dialogs/settings_vidtuber.py:253 ../../vt_main/main_frame.py:274
+#: ../../vt_dialogs/settings_vidtuber.py:231 ../../vt_main/main_frame.py:260
 msgid "Exit the application"
 msgstr "Esci dall'applicazione"
 
-#: ../../vt_dialogs/settings_vidtuber.py:256
+#: ../../vt_dialogs/settings_vidtuber.py:234
 msgid "Shutdown the system"
 msgstr "Spegni il sistema"
 
-#: ../../vt_dialogs/settings_vidtuber.py:260
+#: ../../vt_dialogs/settings_vidtuber.py:238
 msgid "SUDO password:"
 msgstr "Password SUDO:"
 
-#: ../../vt_dialogs/settings_vidtuber.py:269
+#: ../../vt_dialogs/settings_vidtuber.py:247
 msgid "Exit and Shutdown"
 msgstr "Uscita e spegnimento"
 
-#: ../../vt_dialogs/settings_vidtuber.py:275
+#: ../../vt_dialogs/settings_vidtuber.py:253
 msgid "Default application directories"
 msgstr "Cartelle predefinite applicazione"
 
-#: ../../vt_dialogs/settings_vidtuber.py:279
+#: ../../vt_dialogs/settings_vidtuber.py:257
 msgid "Configuration directory"
 msgstr "Cartella configurazione"
 
-#: ../../vt_dialogs/settings_vidtuber.py:292
+#: ../../vt_dialogs/settings_vidtuber.py:270
 msgid "Cache directory"
 msgstr "Cartella cache"
 
-#: ../../vt_dialogs/settings_vidtuber.py:304
+#: ../../vt_dialogs/settings_vidtuber.py:282
 msgid "Log directory"
 msgstr "Cartella registro eventi"
 
-#: ../../vt_dialogs/settings_vidtuber.py:318
+#: ../../vt_dialogs/settings_vidtuber.py:296
 msgid "Advanced"
 msgstr "Avanzate"
 
-#: ../../vt_dialogs/settings_vidtuber.py:362
-msgid ""
-"Type sudo password here, only for Unix-like operating systems, not for MS "
-"Windows"
-msgstr ""
-"Digita qui la password sudo, solo per i sistemi operativi Unix-like, non per "
-"MS Windows"
+#: ../../vt_dialogs/settings_vidtuber.py:336
+msgid "Type sudo password here, only for Unix-like operating systems, not for MS Windows"
+msgstr "Digita qui la password sudo, solo per i sistemi operativi Unix-like, non per MS Windows"
 
-#: ../../vt_dialogs/settings_vidtuber.py:365
+#: ../../vt_dialogs/settings_vidtuber.py:339
 msgid "Application Preferences"
 msgstr "Preferenze dell'Applicazione"
 
-#: ../../vt_dialogs/settings_vidtuber.py:521
-#: ../../vt_dialogs/settings_vidtuber.py:561 ../../vt_dialogs/wizard_dlg.py:352
-#: ../../vt_dialogs/wizard_dlg.py:369 ../../vt_dialogs/wizard_dlg.py:386
+#: ../../vt_dialogs/settings_vidtuber.py:479
+#: ../../vt_dialogs/settings_vidtuber.py:500
+#: ../../vt_dialogs/settings_vidtuber.py:531
+#: ../../vt_dialogs/settings_vidtuber.py:552
+#: ../../vt_dialogs/settings_vidtuber.py:586
+#: ../../vt_dialogs/settings_vidtuber.py:617 ../../vt_dialogs/wizard_dlg.py:214
+#: ../../vt_dialogs/wizard_dlg.py:246 ../../vt_dialogs/wizard_dlg.py:399
+#: ../../vt_dialogs/wizard_dlg.py:511 ../../vt_dialogs/wizard_dlg.py:536
+msgid "Execute permission is not granted for this file:"
+msgstr "Per questo file non è concesso il permesso di esecuzione:"
+
+#: ../../vt_dialogs/settings_vidtuber.py:481
+#: ../../vt_dialogs/settings_vidtuber.py:502
+#: ../../vt_dialogs/settings_vidtuber.py:533
+#: ../../vt_dialogs/settings_vidtuber.py:554
+#: ../../vt_dialogs/settings_vidtuber.py:588
+#: ../../vt_dialogs/settings_vidtuber.py:619 ../../vt_dialogs/wizard_dlg.py:216
+#: ../../vt_dialogs/wizard_dlg.py:248 ../../vt_dialogs/wizard_dlg.py:401
+#: ../../vt_dialogs/wizard_dlg.py:513 ../../vt_dialogs/wizard_dlg.py:538
+#: ../../vt_main/main_frame.py:202 ../../vt_main/main_frame.py:225
+#: ../../vt_panels/youtubedl_ui.py:354 ../../vt_panels/youtubedl_ui.py:579
+#: ../../vt_panels/youtubedl_ui.py:792
+msgid "Vidtuber - Warning!"
+msgstr "Vidtuber - Attenzione!"
+
+#: ../../vt_dialogs/settings_vidtuber.py:492
+#: ../../vt_dialogs/settings_vidtuber.py:544
+#: ../../vt_dialogs/settings_vidtuber.py:611 ../../vt_dialogs/wizard_dlg.py:208
+#: ../../vt_dialogs/wizard_dlg.py:503 ../../vt_dialogs/wizard_dlg.py:527
 #, python-brace-format
 msgid "{} location"
 msgstr "Percorso {}"
-
-#: ../../vt_dialogs/settings_vidtuber.py:606
-#, python-brace-format
-msgid "Open «{}» executable file"
-msgstr "Apri file eseguibile «{}»"
-
-#: ../../vt_dialogs/settings_vidtuber.py:635
-msgid "Open «yt_dlp» python package directory"
-msgstr "Apri la cartella del pacchetto Python «yt_dlp»"
 
 #: ../../vt_dialogs/settings_ytdlp.py:65
 msgid "Workarounds"
@@ -378,8 +344,7 @@ msgstr "Dove vuoi salvare i download?"
 
 #: ../../vt_dialogs/settings_ytdlp.py:126
 msgid "Auto-create subdirectories when downloading playlists"
-msgstr ""
-"Crea automaticamente le sotto cartelle durante il download delle playlist"
+msgstr "Crea automaticamente le sotto cartelle durante il download delle playlist"
 
 #: ../../vt_dialogs/settings_ytdlp.py:131
 msgid "File Preferences"
@@ -391,17 +356,13 @@ msgstr "Scelta downloader esterno"
 
 #: ../../vt_dialogs/settings_ytdlp.py:140
 msgid ""
-"In addition to the default `native` one, yt-dlp can use the following "
-"external downloaders:\n"
+"In addition to the default `native` one, yt-dlp can use the following external downloaders:\n"
 "`aria2c`, `avconv`, `axel`, `curl`, `ffmpeg`, `httpie`, `wget`.\n"
-"Please note that using an external downloader the download status "
-"information may not be available."
+"Please note that using an external downloader the download status information may not be available."
 msgstr ""
-"Oltre a quello `native` predefinito, yt-dlp supporta i seguenti downloader "
-"esterni:\n"
+"Oltre a quello `native` predefinito, yt-dlp supporta i seguenti downloader esterni:\n"
 "`aria2c`, `avconv`, `axel`, `curl`, `ffmpeg`, `httpie`, `wget`.\n"
-"Nota che usando un downloader esterno le informazioni sullo stato dello "
-"scaricamento\n"
+"Nota che usando un downloader esterno le informazioni sullo stato dello scaricamento\n"
 "potrebbero non essere disponibili."
 
 #: ../../vt_dialogs/settings_ytdlp.py:149
@@ -414,7 +375,7 @@ msgstr "Argomenti downloader esterno"
 
 #: ../../vt_dialogs/settings_ytdlp.py:165
 msgid "External Downloader"
-msgstr ""
+msgstr "Downloader Esterno"
 
 #: ../../vt_dialogs/settings_ytdlp.py:171
 msgid "Using a proxy server"
@@ -423,16 +384,13 @@ msgstr "Utilizzo di un server proxy"
 #: ../../vt_dialogs/settings_ytdlp.py:175
 #, python-brace-format
 msgid ""
-"Use the specified HTTP/HTTPS/SOCKS proxy. To enable SOCKS proxy, specify a "
-"proper\n"
+"Use the specified HTTP/HTTPS/SOCKS proxy. To enable SOCKS proxy, specify a proper\n"
 "scheme, e.g.\t{}\n"
 "Leave the text field blank for direct connection."
 msgstr ""
-"Usa un proxy specifico di tipo HTTP/HTTPS/SOCKS. Per abilitare il proxy "
-"SOCKS, specificare\n"
+"Usa un proxy specifico di tipo HTTP/HTTPS/SOCKS. Per abilitare il proxy SOCKS, specificare\n"
 "uno schema appropriato, ad esempio:\t{}\n"
-"Se non usi un proxy, per la connessione diretta lascia semplicemente vuoto "
-"il campo di testo."
+"Se non usi un proxy, per la connessione diretta lascia semplicemente vuoto il campo di testo."
 
 #: ../../vt_dialogs/settings_ytdlp.py:183
 msgid "Proxy"
@@ -448,32 +406,24 @@ msgstr "Opzioni sulla limitazione geografica"
 
 #: ../../vt_dialogs/settings_ytdlp.py:199
 msgid "Use the following options to try bypassing geographic restriction."
-msgstr ""
-"Utilizza le seguenti opzioni per provare a bypassare la restrizione "
-"geografica."
+msgstr "Utilizza le seguenti opzioni per provare a bypassare la restrizione geografica."
 
 #: ../../vt_dialogs/settings_ytdlp.py:206
 msgid "Geo verification proxy"
 msgstr "Proxy verifica geografica"
 
 #: ../../vt_dialogs/settings_ytdlp.py:210
-msgid ""
-"URL of the proxy to use for IP address verification on geo-restricted sites."
-msgstr ""
-"URL proxy da usare per la verifica dell'indirizzo IP in siti con restrizioni "
-"geografiche."
+msgid "URL of the proxy to use for IP address verification on geo-restricted sites."
+msgstr "URL proxy da usare per la verifica dell'indirizzo IP in siti con restrizioni geografiche."
 
 #: ../../vt_dialogs/settings_ytdlp.py:215
 msgid "Geo bypass"
 msgstr "Bypass geografico"
 
 #: ../../vt_dialogs/settings_ytdlp.py:219
-msgid ""
-"Bypass geographic restriction via faking X-Forwarded-For HTTP header. One of "
-"\"default\" (only when known to be useful), or \"never\""
+msgid "Bypass geographic restriction via faking X-Forwarded-For HTTP header. One of \"default\" (only when known to be useful), or \"never\""
 msgstr ""
-"Ignora la restrizione geografica tramite la falsa intestazione HTTP X-"
-"Forwarded-For. \n"
+"Ignora la restrizione geografica tramite la falsa intestazione HTTP X-Forwarded-For. \n"
 "Imposta o \"predefinito\" (solo quando noto per essere utile) o \"mai\""
 
 #: ../../vt_dialogs/settings_ytdlp.py:226
@@ -481,24 +431,16 @@ msgid "Geo bypass country"
 msgstr "Nazione bypass geografico"
 
 #: ../../vt_dialogs/settings_ytdlp.py:230
-msgid ""
-"Two-letter ISO 3166-2 country code that will be used for explicit geographic "
-"restriction bypassing via faking X-Forwarded-For HTTP header."
-msgstr ""
-"Codice nazione ISO 3166-2 di due lettere che verrà usato per aggirare la "
-"restrizione geografica esplicita tramite la falsa intestazione HTTP X-"
-"Forwarded-For."
+msgid "Two-letter ISO 3166-2 country code that will be used for explicit geographic restriction bypassing via faking X-Forwarded-For HTTP header."
+msgstr "Codice nazione ISO 3166-2 di due lettere che verrà usato per aggirare la restrizione geografica esplicita tramite la falsa intestazione HTTP X-Forwarded-For."
 
 #: ../../vt_dialogs/settings_ytdlp.py:238
 msgid "Geo bypass ip block"
 msgstr "Blocco IP bypass geografico"
 
 #: ../../vt_dialogs/settings_ytdlp.py:242
-msgid ""
-"IP range in CIDR notation that will be used similarly to geo_bypass_country"
-msgstr ""
-"Intervallo IP nella notazione CIDR che verrà usato in modo simile a "
-"geo_bypass_country"
+msgid "IP range in CIDR notation that will be used similarly to geo_bypass_country"
+msgstr "Intervallo IP nella notazione CIDR che verrà usato in modo simile a geo_bypass_country"
 
 #: ../../vt_dialogs/settings_ytdlp.py:249
 msgid "Geo-Restriction"
@@ -510,18 +452,13 @@ msgstr "Autenticazione con credenziali di accesso"
 
 #: ../../vt_dialogs/settings_ytdlp.py:257
 msgid ""
-"If you need to login with your credentials please note that login with "
-"password is not\n"
-"supported for some websites (e.g. YouTube, CloudFlare). In this case you can "
-"include a\n"
+"If you need to login with your credentials please note that login with password is not\n"
+"supported for some websites (e.g. YouTube, CloudFlare). In this case you can include a\n"
 "cookie file for authentication (see cookies tab)."
 msgstr ""
-"Se vuoi accedere con le tue credenziali, tieni presente che l'accesso con "
-"password non\n"
-"è supportato per alcuni siti Web (ad esempio YouTube, CloudFlare). Se questo "
-"è il \n"
-"caso, considera di includere un file cookie per l'autenticazione (vedi "
-"scheda cookies)."
+"Se vuoi accedere con le tue credenziali, tieni presente che l'accesso con password non\n"
+"è supportato per alcuni siti Web (ad esempio YouTube, CloudFlare). Se questo è il \n"
+"caso, considera di includere un file cookie per l'autenticazione (vedi scheda cookies)."
 
 #: ../../vt_dialogs/settings_ytdlp.py:266
 msgid "Username"
@@ -558,19 +495,15 @@ msgstr "Utilizzo dei cookie per accedere ai siti web"
 #: ../../vt_dialogs/settings_ytdlp.py:304
 #, python-brace-format
 msgid ""
-"Here you can pass your `Netscape HTTP Cookie File` in order to access "
-"websites that require authentication.\n"
-"If you don't know how to obtain this type of file, you can let the "
-"application try to extract it from your browser\n"
+"Here you can pass your `Netscape HTTP Cookie File` in order to access websites that require authentication.\n"
+"If you don't know how to obtain this type of file, you can let the application try to extract it from your browser\n"
 "automatically. The currently supported browsers are:\n"
 "{0}.\n"
 "\n"
 "For more information please consult the documentation at the following link:"
 msgstr ""
-"Qui puoi passare il tuo file cookie HTTP `Netscape\" per accedere ai siti "
-"web che richiedono l'autenticazione.\n"
-"Se non sai come ottenere questo tipo di file, puoi lasciare che "
-"l'applicazione provi a estrarlo automaticamente\n"
+"Qui puoi passare il tuo file cookie HTTP `Netscape\" per accedere ai siti web che richiedono l'autenticazione.\n"
+"Se non sai come ottenere questo tipo di file, puoi lasciare che l'applicazione provi a estrarlo automaticamente\n"
 "dal browser. I browser attualmente supportati sono:\n"
 "{0}.\n"
 "\n"
@@ -612,9 +545,9 @@ msgstr "Impostazione opzioni yt-dlp"
 msgid "Do you want to remove the current cookie file from your system?"
 msgstr "Vuoi rimuovere l'attuale file cookie dal sistema?"
 
-#: ../../vt_dialogs/settings_ytdlp.py:438 ../../vt_dialogs/showlogs.py:161
-#: ../../vt_dialogs/wizard_dlg.py:244 ../../vt_panels/youtubedl_ui.py:612
-#: ../../vt_panels/youtubedl_ui.py:628
+#: ../../vt_dialogs/settings_ytdlp.py:438 ../../vt_dialogs/showlogs.py:162
+#: ../../vt_dialogs/wizard_dlg.py:254 ../../vt_dialogs/wizard_dlg.py:407
+#: ../../vt_panels/youtubedl_ui.py:541 ../../vt_panels/youtubedl_ui.py:557
 msgid "Please confirm"
 msgstr "Conferma"
 
@@ -622,31 +555,31 @@ msgstr "Conferma"
 msgid "Locate your cookie file"
 msgstr "Individua il file cookie"
 
-#: ../../vt_dialogs/settings_ytdlp.py:504 ../../vt_main/main_frame.py:442
+#: ../../vt_dialogs/settings_ytdlp.py:504 ../../vt_main/main_frame.py:415
 msgid "Choose Destination"
 msgstr "Scegli la Destinazione"
 
-#: ../../vt_dialogs/showlogs.py:73
+#: ../../vt_dialogs/showlogs.py:74
 msgid "Log file list"
 msgstr "Elenco file registro"
 
-#: ../../vt_dialogs/showlogs.py:75 ../../vt_dialogs/showlogs.py:109
+#: ../../vt_dialogs/showlogs.py:76 ../../vt_dialogs/showlogs.py:110
 msgid "Log messages"
 msgstr "Messaggi di registro"
 
-#: ../../vt_dialogs/showlogs.py:98
+#: ../../vt_dialogs/showlogs.py:99
 msgid "Refresh log messages"
 msgstr "Aggiorna i messaggi di registro"
 
-#: ../../vt_dialogs/showlogs.py:100
+#: ../../vt_dialogs/showlogs.py:101
 msgid "Clear log messages"
 msgstr "Cancella messaggi di registro"
 
-#: ../../vt_dialogs/showlogs.py:153
+#: ../../vt_dialogs/showlogs.py:154
 msgid "Select a log file"
 msgstr "Seleziona un file registro"
 
-#: ../../vt_dialogs/showlogs.py:160
+#: ../../vt_dialogs/showlogs.py:161
 msgid "Are you sure you want to clear the selected log file?"
 msgstr "Sei sicuro di voler eliminare il file registro selezionato?"
 
@@ -754,7 +687,7 @@ msgstr "Incorpora i sottotitoli nel file video"
 msgid "Download subtitles only (do not include audio and video)"
 msgstr "Scarica solo i sottotitoli (non includere audio e video)"
 
-#: ../../vt_dialogs/subtitles_editor.py:137 ../../vt_panels/youtubedl_ui.py:219
+#: ../../vt_dialogs/subtitles_editor.py:137 ../../vt_panels/youtubedl_ui.py:214
 msgid "Subtitles Editor"
 msgstr "Editor Sottotitoli"
 
@@ -772,148 +705,155 @@ msgid ""
 "requested languages, e.g. \"all, -it.*, -nl.*\", -fr.*\" will download all\n"
 "subtitles except those in Italian, Dutch and French."
 msgstr ""
-"Scrivi nel campo di testo a lato, uno o più codici lingua dei sottotitoli "
-"da\n"
-"scaricare separati da virgole, es. \"en, ja, ar\" rispettivamente per "
-"inglese,\n"
+"Scrivi nel campo di testo a lato, uno o più codici lingua dei sottotitoli da\n"
+"scaricare separati da virgole, es. \"en, ja, ar\" rispettivamente per inglese,\n"
 "giapponese e arabo.\n"
 "\n"
 "Puoi usare la regex (espressione regolare), ad es. \"en.*, ja, ar.*\" dove\n"
 "l'asterisco preceduto dal punto ti permetterà di scaricare tutto ciò che\n"
 "riguarda i sottotitoli di una determinata lingua.\n"
 "\n"
-"È possibile prefissare il codice della lingua con un \"-\" per escluderlo "
-"dalle\n"
-"lingue richieste, ad es. \"all, -it.*, -nl.*\", -fr.*\" ciò scaricherà tutti "
-"i sottotitoli\n"
+"È possibile prefissare il codice della lingua con un \"-\" per escluderlo dalle\n"
+"lingue richieste, ad es. \"all, -it.*, -nl.*\", -fr.*\" ciò scaricherà tutti i sottotitoli\n"
 "tranne quelli in italiano, olandese e francese."
 
-#: ../../vt_dialogs/widget_utils.py:120 ../../vt_main/main_frame.py:666
+#: ../../vt_dialogs/widget_utils.py:120 ../../vt_main/main_frame.py:632
 msgid "Stop"
 msgstr "Stop"
 
-#: ../../vt_dialogs/wizard_dlg.py:66
+#: ../../vt_dialogs/wizard_dlg.py:62
 msgid "Please take a moment to set up the application"
 msgstr "Dedica qualche istante alla configurazione dell'applicazione"
 
-#: ../../vt_dialogs/wizard_dlg.py:67
+#: ../../vt_dialogs/wizard_dlg.py:63
 msgid "Click the \"Next\" button to get started"
 msgstr "Per iniziare seleziona \"Avanti\""
 
-#: ../../vt_dialogs/wizard_dlg.py:126
-msgid "If FFmpeg is not on your computer, this application will be unusable"
-msgstr ""
-"Se FFmpeg non è disponibile nel computer, questa applicazione non potrà "
-"essere usata"
+#: ../../vt_dialogs/wizard_dlg.py:78
+msgid "Welcome to the Vidtuber Wizard!"
+msgstr "Benvenuto nell'assistente di Vidtuber!"
 
-#: ../../vt_dialogs/wizard_dlg.py:129
-msgid ""
-"If you have already installed FFmpeg on your operating\n"
-"system, click the \"Auto-detection\" button."
-msgstr ""
-"Se hai già installato FFmpeg nel sistema operativo, seleziona \"Rileva "
-"automaticamente\"."
+#: ../../vt_dialogs/wizard_dlg.py:127
+#, python-brace-format
+msgid "Specifying {0} executable\n"
+msgstr "Specificazione dell'eseguibile {0}\n"
 
-#: ../../vt_dialogs/wizard_dlg.py:132
+#: ../../vt_dialogs/wizard_dlg.py:129 ../../vt_dialogs/wizard_dlg.py:284
+#, python-brace-format
 msgid ""
-"If you want to use a version of FFmpeg located on your\n"
-"filesystem but not installed on your operating system,\n"
-"click the \"Locate\" button."
+"If you have already installed {0} on your operating system,\n"
+"click the «Auto-detection» button."
 msgstr ""
-"Se vuoi usare una versione di FFmpeg presente ma non installata nel sistema "
+"Se hai già installato {0} nel sistema operativo,\n"
+"seleziona \"Rileva automaticamente\"."
+
+#: ../../vt_dialogs/wizard_dlg.py:132 ../../vt_dialogs/wizard_dlg.py:287
+#, python-brace-format
+msgid ""
+"If you want to use a version of {0} located on your filesystem\n"
+"but not installed on your operating system, click the «Locate» button."
+msgstr ""
+"Se vuoi usare una versione di {0} presente ma non installata nel sistema\n"
 "operativo, seleziona \"Individua\"."
 
-#: ../../vt_dialogs/wizard_dlg.py:154
+#: ../../vt_dialogs/wizard_dlg.py:153 ../../vt_dialogs/wizard_dlg.py:312
 msgid "Auto-detection"
 msgstr "Rileva automaticamente"
 
-#: ../../vt_dialogs/wizard_dlg.py:156
+#: ../../vt_dialogs/wizard_dlg.py:155 ../../vt_dialogs/wizard_dlg.py:314
 msgid "Locate"
 msgstr "Individua"
 
-#: ../../vt_dialogs/wizard_dlg.py:207
-msgid "Click the \"Next\" button"
-msgstr "Seleziona \"Avanti\""
-
-#: ../../vt_dialogs/wizard_dlg.py:228
+#: ../../vt_dialogs/wizard_dlg.py:239 ../../vt_dialogs/wizard_dlg.py:385
 #, python-brace-format
-msgid ""
-"'{}' is not installed on your computer. Install it or indicate another "
-"location by clicking the 'Locate' button."
+msgid "'{}' is not installed on your computer. Install it or indicate another location by clicking the 'Locate' button."
 msgstr ""
 "\"{}\" non è installato nel computer. \n"
 "Installalo o indica un altro percorso selezionando \"Individua\"."
 
-#: ../../vt_dialogs/wizard_dlg.py:268
+#: ../../vt_dialogs/wizard_dlg.py:252
+#, python-brace-format
+msgid ""
+"Vidtuber already seems to include {}.\n"
+"\n"
+"Do you want to use that?"
+msgstr ""
+"Vidtuber sembra già includere {}.\n"
+"\n"
+"Vuoi usare quello?"
+
+#: ../../vt_dialogs/wizard_dlg.py:279
+msgid "Specifying FFmpeg executables\n"
+msgstr "Specificazione degli eseguibili FFmpeg\n"
+
+#: ../../vt_dialogs/wizard_dlg.py:281
+msgid "For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables."
+msgstr "Per varie attività di post-elaborazione, yt-dlp richiede gli eseguibili ffmpeg e ffprobe."
+
+#: ../../vt_dialogs/wizard_dlg.py:364
+msgid "Click the \"Next\" button"
+msgstr "Seleziona \"Avanti\""
+
+#: ../../vt_dialogs/wizard_dlg.py:405
+msgid ""
+"Vidtuber already seems to include FFmpeg.\n"
+"\n"
+"Do you want to use that?"
+msgstr ""
+"Vidtuber sembra già includere FFmpeg.\n"
+"\n"
+"Vuoi usare quello?"
+
+#: ../../vt_dialogs/wizard_dlg.py:430
 msgid "Locating FFmpeg executables\n"
 msgstr "Individuazione eseguibili FFmpeg\n"
 
-#: ../../vt_dialogs/wizard_dlg.py:270
+#: ../../vt_dialogs/wizard_dlg.py:432
 msgid ""
-"\"ffmpeg\", \"ffprobe\" and \"ffplay\" are required. Complete all\n"
+"\"ffmpeg\" and \"ffprobe\" are required. Complete all\n"
 "the text boxes below by clicking on the respective buttons."
 msgstr ""
-"Sono richiesti \"ffmpeg\", \"ffprobe\" ed \" ffplay\". \n"
-"Completa tutti i campi di testo sottostanti selezionando i rispettivi "
-"pulsanti."
+"Sono richiesti \"ffmpeg\" ed \"ffprobe\".\n"
+"Completa tutti i campi di testo sottostanti selezionando i rispettivi pulsanti."
 
-#: ../../vt_dialogs/wizard_dlg.py:410
-msgid ""
-"This feature allows you to download video and audio from\n"
-"many sites, including YouTube.com and even Facebook."
-msgstr ""
-"Questa funzione consente di scaricare video e audio da molti siti, inclusi "
-"YouTube.com e persino Facebook."
-
-#: ../../vt_dialogs/wizard_dlg.py:429
-msgid " Do you want to enable this feature?"
-msgstr " Vuoi abilitare questa funzione?"
-
-#: ../../vt_dialogs/wizard_dlg.py:459
+#: ../../vt_dialogs/wizard_dlg.py:555
 msgid "Wizard completed successfully!\n"
 msgstr "Procedura guidata completata correttamente!\n"
 
-#: ../../vt_dialogs/wizard_dlg.py:460
-msgid ""
-"Remember that you can always change these settings later, through the "
-"Preferences dialog."
-msgstr ""
-"Ricorda che puoi sempre modificare più tardi queste impostazioni attraverso "
-"le preferenze globali."
+#: ../../vt_dialogs/wizard_dlg.py:556
+msgid "Remember that you can always change these settings later, through the Preferences dialog."
+msgstr "Ricorda che puoi sempre modificare più tardi queste impostazioni attraverso le preferenze globali."
 
-#: ../../vt_dialogs/wizard_dlg.py:462
+#: ../../vt_dialogs/wizard_dlg.py:558
 msgid "Thank You!"
 msgstr "Grazie!"
 
-#: ../../vt_dialogs/wizard_dlg.py:463
+#: ../../vt_dialogs/wizard_dlg.py:559
 msgid "To exit click the \"Finish\" button"
 msgstr "Per uscire seleziona \"Fine\""
 
-#: ../../vt_dialogs/wizard_dlg.py:551
+#: ../../vt_dialogs/wizard_dlg.py:647
 msgid "< Previous"
 msgstr "< Indietro"
 
-#: ../../vt_dialogs/wizard_dlg.py:554 ../../vt_dialogs/wizard_dlg.py:654
+#: ../../vt_dialogs/wizard_dlg.py:650 ../../vt_dialogs/wizard_dlg.py:754
 msgid "Next >"
 msgstr "Avanti >"
 
-#: ../../vt_dialogs/wizard_dlg.py:588 ../../vt_dialogs/wizard_dlg.py:624
+#: ../../vt_dialogs/wizard_dlg.py:655
+msgid "Vidtuber Wizard"
+msgstr "Procedura guidata Vidtuber"
+
+#: ../../vt_dialogs/wizard_dlg.py:682 ../../vt_dialogs/wizard_dlg.py:710
+#: ../../vt_dialogs/wizard_dlg.py:717 ../../vt_dialogs/wizard_dlg.py:727
 msgid "Finish"
 msgstr "Fine"
 
-#: ../../vt_dialogs/wizard_dlg.py:616
+#: ../../vt_dialogs/wizard_dlg.py:719
 msgid "Some text boxes are still incomplete"
 msgstr "Alcune caselle di testo non sono complete"
 
-#: ../../vt_dialogs/ydl_mediainfo.py:67
-msgid "Statistics viewer"
-msgstr "Visualizzatore di statistiche"
-
-#: ../../vt_dialogs/ydl_mediainfo.py:70
-msgid "TITLE SELECTION"
-msgstr "SELEZIONE TITOLO"
-
-#: ../../vt_io/checkup.py:44
+#: ../../vt_io/checkup.py:43
 #, python-brace-format
 msgid ""
 "Output folder does not exist:\n"
@@ -924,7 +864,16 @@ msgstr ""
 "\n"
 "\"{}\"\n"
 
-#: ../../vt_io/io_tools.py:52
+#: ../../vt_io/checkup.py:44 ../../vt_io/io_tools.py:76
+#: ../../vt_panels/youtubedl_ui.py:358
+msgid "Vidtuber - Error!"
+msgstr "Vidtuber - Errore!"
+
+#: ../../vt_io/io_tools.py:50
+msgid "Vidtuber - Loading..."
+msgstr "Caricamento..."
+
+#: ../../vt_io/io_tools.py:51
 msgid ""
 "Wait....\n"
 "Retrieving required data."
@@ -932,176 +881,182 @@ msgstr ""
 "Attendi....\n"
 "Recupero i dati richiesti."
 
-#: ../../vt_main/main_frame.py:108 ../../vt_main/main_frame.py:747
-#: ../../vt_panels/textdrop.py:233 ../../vt_panels/youtubedl_ui.py:440
+#: ../../vt_main/main_frame.py:89 ../../vt_main/main_frame.py:695
+msgid "Vidtuber - List of URLs"
+msgstr "Vidtuber - Lista degli URL"
+
+#: ../../vt_main/main_frame.py:105 ../../vt_main/main_frame.py:694
+#: ../../vt_panels/textdrop.py:233 ../../vt_panels/youtubedl_ui.py:369
 msgid "Ready"
 msgstr "Pronto"
 
-#: ../../vt_main/main_frame.py:213 ../../vt_main/main_frame.py:236
-msgid ""
-"There are still active windows with running processes, make sure you finish "
-"your work before exit."
-msgstr ""
-"Ci sono ancora finestre attive con processi in esecuzione, assicurati di "
-"finire il lavoro prima di uscire."
+#: ../../vt_main/main_frame.py:199 ../../vt_main/main_frame.py:222
+msgid "There are still active windows with running processes, make sure you finish your work before exit."
+msgstr "Ci sono ancora finestre attive con processi in esecuzione, assicurati di finire il lavoro prima di uscire."
 
-#: ../../vt_main/main_frame.py:220
+#: ../../vt_main/main_frame.py:206
 msgid "Are you sure you want to exit the application?"
 msgstr "Sei sicuro di voler uscire dall'applicazione?"
 
-#: ../../vt_main/main_frame.py:222
+#: ../../vt_main/main_frame.py:208
 msgid "Exit"
 msgstr "Uscita dall'applicazione"
 
-#: ../../vt_main/main_frame.py:269
+#: ../../vt_main/main_frame.py:255
 msgid "Open destination folder of downloads\tCtrl+D"
 msgstr "Apri cartella destinazione dei download\tCtrl+D"
 
-#: ../../vt_main/main_frame.py:273
+#: ../../vt_main/main_frame.py:259
 msgid "Exit\tCtrl+Q"
 msgstr "Esci\tCtrl+Q"
 
-#: ../../vt_main/main_frame.py:275
+#: ../../vt_main/main_frame.py:261
 msgid "File"
 msgstr "File"
 
-#: ../../vt_main/main_frame.py:279 ../../vt_panels/textdrop.py:189
+#: ../../vt_main/main_frame.py:265 ../../vt_panels/textdrop.py:189
 #: ../../vt_panels/textdrop.py:206
 msgid "Paste\tCtrl+V"
 msgstr "Incolla\tCtrl+V"
 
-#: ../../vt_main/main_frame.py:280
+#: ../../vt_main/main_frame.py:266
 msgid "Paste the copied URLs to clipboard"
 msgstr "Incolla gli URL copiati negli appunti"
 
-#: ../../vt_main/main_frame.py:282 ../../vt_panels/textdrop.py:190
+#: ../../vt_main/main_frame.py:268 ../../vt_panels/textdrop.py:190
 #: ../../vt_panels/textdrop.py:209
 msgid "Remove selected URL\tDEL"
 msgstr "Rimuovi l'URL selezionato\tDEL"
 
-#: ../../vt_main/main_frame.py:283
+#: ../../vt_main/main_frame.py:269
 msgid "Remove the selected URL from the list"
 msgstr "Rimuove l'URL selezionato dall'elenco"
 
-#: ../../vt_main/main_frame.py:285 ../../vt_panels/textdrop.py:191
+#: ../../vt_main/main_frame.py:271 ../../vt_panels/textdrop.py:191
 #: ../../vt_panels/textdrop.py:212
 msgid "Clear list\tShift+DEL"
 msgstr "Azzera elenco\tShift+DEL"
 
-#: ../../vt_main/main_frame.py:286
+#: ../../vt_main/main_frame.py:272
 msgid "Clear the URL list"
 msgstr "Cancella l'elenco degli URL"
 
-#: ../../vt_main/main_frame.py:290
+#: ../../vt_main/main_frame.py:276
 msgid "Preferences\tCtrl+P"
 msgstr "Impostazioni\tCtrl+P"
 
-#: ../../vt_main/main_frame.py:291
+#: ../../vt_main/main_frame.py:277
 msgid "Main application preferences"
 msgstr "Preferenze principali dell'applicazione"
 
-#: ../../vt_main/main_frame.py:292
+#: ../../vt_main/main_frame.py:278
 msgid "Edit"
 msgstr "Modifica"
 
-#: ../../vt_main/main_frame.py:296
+#: ../../vt_main/main_frame.py:282
 msgid "Work notes\tCtrl+N"
 msgstr "Note di lavoro\tCtrl+N"
 
-#: ../../vt_main/main_frame.py:297
+#: ../../vt_main/main_frame.py:283
 msgid "Read and write useful notes and reminders."
 msgstr "Leggi e scrivi utili note e promemoria."
 
-#: ../../vt_main/main_frame.py:299
+#: ../../vt_main/main_frame.py:285
 msgid "Tools"
 msgstr "Strumenti"
 
-#: ../../vt_main/main_frame.py:303
+#: ../../vt_main/main_frame.py:289
 msgid "About yt-dlp"
 msgstr "Informazioni su yt-dlp"
 
-#: ../../vt_main/main_frame.py:304
+#: ../../vt_main/main_frame.py:290
 msgid "Shows useful information about yt-dlp"
 msgstr "Mostra informazioni utili su yt-dlp"
 
-#: ../../vt_main/main_frame.py:306
+#: ../../vt_main/main_frame.py:292
 msgid "View"
 msgstr "Visualizza"
 
-#: ../../vt_main/main_frame.py:309
+#: ../../vt_main/main_frame.py:295
 msgid "User guide"
 msgstr "Guida utente"
 
-#: ../../vt_main/main_frame.py:313
+#: ../../vt_main/main_frame.py:299
 msgid "System information"
 msgstr "Informazioni di sistema"
 
-#: ../../vt_main/main_frame.py:314
+#: ../../vt_main/main_frame.py:300
 msgid "Get generic information about the installed system."
 msgstr "Ottieni informazioni generiche sul sistema installato."
 
-#: ../../vt_main/main_frame.py:317
+#: ../../vt_main/main_frame.py:303
 msgid "Show log files\tCtrl+L"
 msgstr "Visualizza file registro eventi\tCtrl+L"
 
-#: ../../vt_main/main_frame.py:318
+#: ../../vt_main/main_frame.py:304
 msgid "Viewing log messages"
 msgstr "Visualizzazione dei messaggi di registro"
 
-#: ../../vt_main/main_frame.py:321
+#: ../../vt_main/main_frame.py:307
 msgid "Issue tracker"
 msgstr "Segnala problema"
 
-#: ../../vt_main/main_frame.py:325
+#: ../../vt_main/main_frame.py:311
 msgid "Contribute to the project"
 msgstr "Contribuisci al progetto"
 
-#: ../../vt_main/main_frame.py:328
+#: ../../vt_main/main_frame.py:314
 msgid "Sponsor this project"
 msgstr "Sponsorizza questo progetto"
 
-#: ../../vt_main/main_frame.py:329
+#: ../../vt_main/main_frame.py:315
 msgid "Become a developer supporter"
 msgstr "Diventa un sostenitore dello sviluppatore"
 
-#: ../../vt_main/main_frame.py:330
+#: ../../vt_main/main_frame.py:316
 msgid "Donate"
-msgstr ""
+msgstr "Donazioni"
 
-#: ../../vt_main/main_frame.py:331
+#: ../../vt_main/main_frame.py:317
 msgid "Donate to the app developer"
 msgstr "Fai donazioni allo sviluppatore dell'applicazione"
 
-#: ../../vt_main/main_frame.py:334
+#: ../../vt_main/main_frame.py:319
+msgid "About Vidtuber"
+msgstr "Info su Vidtuber"
+
+#: ../../vt_main/main_frame.py:320
 msgid "Check latest version"
 msgstr "Controlla l'ultima versione"
 
-#: ../../vt_main/main_frame.py:335
+#: ../../vt_main/main_frame.py:321
 msgid "Check and download the latest version of the application"
 msgstr "Controlla e scarica l'ultima versione dell'applicazione"
 
-#: ../../vt_main/main_frame.py:337
+#: ../../vt_main/main_frame.py:323
 msgid "Help"
 msgstr "Aiuto"
 
-#: ../../vt_main/main_frame.py:409
+#: ../../vt_main/main_frame.py:393
 #, python-brace-format
 msgid ""
-"- Version of the package currently used: {0}\n"
-"- Executable version currently used: {1}\n"
-"Latest version available on github.com: {2}\n"
-"{3}"
+"- Executable version currently used: {0}\n"
+"Latest version available on github.com: {1}\n"
+"{2}"
 msgstr ""
-"- Versione pacchetto Python yt-dlp: {0}\n"
-"- Versione eseguibile: {1}\n"
-"Ultima versione disponibile su github.com: {2}\n"
-"{3}"
+"- Versione eseguibile: {0}\n"
+"Ultima versione disponibile su github.com: {1}\n"
+"{2}"
 
-#: ../../vt_main/main_frame.py:464
+#: ../../vt_main/main_frame.py:396
+msgid "Vidtuber - About «yt-dlp»"
+msgstr "Vidtuber - Informazioni su «yt-dlp»"
+
+#: ../../vt_main/main_frame.py:437
 msgid "Some changes require restarting the application."
 msgstr "Alcune modifiche richiedono il riavvio dell'applicazione."
 
-#: ../../vt_main/main_frame.py:469
+#: ../../vt_main/main_frame.py:442
 #, python-brace-format
 msgid ""
 "{0}\n"
@@ -1112,7 +1067,11 @@ msgstr ""
 "\n"
 "Vuoi riavviare l'applicazione adesso?"
 
-#: ../../vt_main/main_frame.py:562
+#: ../../vt_main/main_frame.py:444
+msgid "Restart Vidtuber?"
+msgstr "Vuoi riavviare Vidtuber?"
+
+#: ../../vt_main/main_frame.py:535
 msgid ""
 "No publications found!\n"
 "ERROR: tag_name"
@@ -1120,140 +1079,142 @@ msgstr ""
 "Nessuna pubblicazione trovata!\n"
 "ERRORE: tag_name"
 
-#: ../../vt_main/main_frame.py:578
+#: ../../vt_main/main_frame.py:551
 #, python-brace-format
 msgid "A new release is available - v.{0}\n"
 msgstr "È disponibile una nuovo versione - v.{0}\n"
 
-#: ../../vt_main/main_frame.py:581
+#: ../../vt_main/main_frame.py:554
 msgid "You are using a development version that has not yet been released!\n"
-msgstr ""
-"Stai usando una versione di sviluppo che non è ancora stata rilasciata!\n"
+msgstr "Stai usando una versione di sviluppo che non è ancora stata rilasciata!\n"
 
-#: ../../vt_main/main_frame.py:584
+#: ../../vt_main/main_frame.py:557
 msgid "Congratulation! You are already using the latest version.\n"
 msgstr "Congratulazioni! L'applicazione è aggiornata.\n"
 
-#: ../../vt_main/main_frame.py:643
+#: ../../vt_main/main_frame.py:614
 msgid "Go to the previous panel"
 msgstr "Vai al pannello precedente"
 
-#: ../../vt_main/main_frame.py:644
+#: ../../vt_main/main_frame.py:615
 msgid "Back"
 msgstr "Indietro"
 
-#: ../../vt_main/main_frame.py:648
+#: ../../vt_main/main_frame.py:619
 msgid "Go to the next panel"
 msgstr "Vai al prossimo pannello"
 
-#: ../../vt_main/main_frame.py:649
+#: ../../vt_main/main_frame.py:620
 msgid "Next"
 msgstr "Avanti"
 
-#: ../../vt_main/main_frame.py:653
-msgid "Shows statistics and information"
-msgstr "Visualizza statistiche e informazioni"
-
-#: ../../vt_main/main_frame.py:654
-msgid "Statistics"
-msgstr "Statistiche"
-
-#: ../../vt_main/main_frame.py:658
+#: ../../vt_main/main_frame.py:624
 msgid "yt-dlp options setting"
 msgstr "impostazione opzioni yt-dlp"
 
-#: ../../vt_main/main_frame.py:659
+#: ../../vt_main/main_frame.py:625
 msgid "Options"
 msgstr "Opzioni"
 
-#: ../../vt_main/main_frame.py:661
+#: ../../vt_main/main_frame.py:627
 msgid "Start downloading"
 msgstr "Avvia il download"
 
-#: ../../vt_main/main_frame.py:662
+#: ../../vt_main/main_frame.py:628
 msgid "Download"
 msgstr "Scarica"
 
-#: ../../vt_main/main_frame.py:665
+#: ../../vt_main/main_frame.py:631
 msgid "Stops current process"
 msgstr "Interrompi il processo corrente"
 
-#: ../../vt_main/main_frame.py:756
+#: ../../vt_main/main_frame.py:703
 msgid "Vidtuber - Download Settings"
 msgstr "Vidtuber - Impostazioni di download"
 
-#: ../../vt_main/main_frame.py:773
+#: ../../vt_main/main_frame.py:720
 msgid "Viewing last log"
 msgstr "Visualizzazione ultimo log"
 
-#: ../../vt_main/main_frame.py:856
+#: ../../vt_main/main_frame.py:733
+msgid "Vidtuber - Downloader Message Monitoring"
+msgstr "Vidtuber - Monitoraggio messaggi downloader"
+
+#: ../../vt_main/main_frame.py:803
 #, python-brace-format
 msgid "The system will turn off in {0} seconds"
 msgstr "Il sistema si spegnerà tra {0} secondi"
 
-#: ../../vt_main/main_frame.py:864
+#: ../../vt_main/main_frame.py:804
+msgid "Vidtuber - Shutdown!"
+msgstr "Vidtuber - Spegnimento!"
+
+#: ../../vt_main/main_frame.py:811
 msgid "Error while shutting down. Please see file log for details."
 msgstr ""
 "Errore durante lo spegnimento. \n"
 "Per i dettagli consultare il file registro."
 
-#: ../../vt_main/main_frame.py:876
+#: ../../vt_main/main_frame.py:823
 #, python-brace-format
 msgid "Exiting the application in {0} seconds"
 msgstr "Chiusura dell'applicazione tra {0} secondi"
 
-#: ../../vt_panels/formatcode.py:98 ../../vt_panels/youtubedl_ui.py:119
-msgid ""
-"At least one \"Format Code\" must be checked for each URL selected in green."
-msgstr ""
-"È necessario spuntare almeno un \"Codice Formato\" per ciascun URL "
-"selezionato in verde."
+#: ../../vt_main/main_frame.py:824
+msgid "Vidtuber - Exiting!"
+msgstr "Vidtuber - Uscita dall'applicazione!"
 
-#: ../../vt_panels/formatcode.py:129
+#: ../../vt_panels/formatcode_exec.py:98 ../../vt_panels/formatcode_lib.py:98
+#: ../../vt_panels/youtubedl_ui.py:117
+msgid "At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr "È necessario spuntare almeno un \"Codice Formato\" per ciascun URL selezionato in verde."
+
+#: ../../vt_panels/formatcode_exec.py:129 ../../vt_panels/formatcode_lib.py:129
 msgid "Format Code"
 msgstr "Codice Formato"
 
-#: ../../vt_panels/formatcode.py:130 ../../vt_panels/textdrop.py:59
+#: ../../vt_panels/formatcode_exec.py:130 ../../vt_panels/formatcode_lib.py:130
+#: ../../vt_panels/textdrop.py:59
 msgid "Url"
 msgstr "Url"
 
-#: ../../vt_panels/formatcode.py:131
-msgid "Title"
-msgstr "Titolo"
-
-#: ../../vt_panels/formatcode.py:132
+#: ../../vt_panels/formatcode_exec.py:131 ../../vt_panels/formatcode_lib.py:132
 msgid "Extension"
 msgstr "Estensione"
 
-#: ../../vt_panels/formatcode.py:133
+#: ../../vt_panels/formatcode_exec.py:132 ../../vt_panels/formatcode_lib.py:133
 msgid "Resolution"
 msgstr "Risoluzione"
 
-#: ../../vt_panels/formatcode.py:134
-msgid "Video Codec"
-msgstr "Codec Video"
-
-#: ../../vt_panels/formatcode.py:135
-msgid "fps"
-msgstr "fps"
-
-#: ../../vt_panels/formatcode.py:136
-msgid "Audio Codec"
-msgstr "Codec Audio"
-
-#: ../../vt_panels/formatcode.py:137
-msgid "Size"
-msgstr "Dimensione"
-
-#: ../../vt_panels/formatcode.py:142
+#: ../../vt_panels/formatcode_exec.py:137 ../../vt_panels/formatcode_lib.py:142
 msgid "Don't merge any files"
 msgstr "Non unire alcun file"
 
-#: ../../vt_panels/formatcode.py:145
+#: ../../vt_panels/formatcode_exec.py:140 ../../vt_panels/formatcode_lib.py:145
 msgid "Download only the best selected qualities"
 msgstr "Scarica solo le qualità selezionate migliori"
 
-#: ../../vt_panels/formatcode.py:249
+#: ../../vt_panels/formatcode_lib.py:131
+msgid "Title"
+msgstr "Titolo"
+
+#: ../../vt_panels/formatcode_lib.py:134
+msgid "Video Codec"
+msgstr "Codec Video"
+
+#: ../../vt_panels/formatcode_lib.py:135
+msgid "fps"
+msgstr "fps"
+
+#: ../../vt_panels/formatcode_lib.py:136
+msgid "Audio Codec"
+msgstr "Codec Audio"
+
+#: ../../vt_panels/formatcode_lib.py:137
+msgid "Size"
+msgstr "Dimensione"
+
+#: ../../vt_panels/formatcode_lib.py:249
 #, python-brace-format
 msgid ""
 "ERROR: Unable to get format codes.\n"
@@ -1265,6 +1226,14 @@ msgstr ""
 "\n"
 "URL non supportato:\n"
 "'{0}'"
+
+#: ../../vt_panels/long_task_ytdlp.py:45
+msgid "[Vidtuber]: SUCCESS !"
+msgstr "[Vidtuber]: COMPLETATO !"
+
+#: ../../vt_panels/long_task_ytdlp.py:46
+msgid "[Vidtuber]: FAILED !"
+msgstr "[Vidtuber]: FALLITO !"
 
 #: ../../vt_panels/long_task_ytdlp.py:47
 msgid "Sorry, all task failed !"
@@ -1304,11 +1273,8 @@ msgstr "Ottieni i file nella destinazione che hai specificato"
 
 #: ../../vt_panels/long_task_ytdlp.py:230
 #: ../../vt_panels/long_task_ytdlp.py:237
-msgid ""
-"Check the current output or read the related log file for more information."
-msgstr ""
-"Controlla l'output attuale o leggi il relativo file registro per ulteriori "
-"informazioni."
+msgid "Check the current output or read the related log file for more information."
+msgstr "Controlla l'output attuale o leggi il relativo file registro per ulteriori informazioni."
 
 #: ../../vt_panels/long_task_ytdlp.py:242
 msgid "...Finished"
@@ -1350,51 +1316,47 @@ msgstr "Imposta nuova cartella di destinazione per i download"
 msgid "Destination folder of downloads"
 msgstr "Cartella di destinazione dei download"
 
-#: ../../vt_panels/youtubedl_ui.py:152
+#: ../../vt_panels/youtubedl_ui.py:150
 msgid "Precompiled Videos"
 msgstr "Video Precompilati"
 
-#: ../../vt_panels/youtubedl_ui.py:153
+#: ../../vt_panels/youtubedl_ui.py:151
 msgid "Download videos by resolution"
 msgstr "Scarica video in base alla risoluzione"
 
-#: ../../vt_panels/youtubedl_ui.py:154
+#: ../../vt_panels/youtubedl_ui.py:152
 msgid "Download split audio and video"
 msgstr "Scarica audio e video divisi"
 
-#: ../../vt_panels/youtubedl_ui.py:155
+#: ../../vt_panels/youtubedl_ui.py:153
 msgid "Download Audio only"
 msgstr "Scarica solo il file audio"
 
-#: ../../vt_panels/youtubedl_ui.py:156
+#: ../../vt_panels/youtubedl_ui.py:154
 msgid "Download by format code"
 msgstr "Scarica per codice formato"
 
-#: ../../vt_panels/youtubedl_ui.py:208
+#: ../../vt_panels/youtubedl_ui.py:203
 msgid "Include playlists"
 msgstr "Includi le playlist"
 
-#: ../../vt_panels/youtubedl_ui.py:226
+#: ../../vt_panels/youtubedl_ui.py:221
 msgid "Quality settings"
 msgstr "Impostazioni qualità"
 
-#: ../../vt_panels/youtubedl_ui.py:238
-msgid ""
-"When not available, the chosen video resolution will be replaced with the "
-"closest one"
-msgstr ""
-"Quando non disponibile, la risoluzione video selezionata verrà sostituita "
-"con quella più vicina"
+#: ../../vt_panels/youtubedl_ui.py:233
+msgid "When not available, the chosen video resolution will be replaced with the closest one"
+msgstr "Quando non disponibile, la risoluzione video selezionata verrà sostituita con quella più vicina"
 
-#: ../../vt_panels/youtubedl_ui.py:242
+#: ../../vt_panels/youtubedl_ui.py:237
 msgid "Video format:"
 msgstr "Formato Video:"
 
-#: ../../vt_panels/youtubedl_ui.py:263
+#: ../../vt_panels/youtubedl_ui.py:258
 msgid "Audio format:"
 msgstr "Formato audio:"
 
-#: ../../vt_panels/youtubedl_ui.py:421
+#: ../../vt_panels/youtubedl_ui.py:350
 #, python-brace-format
 msgid ""
 "Unable to get format codes on {0}, unsupported URL:\n"
@@ -1405,3368 +1367,23 @@ msgstr ""
 "\n"
 "{1}"
 
-#: ../../vt_panels/youtubedl_ui.py:571
+#: ../../vt_panels/youtubedl_ui.py:500
 msgid "URLs have no playlist references"
 msgstr "Gli URL non hanno riferimenti a playlist"
 
-#: ../../vt_panels/youtubedl_ui.py:610
+#: ../../vt_panels/youtubedl_ui.py:539
 msgid "The URLs contain playlists. Are you sure you want to continue?"
 msgstr "Gli URL contengono playlist. Sei sicuro di voler continuare?"
 
-#: ../../vt_panels/youtubedl_ui.py:626
+#: ../../vt_panels/youtubedl_ui.py:555
 msgid "The URLs contain channels. Are you sure you want to continue?"
 msgstr "Gli URL contengono canali. Sei sicuro di voler continuare?"
 
-#: ../../vt_panels/youtubedl_ui.py:829
+#: ../../vt_panels/youtubedl_ui.py:575 ../../vt_panels/youtubedl_ui.py:788
 #, python-brace-format
 msgid ""
 "Missing executable: «{0}».\n"
-"Before continuing, be sure to make the correct settings in the preferences "
-"dialog."
+"Before continuing, be sure to make the correct settings in the preferences dialog."
 msgstr ""
 "Eseguibile mancante: «{0}».\n"
-"Prima di continuare, assicurati di effettuare le impostazioni corrette nella "
-"finestra di dialogo 'Preferenze'."
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "This is Vidtuber v.{0}\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Questo è Vidtuber v. {0}\n"
-#~ "\n"
-
-#~ msgid "Welcome to the Vidtuber Wizard!"
-#~ msgstr "Benvenuto nell'assistente di Vidtuber!"
-
-#~ msgid "Vidtuber is an application based on FFmpeg\n"
-#~ msgstr "Vidtuber è un'applicazione basata su FFmpeg\n"
-
-#~ msgid ""
-#~ "Vidtuber already seems to include FFmpeg.\n"
-#~ "\n"
-#~ "Do you want to use that?"
-#~ msgstr ""
-#~ "Vidtuber sembra già includere FFmpeg.\n"
-#~ "\n"
-#~ "Vuoi usare quello?"
-
-#~ msgid "Vidtuber has a simple graphical interface for yt-dlp\n"
-#~ msgstr "Vidtuber dispone di una semplice interfaccia grafica per yt-dlp\n"
-
-#~ msgid "Vidtuber Wizard"
-#~ msgstr "Procedura guidata Vidtuber"
-
-#~ msgid "Vidtuber - Loading..."
-#~ msgstr "Caricamento..."
-
-#~ msgid "Vidtuber - Downloading..."
-#~ msgstr "Download in corso..."
-
-#~ msgid "Vidtuber - Warning!"
-#~ msgstr "Vidtuber - Attenzione!"
-
-#~ msgid "About Vidtuber"
-#~ msgstr "Info su Vidtuber"
-
-#~ msgid "Vidtuber - About «yt-dlp»"
-#~ msgstr "Vidtuber - Informazioni su «yt-dlp»"
-
-#~ msgid "Restart Vidtuber?"
-#~ msgstr "Vuoi riavviare Vidtuber?"
-
-#~ msgid "Vidtuber - List of URLs"
-#~ msgstr "Vidtuber - Lista degli URL"
-
-#~ msgid "Vidtuber - Downloader Message Monitoring"
-#~ msgstr "Vidtuber - Monitoraggio messaggi downloader"
-
-#~ msgid "Vidtuber - Shutdown!"
-#~ msgstr "Vidtuber - Spegnimento!"
-
-#~ msgid "Vidtuber - Exiting!"
-#~ msgstr "Vidtuber - Uscita dall'applicazione!"
-
-#~ msgid "[Vidtuber]: SUCCESS !"
-#~ msgstr "[Vidtuber]: COMPLETATO!"
-
-#~ msgid "[Vidtuber]: FAILED !"
-#~ msgstr "[Vidtuber]: FALLITO !"
-
-#~ msgid ""
-#~ "Vidtuber uses the yt-dlp API which can be activated by selecting the "
-#~ "checkbox below.\n"
-#~ "The next time you restart the application, the yt_dlp module will be "
-#~ "loaded into memory."
-#~ msgstr ""
-#~ "Vidtuber usa l'API yt-dlp che può essere attivata selezionando il "
-#~ "riquadro sottostante.\n"
-#~ "Al successivo riavvio dell'applicazione, il modulo yt_dlp verrà caricato "
-#~ "in memoria."
-
-#~ msgid ""
-#~ "Enabling a specific location of the yt-dlp executable will give you more "
-#~ "control over downloads\n"
-#~ "stop actions and the ability to provide other backend locations."
-#~ msgstr ""
-#~ "Abilitando un percorso specifico dell'eseguibile yt-dlp ti darà un "
-#~ "maggiore controllo sulle azioni\n"
-#~ "di interruzione dei download e la possibilità di fornire altri percorsi "
-#~ "del backend."
-
-#~ msgid "Use the executable for downloads rather than API"
-#~ msgstr "Usa l'eseguibile per i download anziché l'API"
-
-#~ msgid "Version of yt-dlp"
-#~ msgstr "Versione di yt-dlp"
-
-#~ msgid "Shows the version in use"
-#~ msgstr "Visualizza versione in uso"
-
-#~ msgid "Latest version of yt-dlp"
-#~ msgstr "Ultima versione di yt-dlp"
-
-#~ msgid "Check the latest version available on github.com"
-#~ msgstr "Visualizza versione più recente disponibile in github.com"
-
-#~ msgid "You are using \"yt-dlp\" version {0}"
-#~ msgstr "Stai usando \"yt-dlp\" versione {0}"
-
-#~ msgid "\"yt-dlp\": Latest version available: {0}"
-#~ msgstr "\"yt-dlp\": Ultima versione disponibile: {0}"
-
-#~ msgid "Cross-platform graphical user interface for FFmpeg and yt-dlp.\n"
-#~ msgstr "Interfaccia grafica multi-piattaforma per FFmpeg e yt-dlp\n"
-
-#~ msgid ""
-#~ "Vidtuber supports mono and stereo audio channels. If you are not sure set "
-#~ "to \"Auto\" and source values will be copied."
-#~ msgstr ""
-#~ "Vidtuber supporta i canali mono e stereo. Se non sicuro imposta su "
-#~ "\"Auto\" e verranno copiati i valori di origine."
-
-#~ msgid ""
-#~ "The audio Rate (or sample-rate) is the sound sampling frequency and is "
-#~ "measured in Hertz. The higher the frequency, the more true it will be to "
-#~ "the sound source and the more the file will increase in size. For audio "
-#~ "CD playback, set a sampling frequency of 44100 kHz. If you are not sure, "
-#~ "set to \"Auto\" and source values will be copied."
-#~ msgstr ""
-#~ "La frequenza audio è la frequenza di campionamento del suono la quale "
-#~ "viene misurata in hertz. Più alta è la frequenza, più il segnale audio "
-#~ "sarà fedele alla sorgente sonora, e maggiori saranno le dimensioni del "
-#~ "file. Per la riproduzione di CD audio impostare una frequenza di "
-#~ "campionamento a 44100 kHz. Se non sicuri, lasciare su \"Auto\", e i "
-#~ "valori di origine verranno copiati."
-
-#~ msgid ""
-#~ "The audio bitrate affects the file compression and thus the quality of "
-#~ "listening. The higher the value, the higher the quality."
-#~ msgstr ""
-#~ "L'audio bit-rate influisce sulla compressione dei file e sulla qualità di "
-#~ "ascolto. Più alto è il suo valore maggiore sarà la qualità del suono."
-
-#~ msgid ""
-#~ "Bit depth is the number of bits of information in each sample, and it "
-#~ "directly corresponds to the resolution of each sample. Bit depth is only "
-#~ "meaningful in reference to a PCM digital signal. Non-PCM formats, such as "
-#~ "lossy compression formats, do not have associated bit depths."
-#~ msgstr ""
-#~ "La profondità di bit è la risoluzione in bit delle informazioni in "
-#~ "ciascun campione audio ed è significativa solo in riferimento a un "
-#~ "segnale digitale PCM. I formati non PCM, come i formati di compressione "
-#~ "con perdita, non hanno profondità di bit associate."
-
-#~ msgid "When finished, once the operations have been completed successfully:"
-#~ msgstr ""
-#~ "Al termine, una volta che le operazioni sono state completate "
-#~ "correttamente:"
-
-#~ msgid "Trash the source files"
-#~ msgstr "Elimina i file sorgenti"
-
-#~ msgid "Clear the File List"
-#~ msgstr "Azzera elenco file"
-
-#~ msgid "Run"
-#~ msgstr "Esegui"
-
-#~ msgid "Vidtuber - Batch Mode"
-#~ msgstr "Vidtuber - Modalità batch"
-
-#~ msgid "FFmpeg encoders"
-#~ msgstr "Codificatori di FFmpeg"
-
-#~ msgid "supported encoders"
-#~ msgstr "codificatori supportati"
-
-#~ msgid "FFmpeg decoders"
-#~ msgstr "Decodificatori di FFmpeg"
-
-#~ msgid "supported decoders"
-#~ msgstr "decodificatori supportati"
-
-#~ msgid "Video"
-#~ msgstr "Video"
-
-#~ msgid "Audio"
-#~ msgstr "Audio"
-
-#~ msgid "Subtitle"
-#~ msgstr "Sottotitolo"
-
-#~ msgid "description"
-#~ msgstr "descrizione"
-
-#~ msgid "Informations"
-#~ msgstr "Informazioni"
-
-#~ msgid "Flags settings"
-#~ msgstr "Impostazioni flag"
-
-#~ msgid "Flags enabled"
-#~ msgstr "Flag abilitati"
-
-#~ msgid "Flags disabled"
-#~ msgstr "Flag disabilitati"
-
-#~ msgid "FFmpeg configuration"
-#~ msgstr "Configurazione di FFmpeg"
-
-#~ msgid "flags"
-#~ msgstr "flag"
-
-#~ msgid "options"
-#~ msgstr "opzioni"
-
-#~ msgid "status"
-#~ msgstr "stato"
-
-#~ msgid "FFprobe   ...not found !"
-#~ msgstr "FFprobe   ...non trovato !"
-
-#~ msgid "FFplay   ...not found !"
-#~ msgstr "FFplay   ...non trovato !"
-
-#~ msgid "Enabled"
-#~ msgstr "Abilitato"
-
-#~ msgid "Disabled"
-#~ msgstr "Disabilitato"
-
-#~ msgid "Demuxing only"
-#~ msgstr "Solo demuxing"
-
-#~ msgid "Muxing only"
-#~ msgstr "Solo muxing"
-
-#~ msgid "Demuxing/Muxing support"
-#~ msgstr "Demuxing e muxing"
-
-#~ msgid "FFmpeg file formats"
-#~ msgstr "Formati file FFmpeg"
-
-#~ msgid "supported formats"
-#~ msgstr "formati supportati"
-
-#~ msgid ""
-#~ "Contextual help based on the argument entered in the additional text "
-#~ "field.\n"
-#~ "Each argument consists of the type and a type-specific name.\n"
-#~ "\n"
-#~ "For the list of encoders click the \"Encoders\" button.\n"
-#~ "For the list of decoders click on the \"Decoders\" button.\n"
-#~ "For the muxers and demuxers click on the \"Muxers and Demuxers\" button.\n"
-#~ "For the filters, select \"Show available filters\" in the drop down "
-#~ "menu.\n"
-#~ "For the bsf, select \"Show available bitstream filters\" in the drop down "
-#~ "menu.\n"
-#~ "For the protocols, select \"Show available protocols\" in the drop down "
-#~ "menu.\n"
-#~ "\n"
-#~ "Some examples:"
-#~ msgstr ""
-#~ "Aiuto contestuale basato sull'argomento inserito nel campo di testo "
-#~ "aggiuntivo.\n"
-#~ "Ogni argomento è costituito dal tipo e da un nome specifico del tipo.\n"
-#~ "\n"
-#~ "Per l'elenco degli encoder, fare clic sul pulsante \"Codificatori\".\n"
-#~ "Per l'elenco dei decoder, cliccare sul pulsante \"Decodificatori\".\n"
-#~ "Per i muxer e i demuxer, fare clic sul pulsante \"Muxer e demuxer\".\n"
-#~ "Per i filtri, seleziona \"Visualizza filtri disponibili\" nel menu a "
-#~ "tendina.\n"
-#~ "Per i bsf, selezionare \"Visualizza filtri bitstream disponibili\" nel "
-#~ "menu a tendina.\n"
-#~ "Per i protocolli, selezionare \"Visualizza protocolli disponibili\" nel "
-#~ "menu a tendina.\n"
-#~ "\n"
-#~ "Qualche esempio:"
-
-#~ msgid "Help topic"
-#~ msgstr "Argomenti di aiuto"
-
-#~ msgid "List basic options"
-#~ msgstr "Elenca le opzioni basilari"
-
-#~ msgid "List more options"
-#~ msgstr "Elenca più opzioni"
-
-#~ msgid "List all options (very long)"
-#~ msgstr "Elenca tutte le opzioni (molto lungo)"
-
-#~ msgid "Show available devices"
-#~ msgstr "Visualizza dispositivi disponibili"
-
-#~ msgid "Show available bit stream filters"
-#~ msgstr "Visualizza filtri bitstream disponibili"
-
-#~ msgid "Show available protocols"
-#~ msgstr "Visualizza protocolli disponibili"
-
-#~ msgid "Show available filters"
-#~ msgstr "Visualizza filtri disponibili"
-
-#~ msgid "Show available pixel formats"
-#~ msgstr "Visualizza formati pixel disponibili"
-
-#~ msgid "Show available audio sample formats"
-#~ msgstr "Visualizza formati campionamento audio disponibili"
-
-#~ msgid "Show available color names"
-#~ msgstr "Visualizza nomi colori disponibili"
-
-#~ msgid "List sources of the input device"
-#~ msgstr "Elenca le fonti del dispositivo di input"
-
-#~ msgid "List sinks of the output device"
-#~ msgstr "Elenca sink dispositivo output"
-
-#~ msgid "Show available HW acceleration methods"
-#~ msgstr "Visualizza metodi accelerazione hardware disponibili"
-
-#~ msgid "Show license"
-#~ msgstr "Visualizza licenza"
-
-#~ msgid "Show configuration"
-#~ msgstr "Visualizza configurazione"
-
-#~ msgid "Encoders"
-#~ msgstr "Codificatori"
-
-#~ msgid "Decoders"
-#~ msgstr "Decodificatori"
-
-#~ msgid "Muxers and Demuxers"
-#~ msgstr "Muxer e demuxer"
-
-#~ msgid "help topic list"
-#~ msgstr "elenco argomenti di aiuto"
-
-#~ msgid ""
-#~ "Type the argument here and confirm with the enter key on your keyboard"
-#~ msgstr "Digita qui l'argomento e conferma con il tasto Invio sulla tastiera"
-
-#~ msgid "The search function allows you to find entries in the current topic"
-#~ msgstr ""
-#~ "La funzione di ricerca consente di trovare voci nell'argomento corrente"
-
-#~ msgid "Ignore case"
-#~ msgstr "Ignora maiuscole/minuscole"
-
-#~ msgid "Ignore case distinctions: characters with different case will match."
-#~ msgstr ""
-#~ "Ignora le distinzioni tra maiuscole e minuscole, in modo che i caratteri "
-#~ "che differiscono solo nel caso corrispondano tra loro."
-
-#~ msgid "FFmpeg help topics"
-#~ msgstr "Argomenti della guida di FFmpeg"
-
-#~ msgid ""
-#~ "This is a multifunctional search tool useful for local help searches\n"
-#~ "on multiple FFmpeg topics and options. The search control, to\n"
-#~ "find occurences on text obtained from the chosen argument,\n"
-#~ "is very similar to what grep does on the Unix shell, but here\n"
-#~ "it's done in real time.\n"
-#~ "\n"
-#~ "If you don't find support for a certain codec or other feature,\n"
-#~ "it's likely that your version of FFmpeg is too old or not configured\n"
-#~ "with those features."
-#~ msgstr ""
-#~ "Questo è uno strumento di ricerca multifunzionale utile per le ricerche\n"
-#~ "di aiuto locale su più argomenti e opzioni di FFmpeg. Il controllo di "
-#~ "ricerca,\n"
-#~ "per trovare le occorrenze sul testo ottenuto dall'argomento scelto, è "
-#~ "molto\n"
-#~ "simile a quello che fa grep sulla shell Unix, ma qui è fatto in tempo "
-#~ "reale.\n"
-#~ "\n"
-#~ "Se non trovi supporto per un determinato codec o altra funzione,\n"
-#~ "è probabile che la tua versione di FFmpeg sia troppo vecchia o non\n"
-#~ "sia configurata con quelle funzionalità."
-
-#~ msgid ""
-#~ "\n"
-#~ "  ..Nothing available"
-#~ msgstr ""
-#~ "\n"
-#~ "  ..Nessun dato disponibile"
-
-#~ msgid ""
-#~ "\n"
-#~ "  ..Not found"
-#~ msgstr ""
-#~ "\n"
-#~ "  ..Non trovato"
-
-#~ msgid "Before"
-#~ msgstr "Prima"
-
-#~ msgid "After"
-#~ msgstr "Dopo"
-
-#~ msgid "Search for a specific frame"
-#~ msgstr "Cerca un fotogramma specifico"
-
-#~ msgid "Load"
-#~ msgstr "Carica"
-
-#~ msgid "Color EQ"
-#~ msgstr "Equalizzazione Colore"
-
-#~ msgid "Contrast:"
-#~ msgstr "Contrasto:"
-
-#~ msgid "-100 to +100, default value 0"
-#~ msgstr "Da -100 a +100, valore predefinito 0"
-
-#~ msgid "Brightness:"
-#~ msgstr "Luminosità:"
-
-#~ msgid "Saturation:"
-#~ msgstr "Saturazione:"
-
-#~ msgid "0 to 300, default value 100"
-#~ msgstr "Da 0 a 300, valore predefinito 100"
-
-#~ msgid "Gamma:"
-#~ msgstr "Gamma:"
-
-#~ msgid "0 to 100, default value 10"
-#~ msgstr "Da 0 a 100, valore predefinito 10"
-
-#~ msgid "Reset"
-#~ msgstr "Azzera"
-
-#~ msgid "Color Correction EQ Tool"
-#~ msgstr "Strumento correzione del colore"
-
-#~ msgid "Source size: {0} x {1} pixels"
-#~ msgstr "Dimensione sorgente: {0} x {1} pixel"
-
-#~ msgid "Crop color"
-#~ msgstr "Colore ritaglio"
-
-#~ msgid "Cropping area selection "
-#~ msgstr "Selezione area di ritaglio "
-
-#~ msgid "Height"
-#~ msgstr "Altezza"
-
-#~ msgid "Center"
-#~ msgstr "Centro"
-
-#~ msgid "Width"
-#~ msgstr "Larghezza"
-
-#~ msgid "Crop Tool"
-#~ msgstr "Strumento ritaglio"
-
-#~ msgid "Choose the color to draw the cropping area"
-#~ msgstr "Scegli il colore per disegnare l'area di ritaglio"
-
-#~ msgid "Crop to width"
-#~ msgstr "Ritaglia in larghezza"
-
-#~ msgid "Move vertically (set to -1 to center the vertical axis)"
-#~ msgstr "Sposta verticalmente (imposta a -1 per centrare l'asse verticale)"
-
-#~ msgid "Move horizontally (set to -1 to center the horizontal axis)"
-#~ msgstr ""
-#~ "Sposta orizzontalmente (imposta a -1 per centrare l'asse orizzontale)"
-
-#~ msgid "Crop to height"
-#~ msgstr "Ritaglia all'altezza"
-
-#~ msgid "Advanced Options"
-#~ msgstr "Opzioni avanzate"
-
-#~ msgid "Deinterlace"
-#~ msgstr "Deinterlaccia"
-
-#~ msgid "Interlace"
-#~ msgstr "Interlacciamento"
-
-#~ msgid "Deinterlaces with w3fdif filter"
-#~ msgstr "Deinterlaccia con il filtro w3fdif"
-
-#~ msgid "Deinterlaces with yadif filter"
-#~ msgstr "Deinterlaccia con il filtro yadif"
-
-#~ msgid "Interlaces with interlace filter"
-#~ msgstr "Interlaccia con il filtro interlace"
-
-#~ msgid "Deinterlacing and Interlacing"
-#~ msgstr "Deinterlacciamento/interlacciamento"
-
-#~ msgid "Deinterlace the input video with `w3fdif` filter"
-#~ msgstr "Deinterlaccia il video sorgente con il filtro `w3fdif`"
-
-#~ msgid "Set the interlacing filter coefficients."
-#~ msgstr "Imposta i coefficienti del filtro interlacciamento."
-
-#~ msgid "Specify which frames to deinterlace."
-#~ msgstr "Specifica i fotogrammi da deinterlacciare."
-
-#~ msgid ""
-#~ "Deinterlace the input video with `yadif` filter. Using FFmpeg, this is "
-#~ "the best and fastest choice"
-#~ msgstr ""
-#~ "Deinterlaccia il video sorgente con il filtro `yadif`, l'uso di FFmpeg è "
-#~ "la scelta migliore e più veloce"
-
-#~ msgid ""
-#~ "mode\n"
-#~ "The interlacing mode to adopt."
-#~ msgstr ""
-#~ "mode\n"
-#~ "La modalità interlacciata da adottare."
-
-#~ msgid ""
-#~ "parity\n"
-#~ "The picture field parity assumed for the input interlaced video."
-#~ msgstr ""
-#~ "parità\n"
-#~ "La parità del campo dell'immagine presupposta per il video interlacciato "
-#~ "sorgente."
-
-#~ msgid "Simple interlacing filter from progressive contents."
-#~ msgstr "Filtro interlacciamento semplice dai contenuti progressivi."
-
-#~ msgid ""
-#~ "scan:\n"
-#~ "determines whether the interlaced frame is taken from the even (tff - "
-#~ "default) or odd (bff) lines of the progressive frame."
-#~ msgstr ""
-#~ "scan:\n"
-#~ "determina se il fotogramma interlacciato viene preso dalle linee pari "
-#~ "(TFF - predefinito) o dispari (BFF) del fotogramma progressivo.\n"
-#~ "scan=ttf è l'impostazione predefinita."
-
-#~ msgid ""
-#~ "lowpass:\n"
-#~ "Enable (default) or disable the vertical lowpass filter to avoid twitter "
-#~ "interlacing and reduce moire patterns.\n"
-#~ "Default is no setting."
-#~ msgstr ""
-#~ "lowpas:\n"
-#~ "abilita (predefinito) o disabilita il filtro passa-basso verticale per "
-#~ "evitare l'interlacciamento di twitter e ridurre i pattern di moiré.\n"
-#~ "Non impostato."
-
-#~ msgid "Denoiser Filters"
-#~ msgstr "Filtri denoiser"
-
-#~ msgid "Enable nlmeans denoiser"
-#~ msgstr "Abilita denoiser nlmeans"
-
-#~ msgid "nlmeans options"
-#~ msgstr "opzioni filtro nlmeans"
-
-#~ msgid "Enable hqdn3d denoiser"
-#~ msgstr "Abilita denoiser hqdn3d"
-
-#~ msgid "hqdn3d options"
-#~ msgstr "opzioni filtro hqdn3d"
-
-#~ msgid "Denoiser Tool"
-#~ msgstr "Strumento denoiser"
-
-#~ msgid ""
-#~ "nlmeans:\n"
-#~ "Denoise frames using Non-Local Means algorithm is capable of restoring "
-#~ "video sequences, even with strong noise. It is ideal for enhancing the "
-#~ "quality of old VHS tapes."
-#~ msgstr ""
-#~ "nlmeans:\n"
-#~ "elimina il disturbo dai fotogrammi usando l'algoritmo Non-Local, il quale "
-#~ "è in grado di ristrutturare sequenze video con rumore anche intenso. \n"
-#~ "È ideale per migliorare la qualità dei vecchi nastri VHS."
-
-#~ msgid ""
-#~ "hqdn3d:\n"
-#~ "This is a high precision/quality 3d denoise filter. It aims to reduce "
-#~ "image noise, producing smooth images and making still images really "
-#~ "still. It should enhance compressibility."
-#~ msgstr ""
-#~ "hqdn3d:\n"
-#~ "è un filtro per il denoise 3d di alta precisione e qualità. \n"
-#~ "Mira a ridurre il rumore dell'immagine, a produrre immagini uniformi e a "
-#~ "rendere ferme le immagini statiche. \n"
-#~ "Dovrebbe migliorare comprensibilmente la qualità visiva."
-
-#~ msgid "View result"
-#~ msgstr "Visualizza risultato"
-
-#~ msgid "New size in pixels"
-#~ msgstr "Nuova dimensione in pixel"
-
-#~ msgid "Width:"
-#~ msgstr "Larghezza:"
-
-#~ msgid "Height:"
-#~ msgstr "Altezza:"
-
-#~ msgid "Constrain proportions (keep aspect ratio)"
-#~ msgstr "Vincola le proporzioni (mantieni l'aspetto di origine)"
-
-#~ msgid "Which dimension to adjust?"
-#~ msgstr "Quale nuova dimensione?"
-
-#~ msgid "Aspect Ratio"
-#~ msgstr "Proporzioni"
-
-#~ msgid "Setdar filter (display aspect ratio) example 16/9, 4/3 "
-#~ msgstr "Filtro Setdar (proporzioni visualizzazione) esempio 16/9, 4/3 "
-
-#~ msgid "Numerator"
-#~ msgstr "Numeratore"
-
-#~ msgid "Denominator"
-#~ msgstr "Denominatore"
-
-#~ msgid "Setsar filter (sample aspect ratio) example 1/1"
-#~ msgstr "Filtro Setsar (rapporto di aspetto del campione) esempio 1/1"
-
-#~ msgid "Resize Tool"
-#~ msgstr "Strumento ridimensionamento"
-
-#~ msgid "Scale filter, set to 0 to disable"
-#~ msgstr "Filtro scala, per la disabilitazione impostare a 0"
-
-#~ msgid "Display Aspect Ratio. Set to 0 to disable"
-#~ msgstr ""
-#~ "Visualizzazione del rapporto di aspetto (proporzioni). Impostare a 0 per "
-#~ "disabilitare"
-
-#~ msgid ""
-#~ "Sample (aka Pixel) Aspect Ratio.\n"
-#~ "Set to 0 to disable"
-#~ msgstr ""
-#~ "Rapporto di aspetto campione (noto anche come pixel).\n"
-#~ "Impostare a 0 per disabilitare"
-
-#~ msgid ""
-#~ "If you want to keep the aspect ratio, select \"Constrain proportions\" "
-#~ "below and\n"
-#~ "specify only one dimension, either width or height, and set the other "
-#~ "dimension\n"
-#~ "to -1 or -2 (some codecs require -2, so you should do some testing first)."
-#~ msgstr ""
-#~ "Se vuoi mantenere le proporzioni, seleziona \"Vincola proporzioni\" di "
-#~ "seguito\n"
-#~ "e specifica solo una dimensione, larghezza o altezza, e imposta l'altra "
-#~ "dimensione\n"
-#~ "a -1 o -2 (alcuni codec richiedono -2, quindi prima dovresti fare qualche "
-#~ "test)."
-
-#~ msgid "Enable stabilizer"
-#~ msgstr "Abilita lo stabilizzatore"
-
-#~ msgid "Create a side-by-side comparison video"
-#~ msgstr "Crea un video di confronto fianco a fianco"
-
-#~ msgid "Create a snapshot"
-#~ msgstr "Crea un'istantanea"
-
-#~ msgid "Preview"
-#~ msgstr "Anteprima"
-
-#~ msgid "Duration seconds:"
-#~ msgstr "Durata in secondi:"
-
-#~ msgid "Video Detect"
-#~ msgstr "Rilevamento"
-
-#~ msgid "[TRIPOD] Enable tripod mode if checked"
-#~ msgstr "[TRIPOD] Abilita modalità treppiede"
-
-#~ msgid "Video transform"
-#~ msgstr "Trasformazione"
-
-#~ msgid "[OPTALGO] optimization algorithm"
-#~ msgstr "[OPTALGO] algoritmo ottimizzazione"
-
-#~ msgid "[CROP] Specify how to deal with borders at movement compensation"
-#~ msgstr ""
-#~ "[CROP] Specifica come trattare i bordi alla compensazione del movimento"
-
-#~ msgid "[INVERT] Invert transforms if checked"
-#~ msgstr "[INVERT] Inverti trasformazioni se abilitato"
-
-#~ msgid ""
-#~ "[RELATIVE] Consider transforms as relative to previous frame if checked, "
-#~ "absolute if unchecked"
-#~ msgstr ""
-#~ "[RELATIVE] Considera le trasformazioni come relative al frame precedente "
-#~ "se abilitato, assoluto se disabilitato"
-
-#~ msgid "Specify type of interpolation"
-#~ msgstr "Specificare il tipo di interpolazione"
-
-#~ msgid ""
-#~ "[TRIPOD2] virtual tripod mode, equivalent to relative=unchecked:"
-#~ "smoothing=0"
-#~ msgstr ""
-#~ "[TRIPOD2] modalità treppiede virtuale, equivale a relative=disabilitato: "
-#~ "smoothing=0"
-
-#~ msgid "Unsharp filter:"
-#~ msgstr "Filtro unsharp:"
-
-#~ msgid "Seek to a position on the video."
-#~ msgstr "Ricerca una posizione nel video."
-
-#~ msgid "Make a snapshot of the video with the settings made."
-#~ msgstr "Crea un'istantanea del video con le impostazioni effettuate."
-
-#~ msgid ""
-#~ "Set the snapshot duration from 3 to 15 seconds from the seek position, "
-#~ "default is 5 seconds."
-#~ msgstr ""
-#~ "Imposta la durata dell'istantanea da 3 a 15 secondi dalla posizione di "
-#~ "ricerca, in default sono 5 secondi."
-
-#~ msgid ""
-#~ "Set how shaky the video is and how quick the camera is. A value of 1 "
-#~ "means little shakiness, a value of 10 means strong shakiness. Default "
-#~ "value is 5."
-#~ msgstr ""
-#~ "Imposta quanto è mosso il video e quanto è veloce la fotocamera. Un "
-#~ "valore di 1 significa poco tremolio, un valore di 10 significa forte "
-#~ "tremolio. Il valore predefinito è 5."
-
-#~ msgid ""
-#~ "Set the accuracy of the detection process. A value of 1 means low "
-#~ "accuracy, a value of 15 means high accuracy. Default value is 15."
-#~ msgstr ""
-#~ "Imposta la precisione del processo di rilevamento. Un valore di 1 "
-#~ "significa bassa precisione, un valore di 15 significa alta precisione. Il "
-#~ "valore predefinito è 15."
-
-#~ msgid ""
-#~ "Set stepsize of the search process. The region around minimum is scanned "
-#~ "with 1 pixel resolution. Default value is 6."
-#~ msgstr ""
-#~ "Imposta la dimensione del processo di ricerca. La regione intorno al "
-#~ "minimo viene scansionata con una risoluzione di 1 pixel. Il valore "
-#~ "predefinito è 6."
-
-#~ msgid ""
-#~ "Set minimum contrast. Below this value a local measurement field is "
-#~ "discarded. The range is 0-1. Default value is 0.25."
-#~ msgstr ""
-#~ "Imposta il contrasto minimo. Al di sotto di questo valore viene scartato "
-#~ "un campo di misurazione locale. L'intervallo è 0-1. Il valore predefinito "
-#~ "è 0.25."
-
-#~ msgid ""
-#~ "Set reference frame number for tripod mode. If enabled, the motion of the "
-#~ "frames is compared to a reference frame in the filtered stream, "
-#~ "identified by the specified number. The idea is to compensate all "
-#~ "movements in a more-or-less static scene and keep the camera view "
-#~ "absolutely still. The frames are counted starting from 1."
-#~ msgstr ""
-#~ "Imposta il numero del fotogramma di riferimento per la modalità "
-#~ "treppiede. Se abilitato, il movimento dei frame viene confrontato con un "
-#~ "frame di riferimento nello stream filtrato, identificato dal numero "
-#~ "specificato. L'idea è di compensare tutti i movimenti in una scena più o "
-#~ "meno statica e mantenere la visuale della telecamera assolutamente ferma. "
-#~ "I frame vengono conteggiati a partire da 1."
-
-#~ msgid ""
-#~ "Set the number of frames (value*2 + 1) used for lowpass filtering the "
-#~ "camera movements. Default value is 15. For example a number of 10 means "
-#~ "that 21 frames are used (10 in the past and 10 in the future) to smoothen "
-#~ "the motion in the video. A larger value leads to a smoother video, but "
-#~ "limits the acceleration of the camera (pan/tilt movements). 0 is a "
-#~ "special case where a static camera is simulated."
-#~ msgstr ""
-#~ "Imposta il numero di fotogrammi (valore * 2 + 1) usati per il filtraggio "
-#~ "passa-basso dei movimenti della telecamera. Il valore predefinito è 15. "
-#~ "Ad esempio, un numero di 10 significa che vengono usati 21 fotogrammi (10 "
-#~ "in passato e 10 in futuro) per rendere più uniforme il movimento nel "
-#~ "video. Un valore maggiore porta a un video più fluido, ma limita "
-#~ "l'accelerazione della telecamera (movimenti di panoramica / "
-#~ "inclinazione). 0 è un caso speciale in cui viene simulata una telecamera "
-#~ "statica."
-
-#~ msgid ""
-#~ "Set the camera path optimization algorithm. Values are: `gauss`: gaussian "
-#~ "kernel low-pass filter on camera motion (default), and `avg`: averaging "
-#~ "on transformations"
-#~ msgstr ""
-#~ "Imposta l'algoritmo di ottimizzazione del percorso della fotocamera. I "
-#~ "valori sono: \"gauss\": filtro passa-basso del kernel gaussiano sul "
-#~ "movimento della fotocamera (predefinito), e media \"avg\" per le "
-#~ "trasformazioni"
-
-#~ msgid ""
-#~ "Set maximal angle in radians (degree*PI/180) to rotate frames. Default "
-#~ "value is -1, meaning no limit."
-#~ msgstr ""
-#~ "Imposta l'angolo massimo in radianti (gradi * PI / 180) per ruotare i "
-#~ "fotogrammi. Il valore predefinito è -1, ovvero nessun limite."
-
-#~ msgid ""
-#~ "Specify how to deal with borders that may be visible due to movement "
-#~ "compensation. Values are: `keep` keep image information from previous "
-#~ "frame (default), `black` fill the border black"
-#~ msgstr ""
-#~ "Specificare come trattare i bordi che possono essere visibili a causa "
-#~ "della compensazione del movimento. I valori sono: \"conserva\" conserva "
-#~ "le informazioni sull'immagine dal fotogramma precedente (impostazione "
-#~ "predefinita), \"nero\" riempie il bordo nero"
-
-#~ msgid "Invert transforms if checked. Default is unchecked."
-#~ msgstr ""
-#~ "Inverti le trasformazioni se abilitato. Per impostazione predefinita è "
-#~ "disabilitato."
-
-#~ msgid ""
-#~ "Consider transforms as relative to previous frame if checked, absolute if "
-#~ "unchecked. Default is checked."
-#~ msgstr ""
-#~ "Considera le trasformazioni come relative al frame precedente se "
-#~ "abilitato, assoluto se disabilitato. Per impostazione predefinita è "
-#~ "abilitato."
-
-#~ msgid ""
-#~ "Set percentage to zoom. A positive value will result in a zoom-in effect, "
-#~ "a negative value in a zoom-out effect. Default value is 0 (no zoom)."
-#~ msgstr ""
-#~ "Imposta la percentuale per lo zoom. Un valore positivo si tradurrà in un "
-#~ "effetto di ingrandimento, un valore negativo in un effetto di riduzione. "
-#~ "Il valore predefinito è 0 (senza zoom)."
-
-#~ msgid ""
-#~ "Set optimal zooming to avoid borders. Accepted values are: `0` disabled, "
-#~ "`1` optimal static zoom value is determined (only very strong movements "
-#~ "will lead to visible borders) (default), `2` optimal adaptive zoom value "
-#~ "is determined (no borders will be visible), see zoomspeed. Note that the "
-#~ "value given at zoom is added to the one calculated here."
-#~ msgstr ""
-#~ "Imposta lo zoom ottimale per evitare i bordi. I valori accettati sono: "
-#~ "'0' disabilitato, il valore di zoom statico ottimale '1' è determinato "
-#~ "(solo movimenti molto forti porteranno a bordi visibili) (impostazione "
-#~ "predefinita), il valore di zoom adattivo ottimale '2' è determinato "
-#~ "(nessun bordo sarà visibile) vedere zoomspeed. Notare che il valore "
-#~ "fornito allo zoom viene aggiunto a quello calcolato qui."
-
-#~ msgid ""
-#~ "Set percent to zoom maximally each frame (enabled when optzoom is set to "
-#~ "2). Range is from 0 to 5, default value is 0.25."
-#~ msgstr ""
-#~ "Imposta la percentuale per ingrandire al massimo ogni fotogramma "
-#~ "(abilitato quando optzoom è impostato su 2). L'intervallo è compreso tra "
-#~ "0 e 5, il valore predefinito è 0,25."
-
-#~ msgid ""
-#~ "Specify type of interpolation. Available values are: `no` no "
-#~ "interpolation, `linear` linear only horizontal, `bilinear` linear in both "
-#~ "directions (default), `bicubic` cubic in both directions (slow)"
-#~ msgstr ""
-#~ "Specificare il tipo di interpolazione. I valori disponibili sono: \"no\" "
-#~ "nessuna interpolazione, \"linear\" lineare solo orizzontale, \"bilinear\" "
-#~ "lineare in entrambe le direzioni (impostazione predefinita), \"bicubic\" "
-#~ "cubica in entrambe le direzioni (lenta)"
-
-#~ msgid ""
-#~ "Enable virtual tripod mode if checked, which is equivalent to relative=0:"
-#~ "smoothing=0. Default is unchecked. Use also tripod option of "
-#~ "vidstabdetect."
-#~ msgstr ""
-#~ "Abilita la modalità treppiede virtuale se selezionata, che è equivalente "
-#~ "a relative=abilitato: smoothing=0. Per impostazione predefinita è "
-#~ "disabilitato. Usa anche l'opzione treppiede di vidstabdetect."
-
-#~ msgid ""
-#~ "Sharpen or blur the input video. Note the use of the unsharp filter which "
-#~ "is always recommended."
-#~ msgstr ""
-#~ "Rende più nitido o sfocato il video in ingresso. Nota che l'uso del "
-#~ "filtro unsharp è sempre consigliato."
-
-#~ msgid "Video Stabilizer Tool"
-#~ msgstr "Strumento stabilizzatore video"
-
-#~ msgid ""
-#~ "Please wait,\n"
-#~ "This process will take a few seconds."
-#~ msgstr ""
-#~ "Attendi,\n"
-#~ "questo processo richiederà alcuni secondi."
-
-#~ msgid "Default position"
-#~ msgstr "Posizione predefinita"
-
-#~ msgid "Rotation setting"
-#~ msgstr "Impostazione rotazione"
-
-#~ msgid "90° (left)"
-#~ msgstr "90° (sinistra)"
-
-#~ msgid "90° (right)"
-#~ msgstr "90° (destra)"
-
-#~ msgid "180°"
-#~ msgstr "180°"
-
-#~ msgid "Transpose Tool"
-#~ msgstr "Strumento trasponi"
-
-#~ msgid "Rotate 90 degrees right"
-#~ msgstr "Ruota di 90 gradi a destra"
-
-#~ msgid "Rotate 180 degrees"
-#~ msgstr "Ruota di 180 gradi"
-
-#~ msgid "Rotate 90 degrees left"
-#~ msgstr "Ruota di 90 gradi a sinistra"
-
-#~ msgid "Format"
-#~ msgstr "Formato"
-
-#~ msgid "Video Stream"
-#~ msgstr "Flusso video"
-
-#~ msgid "Audio Streams"
-#~ msgstr "Flussi audio"
-
-#~ msgid "Subtitle Streams"
-#~ msgstr "Flussi sottotitoli"
-
-#~ msgid "Copy to clipboard"
-#~ msgstr "Copia negli appunti"
-
-#~ msgid "FILE SELECTION"
-#~ msgstr "SELEZIONE FILE"
-
-#~ msgid "Properties"
-#~ msgstr "Proprietà"
-
-#~ msgid "Values"
-#~ msgstr "Valori"
-
-#~ msgid "Streams Properties"
-#~ msgstr "Proprietà flussi"
-
-#~ msgid "Unable to open the clipboard on Format tab"
-#~ msgstr "Impossibile aprire gli appunti nella scheda Formato"
-
-#~ msgid "Unable to open the clipboard on Video Streams tab"
-#~ msgstr "Impossibile aprire gli appunti nella scheda Flussi Video"
-
-#~ msgid "Unable to open the clipboard on Audio Streams tab"
-#~ msgstr "Impossibile aprire gli appunti nella scheda \"Flussi audio\""
-
-#~ msgid "Unable to open the clipboard on Subtitle Streams tab"
-#~ msgstr "Impossibile aprire gli appunti nella scheda \"Flussi sottotitoli\""
-
-#~ msgid "Where do you prefer to save your transcodes?"
-#~ msgstr "Dove preferisci salvare le conversioni?"
-
-#~ msgid "Same destination paths as source files"
-#~ msgstr "Stessi percorsi per file destinazione e sorgente"
-
-#~ msgid "Assign optional suffix to destination file names:"
-#~ msgstr "Assegna un suffisso opzionale ai nomi file destinazione:"
-
-#~ msgid "File removal preferences"
-#~ msgstr "Impostazioni rimozione file"
-
-#~ msgid "Trash the source files after successful encoding"
-#~ msgstr ""
-#~ "Elimina i file sorgente dopo aver eseguito correttamente la codifica"
-
-#~ msgid "Enable a custom location to run FFplay"
-#~ msgstr "Abilita percorso personalizzato esecuzione FFplay"
-
-#~ msgid ""
-#~ "Download videos from YouTube.com and other video sites\n"
-#~ "(requires application restart)"
-#~ msgstr ""
-#~ "Scarica video da YouTube.com e altri siti di video\n"
-#~ "(richiede il riavvio dell'applicazione)"
-
-#~ msgid ""
-#~ "By selecting the checkbox below you will be able to download videos and "
-#~ "audio from the net."
-#~ msgstr ""
-#~ "Selezionando la casella sottostante potrai scaricare video e audio dalla "
-#~ "rete."
-
-#~ msgid "Enable yt-dlp"
-#~ msgstr "Abilita yt-dlp"
-
-#~ msgid "Specify the character encoding format"
-#~ msgstr "Specifica il formato di codifica dei caratteri"
-
-#~ msgid ""
-#~ "Although UTF-8 is the default and most widely used standard encoding "
-#~ "format, it is not the only encoding format available.\n"
-#~ "Some file metadata may still contain non-UTF-8 character encodings "
-#~ "resulting in the error \"'utf-8' codec can't decode bytes...\".\n"
-#~ "If you know the encoding format the file was written in, you can try "
-#~ "specifying it here, e.g. ISO 8859-1, ISO 8859-16, etc."
-#~ msgstr ""
-#~ "Sebbene UTF-8 sia il formato di codifica standard predefinito e più "
-#~ "usato, non è l'unico formato di codifica disponibile.\n"
-#~ "Alcuni file potrebbero contenere metadati scritti ancora con caratteri "
-#~ "non codificati con lo standard UTF-8 che restituiscono\n"
-#~ "l'errore \"'utf-8' codec can't decode bytes...\". \n"
-#~ "Se conosci il formato di codifica in cui è stato scritto il file, puoi "
-#~ "provare a specificarlo qui."
-
-#~ msgid "Character encoding:"
-#~ msgstr "Codifica caratteri:"
-
-#~ msgid ""
-#~ "The following settings affect output messages and the log messages during "
-#~ "transcoding processes.\n"
-#~ "Be careful, by changing these settings some functions of the application "
-#~ "may not work correctly,\n"
-#~ "change only if you know what you are doing.\n"
-#~ msgstr ""
-#~ "Le seguenti impostazioni influenzano i messaggi di output e i messaggi di "
-#~ "registro durante i processi \n"
-#~ "di transcodifica. Fai attenzione, modificando queste impostazioni alcune "
-#~ "funzioni dell'applicazione \n"
-#~ "potrebbero non funzionare correttamente, modificale solo se sai cosa stai "
-#~ "facendo.\n"
-
-#~ msgid "Set logging level flags used by FFmpeg"
-#~ msgstr "Imposta flag livello registro eventi usati da FFmpeg"
-
-#~ msgid "Set logging level flags used by FFplay"
-#~ msgstr "Imposta flag livello registrazione FFplay"
-
-#~ msgid "FFmpeg logging levels"
-#~ msgstr "Livelli registri FFmpeg"
-
-#~ msgid "By assigning an additional suffix you could avoid overwriting files"
-#~ msgstr ""
-#~ "Assegnando un suffisso aggiuntivo è possibile evitare di sovrascrivere i "
-#~ "file"
-
-#~ msgid "Preferences"
-#~ msgstr "Impostazioni"
-
-#~ msgid ""
-#~ "Enter only alphanumeric characters. You can also use the hyphen (\"-\") "
-#~ "and the underscore (\"_\"). Spaces are not allowed."
-#~ msgstr ""
-#~ "Immettere solo caratteri alfanumerici. È inoltre possibile usare il "
-#~ "trattino (\"-\") e il trattino basso (\"_\"). Non sono ammessi spazi "
-#~ "vuoti."
-
-#~ msgid ""
-#~ "One-Pass, Do not start with `ffmpeg -i filename`; do not end with `output-"
-#~ "filename`"
-#~ msgstr ""
-#~ "Singolo passaggio, Non iniziare con `ffmpeg -i nomefile`; Non finire con "
-#~ "`nomefile_in_uscita`"
-
-#~ msgid ""
-#~ "Two-Pass (optional), Do not start with `ffmpeg -i filename`; do not end "
-#~ "with `output-filename`"
-#~ msgstr ""
-#~ "Doppio passaggio (opzionale), Non iniziare con `ffmpeg -i nomefile`; Non "
-#~ "finire con `nomefile_in_uscita`"
-
-#~ msgid "Vidtuber - Edit the selected item in the queue"
-#~ msgstr "Vidtuber - Modifica l'elemento selezionato nella coda"
-
-#~ msgid "Pre-input arguments for One-Pass (optional)"
-#~ msgstr "Argomenti pre-input per il singolo passaggio (opzionale)"
-
-#~ msgid "FFmpeg arguments for one-pass encoding"
-#~ msgstr "Argomenti FFmpeg per la codifica a passaggio singolo"
-
-#~ msgid ""
-#~ "Any optional arguments to add before input file on the one-pass encoding, "
-#~ "e.g required names of some hardware accelerations like -hwaccel to use "
-#~ "with CUDA."
-#~ msgstr ""
-#~ "Eventuali argomenti facoltativi da aggiungere prima del file sorgente "
-#~ "codifica a singolo, ad esempio i nomi richiesti di alcune accelerazioni "
-#~ "hardware come -hwaccel da usare con CUDA."
-
-#~ msgid "Pre-input arguments for Two-Pass (optional)"
-#~ msgstr "Argomenti pre-input doppio passaggio (opzionale)"
-
-#~ msgid "FFmpeg arguments for two-pass encoding"
-#~ msgstr "Argomenti FFmpeg per la codifica a doppio passaggio"
-
-#~ msgid ""
-#~ "Any optional arguments to add before input file on the two-pass encoding, "
-#~ "e.g required names of some hardware accelerations like -hwaccel to use "
-#~ "with CUDA."
-#~ msgstr ""
-#~ "Eventuali argomenti facoltativi da aggiungere prima del file sorgente "
-#~ "nella codifica a due passaggi, ad esempio i nomi richiesti di alcune "
-#~ "accelerazioni hardware come -hwaccel da usare con CUDA."
-
-#~ msgid "Remove"
-#~ msgstr "Rimuovi"
-
-#~ msgid "Remove all"
-#~ msgstr "Rimuovi tutto"
-
-#~ msgid ""
-#~ "Export\n"
-#~ "queue file"
-#~ msgstr ""
-#~ "Esporta\n"
-#~ "file della coda"
-
-#~ msgid ""
-#~ "Import\n"
-#~ "queue file"
-#~ msgstr ""
-#~ "Importa\n"
-#~ "file della coda"
-
-#~ msgid "Destination file name"
-#~ msgstr "Nome file destinazione"
-
-#~ msgid "Remove all items in the queue"
-#~ msgstr "Rimuovi tutti gli elementi in coda"
-
-#~ msgid "Vidtuber - Queue"
-#~ msgstr "Vidtuber - Coda"
-
-#~ msgid "Export queue file"
-#~ msgstr "Esporta file della coda"
-
-#~ msgid "Same as source"
-#~ msgstr "Uguale all'origine"
-
-#~ msgid ""
-#~ "Source\n"
-#~ "File destination\n"
-#~ "Automation/Preset\n"
-#~ "Encoding passes\n"
-#~ "Output Format\n"
-#~ "Start of segment\n"
-#~ "Clip duration"
-#~ msgstr ""
-#~ "Sorgente\n"
-#~ "Destinazione file\n"
-#~ "Automazione/Preimpostazione\n"
-#~ "Passaggi di codifica\n"
-#~ "Formato di output\n"
-#~ "Inizio segmento\n"
-#~ "Durata clip"
-
-#~ msgid "# will be replaced by ascending numbers starting with:"
-#~ msgstr "# sarà sostituito da numeri ascendenti che iniziano con:"
-
-#~ msgid "Font Size"
-#~ msgstr "Dimensione font"
-
-#~ msgid "Font Color"
-#~ msgstr "Colore font"
-
-#~ msgid "Shadow Color"
-#~ msgstr "Colore ombra"
-
-#~ msgid "Show text box"
-#~ msgstr "Visualizza casella testo"
-
-#~ msgid "Box Color"
-#~ msgstr "Colore riquadro"
-
-#~ msgid ""
-#~ "The timestamp size does not auto-adjust to the video size, you have to "
-#~ "set the size here"
-#~ msgstr ""
-#~ "La dimensione della marca temporale non si adatta automaticamente alla "
-#~ "dimensione del video, devi impostare la dimensione qui"
-
-#~ msgid "Timestamp settings"
-#~ msgstr "Impostazioni marca temporale"
-
-#~ msgid "Supported Formats list (optional). Do not include the `.`"
-#~ msgstr "Elenco formati supportati (opzionale). Non includere `.`"
-
-#~ msgid ""
-#~ "Output Format. Empty to copy format and codec. Do not include the `.`"
-#~ msgstr ""
-#~ "Formato destinazione. Vuoto per copiare formato e codec. Non includere `.`"
-
-#~ msgid "Profile Name"
-#~ msgstr "Nome profilo"
-
-#~ msgid "Description"
-#~ msgstr "Descrizione"
-
-#~ msgid "A short profile name"
-#~ msgstr "Un nome profilo breve"
-
-#~ msgid "A long description of the profile"
-#~ msgstr "Una lunga descrizione per il profilo"
-
-#~ msgid ""
-#~ "One or more comma-separated format names compatible with this profile"
-#~ msgstr ""
-#~ "Uno o più nomi di formato separati da virgole compatibili con questo "
-#~ "profilo"
-
-#~ msgid "Output format extension. Leave empty to copy codec and format"
-#~ msgstr ""
-#~ "Estensione del formato destinazione. Lascia vuoto per copiare codec e "
-#~ "formato"
-
-#~ msgid "Incomplete profile assignments"
-#~ msgstr "Le assegnazioni del profilo sono incomplete"
-
-#~ msgid "Formats must be comma-separated"
-#~ msgstr "I formati devono essere separati da una virgola"
-
-#~ msgid ""
-#~ "ERROR: Keys mismatched for requested data.\n"
-#~ "Invalid file: «{0}»"
-#~ msgstr ""
-#~ "ERRORE: chiavi non corrispondenti per i dati richiesti.\n"
-#~ "File invalido: «{0}»"
-
-#~ msgid "Profile already stored with same name"
-#~ msgstr "È già stato salvato un profilo con lo stesso nome"
-
-#~ msgid "Profile stored successfully!"
-#~ msgstr "Memorizzazione profilo completata!"
-
-#~ msgid "Profile change successful!"
-#~ msgstr "Modifica profilo completata!"
-
-#~ msgid "File name"
-#~ msgstr "Nome file"
-
-#~ msgid "Max volume dBFS"
-#~ msgstr "Volume massimo dBFS"
-
-#~ msgid "Mean volume dBFS"
-#~ msgstr "Volume medio dBFS"
-
-#~ msgid "Offset dBFS"
-#~ msgstr "Offset dBFS"
-
-#~ msgid "Result dBFS"
-#~ msgstr "Risultato dBFS"
-
-#~ msgid "Post-normalization references:"
-#~ msgstr "Riferimenti post-normalizzazione:"
-
-#~ msgid "=  Clipped peaks"
-#~ msgstr "=  Picchi in clip"
-
-#~ msgid "=  No changes"
-#~ msgstr "=  Non cambia"
-
-#~ msgid "=  Below max peak"
-#~ msgstr "=  Sotto il picco max"
-
-#~ msgid "RMS-based volume statistics"
-#~ msgstr "Statistiche del volume basate su RMS"
-
-#~ msgid "PEAK-based volume statistics"
-#~ msgstr "Statistiche del volume basate sul PICCO"
-
-#~ msgid ""
-#~ "...It means the resulting audio will be clipped,\n"
-#~ "because its volume is higher than the maximum 0 db\n"
-#~ "level. This results in data loss and the audio may\n"
-#~ "sound distorted."
-#~ msgstr ""
-#~ "...Significa che il risultato finale del segnale audio\n"
-#~ "sarà tagliato, perché superiore al livello massimo di 0 db.\n"
-#~ "Ciò comporterà la perdita di dati nel segnale audio e\n"
-#~ "il suono potrebbe risultare distorto."
-
-#~ msgid ""
-#~ "...It means the resulting audio will not change,\n"
-#~ "because it's equal to the source."
-#~ msgstr ""
-#~ "..Significa che il segnale audio non cambierà,\n"
-#~ "perché uguale a quello di origine."
-
-#~ msgid ""
-#~ "...It means an audio signal will be produced with\n"
-#~ "a lower volume than the source."
-#~ msgstr ""
-#~ "...Significa che verrà prodotto un segnale audio con\n"
-#~ "un volume inferiore a quello originale."
-
-#~ msgid ""
-#~ "q, ESC\n"
-#~ "f\n"
-#~ "p, SPC\n"
-#~ "m\n"
-#~ "9, 0\n"
-#~ "/, *\n"
-#~ "a\n"
-#~ "v\n"
-#~ "t\n"
-#~ "c\n"
-#~ "w\n"
-#~ "s\n"
-#~ "\n"
-#~ "left/right\n"
-#~ "down/up\n"
-#~ "page down/page up\n"
-#~ "\n"
-#~ "right mouse click\n"
-#~ "left mouse double-click"
-#~ msgstr ""
-#~ "q, ESC\n"
-#~ "f\n"
-#~ "p, SPC\n"
-#~ "m\n"
-#~ "9, 0\n"
-#~ "/, *\n"
-#~ "a\n"
-#~ "v\n"
-#~ "t\n"
-#~ "c\n"
-#~ "w\n"
-#~ "s\n"
-#~ "\n"
-#~ "sinistra/destra\n"
-#~ "giù/su\n"
-#~ "pagina giù/pagina su\n"
-#~ "\n"
-#~ "click destro del mouse\n"
-#~ "click sinistro del mouse"
-
-#~ msgid "Shortcut keys while playing with FFplay"
-#~ msgstr "Scorciatoie da tastiera durante la riproduzione con FFplay"
-
-#~ msgid "Files already exist, do you want to overwrite them?"
-#~ msgstr "File già esistenti, vuoi sovrascriverli?"
-
-#~ msgid "Already exist"
-#~ msgstr "Già esistente"
-
-#~ msgid "Not found"
-#~ msgstr "Non trovato"
-
-#~ msgid "File(s) not found"
-#~ msgstr "File non trovati"
-
-#~ msgid "File does not exist or is invalid:  %s"
-#~ msgstr "File invalido o non esistente:  %s"
-
-#~ msgid ""
-#~ "Wait....\n"
-#~ "Audio peak analysis."
-#~ msgstr ""
-#~ "Attendi....\n"
-#~ "Analisi livello di picco."
-
-#~ msgid ""
-#~ "Not all items in the queue were completed.\n"
-#~ "\n"
-#~ "Would you like to keep them in the queue?"
-#~ msgstr ""
-#~ "Non tutti gli elementi nella coda sono stati completati.\n"
-#~ "\n"
-#~ "Vorresti tenerli in coda?"
-
-#~ msgid "Queue ({0})"
-#~ msgstr "Coda ({0})"
-
-#~ msgid "Queue"
-#~ msgstr "Coda"
-
-#~ msgid "Import files\tCtrl+O"
-#~ msgstr "Importa file\tCtrl+O"
-
-#~ msgid "Open destination folder of encodings\tCtrl+D"
-#~ msgstr "Apri cartella destinazione codifiche\tCtrl+D"
-
-#~ msgid "Load queue file"
-#~ msgstr "Carica file coda"
-
-#~ msgid "Load a previously exported queue file"
-#~ msgstr "Carica un file della coda precedentemente esportato"
-
-#~ msgid "Open trash"
-#~ msgstr "Apri cestino"
-
-#~ msgid "Open the Vidtuber trash folder"
-#~ msgstr "Apri cartella del cestino di Vidtuber"
-
-#~ msgid "Empty trash"
-#~ msgstr "Svuota cestino"
-
-#~ msgid "Delete all files in the Vidtuber trash folder"
-#~ msgstr "Elimina tutti i file nella cartella cestino di Vidtuber"
-
-#~ msgid "Completely exit the application"
-#~ msgstr "Esci completamente dall'applicazione"
-
-#~ msgid "Rename selected file\tCtrl+R"
-#~ msgstr "Rinomina il file selezionato\tCtrl+R"
-
-#~ msgid "Rename the destination of the selected file"
-#~ msgstr "Rinomina la destinazione del file selezionato"
-
-#~ msgid "Batch rename files\tCtrl+B"
-#~ msgstr "Rinomina i file in batch\tCtrl+B"
-
-#~ msgid "Numerically renames the destination of all items in the list"
-#~ msgstr ""
-#~ "Rinomina numericamente la destinazione di tutti gli elementi nell'elenco"
-
-# Warning: DEL refers to the "Del" or "Canc" button on the keyboard. This may
-# depends on your country. This button is an accelerator used as a shortcut.
-#~ msgid "Remove selected entry\tDEL"
-#~ msgstr "Rimuovi voce selezionata\tDEL"
-
-#~ msgid "Remove the selected file from the list"
-#~ msgstr "Rimuovi dall'elenco il file selezionato"
-
-#~ msgid "Clear the file list"
-#~ msgstr "Cancella l'intero elenco dei file"
-
-#~ msgid "Application preferences"
-#~ msgstr "Impostazioni applicazione"
-
-#~ msgid "Find FFmpeg topics"
-#~ msgstr "Guida argomenti FFmpeg"
-
-#~ msgid "A useful tool to search for FFmpeg help topics and options"
-#~ msgstr ""
-#~ "Uno strumento utile per cercare argomenti e opzioni della guida FFmpeg"
-
-#~ msgid "Check for preset updates"
-#~ msgstr "Controlla aggiornamenti profili"
-
-#~ msgid "Check for new presets updates from {0}"
-#~ msgstr "Controlla nuovi aggiornamenti profili da {0}"
-
-#~ msgid "Get latest presets"
-#~ msgstr "Scarica profili aggiornati"
-
-#~ msgid "Get the latest presets from {0}"
-#~ msgstr "Scarica profili aggiornati da {0}"
-
-#~ msgid "Show FFmpeg's built-in configuration capabilities"
-#~ msgstr "Visualizza funzionalità configurazione integrate in FFmpeg"
-
-#~ msgid "Muxers and demuxers available on your version of FFmpeg"
-#~ msgstr "Muxer e demuxer disponibili sulla tua versione di FFmpeg"
-
-#~ msgid "Encoders available on your version of FFmpeg"
-#~ msgstr "Codificatori disponibili sulla tua versione di FFmpeg"
-
-#~ msgid "Decoders available on your version of FFmpeg"
-#~ msgstr "Codificatori disponibili sulla tua versione di FFmpeg"
-
-#~ msgid "FFplay"
-#~ msgstr "FFplay"
-
-#~ msgid "Enable timestamps on playback"
-#~ msgstr "Abilita marca temporale durante la riproduzione"
-
-#~ msgid "Displays timestamp when playing media with FFplay"
-#~ msgstr ""
-#~ "Visualizza la marca temporale durante la riproduzione dei media con FFplay"
-
-#~ msgid "Auto-exit after playback"
-#~ msgstr "Uscita automatica dopo la riproduzione"
-
-#~ msgid ""
-#~ "If checked, the FFplay window will auto-close when playback is complete"
-#~ msgstr ""
-#~ "Se abilitato, la finestra FFplay si chiuderà automaticamente alla fine "
-#~ "della riproduzione"
-
-#~ msgid "Customize the timestamp style"
-#~ msgstr "Personalizza lo stile della marca temporale"
-
-#~ msgid "While playing..."
-#~ msgstr "Durante la riproduzione..."
-
-#~ msgid "Show useful shortcut keys when playing or previewing using FFplay"
-#~ msgstr ""
-#~ "Visualizza tasti scelta rapida utili durante la riproduzione o "
-#~ "l'anteprima usando FFplay"
-
-#~ msgid "Show timeline editor\tCtrl+T"
-#~ msgstr "Editor sequenza temporale\tCtrl+T"
-
-#~ msgid ""
-#~ "Set duration or trim slices of time to remove unwanted parts from your "
-#~ "files"
-#~ msgstr ""
-#~ "Imposta la durata o ritaglia intervalli di tempo per rimuovere parti "
-#~ "indesiderate dai file"
-
-#~ msgid "Home panel\tCtrl+Shift+H"
-#~ msgstr "Pannello principale\tCtrl+Shift+H"
-
-#~ msgid "Go to the «Home» panel"
-#~ msgstr "Vai al pannello «Home»"
-
-#~ msgid "Presets Manager\tCtrl+Shift+P"
-#~ msgstr "Gestione profili\tCtrl+Shift+P"
-
-#~ msgid "Go to the «Presets Manager» panel"
-#~ msgstr "Vai al pannello «Gestione profili»"
-
-#~ msgid "A/V Conversions\tCtrl+Shift+V"
-#~ msgstr "Conversioni audio/video\tCtrl+Shift+V"
-
-#~ msgid "Go to the «A/V Conversions» panel"
-#~ msgstr "Vai al pannello «Conversione audio/video»"
-
-#~ msgid "Concatenate Demuxer\tCtrl+Shift+D"
-#~ msgstr "Unione con demuxer\tCtrl+Shift+D"
-
-#~ msgid "Go to the «Concatenate Demuxer» panel"
-#~ msgstr "Vai al pannello «Unione con demuxer»"
-
-#~ msgid "Still Image Maker\tCtrl+Shift+I"
-#~ msgstr "Crea presentazioni\tCtrl+Shift+I"
-
-#~ msgid "Go to the «Still Image Maker» panel"
-#~ msgstr "Vai al pannello «Crea presentazione»"
-
-#~ msgid "From Movie to Pictures\tCtrl+Shift+S"
-#~ msgstr "Converti filmato in immagini\tCtrl+Shift+S"
-
-#~ msgid "Go to the «From Movie to Pictures» panel"
-#~ msgstr "Vai al pannello «Converti filmato in immagini»"
-
-#~ msgid "YouTube Downloader\tCtrl+Shift+Y"
-#~ msgstr "YouTube Downloader\tCtrl+Shift+Y"
-
-#~ msgid "Open «YouTube Downloader» window"
-#~ msgstr "Apri finestra «YouTube Downloader»"
-
-#~ msgid "Output monitor\tCtrl+Shift+O"
-#~ msgstr "Monitor file destinazione\tCtrl+Shift+O"
-
-#~ msgid "Keeps track of the output for debugging errors"
-#~ msgstr "Tiene traccia dell'output per gli errori di debug"
-
-#~ msgid "Go"
-#~ msgstr "Vai"
-
-#~ msgid "Check for newer version"
-#~ msgstr "Controlla aggiornamenti programma"
-
-#~ msgid "Check for the latest Vidtuber version"
-#~ msgstr "Verifica ultima versione di Vidtuber"
-
-#~ msgid "System version"
-#~ msgstr "Versione sistema"
-
-#~ msgid ""
-#~ "Get version about your operating system, version of Python and wxPython."
-#~ msgstr ""
-#~ "Ottieni la versione del sistema operativo, la versione di Python e "
-#~ "wxPython."
-
-#~ msgid "Import files"
-#~ msgstr "Importa file"
-
-#~ msgid ""
-#~ "No default folder has been set for the destination of the encodings. The "
-#~ "current setting is \"Same destination paths as source files\"."
-#~ msgstr ""
-#~ "Nessuna cartella predefinita è stata impostata per la destinazione delle "
-#~ "codifiche. L'impostazione corrente è \"Stessi percorsi per file "
-#~ "destinazione e sorgente\"."
-
-#~ msgid ""
-#~ "'{}':\n"
-#~ "No such file or directory"
-#~ msgstr ""
-#~ "'{}':\n"
-#~ "Nessun file o cartella con questo nome"
-
-#~ msgid "Are you sure to empty trash folder?"
-#~ msgstr "Sei sicuro di voler svuotare la cartella cestino?"
-
-#~ msgid ""
-#~ "'{}':\n"
-#~ "There are no files to delete."
-#~ msgstr ""
-#~ "'{}':\n"
-#~ "Non ci sono file da cancellare."
-
-#~ msgid "Installed release v{0}. A new presets release is available {1}"
-#~ msgstr ""
-#~ "Versione profili installata v. {0}. \n"
-#~ "È disponibile una nuova versione dei profili {1}"
-
-#~ msgid "Installed release v{0}. No new updates found."
-#~ msgstr ""
-#~ "Versione profili installata v{0}. \n"
-#~ "Nessun nuovo aggiornamento trovato."
-
-#~ msgid ""
-#~ "Wait....\n"
-#~ "The archive is being downloaded"
-#~ msgstr ""
-#~ "Attendi....\n"
-#~ "L'archivio è in fase di download"
-
-#~ msgid "Successfully downloaded to \"{0}\""
-#~ msgstr "Scaricato correttamente in \"{0}\""
-
-#~ msgid "Previous panel"
-#~ msgstr "Pannello precedente"
-
-#~ msgid "Next panel"
-#~ msgstr "Pannello successivo"
-
-#~ msgid "Home panel"
-#~ msgstr "Pannello principale"
-
-#~ msgid "Home"
-#~ msgstr "Principale"
-
-#~ msgid "Play the selected imput file"
-#~ msgstr "Riproduci il file sorgente selezionato"
-
-#~ msgid "Play"
-#~ msgstr "Riproduci"
-
-#~ msgid "Get informative data about imported media streams"
-#~ msgstr "Ottieni dati informativi sui flussi dei media importati"
-
-#~ msgid "Start batch processing"
-#~ msgstr "Avvia l'elaborazione batch"
-
-#~ msgid "Add an item to Queue"
-#~ msgstr "Aggiungi un elemento alla Coda"
-
-#~ msgid "Add to Queue"
-#~ msgstr "Aggiungi a coda"
-
-#~ msgid "Show queue"
-#~ msgstr "Visualizza coda"
-
-#~ msgid "Vidtuber"
-#~ msgstr "Vidtuber"
-
-#~ msgid "Vidtuber - File List"
-#~ msgstr "Vidtuber - Lista dei File"
-
-#~ msgid "Vidtuber - AV Conversions"
-#~ msgstr "Vidtuber - Conversioni AV"
-
-#~ msgid "Vidtuber - Presets Manager"
-#~ msgstr "Vidtuber - Gestione profili"
-
-#~ msgid "Vidtuber - Concatenate Demuxer"
-#~ msgstr "Vidtuber - Unione con demuxer"
-
-#~ msgid "Vidtuber - From Movie to Pictures"
-#~ msgstr "Vidtuber - Converti filmato in immagini"
-
-#~ msgid "Vidtuber - Still Image Maker"
-#~ msgstr "Vidtuber - Crea presentazioni"
-
-#~ msgid "Have to select an item in the file list first"
-#~ msgstr "Prima dovresti selezionare un elemento nella lista dei file"
-
-#~ msgid ""
-#~ "An item with the same destination file already exists.\n"
-#~ "\n"
-#~ "Do you want to replace it by adding the new item to the queue?"
-#~ msgstr ""
-#~ "Esiste già un elemento con lo stesso file destinazione.\n"
-#~ "\n"
-#~ "Vuoi sostituirlo aggiungendo il nuovo elemento alla coda?"
-
-#~ msgid "Vidtuber - FFmpeg Message Monitoring"
-#~ msgstr "Vidtuber - Monitoraggio dei messaggi FFmpeg"
-
-#~ msgid "yt-dlp is disabled. Check your preferences."
-#~ msgstr "yt-dlp è disabilitato - controlla le impostazioni."
-
-#~ msgid "The application requires to be restarted."
-#~ msgstr "L'applicazione richiede il riavvio."
-
-#~ msgid ""
-#~ "The Python module «yt_dlp» was not found. Make sure you have installed yt-"
-#~ "dlp correctly."
-#~ msgstr ""
-#~ "Il modulo Python «yt_dlp» non è stato trovato. Assicurati di aver "
-#~ "installato yt-dlp correttamente."
-
-#~ msgid "Start point adjustment"
-#~ msgstr "Regola posizione Iniziale"
-
-#~ msgid "End point adjustment"
-#~ msgstr "Regola posizione Finale"
-
-#~ msgid "Hours"
-#~ msgstr "Ore"
-
-#~ msgid "Minutes"
-#~ msgstr "Minuti"
-
-#~ msgid "Seconds"
-#~ msgstr "Secondi"
-
-#~ msgid "Milliseconds"
-#~ msgstr "Millisecondi"
-
-#~ msgid "No source duration:"
-#~ msgstr "Nessuna durata sorgente:"
-
-#~ msgid "{0} {1}  |  Segment Duration: {2}"
-#~ msgstr "{0} {1}  |  Durata Segmento: {2}"
-
-#~ msgid "End adjustment"
-#~ msgstr "Regola Fine"
-
-#~ msgid "Start adjustment"
-#~ msgstr "Regola Inizio"
-
-#~ msgid "Source duration:"
-#~ msgstr "Durata sorgente:"
-
-#~ msgid "WARNING: Invalid selection, out of range."
-#~ msgstr "ATTENZIONE: Selezione non valida, fuori intervallo."
-
-#~ msgid ""
-#~ "Start by dragging the bottom left handle,\n"
-#~ "or right-click for options."
-#~ msgstr ""
-#~ "Inizia trascinando la maniglia in basso a sinistra o fai clic\n"
-#~ "con il pulsante destro del mouse per le opzioni."
-
-#~ msgid "Start"
-#~ msgstr "Inizio"
-
-#~ msgid "End"
-#~ msgstr "Fine"
-
-#~ msgid ""
-#~ "The timeline editor is a tool that allows you to trim slices of time on "
-#~ "selected imported media (see File List panel).\n"
-#~ "\n"
-#~ "The \"time format\" used to report durations is expressed in hours, "
-#~ "minutes, seconds and milliseconds (HH:MM:SS.ms).\n"
-#~ "\n"
-#~ "Note that importing new files, making new selection, deselection, "
-#~ "deleting items, sorting items (ie by LEFT clicking on the column "
-#~ "headers), will reset any previous settings to default values.\n"
-#~ "\n"
-#~ "If the File List panel is empty or no source files are selected, the "
-#~ "overall duration values will be set to 23:59:59.999, rather than the "
-#~ "duration of a selected source file (see status bar messages).\n"
-#~ "\n"
-#~ "The \"Start\"/\"End\" duration values always refer to the initial "
-#~ "position of the timeline: 00:00:00.000. For other informations as the "
-#~ "segment duration and warnings, please refer to the status bar messages."
-#~ msgstr ""
-#~ "L'editor timeline è uno strumento che consente di ritagliare porzioni di "
-#~ "tempo sui media importati e selezionati (vedere pannello Lista dei "
-#~ "File). \n"
-#~ "\n"
-#~ "Il \"formato tempo\" usato per riportare le durate è espresso in ore, "
-#~ "minuti, secondi e millisecondi (HH:MM:SS.ms).\n"
-#~ "\n"
-#~ "Si noti che l'importazione di nuovi file, l'effettuare nuove selezioni, "
-#~ "deselezioni, l'eliminazione di elementi, l'ordinamento di elementi (ad "
-#~ "es. facendo clic con il pulsante SINISTRO sulle intestazioni delle "
-#~ "colonne), ripristineranno tutte le impostazioni precedenti ai valori "
-#~ "predefiniti.\n"
-#~ "\n"
-#~ "Se il pannello Lista dei File è vuoto, o nel caso non si sia effettuata "
-#~ "alcuna selezione sui file sorgenti, i valori di durata complessiva "
-#~ "verranno impostati a 23:59:59.999, anziché sulla durata di un file "
-#~ "sorgente selezionato (vedere i messaggi sulla barra di stato di questo "
-#~ "editor).\n"
-#~ "\n"
-#~ "I valori di durata \"Inizio\"/\"Fine\" fanno sempre riferimento alla "
-#~ "posizione iniziale della timeline: 00:00:00.000. Le altre informazioni "
-#~ "come la durata del segmento e gli avvisi, saranno visualizzati sui "
-#~ "messaggi della barra di stato di questo editor."
-
-#~ msgid "Timeline Editor Usage"
-#~ msgstr "Uso editor timeline"
-
-#~ msgid "Media:"
-#~ msgstr "Media:"
-
-#~ msgid "Container:"
-#~ msgstr "Contenitore:"
-
-#~ msgid "Save profile"
-#~ msgstr "Salva profilo"
-
-#~ msgid "Target"
-#~ msgstr "Obiettivo"
-
-#~ msgid "Miscellaneous"
-#~ msgstr "Varie"
-
-#~ msgid "Save as a new profile of the Presets Manager."
-#~ msgstr "Salva come nuovo profilo in Gestione profili."
-
-#~ msgid ""
-#~ "Available video encoders. \"Copy\" means that the video stream will not "
-#~ "be re-encoded and will allow you (depending on the encoder) to change the "
-#~ "container, audio codec and a few other parameters."
-#~ msgstr ""
-#~ "Codec video disponibili. \"Copia\" significa che il flusso video non "
-#~ "verrà ricodificato e ti consentirà (a seconda del codificatore) di "
-#~ "modificare il contenitore, il codec audio e alcuni altri parametri."
-
-#~ msgid ""
-#~ "Container format. It is usually represented by the file extension (output "
-#~ "format).\n"
-#~ "\n"
-#~ "If the Media target is set to \"Video\" and the Video Encoder to "
-#~ "\"Copy\", optionally you can set this control to \"Copy\" the same "
-#~ "container as source file.\n"
-#~ "\n"
-#~ "If the media target is set to \"Audio\", you can extract only the audio "
-#~ "streams from videos, or simply convert audio source files."
-#~ msgstr ""
-#~ "Formato contenitore. Di solito è rappresentato dall'estensione del file "
-#~ "(formato di output).\n"
-#~ "\n"
-#~ "Se l'obiettivo media è impostato su \"Video\" e il codificatore video su "
-#~ "\"Copia\", facoltativamente puoi impostare questo controllo su \"Copia\" "
-#~ "per poter copiare anche lo stesso contenitore del file sorgente.\n"
-#~ "\n"
-#~ "Se l'obiettivo media è impostato su \"Audio\", puoi estrarre solo i "
-#~ "flussi audio dai video o semplicemente convertire sorgenti di tipo audio."
-
-#~ msgid ""
-#~ "Set output files target: \"Video\" to save output files as video files; "
-#~ "\"Audio\" to save files using an audio encoder and format.\n"
-#~ "\n"
-#~ "Note that by using \"Audio\" as the target, you will still be able to "
-#~ "work on the video source files but you will only be able to extract the "
-#~ "audio streams, convert them and apply audio filters such as normalization."
-#~ msgstr ""
-#~ "Imposta l'obiettivo dei file destinazione: \"Video\" per salvare i file "
-#~ "destinazione come file video; \"Audio\" per salvare file usando un "
-#~ "codificatore e un formato audio.\n"
-#~ "\n"
-#~ "Tieni presente che usando \"Audio\" come obiettivo, sarai comunque in "
-#~ "grado di lavorare su sorgenti video ma potrai solo estrarre i flussi "
-#~ "audio, convertirli e applicare filtri come la normalizzazione."
-
-#~ msgid "Preview video filters"
-#~ msgstr "Anteprima dei filtri video"
-
-#~ msgid "Disable active filters"
-#~ msgstr "Disabilita i filtri attivi"
-
-#~ msgid "Resize"
-#~ msgstr "Ridimensiona"
-
-#~ msgid "Crop"
-#~ msgstr "Ritaglia"
-
-#~ msgid "Transpose"
-#~ msgstr "Trasponi"
-
-#~ msgid "Denoise"
-#~ msgstr "Elimina rumore"
-
-#~ msgid "Stabilize"
-#~ msgstr "Stabilizza"
-
-#~ msgid "Equalize"
-#~ msgstr "Equalizza"
-
-#~ msgid "Unable to preview Video Stabilizer filter"
-#~ msgstr ""
-#~ "Impossibile visualizzare in anteprima il filtro stabilizzatore video"
-
-#~ msgid ""
-#~ "Unsupported file:\n"
-#~ "Missing decoder or library? Check FFmpeg configuration."
-#~ msgstr ""
-#~ "File non supportato:\n"
-#~ "Decoder o libreria mancante? \n"
-#~ "Controlla la configurazione di FFmpeg."
-
-#~ msgid "The file is not a frame or a video file"
-#~ msgstr "Il file non è un frame o un file video"
-
-#~ msgid ""
-#~ "Undetected volume values! Click the \"Volume detect\" button to analyze "
-#~ "audio volume data."
-#~ msgstr ""
-#~ "Valori del volume non rilevati!\n"
-#~ "Per analizzare i dati sul volume audio seleziona \"Rilevazione volume\"."
-
-#~ msgid "Off"
-#~ msgstr "Spento"
-
-#~ msgid ""
-#~ "Batch processing items\n"
-#~ "Destination\n"
-#~ "Automation/Preset\n"
-#~ "Encoding passes\n"
-#~ "Output Format\n"
-#~ "Video Codec\n"
-#~ "Audio Codec\n"
-#~ "Audio Normalization\n"
-#~ "Output multimedia type\n"
-#~ "Start of segment\n"
-#~ "Clip duration"
-#~ msgstr ""
-#~ "Elementi in elaborazione batch\n"
-#~ "Destinazione\n"
-#~ "Automazione/Preimpostazione\n"
-#~ "Passaggi di codifica\n"
-#~ "Formato in uscita\n"
-#~ "Codec video\n"
-#~ "Codec Audio\n"
-#~ "Normalizzazione audio\n"
-#~ "Tipo di media in uscita\n"
-#~ "Inizio segmento\n"
-#~ "Durata clip"
-
-#~ msgid "Write profile on «{0}»"
-#~ msgstr "Scrivi il profilo su «{0}»"
-
-#~ msgid "Enter name for new preset"
-#~ msgstr "Inserisci il nome per la nuova pre-impostazione"
-
-#~ msgid ""
-#~ "Invalid file name, make sure to provide a valid name including the «."
-#~ "json» extension"
-#~ msgstr ""
-#~ "Nome file non valido, assicurati di fornire un nome valido includendo "
-#~ "l'estensione «.json»"
-
-#~ msgid "Cannot save current data in file «{}»."
-#~ msgstr "Impossibile salvare i dati correnti nel file «{}»."
-
-#~ msgid "Open Vidtuber preset"
-#~ msgstr "Apri pre-impostazione Vidtuber"
-
-#~ msgid "Vidtuber - Save new profile"
-#~ msgstr "Vidtuber - Salva nuovo profilo"
-
-#~ msgid "Where do you want to save this profile?"
-#~ msgstr "Dove preferisci salvare questo profilo?"
-
-#~ msgid "Save the profile to a new preset"
-#~ msgstr "Salva il profilo in una nuova pre-impostazione"
-
-#~ msgid "Save the profile to an existing preset"
-#~ msgstr "Salva il profilo in una pre-impostazione esistente"
-
-#~ msgid "Welcome to Vidtuber"
-#~ msgstr "Benvenuto in Vidtuber"
-
-#~ msgid "Version {}"
-#~ msgstr "Versione {}"
-
-#~ msgid "Presets Manager"
-#~ msgstr "Gestione profili"
-
-#~ msgid "AV-Conversions"
-#~ msgstr "Conversioni audio/video"
-
-#~ msgid "Concatenate media files"
-#~ msgstr "Unisci file multimediali"
-
-#~ msgid "YouTube Downloader"
-#~ msgstr "YouTube Downloader"
-
-#~ msgid "Still Image Maker"
-#~ msgstr "Crea presentazioni"
-
-#~ msgid "From Movie to Pictures"
-#~ msgstr "Converti filmato in immagini"
-
-#~ msgid "If you like this project, please support it with a donation, Thanks!"
-#~ msgstr ""
-#~ "Se ti piace questo progetto, per favore sostienilo con una donazione. "
-#~ "Grazie!"
-
-#~ msgid ""
-#~ "Create, edit and use quickly your favorite FFmpeg presets and profiles "
-#~ "with full formats support and codecs."
-#~ msgstr ""
-#~ "Crea, modifica o usa subito i profili con supporto completo ai formati e "
-#~ "codec di FFmpeg."
-
-#~ msgid ""
-#~ "A set of useful tools for audio and video conversions. Save your profiles "
-#~ "and reuse them with Presets Manager."
-#~ msgstr ""
-#~ "Un set di strumenti utili per le conversioni audio e video. \n"
-#~ "Salva i profili e riusali con \"Gestione profili\"."
-
-#~ msgid ""
-#~ "Easily download videos and audio in different formats and quality from "
-#~ "YouTube, Facebook and more sites."
-#~ msgstr ""
-#~ "Scarica facilmente video e audio con formato e qualità diversi da  "
-#~ "YouTube, Facebook e altri siti."
-
-#~ msgid ""
-#~ "Concatenate multiple media files based on import order without re-encoding"
-#~ msgstr ""
-#~ "Unisci più file multimediali in base all'ordine di importazione senza "
-#~ "ricodificarli"
-
-#~ msgid ""
-#~ "Create video from a sequence of images, based on import order, with the "
-#~ "ability to add an audio file."
-#~ msgstr ""
-#~ "Crea un video da una sequenza di immagini, in base all'ordine di "
-#~ "importazione, con la possibilità di aggiungere un file audio."
-
-#~ msgid ""
-#~ "Extract images (frames) from your movies in JPG, PNG, BMP, GIF formats."
-#~ msgstr ""
-#~ "Estrai immagini (fotogrammi) dai filmati e salvali in formato JPG, PNG, "
-#~ "BMP, GIF."
-
-#~ msgid "At least two files are required to perform concatenation."
-#~ msgstr "Sono necessari almeno due file per eseguire l'unione."
-
-#~ msgid "Invalid data found"
-#~ msgstr "Trovati dati non validi"
-
-#~ msgid ""
-#~ "The files do not have the same \"codec_types\", same \"sample_rate\" or "
-#~ "same \"width\" or \"height\". Unable to proceed."
-#~ msgstr ""
-#~ "I file non hanno gli stessi parametri come \"codec_types\", "
-#~ "\"sample_rate\" , \"larghezza\" o \"altezza\". Impossibile procedere."
-
-#~ msgid ""
-#~ "\n"
-#~ "- The concatenation function is performed only with Audio files or only "
-#~ "with Video files.\n"
-#~ "\n"
-#~ "- The order of concatenation depends on the order in which the files were "
-#~ "added.\n"
-#~ "\n"
-#~ "- The output file name will have the same name as the first file added "
-#~ "(also depends on the\n"
-#~ "  settings made in the preferences dialog or the renaming functions "
-#~ "used).\n"
-#~ "\n"
-#~ "- Video files must have exactly same streams, same codecs and same\n"
-#~ "  width/height, but can be wrapped in different container formats.\n"
-#~ "\n"
-#~ "- Audio files must have exactly the same formats, same codecs with equal "
-#~ "sample rate."
-#~ msgstr ""
-#~ "\n"
-#~ "- La funzione di unione viene effettuata solo con file Audio o solo con "
-#~ "file Video.\n"
-#~ "\n"
-#~ "- L'ordine di unione dipende dall'ordine in cui i file sono stati "
-#~ "aggiunti.\n"
-#~ "\n"
-#~ "- Il nome del file destinazione avrà lo stesso nome del primo file "
-#~ "aggiunto (dipende anche\n"
-#~ "  dalle impostazioni effettuate nella finestra di dialogo delle "
-#~ "impostazioni o dalle funzioni\n"
-#~ "  di ridenominazione usate).\n"
-#~ "\n"
-#~ "- I file video devono avere esattamente gli stessi flussi (streams), gli "
-#~ "stessi codec\n"
-#~ "  e la stessa larghezza/altezza, ma possono avere formati o contenitori "
-#~ "diversi.\n"
-#~ "\n"
-#~ "- I file audio devono avere esattamente gli stessi formati, la stessa "
-#~ "frequenza di\n"
-#~ "  campionamento e gli stessi codec."
-
-#~ msgid "Vidtuber Documentation:"
-#~ msgstr "Documentazione Vidtuber:"
-
-#~ msgid "Official FFmpeg documentation:"
-#~ msgstr "Documentazione ufficiale FFmpeg:"
-
-#~ msgid ""
-#~ "Items to concatenate\n"
-#~ "File destination\n"
-#~ "Output Format\n"
-#~ "Output multimedia type\n"
-#~ "Duration"
-#~ msgstr ""
-#~ "Elementi da unire\n"
-#~ "File destinazione\n"
-#~ "Formato destinazione\n"
-#~ "Tipo media destinazione\n"
-#~ "Durata"
-
-#~ msgid "File has illegal characters like:"
-#~ msgstr "Il file ha caratteri non validi come:"
-
-#~ msgid "Invalid character found in path name: (\")"
-#~ msgstr "Trovato carattere non valido nel nome del percorso: (\")"
-
-#~ msgid "Directories are not allowed, just add files, please."
-#~ msgstr "Le cartelle non sono ammesse, aggiungi solo file."
-
-#~ msgid ""
-#~ "File without format extension: please give an appropriate extension to "
-#~ "the file name, example '.mkv', '.avi', '.mp3', etc."
-#~ msgstr ""
-#~ "File senza estensione di formato: fornire un'estensione appropriata al "
-#~ "nome del file, ad esempio '.mkv', '.avi', '.mp3', ecc."
-
-#~ msgid "Name has illegal characters like: {0}"
-#~ msgstr "Il nome ha caratteri non validi come: {0}"
-
-#~ msgid "Name already in use:"
-#~ msgstr "Nome già in uso:"
-
-#~ msgid "Duplicate file, it has already been added to the list."
-#~ msgstr "File duplicato, è già stato aggiunto all'elenco."
-
-#~ msgid "Rejected files"
-#~ msgstr "File rifiutati"
-
-#~ msgid "Source file"
-#~ msgstr "File sorgente"
-
-#~ msgid "Duration"
-#~ msgstr "Durata"
-
-#~ msgid "Media type"
-#~ msgstr "Tipo di media"
-
-#~ msgid "Drag one or more files below"
-#~ msgstr "Trascina uno o più file qui sotto"
-
-#~ msgid "Set a new destination folder for encodings"
-#~ msgstr "Imposta nuova cartella di destinazione codifiche"
-
-#~ msgid "Encodings destination folder"
-#~ msgstr "Cartella di destinazione delle codifiche"
-
-#~ msgid "Play file"
-#~ msgstr "Riproduci file"
-
-#~ msgid "Drag two or more Audio/Video files below"
-#~ msgstr "Trascina due o più file audio/video qui sotto"
-
-#~ msgid "Drag one or more Image files below"
-#~ msgstr "Trascina uno o più file immagine qui sotto"
-
-#~ msgid "Drag one or more Video files below"
-#~ msgstr "Trascina uno o più file video qui sotto"
-
-#~ msgid "Rename the file destination"
-#~ msgstr "Rinomina destinazione del file"
-
-#~ msgid "Rename the selected file to:"
-#~ msgstr "Rinomina il file selezionato in:"
-
-#~ msgid "Add Files"
-#~ msgstr "Aggiungi file"
-
-#~ msgid "Rename in batch"
-#~ msgstr "Rinomina in batch"
-
-#~ msgid "Rename the {0} items to:"
-#~ msgstr "Rinominare i {0} elementi in:"
-
-#~ msgid "New Name #"
-#~ msgstr "Nuovo Nome #"
-
-#~ msgid "Encoding Status"
-#~ msgstr "Stato della codifica"
-
-#~ msgid "For more details please read the Current Log."
-#~ msgstr "Per maggiori dettagli leggere il Registro Corrente."
-
-#~ msgid "...Interrupted"
-#~ msgstr "...Interrotto"
-
-#~ msgid "Presets"
-#~ msgstr "Pre-impostazioni"
-
-#~ msgid "Write"
-#~ msgstr "Scrivi"
-
-#~ msgid "Delete"
-#~ msgstr "Cancella"
-
-#~ msgid "Duplicate"
-#~ msgstr "Duplica"
-
-#~ msgid "Profiles"
-#~ msgstr "Profili"
-
-#~ msgid "One-Pass Encoding"
-#~ msgstr "Codifica a passaggio singolo"
-
-#~ msgid "Two-Pass Encoding"
-#~ msgstr "Codifica a due passaggi"
-
-#~ msgid "Choose a preset and view its profiles"
-#~ msgstr "Scegli una pre-impostazione e visualizza i suoi profili"
-
-#~ msgid "Write a new profile and save it in the selected preset"
-#~ msgstr ""
-#~ "Scrivi un nuovo profilo e salvalo nella pre-impostazione selezionata"
-
-#~ msgid "Delete the selected profile"
-#~ msgstr "Cancella il profilo selezionato"
-
-#~ msgid "Edit the selected profile"
-#~ msgstr "Modifica il profilo selezionato"
-
-#~ msgid "Duplicate the selected profile"
-#~ msgstr "Duplica il profilo selezionato"
-
-#~ msgid "Create new preset"
-#~ msgstr "Crea nuova pre-impostazione"
-
-#~ msgid "Remove selected preset"
-#~ msgstr "Rimuovi la pre-impostazione selezionata"
-
-#~ msgid "Backup selected preset"
-#~ msgstr "Effettua il backup della pre-impostazione selezionata"
-
-#~ msgid "Backup the presets folder"
-#~ msgstr "Esegui il backup della cartella dei profili"
-
-#~ msgid "Restore a preset"
-#~ msgstr "Ripristina una pre-impostazione"
-
-#~ msgid "Restore a presets folder"
-#~ msgstr "Ripristina cartella profili"
-
-#~ msgid "Resets the selected preset to default values"
-#~ msgstr "Ripristina la pre-impostazione selezionata ai valori predefiniti"
-
-#~ msgid "Reset all presets to default values"
-#~ msgstr "Ripristina tutte i profili ai valori predefiniti"
-
-#~ msgid "Refresh the presets list"
-#~ msgstr "Ricarica elenco profili"
-
-#~ msgid ""
-#~ "Outdated presets version found: v{1}\n"
-#~ "A new version is available: v{0}\n"
-#~ "\n"
-#~ "This update provides new presets included on the latest versions of "
-#~ "Vidtuber.\n"
-#~ "\n"
-#~ "To avoid data loss and allow for possible recovery, the outdated presets "
-#~ "folder will be backed up in the program configuration directory:\n"
-#~ "«{2}»\n"
-#~ "\n"
-#~ "Do you want to perform this update now?"
-#~ msgstr ""
-#~ "Rilevata versione profili obsoleta: v{1}.\n"
-#~ "È disponibile una nuova versione: v{0}\n"
-#~ "\n"
-#~ "Questo aggiornamento fornisce nuovi profili inclusi nelle versioni più "
-#~ "recenti di Vidtuber.\n"
-#~ "\n"
-#~ "Per evitare la perdita di dati e consentire un possibile ripristino, "
-#~ "verrà eseguito il backup della cartella dei profili obsoleti nella "
-#~ "cartella di configurazione del programma:\n"
-#~ "«{2}»\n"
-#~ "\n"
-#~ "Vuoi eseguire questo aggiornamento adesso?"
-
-#~ msgid "Name"
-#~ msgstr "Nome"
-
-#~ msgid "Output Format"
-#~ msgstr "Formato destinazione"
-
-#~ msgid "Supported Format List"
-#~ msgstr "Elenco formati supportati"
-
-#~ msgid "Cannot save current data in file '{}'."
-#~ msgstr "Impossibile salvare i dati correnti nel file '{}'."
-
-#~ msgid "You just successfully created a new preset!"
-#~ msgstr "Hai appena creato correttamente un nuovo profilo!"
-
-#~ msgid ""
-#~ "Are you sure you want to remove \"{}\" preset?\n"
-#~ "\n"
-#~ " It will be moved to the \"Removals\" subfolder inside the presets folder."
-#~ msgstr ""
-#~ "Sei sicuro di rimuovere la pre-impostazione \"{}\" ?\n"
-#~ "\n"
-#~ "Sarà spostata nella sotto-cartella \"Removals\" dentro la cartella dei "
-#~ "profili."
-
-#~ msgid ""
-#~ "{}\n"
-#~ "\n"
-#~ "Sorry, removal failed, cannot continue.."
-#~ msgstr ""
-#~ "{}\n"
-#~ "\n"
-#~ "Spiacente, rimozione non riuscita, impossibile procedere.."
-
-#~ msgid "The preset \"{0}\" was successfully removed"
-#~ msgstr "La pre-impostazione \"{0}\" è stata correttamente rimossa"
-
-#~ msgid "Open a destination folder"
-#~ msgstr "Apri una cartella di destinazione"
-
-#~ msgid "A file with this name already exists, do you want to overwrite it?"
-#~ msgstr "Esiste già un file con lo stesso nome, vuoi sovrascriverlo?"
-
-#~ msgid "Backup completed successfully"
-#~ msgstr "Backup completato correttamente"
-
-#~ msgid "Open the preset you want to restore"
-#~ msgstr "Apri pre-impostazione da ripristinare"
-
-#~ msgid ""
-#~ "This preset already exists and is about to be updated. Don't worry, it "
-#~ "will keep all your saved profiles.\n"
-#~ "\n"
-#~ "Do you want to continue?"
-#~ msgstr ""
-#~ "Questa pre-impostazione esiste già e sta per essere aggiornata. Non "
-#~ "preoccuparti, manterrà tutti i profili salvati.\n"
-#~ "\n"
-#~ "Vuoi continuare?"
-
-#~ msgid "Restore successful"
-#~ msgstr "Ripristino completato"
-
-#~ msgid ""
-#~ "This will update the presets database. Don't worry, it will keep all your "
-#~ "saved profiles.\n"
-#~ "\n"
-#~ "Do you want to continue?"
-#~ msgstr ""
-#~ "Questa operazione aggiornerà il database dei profili. \n"
-#~ "Non preoccuparti, manterrà tutti i profili salvati.\n"
-#~ "Vuoi continuare?"
-
-#~ msgid "Open the presets folder to restore"
-#~ msgstr "Apri cartella profili da ripristinare"
-
-#~ msgid "The presets database has been successfully updated"
-#~ msgstr "Il database profili è stato aggiornato correttamente"
-
-#~ msgid "The selected preset is not part of Vidtuber's default presets."
-#~ msgstr ""
-#~ "Il profilo selezionato non è parte dei profili predefiniti di Vidtuber."
-
-#~ msgid ""
-#~ "Be careful! The selected preset will be overwritten with the default one. "
-#~ "Your profiles may be deleted!\n"
-#~ "\n"
-#~ "Do you want to continue?"
-#~ msgstr ""
-#~ "Attenzione! La pre-impostazione selezionata verrà sovrascritta con quella "
-#~ "predefinita. I profili potrebbero essere cancellati!\n"
-#~ "\n"
-#~ "Vuoi continuare?"
-
-#~ msgid "Successful recovery"
-#~ msgstr "Ripristino completato"
-
-#~ msgid ""
-#~ "Be careful! This action will restore all presets to default ones. Your "
-#~ "profiles may be deleted!\n"
-#~ "\n"
-#~ "In any case, to avoid data loss, the presets folder will be backed up in "
-#~ "the program's configuration directory.\n"
-#~ "\n"
-#~ "Do you want to continue?"
-#~ msgstr ""
-#~ "Attenzione! \n"
-#~ "Questa azione ripristinerà tutte i profili ai valori predefiniti. \n"
-#~ "I profili potrebbero essere cancellati!\n"
-#~ "In ogni caso, per evitare perdite di dati, verrà effettuato il backup "
-#~ "della cartella dei profili nella cartella di configurazione del "
-#~ "programma.\n"
-#~ "Vuoi continuare?"
-
-#~ msgid "Edit profile on «{0}»"
-#~ msgstr "Modifica il profilo su «{0}»"
-
-#~ msgid ""
-#~ "Are you sure you want to delete the selected profile? It will no longer "
-#~ "be possible to recover it."
-#~ msgstr ""
-#~ "Sei sicuro di voler eliminare il profilo selezionato? non sarà più "
-#~ "possibile recuperarlo."
-
-#~ msgid "First select a profile in the list"
-#~ msgstr "Dovresti selezionare un profilo nella lista"
-
-#~ msgid ""
-#~ "The selected profile command has been changed manually.\n"
-#~ "Do you want to apply it during the conversion process?"
-#~ msgstr ""
-#~ "Il comando del profilo selezionato è stato cambiato manualmente.\n"
-#~ "Vuoi applicarlo durante il processo di conversione?"
-
-#~ msgid "Don't show this dialog again"
-#~ msgstr "Non visualizzare più questa finestra"
-
-#~ msgid ""
-#~ "Batch processing items\n"
-#~ "Destination\n"
-#~ "Automation/Preset\n"
-#~ "Encoding passes\n"
-#~ "Profile Used\n"
-#~ "Output Format\n"
-#~ "Start of segment\n"
-#~ "Clip duration"
-#~ msgstr ""
-#~ "Elementi in elaborazione batch\n"
-#~ "Destinazione\n"
-#~ "Automazione/Preimpostazione\n"
-#~ "Passaggi di codifica\n"
-#~ "Profilo usato\n"
-#~ "Formato in uscita\n"
-#~ "Inizio segmento\n"
-#~ "Durata clip"
-
-#~ msgid "Images need to be resized, please use Resize function."
-#~ msgstr ""
-#~ "Le immagini devono essere ridimensionate, usa la funzione ridimensiona."
-
-#~ msgid ""
-#~ "\n"
-#~ "1. Import one or more image files such as JPG, PNG and BMP formats, then "
-#~ "select one.\n"
-#~ "\n"
-#~ "2. Use the Resize tool for images which have different sizes such as "
-#~ "width and\n"
-#~ "height. It is optional in other cases.\n"
-#~ "\n"
-#~ "3. Use the Timeline editor (CTRL+T) to set the time interval between "
-#~ "images by adjusting\n"
-#~ "the \"End\" duration value and leaving the \"Start\" value at "
-#~ "00:00:00.000.\n"
-#~ "\n"
-#~ "4. Run the conversion.\n"
-#~ "\n"
-#~ "\n"
-#~ "The produced video will have the name of the selected file in the 'File "
-#~ "List' panel, which\n"
-#~ "will be saved in a folder named 'Still_Images' with a progressive digit, "
-#~ "in the path you specify."
-#~ msgstr ""
-#~ "\n"
-#~ "1. Importa uno o più file immagine nei formati JPG, PNG e BMP, quindi "
-#~ "selezionane uno.\n"
-#~ "\n"
-#~ "2. Utilizzare lo strumento Ridimensiona per ridimensionare le immagini "
-#~ "che hanno\n"
-#~ "dimensioni diverse come larghezza e altezza. Negli altri casi è "
-#~ "opzionale.\n"
-#~ "\n"
-#~ "3. Utilizza l'editor Timeline (CTRL+T) per impostare l'intervallo di "
-#~ "tempo tra le immagini\n"
-#~ "regolando il valore della durata \"Fine\" e lasciando il valore "
-#~ "\"Inizio\" su 00:00:00.000.\n"
-#~ "\n"
-#~ "4. Avvia la conversione.\n"
-#~ "\n"
-#~ "\n"
-#~ "Il video prodotto avrà il nome del file selezionato nell'elenco 'File in "
-#~ "coda', il quale verrà salvato\n"
-#~ "in una cartella denominata 'Still_Images' con l'aggiunta di una cifra "
-#~ "progressiva, nel percorso\n"
-#~ "da te specificato."
-
-#~ msgid "Enable a single still image"
-#~ msgstr "Abilita un fermo immagine singolo"
-
-#~ msgid ""
-#~ "Force original aspect ratio using\n"
-#~ "padding rather than stretching"
-#~ msgstr ""
-#~ "Forza le proporzioni originali usando\n"
-#~ "il riempimento anziché lo stretching"
-
-#~ msgid "Include audio file"
-#~ msgstr "Includi file audio"
-
-#~ msgid "Play the video until audio track finishes"
-#~ msgstr "Riproduci il video fino al termine della traccia audio"
-
-#~ msgid "Open audio file"
-#~ msgstr "Apri file audio"
-
-#~ msgid "Additional arguments"
-#~ msgstr "Argomenti aggiuntivi"
-
-#~ msgid "Open Audio File"
-#~ msgstr "Apri File Audio"
-
-#~ msgid ""
-#~ "Invalid file: '{}'\n"
-#~ "\n"
-#~ "{}"
-#~ msgstr ""
-#~ "File non valido: '{}'\n"
-#~ "\n"
-#~ "{}"
-
-#~ msgid ""
-#~ "Invalid file: '{}'\n"
-#~ "\n"
-#~ "It doesn't appear to be an audio file."
-#~ msgstr ""
-#~ "File non valido: '{}'\n"
-#~ "\n"
-#~ "Non sembra essere un file audio."
-
-#~ msgid "Invalid file: '{}'"
-#~ msgstr "File non valido: '{}'"
-
-#~ msgid "Unsupported format '{}'"
-#~ msgstr "Formato non supportato '{}'"
-
-#~ msgid ""
-#~ "File does not exist:\n"
-#~ "\n"
-#~ "\"{}\"\n"
-#~ msgstr ""
-#~ "File inesistente:\n"
-#~ "\n"
-#~ "\"{}\"\n"
-
-#~ msgid "ERROR"
-#~ msgstr "ERRORE"
-
-#~ msgid "Shortest"
-#~ msgstr "Più breve"
-
-#~ msgid ""
-#~ "Items to concatenate\n"
-#~ "Output filename\n"
-#~ "Destination\n"
-#~ "Output Format\n"
-#~ "Additional arguments\n"
-#~ "Audio file\n"
-#~ "Shortest\n"
-#~ "Resize\n"
-#~ "Pre-input\n"
-#~ "Frame per Second (FPS)\n"
-#~ "Still image duration\n"
-#~ "Overall video duration"
-#~ msgstr ""
-#~ "Elementi da unire\n"
-#~ "Nome destinazione\n"
-#~ "Destinazione\n"
-#~ "Formato destinazione\n"
-#~ "Argomenti aggiuntivi\n"
-#~ "File audio\n"
-#~ "Più piccolo\n"
-#~ "Ridimensiona\n"
-#~ "Pre-input\n"
-#~ "Frame per secondo (FPS)\n"
-#~ "Durata immagine fissa\n"
-#~ "Durata totale video"
-
-#~ msgid ""
-#~ "\n"
-#~ "1. Import one or more video files, then select one.\n"
-#~ "\n"
-#~ "2. To select a slice of time use the Timeline editor (CTRL+T) by "
-#~ "adjusting the\n"
-#~ "\"End\" and the \"Start\" duration values.\n"
-#~ "\n"
-#~ "3. Select an output format (jpg, png, bmp).\n"
-#~ "\n"
-#~ "4. Start the conversion.\n"
-#~ "\n"
-#~ "\n"
-#~ "The images produced will be saved in a folder named 'Movie_to_Pictures'\n"
-#~ "with a progressive digit, in the path you specify."
-#~ msgstr ""
-#~ "\n"
-#~ "1. Importa uno o più file video, quindi selezionane uno.\n"
-#~ "\n"
-#~ "2. Per selezionare un intervallo di tempo usa l'editor rimeline (CTRL+T), "
-#~ "e \n"
-#~ "regola i valori durata \"Inizio\" e \"Fine\" come desiderato.\n"
-#~ "\n"
-#~ "3. Selezionare un formato di output (jpg, png, bmp o gif).\n"
-#~ "\n"
-#~ "4. Avvia la conversione.\n"
-#~ "\n"
-#~ "\n"
-#~ "Le immagini prodotte verranno salvate in una cartella denominata "
-#~ "'Movie_to_Pictures'\n"
-#~ "con l'aggiunta  di una cifra progressiva, nel percorso da te specificato."
-
-#~ msgid "Create thumbnails"
-#~ msgstr "Crea miniature"
-
-#~ msgid "Create tiled mosaics"
-#~ msgstr "Crea mosaici piastrellati"
-
-#~ msgid "Create animated GIF"
-#~ msgstr "Crea GIF animato"
-
-#~ msgid "Output format:"
-#~ msgstr "Formato in uscita:"
-
-#~ msgid "Rows:"
-#~ msgstr "Righe:"
-
-#~ msgid "Columns:"
-#~ msgstr "Colonne:"
-
-#~ msgid "Other unofficial resources:"
-#~ msgstr "Altre risorse non ufficiali:"
-
-#~ msgid ""
-#~ "Set FPS control from 0.1 to 30.0 fps. The higher this value, the more "
-#~ "images will be extracted."
-#~ msgstr ""
-#~ "Imposta il controllo FPS da 0,1 a 30,0 fps. Più alto è questo valore, più "
-#~ "immagini verranno estratte."
-
-#~ msgid "Spaces around the mosaic tiles. From 0 to 32 pixels"
-#~ msgstr "Spazi intorno alle tessere del mosaico. Da 0 a 32 pixel"
-
-#~ msgid "Spaces around the mosaic borders. From 0 to 32 pixels"
-#~ msgstr "Spazi intorno ai bordi del mosaico. Da 0 a 32 pixel"
-
-#~ msgid ""
-#~ "Selected File\n"
-#~ "Output Format\n"
-#~ "Destination\n"
-#~ "Rate (fps)\n"
-#~ "Resizing\n"
-#~ "Mosaic rows\n"
-#~ "Mosaic columns\n"
-#~ "Mosaic padding\n"
-#~ "Mosaic margin\n"
-#~ "Custom Arguments\n"
-#~ "Start of segment\n"
-#~ "Duration"
-#~ msgstr ""
-#~ "File Selezionato\n"
-#~ "Formato destinazione\n"
-#~ "Destinazione\n"
-#~ "Rate (fps)\n"
-#~ "Ridimensionamento\n"
-#~ "Righe mosaico\n"
-#~ "Colonne mosaico\n"
-#~ "Imbottitura mosaico\n"
-#~ "Margine mosaico\n"
-#~ "Argomenti personalizzati\n"
-#~ "Inizio segmento\n"
-#~ "Durata"
-
-#~ msgid "Audio encoder settings, mapping and filters"
-#~ msgstr "Impostazioni, mappatura e filtri del codificatore audio"
-
-#~ msgid "Audio Encoder"
-#~ msgstr "Codificatore Audio"
-
-#~ msgid "Settings"
-#~ msgstr "Impostazioni"
-
-#~ msgid "Index Selection:"
-#~ msgstr "Selezione Indice:"
-
-#~ msgid "Map:"
-#~ msgstr "Mappa:"
-
-#~ msgid "Normalization"
-#~ msgstr "Normalizzazione"
-
-#~ msgid "Volume detect"
-#~ msgstr "Rilevazione volume"
-
-#~ msgid "Volume Statistics"
-#~ msgstr "Statistiche Volume"
-
-#~ msgid "Target level:"
-#~ msgstr "Livello target:"
-
-#~ msgid ""
-#~ "Gets maximum volume and average volume data in dBFS, then calculates the "
-#~ "offset amount for audio normalization."
-#~ msgstr ""
-#~ "Ottiene i dati di volume massimo e volume medio in dBFS, quindi calcola "
-#~ "la quantità di offset per la normalizzazione audio."
-
-#~ msgid ""
-#~ "Limiter for the maximum peak level or the mean level (when switch to RMS) "
-#~ "in dBFS. From -99.0 to +0.0; default for PEAK level is -1.0; default for "
-#~ "RMS is -20.0"
-#~ msgstr ""
-#~ "Limitatore per il livello massimo di picco o il livello medio (quando si "
-#~ "passa a RMS) in dBFS. Da -99,0 a +0,0; il valore predefinito per il "
-#~ "livello PEAK è -1,0; il valore predefinito per RMS è -20,0"
-
-#~ msgid ""
-#~ "Normally on a video with correctly indexed streams and having one or more "
-#~ "audio streams, the first audio stream should be indexed at \"1\", the "
-#~ "second at \"2\" and so on (the video stream on the other hand is always "
-#~ "indexed at \"0\"). In this case it is recommended to select the desired "
-#~ "stream by setting a specific index, e.g \"1\" for for the first available "
-#~ "audio stream.\n"
-#~ "\n"
-#~ "Set this control to \"Auto\" if the source file is simply an audio track."
-#~ msgstr ""
-#~ "Normalmente su un video con flussi indicizzati correttamente e dotato di "
-#~ "uno o più flussi audio, il primo flusso audio dovrebbe essere indicizzato "
-#~ "a \"1\", il secondo a \"2\" e così via (il flusso video invece è sempre "
-#~ "indicizzato a \" 0\"). In questo caso si consiglia di selezionare il "
-#~ "flusso desiderato impostando un indice specifico, ad esempio \"1\" per il "
-#~ "primo flusso audio disponibile.\n"
-#~ "\n"
-#~ "Imposta questo controllo su \"Auto\" se il file sorgente è semplicemente "
-#~ "una traccia audio."
-
-#~ msgid ""
-#~ "\"Auto\" keeps all audio streams and processes only the one selected by "
-#~ "the \"Index Selection\" control.\n"
-#~ "\n"
-#~ "\"All\" processes all audio streams in a video with the properties of the "
-#~ "one selected by the \"Index Selection\" control.\n"
-#~ "\n"
-#~ "\"Index Only\" processes only the audio stream selected by the \"Index "
-#~ "Selection\" control and removes all others from the video"
-#~ msgstr ""
-#~ "\"Auto\" mantiene tutti i flussi audio ed elabora solo quello selezionato "
-#~ "dal controllo \"Selezione indice\".\n"
-#~ "\n"
-#~ "\"Tutto\" elabora tutti i flussi audio in un video con le proprietà di "
-#~ "quello selezionato dal controllo \"Selezione indice\".\n"
-#~ "\n"
-#~ "\"Solo indice\" elabora solo il flusso audio selezionato dal controllo "
-#~ "\"Selezione indice\" e rimuove tutti gli altri dal video"
-
-#~ msgid ""
-#~ "Integrated Loudness Target in LUFS. From -70.0 to -5.0, default is -16.0"
-#~ msgstr ""
-#~ "Target loudness integrato in LUFS. Da -70.0 a -5.0, il valore predefinito "
-#~ "è -16.0"
-
-#~ msgid "Maximum True Peak in dBTP. From -1.5 to +0.0, default is -2.0"
-#~ msgstr ""
-#~ "Picco reale massimo in dBTP. Da -1,5 a +0,0, il valore predefinito è -2,0"
-
-#~ msgid "Loudness Range Target in LUFS. From +1.0 to +20.0, default is +11.0"
-#~ msgstr ""
-#~ "Target dell'intervallo loudness in LUFS. Da +1.0 a +20.0, il valore "
-#~ "predefinito è +11.0"
-
-#~ msgid ""
-#~ "Play the audio stream selected in the \"Index Selection\" control. Using "
-#~ "this function you can test the result of audio normalization."
-#~ msgstr ""
-#~ "Riproduci il flusso audio selezionato nel controllo \"Selezione indice\". "
-#~ "Utilizzando questa funzione è possibile testare il risultato della "
-#~ "normalizzazione audio."
-
-#~ msgid "Selected index does not exist or does not contain any audio streams"
-#~ msgstr "L'indice selezionato non esiste o non contiene alcun flusso audio"
-
-#~ msgid ""
-#~ "ERROR: Missing audio stream:\n"
-#~ "\"{}\""
-#~ msgstr ""
-#~ "ERRORE: flusso audio mancante:\n"
-#~ "\"{}\""
-
-#~ msgid ""
-#~ "PEAK level normalization, which will produce a maximum peak level equal "
-#~ "to the set target level."
-#~ msgstr ""
-#~ "Normalizzazione del livello di picco, il quale produrrà un livello di "
-#~ "picco massimo pari al livello target impostato."
-
-#~ msgid ""
-#~ "RMS-based normalization, which according to mean volume calculates the "
-#~ "amount of gain to reach same average power signal."
-#~ msgstr ""
-#~ "Normalizzazione basata su RMS. In base al volume medio viene calcolata la "
-#~ "quantità di guadagno per raggiungere lo stesso segnale di potenza medio."
-
-#~ msgid ""
-#~ "Loudnorm normalization. Normalizes the perceived loudness using the "
-#~ "\"loudnorm\" filter, which implements the EBU R128 algorithm.\n"
-#~ "Ideal for live normalization. It produces worse results than the High-"
-#~ "quality two-pass Loudnorm normalization, but is faster."
-#~ msgstr ""
-#~ "Normalizzazione Loudnorm. Normalizza il volume percepito usando il filtro "
-#~ "\"loudnorm\", il quale implementa l'algoritmo EBU R128.\n"
-#~ "Ideale per la normalizzazione dal vivo. Produce risultati meno precisi "
-#~ "della normalizzazione ad alta qualità Loudnorm a due passaggi, ma è più "
-#~ "veloce."
-
-#~ msgid ""
-#~ "High-quality two-pass Loudnorm normalization. Normalizes the perceived "
-#~ "loudness using the \"loudnorm\" filter, which implements\n"
-#~ "the EBU R128 algorithm. Ideal for postprocessing."
-#~ msgstr ""
-#~ "Normalizzazione Loudnorm a due passaggi di alta qualità. Normalizza il "
-#~ "volume percepito usando il filtro \"loudnorm\", il quale\n"
-#~ "implementa l'algoritmo EBU R128. Ideale per la post-elaborazione."
-
-#~ msgid "Subtitle Mapping"
-#~ msgstr "Mappatura dei sottotitoli"
-
-#~ msgid "Copy Chapters"
-#~ msgstr "Copia i Capitoli"
-
-#~ msgid "Copy Metadata"
-#~ msgstr "Copia i Metadati"
-
-#~ msgid ""
-#~ "Select \"All\" to include any source file subtitles in the output video.\n"
-#~ "\n"
-#~ "Select \"None\" to exclude any subtitles stream in the output video.\n"
-#~ "\n"
-#~ "This option is automatically ignored for output audio files."
-#~ msgstr ""
-#~ "Seleziona \"All\" per includere i sottotitoli del file sorgente nel video "
-#~ "di output.\n"
-#~ "\n"
-#~ "Seleziona \"None\" per escludere qualsiasi flusso di sottotitoli nel "
-#~ "video di output.\n"
-#~ "\n"
-#~ "Questa opzione viene automaticamente ignorata per i file audio di output."
-
-#~ msgid ""
-#~ "Copy the chapter markers as is from source file. This option is "
-#~ "automatically ignored for output audio files."
-#~ msgstr ""
-#~ "Copia i marcatori di capitolo così come sono dal file sorgente. Questa "
-#~ "opzione viene automaticamente ignorata per i file audio di output."
-
-#~ msgid ""
-#~ "Copy all incoming metadata from source file, such as audio/video tags, "
-#~ "titles, unique marks, and so on."
-#~ msgstr ""
-#~ "Copia tutti i metadati in entrata dal file sorgente, come tag audio/"
-#~ "video, titoli, contrassegni univoci e così via."
-
-#~ msgid "Additional options"
-#~ msgstr "Opzioni aggiuntive"
-
-#~ msgid "Reload"
-#~ msgstr "Ricarica"
-
-#~ msgid "Optimize for Web"
-#~ msgstr "Ottimizza per il Web"
-
-#~ msgid ""
-#~ "Reloads the selected video encoder settings. Changes will be discarded."
-#~ msgstr ""
-#~ "Ricarica le impostazioni del codificatore video selezionato. Le modifiche "
-#~ "verranno ignorate."
-
-#~ msgid ""
-#~ "Constant rate factor. Lower values correspond to higher quality and "
-#~ "greater file size. Set to -1 to disable this control."
-#~ msgstr ""
-#~ "Fattore di tasso costante. I valori più bassi corrispondono a una qualità "
-#~ "superiore e a una dimensione del file maggiore. Imposta -1 per "
-#~ "disabilitare questo controllo."
-
-#~ msgid "Number of tile rows to use, default changes per resolution"
-#~ msgstr ""
-#~ "Numero righe anteprime da usare, modifiche predefinite per risoluzione"
-
-#~ msgid "Number of tile columns to use, default changes per resolution"
-#~ msgstr ""
-#~ "Numero colonne anteprime da usare, modifiche predefinite per risoluzione"
-
-#~ msgid "Set the Group Of Picture (GOP). Set to -1 to disable this control."
-#~ msgstr ""
-#~ "Imposta la dimensione del gruppo di immagini (GOP). Imposta -1 per "
-#~ "disabilitare questo controllo."
-
-#~ msgid "It can reduce the file size, but takes longer."
-#~ msgstr "Può ridurre le dimensioni del file , ma richiede più tempo."
-
-#~ msgid ""
-#~ "Set minimum bitrate tolerance. Most useful in setting up a CBR encode. It "
-#~ "is of little use otherwise. Set to -1 to disable this control."
-#~ msgstr ""
-#~ "Imposta la tolleranza minima del bitrate. \n"
-#~ "Molto utile per impostare una codifica CBR. \n"
-#~ "Altrimenti serve a poco. \n"
-#~ "Impostalo a -1 per disabilitare questo controllo."
-
-#~ msgid ""
-#~ "Specifies a maximum tolerance. Requires bufsize to be set. Set to -1 to "
-#~ "disable this control."
-#~ msgstr ""
-#~ "Specifica una tolleranza massima. \n"
-#~ "Richiede l'impostazione della dimensione del buffer. \n"
-#~ "Impostalo a -1 per disabilitare questo controllo."
-
-#~ msgid ""
-#~ "Set ratecontrol buffer size, which determines the variability of the "
-#~ "output bitrate. Set to -1 to disable this control."
-#~ msgstr ""
-#~ "Imposta la dimensione del buffer di controllo della velocità, che "
-#~ "determina la variabilità del bitrate destinazione. \n"
-#~ "Impostalo a -1 per disabilitare questo controllo."
-
-#~ msgid ""
-#~ "Specifies the target (average) bit rate for the encoder to use. Higher "
-#~ "value = higher quality. Set -1 to disable this control."
-#~ msgstr ""
-#~ "Specifica l'obiettivo (in media) del bit rate per il codificatore da "
-#~ "usare. Valore alto = alta qualità. Impostare a -1 per disabilitare il "
-#~ "controllo."
-
-#~ msgid "Video width and video height ratio."
-#~ msgstr "Rapporto larghezza e altezza video."
-
-#~ msgid ""
-#~ "Frame rate (frames per second). Frames repeat a given number of times per "
-#~ "second. In some countries this is 30 for NTSC, other countries (like "
-#~ "Italy) use 25 for PAL"
-#~ msgstr ""
-#~ "Frequenza fotogrammi (fotogrammi al secondo). I fotogrammi si ripetono un "
-#~ "determinato numero di volte al secondo. In alcuni paesi sono 30 NTSC, in "
-#~ "altri paesi PAL (come l'Italia) sono 25"
-
-#~ msgid ""
-#~ "Quality/Speed ratio modifier. CPU Used sets how efficient the compression "
-#~ "will be. Lower values mean slower encoding with better quality, and vice-"
-#~ "versa. Valid values are from 0 to 8 inclusive."
-#~ msgstr ""
-#~ "Modifica rapporto qualità/velocità. \n"
-#~ "CPU usata imposta l'efficienza della compressione. \n"
-#~ "Valori più bassi indicano una codifica più lenta con una qualità migliore "
-#~ "e viceversa. \n"
-#~ "I valori validi sono compresi tra 0 e 8 inclusi."
-
-#~ msgid ""
-#~ "Quality and compression efficiency vs speed trade-off. \"good\" is the "
-#~ "default and recommended for most applications; \"realtime\" is "
-#~ "recommended for live/fast encoding (live streaming, video conferencing, "
-#~ "etc); \"allintra\" for All Intra encoding."
-#~ msgstr ""
-#~ "Qualità ed efficienza compressione rispetto alla velocità. \n"
-#~ "\"Buona\" è l'impostazione predefinita e consigliata per la maggior parte "
-#~ "delle applicazioni; \n"
-#~ "\"Tempo reale\" è consigliata per la codifica live/veloce (streaming "
-#~ "live, videoconferenze, ecc.); \n"
-#~ "\"Allintra\" per la codifica All Intra."
-
-#~ msgid ""
-#~ "Row Multi-Threading enables row-based multi-threading which maximizes CPU "
-#~ "usage.\n"
-#~ "\n"
-#~ "To enable fast decoding performance, also set tiles (i.e. Tile Columns 4 "
-#~ "and Tile Rows 1 or Tile Columns 2 and Tile Rows 2 for 4 tiles).\n"
-#~ "\n"
-#~ "Enabling Row Multi-Threading is only faster when the CPU has more threads "
-#~ "than the number of encoded tiles."
-#~ msgstr ""
-#~ "Row Multi-Threading consente il multi threading basato su righe che "
-#~ "massimizza l'uso della CPU.\n"
-#~ "\n"
-#~ "Per consentire prestazioni di decodifica veloci, impostare anche i Tile "
-#~ "(ad esempio Tile Columns 4 e Tile Rows 1, oppure Tile Columns 2 e Tile "
-#~ "Rows 2 per 4 Tile).\n"
-#~ "\n"
-#~ "L'abilitazione di Row Multi-Threading è più veloce solo quando la CPU ha "
-#~ "più thread rispetto al numero di Tile codificati."
-
-#~ msgid ""
-#~ "presets 1-3 represent extremely high efficiency, for use when encode time "
-#~ "is not important and quality/size of the resulting video file is "
-#~ "critical.\n"
-#~ "\n"
-#~ "Presets 4-6 are commonly used by home enthusiasts as they represent a "
-#~ "balance of efficiency and reasonable compute time.\n"
-#~ "\n"
-#~ "Presets between 7 and 12 are used for fast and real-time encoding.\n"
-#~ "\n"
-#~ "Preset 13 is even faster but not intended for direct human consumption--"
-#~ "it can be used, for example, as a per-scene quality metric in VOD "
-#~ "applications. One should use the lowest preset that is tolerable."
-#~ msgstr ""
-#~ "i profili 1-3 rappresentano un'efficienza estremamente elevata, da usare "
-#~ "quando il tempo di codifica non è importante e la qualità/dimensione del "
-#~ "file video risultante è fondamentale.\n"
-#~ "\n"
-#~ "i profili 4-6 sono comunemente usati dagli appassionati domestici poiché "
-#~ "rappresentano un equilibrio tra efficienza e tempo di elaborazione "
-#~ "ragionevole.\n"
-#~ "\n"
-#~ "I profili da 7 a 12 vengono usati per la codifica veloce e in tempo "
-#~ "reale.\n"
-#~ "\n"
-#~ "Il profilo 13 è ancora più veloce ma non è destinato all'utente consumer: "
-#~ "può essere usato, ad esempio, come metrica di qualità per scena nelle "
-#~ "applicazioni VOD.\n"
-#~ "Si dovrebbe usare il profilo più basso tollerabile."
-
-#~ msgid ""
-#~ "Constant rate factor. This parameter governs the quality/size trade-off.\n"
-#~ "\n"
-#~ "Higher CRF values will result in a final output that takes less space, "
-#~ "but begins to lose detail.\n"
-#~ "\n"
-#~ "Lower CRF values retain more detail at the cost of larger file sizes. A "
-#~ "good starting point for 1080p video is 30.\n"
-#~ "\n"
-#~ "Set to -1 to disable this control."
-#~ msgstr ""
-#~ "Fattore tasso costante. \n"
-#~ "Questo parametro regola il compromesso qualità/dimensione.\n"
-#~ "\n"
-#~ "Valori FTC più alti si tradurranno in un output finale che richiede meno "
-#~ "spazio, ma inizia a perdere dettagli.\n"
-#~ "\n"
-#~ "Valori FTC inferiori mantengono maggiori dettagli a scapito di dimensioni "
-#~ "di file più grandi. \n"
-#~ "Un buon punto di partenza per i video a 1080p è 30.\n"
-#~ "\n"
-#~ "Impostalo a -1 per disabilitare questo controllo."
-
-#~ msgid ""
-#~ "The \"Film Grain\" parameter allows SVT-AV1 to detect and delete film "
-#~ "grain from the source video, and replace it with synthetic grain of the "
-#~ "same character, resulting in significant bitrate savings.\n"
-#~ "\n"
-#~ "A value of 8 is a reasonable starting point for live-action video with a "
-#~ "normal amount of grain.\n"
-#~ "\n"
-#~ "Higher values in the range of 10-15 enable more aggressive use of this "
-#~ "technique for video with lots of natural grain.\n"
-#~ "\n"
-#~ "For 2D animation, lower values in the range of 4-6 are often "
-#~ "appropriate. \n"
-#~ "\n"
-#~ "If the source video does not have natural grain, this parameter can be "
-#~ "set to -1 to disable it or at least 0."
-#~ msgstr ""
-#~ "Il parametro \"Grana pellicola\" consente a SVT-AV1 di rilevare ed "
-#~ "eliminare la grana della pellicola dal video sorgente e sostituirla con "
-#~ "una grana sintetica dello stesso carattere, con conseguente notevole "
-#~ "risparmio come bitrate.\n"
-#~ "\n"
-#~ "Un valore pari a 8 è un punto di partenza ragionevole per video live-"
-#~ "action con una quantità di grana normale.\n"
-#~ "\n"
-#~ "Valori più alti nell'intervallo 10-15 consentono un uso più aggressivo di "
-#~ "questa tecnica per video con molta grana naturale.\n"
-#~ "\n"
-#~ "Per l'animazione 2D, spesso sono appropriati valori più bassi "
-#~ "nell'intervallo 4-6. \n"
-#~ "\n"
-#~ "Se il video sorgente non ha grana naturale, questo parametro può essere "
-#~ "impostato a -1 per disabilitarlo o impostarlo almeno a 0."
-
-#~ msgid ""
-#~ "If enabled, the \"Film Grain Denoiser\" option can mitigate the detail "
-#~ "removal caused by high \"Film Grain\" values required to preserve the "
-#~ "look of very grainy films\n"
-#~ "\n"
-#~ "By default, the denoised frames are passed to be encoded as the final "
-#~ "pictures, enabling this feature will lead to the original frames to be "
-#~ "used instead. "
-#~ msgstr ""
-#~ "Se abilitata, l'opzione \"Denoiser grana film\" può mitigare la rimozione "
-#~ "dei dettagli causata da valori elevati di \"Grana film\" necessari per "
-#~ "preservare l'aspetto di pellicole molto granulose\n"
-#~ "\n"
-#~ "Per impostazione predefinita, i fotogrammi denoizzati vengono passati per "
-#~ "essere codificati come immagini finali, abilitando questa funzione si "
-#~ "otterranno invece i fotogrammi originali da usare. "
-
-#~ msgid ""
-#~ "Enables encoder optimization to produce faster (less CPU intensive) bit "
-#~ "streams to decode, similar to the fastdecode tuning in x264 and x265."
-#~ msgstr ""
-#~ "Consente l'ottimizzazione dell'encoder per produrre flussi da "
-#~ "decodificare più veloci (meno impegnativi per la CPU), in modo simile "
-#~ "all'ottimizzazione della decodifica rapida in x264 e x265."
-
-#~ msgid "Set profile restrictions"
-#~ msgstr "Imposta le restrizioni del profilo"
-
-#~ msgid "Specify level for a selected profile"
-#~ msgstr "Specificare il livello per un profilo selezionato"
-
-#~ msgid "Tune the encoding params"
-#~ msgstr "Metti a punto i parametri di codifica"
-
-#~ msgid "Set the encoding preset (default \"medium\")"
-#~ msgstr "Imposta il preset di codifica (in default è \"medio\")"
-
-#~ msgid ""
-#~ "specifies the target (average) bit rate for the encoder to use. Higher "
-#~ "value = higher quality. Set -1 to disable this control."
-#~ msgstr ""
-#~ "specifica l'obiettivo (in media) del bit rate per il codificatore da "
-#~ "usare. Valore alto = alta qualità. Impostare a -1 per disabilitare il "
-#~ "controllo."
-
-#~ msgid ""
-#~ "Variable Bit Rate. From 0-30, with 1 being highest quality/largest "
-#~ "filesize and 30 being the lowest quality/smallest filesize. Set to -1 to "
-#~ "disable this control."
-#~ msgstr ""
-#~ "Velocità variabile in bit. \n"
-#~ "Da 0 a 30, dove 1 indica la qualità più alta/la dimensione del file più "
-#~ "grande e 30 la qualità più bassa/la dimensione del file più piccola. \n"
-#~ "Imposta a -1 per disabilitare questo controllo."
-
-#~ msgid ""
-#~ "Frames repeat a given number of times per second. In some countries this "
-#~ "is 30 for NTSC, other countries (like Italy) use 25 for PAL"
-#~ msgstr ""
-#~ "I frame si ripetono un determinato numero di volte al secondo. In alcuni "
-#~ "paesi sono 30 NTSC, in paesi PAL come l'Italia sono 25"
-
-#~ msgid ""
-#~ "The default FourCC stored in an MPEG-4-coded file will be FMP4. If you "
-#~ "want a different FourCC, set this option to xvid to force the FourCC xvid "
-#~ "to be stored as the video FourCC rather than the default."
-#~ msgstr ""
-#~ "FourCC predefinito memorizzato in un file con codifica MPEG-4 sarà "
-#~ "FMP4. \n"
-#~ "Se vuoi usare un FourCC diverso, imposta questa opzione su xvid per "
-#~ "forzare la memorizzazione di xvid FourCC come FourCC video anziché come "
-#~ "predefinito."
-
-#~ msgid "Copy Video Codec"
-#~ msgstr "Copia codec video"
-
-#~ msgid ""
-#~ "This will just copy the video track as is, without any video re-"
-#~ "encoding.\n"
-#~ "You will only be able to change output format, select other audio "
-#~ "encoders and\n"
-#~ "a few other options."
-#~ msgstr ""
-#~ "Questo copierà semplicemente la traccia video così com'è, senza alcuna "
-#~ "ricodifica video.\n"
-#~ "Potrai solo modificare il formato destinazione, selezionare altri codec "
-#~ "audio e alcune\n"
-#~ "altre opzioni."
-
-#~ msgid "Video export disabled"
-#~ msgstr "Esportazione video disabilitata"
-
-#~ msgid ""
-#~ "The Media target you just selected will only allow you to export files as "
-#~ "audio tracks.\n"
-#~ "You can then process audio source files only or extract indexed audio "
-#~ "streams on\n"
-#~ "video files."
-#~ msgstr ""
-#~ "La destinazione multimediale appena selezionata ti consentirà di "
-#~ "esportare file solo come tracce audio.\n"
-#~ "È quindi possibile elaborare solo i file sorgenti audio o estrarre flussi "
-#~ "audio indicizzati in\n"
-#~ "file video."
-
-#~ msgid ""
-#~ "Speed sets how efficient the compression will be.\n"
-#~ "\n"
-#~ "When the Quality parameter is \"good\" or \"best\", values for Speed can "
-#~ "be set between 0 and 5.\n"
-#~ "\n"
-#~ "Using 1 or 2 will increase encoding speed at the expense of having some "
-#~ "impact on quality and rate control accuracy.\n"
-#~ "\n"
-#~ "4 or 5 will turn off rate distortion optimization, having even more of an "
-#~ "impact on quality.\n"
-#~ "\n"
-#~ "When the Quality is set to realtime, the available values for Speed are 0 "
-#~ "to 8."
-#~ msgstr ""
-#~ "La velocità imposta l'efficienza della compressione.\n"
-#~ "\n"
-#~ "Quando il parametro Qualità è \"Buono\" o \"Migliore\", i valori per la "
-#~ "velocità possono essere impostati tra 0 e 5.\n"
-#~ "\n"
-#~ "Un valore 1 o 2 aumenterà la velocità di codifica a scapito di un certo "
-#~ "impatto sulla qualità e sulla precisione del controllo della velocità.\n"
-#~ "\n"
-#~ "Un valore 4 o 5 disattiverà l'ottimizzazione della distorsione della "
-#~ "velocità, avendo un impatto ancora maggiore sulla qualità.\n"
-#~ "\n"
-#~ "Quando la qualità è impostata su \"Tempo reale\", i valori disponibili "
-#~ "per la velocità sono compresi tra 0 e 8."
-
-#~ msgid ""
-#~ "Time to spend encoding.\n"
-#~ "\n"
-#~ "\"good\" is the default and recommended for most applications;\n"
-#~ "\n"
-#~ "\"best\" is recommended if you have lots of time and want the best "
-#~ "compression efficiency;\n"
-#~ "\n"
-#~ "\"realtime\" is recommended for live / fast encoding."
-#~ msgstr ""
-#~ "Tempo da dedicare alla codifica.\n"
-#~ "\n"
-#~ "\"good\" è l'impostazione predefinita e consigliata per la maggior parte "
-#~ "delle applicazioni;\n"
-#~ "\n"
-#~ "\"best\" è consigliato se hai molto tempo e vuoi la migliore efficienza "
-#~ "di compressione;\n"
-#~ "\n"
-#~ "\"Realtime\" è consigliato per la codifica live/veloce."
-
-#~ msgid ""
-#~ "If enabled, adds support for row based multithreading which greatly "
-#~ "enhances the number of threads the encoder can utilise. This improves "
-#~ "encoding speed significantly on systems that are otherwise underutilised "
-#~ "when encoding VP9. Since the amount of additional threads depends on the "
-#~ "number of \"tiles\", which itself depends on the video resolution, "
-#~ "encoding higher resolution videos will see a larger performance "
-#~ "improvement."
-#~ msgstr ""
-#~ "Se abilitato, aggiunge il supporto per il multi threading basato su righe "
-#~ "che aumenta notevolmente il numero di thread che il codificatore può "
-#~ "usare. \n"
-#~ "Ciò migliora significativamente la velocità di codifica su sistemi che "
-#~ "altrimenti sarebbero sotto usati durante la codifica VP9. \n"
-#~ "Poiché la quantità di thread aggiuntivi dipende dal numero di "
-#~ "\"riquadri\", che a sua volta dipende dalla risoluzione video, la "
-#~ "codifica di video a risoluzione più elevata vedrà un maggiore "
-#~ "miglioramento delle prestazioni."
-
-#~ msgid "Supports ({0}) formats only, not ({1})"
-#~ msgstr "Supporta solo i formati ({0}) , non ({1})"
-
-#~ msgid "File formats not supported by the selected profile"
-#~ msgstr "Formato di file non supportati dal profilo selezionato"
-
-#~ msgid "Warning"
-#~ msgstr "Avvertimento"
-
-#~ msgid ""
-#~ "No presets found.\n"
-#~ "\n"
-#~ "Possible solution: open the Presets Manager panel, go to the presets "
-#~ "column and try to click the \"Restore all...\" button"
-#~ msgstr ""
-#~ "Nessuna pre-impostazione trovata.\n"
-#~ "\n"
-#~ "Possibile soluzione: apri il pannello \"Gestione profili\", vai alla "
-#~ "colonna \"Profili\" e prova a seleziona \"Ripristina tutto ...\""
-
-#~ msgid "Import queue file"
-#~ msgstr "Importa file della coda"
-
-#~ msgid ""
-#~ "ERROR: invalid data found loading queue file.\n"
-#~ "«{0}»\n"
-#~ "\n"
-#~ "Cannot contain multiple occurrences in `destination` keys value."
-#~ msgstr ""
-#~ "ERRORE: trovati dati non validi caricando il file della coda:\n"
-#~ "«{0}»\n"
-#~ "\n"
-#~ "Non può contenere più occorrenze nel valore delle chiavi \"destinazione\"."
-
-#~ msgid "Vidtuber - Add Items to Queue"
-#~ msgstr "Vidtuber - Aggiungi elementi alla Coda"
-
-#~ msgid ""
-#~ "Multiple items with identical names and destination paths cannot "
-#~ "coexist.\n"
-#~ "Please choose one of the following actions:"
-#~ msgstr ""
-#~ "Più elementi con nomi e percorsi di destinazione identici non possono "
-#~ "coesistere.\n"
-#~ "Scegli una delle seguenti azioni:"
-
-#~ msgid "Replace occurrences with items from the imported queue."
-#~ msgstr "Sostituisci le occorrenze con gli elementi della coda importata."
-
-#~ msgid "Add only the currently missing items to the queue."
-#~ msgstr "Aggiungi solo gli elementi attualmente mancanti alla coda."
-
-#~ msgid "Remove the current queue and replace it with the imported one."
-#~ msgstr "Rimuovi la coda corrente e sostituiscila con quella importata."
-
-#~ msgid ""
-#~ "Do you want to close the active view keeping the data in memory and any "
-#~ "background processes?"
-#~ msgstr ""
-#~ "Vuoi chiudere la vista attiva mantenendo i dati in memoria ed eventuali "
-#~ "processi in background?"
-
-#~ msgid ""
-#~ "Are you sure you want to exit this window?\n"
-#~ "All data will be lost"
-#~ msgstr ""
-#~ "Sei sicuro di voler uscire da questa finestra?\n"
-#~ "Tutti i dati saranno persi"
-
-#~ msgid "Quit YouTube Downloader?"
-#~ msgstr "Uscire da YouTube Downloader?"
-
-#~ msgid "Close view\tCtrl+W"
-#~ msgstr "Chiudi vista\tCtrl+W"
-
-#~ msgid ""
-#~ "Close the active view keeping the data in memory and any background "
-#~ "processes"
-#~ msgstr ""
-#~ "Chiudere la vista attiva mantenendo i dati in memoria ed eventuali "
-#~ "processi in background"
-
-#~ msgid "Quit YouTube Downloader\tCtrl+Q"
-#~ msgstr "Esci da YouTube Downloader\tCtrl+Q"
-
-#~ msgid "Exit the window by deleting all data in memory"
-#~ msgstr "Uscire dalla finestra cancellando tutti i dati in memoria"
-
-#~ msgid "Options\tCtrl+P"
-#~ msgstr "Opzioni\tCtrl+P"
-
-#~ msgid "YouTube Downloader options"
-#~ msgstr "Opzioni YouTube Downloader"
-
-#~ msgid "Vidtuber - YouTube Downloader"
-#~ msgstr "Vidtuber - YouTube Downloader"
-
-#~ msgid "Download Options"
-#~ msgstr "Opzioni download"
-
-#~ msgid "YouTube Downloader Options"
-#~ msgstr "Opzioni YouTube Downloader"
+"Prima di continuare, assicurati di effettuare le impostazioni corrette nella finestra di dialogo 'Preferenze'."

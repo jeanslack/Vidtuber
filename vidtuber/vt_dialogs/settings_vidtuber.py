@@ -73,7 +73,7 @@ class SetUp(wx.Dialog):
         tabOne = wx.Panel(notebook, wx.ID_ANY)
         sizerytdlp = wx.BoxSizer(wx.VERTICAL)
         sizerytdlp.Add((0, 10))
-        msg = _('Specify the {0} executable'.format(self.ytdlp))
+        msg = _('Specify the {0} executable').format(self.ytdlp)
         labytdlpexe = wx.StaticText(tabOne, wx.ID_ANY, msg)
         sizerytdlp.Add(labytdlpexe, 0, wx.ALL | wx.EXPAND, 5)
         msg = (_('Here you can provide the path to the latest version of the '
@@ -607,10 +607,10 @@ class SetUp(wx.Dialog):
         else:
             fname = f'*{self.ytdlp};'
             wild = f"Binary/Executable ({fname})|{fname}| All files (**)|**"
-        msg = _('Open «{}» executable file'.format(self.ytdlp))
 
-        with wx.FileDialog(self, msg, "", "", wildcard=wild,
-                           style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fdlg:
+        with wx.FileDialog(self, _('{} location').format(self.ytdlp),
+                           "", "", wildcard=wild, style=wx.FD_OPEN
+                           | wx.FD_FILE_MUST_EXIST) as fdlg:
 
             if fdlg.ShowModal() == wx.ID_OK:
                 if not os.access(fdlg.GetPath(), os.X_OK):

@@ -205,9 +205,9 @@ class PageTwo(wx.Panel):
             fname = '*yt-dlp;'
             wild = f"Binary/Executable ({fname})|{fname}| All files (**)|**"
 
-        msg = _('Open «{}» executable file'.format(PageTwo.YTDLP))
-        with wx.FileDialog(self, msg, "", "", wildcard=wild,
-                           style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fdlg:
+        with wx.FileDialog(self, _('{} location').format(PageTwo.YTDLP),
+                           "", "", wildcard=wild, style=wx.FD_OPEN
+                           | wx.FD_FILE_MUST_EXIST) as fdlg:
 
             if fdlg.ShowModal() == wx.ID_OK:
                 if not os.access(fdlg.GetPath(), os.X_OK):
