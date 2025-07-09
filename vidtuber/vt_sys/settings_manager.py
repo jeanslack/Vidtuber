@@ -76,7 +76,7 @@ class ConfigManager:
         Absolute or relative path name of the executable.
         If an empty ("") string is found, starts the wizard.
 
-    ffmpeg_islocal, ffplay_islocal, ffprobe_islocal, (bool):
+    ffmpeg_islocal, ffprobe_islocal, (bool):
         With True the user enables the executable locally
 
     warnexiting (bool):
@@ -117,18 +117,12 @@ class ConfigManager:
         YY is ISO 3166 code of the country. Examples are "en", "en_GB",
         "en_US" or "fr_FR", etc.
 
-    ytdlp-enable-exec (bool):
-        If `True`, the user enable a custom location (pathname) for
-        yt-dlp executable. Default is `False`.
-
-    ytdlp-exec-path (str):
+    yt-dlp_cmd (str):
         Path to the yt-dlp (yt-dlp.exe on Windows) executable.
 
-    ytdlp-usemodule (bool):
-        If True, allow to open specified yt_dlp module dir
-
-    ytdlp-module-path (str),
-        Path to the yt-dlp dir
+    ytdlp_islocal (bool):
+        If `True`, the user enables a custom location (pathname) for
+        yt-dlp executable. Default is `False`.
 
     playlistsubfolder (bool):
         Auto-create subfolders when download the playlists,
@@ -181,21 +175,18 @@ class ConfigManager:
         column width in the format code panel (ytdownloader).
 
     """
-    VERSION = 1.7
+    VERSION = 1.9
     DEFAULT_OPTIONS = {"confversion": VERSION,
-                       "ytdlp-enable-exec": False,
-                       "ytdlp-exec-path": "",
-                       "ytdlp-usemodule": False,
-                       "ytdlp-module-path": "",
-
-                       "shutdown": False,
-                       "sudo_password": "",
-                       "auto_exit": False,
-                       "dirdownload": "",
+                       "yt-dlp_cmd": "",
+                       "ytdlp_islocal": False,
                        "ffmpeg_cmd": "",
                        "ffmpeg_islocal": False,
                        "ffprobe_cmd": "",
                        "ffprobe_islocal": False,
+                       "shutdown": False,
+                       "sudo_password": "",
+                       "auto_exit": False,
+                       "dirdownload": "",
                        "warnexiting": True,
                        "icontheme": "Vidtuber-Colours",
                        "toolbarsize": 24,
@@ -212,8 +203,7 @@ class ConfigManager:
                                              "embedsubtitle": False,
                                              "skip_download": False
                                              },
-                       "fcode_column_width": [120, 60, 200, 80, 160,
-                                              110, 80, 110, 100],
+                       "fcode_column_width": [120, 60, 200, 80],
                        "external_downloader": None,
                        "external_downloader_args": None,
                        "proxy": "",

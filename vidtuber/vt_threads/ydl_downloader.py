@@ -132,7 +132,7 @@ class YtdlExecDL(Thread):
                                      duration=100,
                                      status='ERROR',
                                      )
-                        logwrite('', (f"[VIDEOMASS]: Error Exit Status: "
+                        logwrite('', (f"[VIDTUBER]: Error Exit Status: "
                                       f"{proc.wait()}"), self.logfile)
                         time.sleep(1)
                         continue

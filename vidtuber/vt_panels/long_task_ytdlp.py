@@ -130,7 +130,7 @@ class LogOut(wx.Panel):
 
         self.txtout.Clear()
         self.labprog.SetLabel('')
-        self.logfile = make_log_template("YouTube Downloader.log",
+        self.logfile = make_log_template("Download_yt-dlp.log",
                                          self.appdata['logdir'],
                                          mode="w",
                                          )

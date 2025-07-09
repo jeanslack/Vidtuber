@@ -1,0 +1,37 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: vidtuber
+Upstream-Contact: Gianluca Pernigotto jeanlucperni@gmail.com
+Source: https://github.com/jeanslack/Vidtuber
+#
+# Please double check copyright with the licensecheck(1) command.
+
+Files:     *
+Copyright: 2025 Gianluca Pernigotto
+License:   GPL-3.0+
+ All files are part of Vidtuber.
+ .
+ Vidtuber is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ Vidtuber is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ Version 3 can be found in `/usr/share/common-licenses/GPL-3'.
+
+
+#----------------------------------------------------------------------------
+# xml and html files (skipped):
+#
+#         xdg/io.github.jeanslack.vidtuber.appdata.xml
+
+#----------------------------------------------------------------------------
+# Files marked as NO_LICENSE_TEXT_FOUND may be covered by the following
+# license/copyright files.

@@ -286,6 +286,7 @@ class DataSource():
         self.dataloc["srcdata"] = srcdata
         self.dataloc["icodir"] = os.path.join(srcdata, 'icons')
         self.dataloc["FFMPEG_DIR"] = os.path.join(srcdata, 'FFMPEG')
+        self.dataloc["YTDLP_DIR"] = os.path.join(srcdata, 'YT-DLP')
 
         self.prg_icon = os.path.join(self.dataloc['icodir'], "vidtuber.png")
     # ---------------------------------------------------------------------
@@ -349,9 +350,10 @@ class DataSource():
                  'logdir': _relativize(self.dataloc['logdir']),
                  'cachedir': _relativize(self.dataloc['cachedir']),
                  'FFMPEG_DIR': _relativize(self.dataloc['FFMPEG_DIR']),
+                 'YTDLP_DIR': _relativize(self.dataloc['YTDLP_DIR']),
                  'relpath': self.relativepaths,
                  'getpath': _relativize,
-                 'yt_dlp': '',
+                 'yt-dlp_cmd': _relativize(userconf['yt-dlp_cmd']),
                  'ffmpeg_cmd': _relativize(userconf['ffmpeg_cmd']),
                  'ffprobe_cmd': _relativize(userconf['ffprobe_cmd']),
                  'auto-restart-app': False,

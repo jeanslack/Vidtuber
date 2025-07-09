@@ -65,6 +65,6 @@ def make_log_template(logname, logdir, mode="a", txtenc="utf-8"):
 
 [LOCATION]: "{logfile}"
 
-[VIDEOMASS]:
+[VIDTUBER]:
 """)
     return logfile

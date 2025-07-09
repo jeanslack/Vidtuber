@@ -98,10 +98,7 @@ class Vidtuber(wx.App):
         wx.Locale.AddCatalogLookupPathPrefix(self.appset['localepath'])
         self.update_language(self.appset['locale_name'])
 
-        if self.check_ytdlp() is False:
-            self.appset['yt_dlp'] = 'no module'
-
-        if self.check_ffmpeg():
+        if self.check_executables():
             self.wizard(self.iconset['vidtuber'])
             return True
 
@@ -112,42 +109,17 @@ class Vidtuber(wx.App):
         return True
     # -------------------------------------------------------------------
 
-    def check_ytdlp(self):
+    def check_executables(self):
         """
-        Check for `yt_dlp` python module.
-        """
-        msg = (_("To suppress this message on startup, please install "
-                 "yt-dlp or disable it from the preferences."))
-
-        if (self.appset['ytdlp-module-path']
-                and self.appset['ytdlp-usemodule']):
-            check = importer_init_file(self.appset['ytdlp-module-path'],
-                                       test=['yt_dlp.YoutubeDL',
-                                             'yt_dlp.version']
-                                       )
-            if check:
-                wx.MessageBox(f"ERROR: {check}\n\n{msg}",
-                              _('Vidtuber - Error!'), wx.ICON_ERROR)
-                return False
-        try:
-            import yt_dlp
-            self.appset['yt_dlp'] = True
-            return True
-        except ModuleNotFoundError as err:
-            wx.MessageBox(f"ERROR: {err}\n\n{msg}",
-                          _('Vidtuber - Error!'), wx.ICON_ERROR)
-            return False
-        return False
-    # -------------------------------------------------------------------
-
-    def check_ffmpeg(self):
-        """
-        Check the FFmpeg's executables (ffmpeg, ffprobe, ffplay).
+        Check the required executables (yt-dlp, ffmpeg, ffprobe).
         Returns True if one of the executables is missing or if
         one of the executables doesn't have execute permission.
         Returns None otherwise.
         """
-        for link in [self.appset['ffmpeg_cmd'], self.appset['ffprobe_cmd']]:
+        for link in [self.appset['ffmpeg_cmd'],
+                     self.appset['ffprobe_cmd'],
+                     self.appset['yt-dlp_cmd'],
+                     ]:
             if not which(link, mode=os.F_OK | os.X_OK, path=None):
                 return True
         return None

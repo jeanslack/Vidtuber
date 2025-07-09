@@ -107,6 +107,7 @@ exclude = [
     "vidtuber/data/locale/vidtuber.pot",
     "vidtuber/data/locale/README",
     "vidtuber/data/FFMPEG",
+    "vidtuber/data/YT-DLP",
 ]
 
 [tool.hatch.build.targets.wheel]

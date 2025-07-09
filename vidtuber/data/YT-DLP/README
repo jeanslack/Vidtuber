@@ -1,0 +1,43 @@
+========================================
+Purpose of the YT-DLP directory
+========================================
+
+This directory was created to satisfy the portability needs, for example when
+the whole application is self-contained in a bundle.
+
+In the most typical common cases a portable application can be moved between a
+directory and another (see pen-drive, external hard-drive on different PC
+workstations, etc). On Vidtuber this would imply resetting the paths to the
+yt-dlp executable making portability inconvenient.
+
+You can include here the yt-dlp executable to be used on
+multiple PC workstations with the same platform without having to reset the
+executable paths each time.
+
+Note that Vidtuber will tend to give priority to the executables included in
+your OS environment variables, but you can still set once and for all the
+executables included in this location from the preferences dialog
+(see Preferences --> yt-dlp tab).
+
+To use this approach, make sure this directory tree looks like this:
+
+|--------------------------|-------------------------|-------------------------|
+|   **Linux/FreeBSD**      |       **Windows**       |       **MACOS**
+|--------------------------|-------------------------|-------------------------|
+                           |                         |
+        YT-DLP             |    YT-DLP               |     YT-DLP
+        |-- bin            |    |__ bin              |     |__ bin
+        |   |__ yt-dlp     |    |   |__ yt-dlp.exe   |     |   |__ yt-dlp_macos
+                           |                         |
+|--------------------------|-------------------------|-------------------------|
+
+
+Please see the yd-dlp documentation for installation instructions on the
+following page:
+
+    https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#installation
+
+
+-------------------------------
+Update on July 03 2025
+Gianluca (jeanslack) Pernigotto
