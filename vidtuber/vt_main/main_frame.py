@@ -316,6 +316,25 @@ class MainFrame(wx.Frame):
         donat = helpButton.Append(wx.ID_ANY, _("Donate"),
                                   _("Donate to the app developer"))
         helpButton.AppendSeparator()
+        projButton = wx.Menu()  # projects sub menu
+        helpButton.AppendSubMenu(projButton,
+                                 _("Other projects by the developer"))
+        dscrp = ("Videomass",
+                 ("A FLOSS, powerful, multitasking and cross-platform GUI "
+                  "for FFmpeg"))
+        proj1 = projButton.Append(wx.ID_ANY, dscrp[0], dscrp[1])
+        dscrp = ("FFcuesplitter",
+                 ("FFmpeg based audio splitter for CDDA images associated "
+                  "with .cue files"))
+        proj2 = projButton.Append(wx.ID_ANY, dscrp[0], dscrp[1])
+        dscrp = ("FFaudiocue",
+                 ("GUI based on FFcuesplitter library written in "
+                  "wxPython-Phoenix"))
+        proj3 = projButton.Append(wx.ID_ANY, dscrp[0], dscrp[1])
+        dscrp = ("Videomass-Presets",
+                 "A collection of additional presets for Videomass")
+        proj4 = projButton.Append(wx.ID_ANY, dscrp[0], dscrp[1])
+        helpButton.AppendSeparator()
         infoItem = helpButton.Append(wx.ID_ABOUT, _("About Vidtuber"), "")
         dscrp = (_("Check latest version"),
                  _("Check and download the latest version of the application"))
@@ -347,6 +366,16 @@ class MainFrame(wx.Frame):
         self.Bind(wx.EVT_MENU, self.contribute, contribution)
         self.Bind(wx.EVT_MENU, self.sponsor_this_project, spons)
         self.Bind(wx.EVT_MENU, self.donate_to_dev, donat)
+        self.Bind(wx.EVT_MENU,
+                  lambda event: self.dev_projects(event, 'Videomass'), proj1)
+        self.Bind(wx.EVT_MENU,
+                  lambda event: self.dev_projects(event,
+                                                  'FFcuesplitter'), proj2)
+        self.Bind(wx.EVT_MENU,
+                  lambda event: self.dev_projects(event, 'FFaudiocue'), proj3)
+        self.Bind(wx.EVT_MENU,
+                  lambda event: self.dev_projects(event,
+                                                  'Videomass-Presets'), proj4)
         self.Bind(wx.EVT_MENU, self.about_vidtuber, infoItem)
         self.Bind(wx.EVT_MENU, self.check_new_releases, chklatest)
 
@@ -504,6 +533,23 @@ class MainFrame(wx.Frame):
         """Go to donation page"""
         page = 'https://www.paypal.me/GPernigotto'
         webbrowser.open(page)
+    # ------------------------------------------------------------------#
+
+    def dev_projects(self, event, topic):
+        """Go to project pages"""
+        if topic == 'Videomass':
+            page = 'https://jeanslack.github.io/Videomass/'
+        elif topic == 'FFcuesplitter':
+            page = 'https://github.com/jeanslack/FFcuesplitter'
+        elif topic == 'Videomass-Presets':
+            page = 'https://github.com/jeanslack/Videomass-presets'
+        elif topic == 'FFaudiocue':
+            page = 'https://github.com/jeanslack/FFaudiocue'
+        else:
+            page = None
+
+        if page:
+            webbrowser.open(page)
     # ------------------------------------------------------------------#
 
     def about_vidtuber(self, event):
