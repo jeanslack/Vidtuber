@@ -716,11 +716,11 @@ class Wizard(wx.Dialog):
                 self.btnNext.Disable()
 
         elif self.pageThree.IsShown():
+            self.pageThree.Hide()
+
             if not self.pageThree.locateBtn.IsEnabled():
-                self.pageThree.Hide()
                 self.pageFour.Show()
             else:
-                self.pageThree.Hide()
                 self.pageFinish.Show()
                 self.btnNext.SetLabel(_('Finish'))
 
@@ -733,14 +733,6 @@ class Wizard(wx.Dialog):
             else:
                 wx.MessageBox(_("Some text boxes are still incomplete"),
                               "Vidtuber", wx.ICON_INFORMATION, self)
-
-        elif self.pageTwo.IsShown():
-            self.pageOne.Hide()
-            self.pageThree.Hide()
-            self.pageTwo.Hide()
-            self.pageFinish.Show()
-            self.btnNext.SetLabel(_('Finish'))
-
         self.Layout()
     # -------------------------------------------------------------------#
 
@@ -757,9 +749,6 @@ class Wizard(wx.Dialog):
         elif self.pageThree.IsShown():
             self.pageThree.Hide()
             self.pageTwo.Show()
-            if (not self.pageTwo.locateBtn.IsEnabled()
-                    or not self.pageTwo.detectBtn.IsEnabled()):
-                self.btnNext.Enable()
 
         elif self.pageFour.IsShown():
             self.pageFour.Hide()

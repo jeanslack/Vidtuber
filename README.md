@@ -9,10 +9,54 @@ Vidtuber is [Free (libre) Software](https://en.wikipedia.org/wiki/Free_software)
 written in [Python3](https://www.python.org/) using the
 [wxPython Phoenix](https://www.wxpython.org/) toolkit; it works on Linux, MacOs, Windows and FreeBSD.
 
-### installing and requirements
+## Installing and Requirements
+
+### Linux - Third-Party Repositories 
+
+#### Ubuntu PPA
+
+This PPA currently publishes packages for Ubuntu, including official and
+derivative distributions such as Ubuntu, Xubuntu, Kubuntu, Lubuntu, LinuxMint,
+etc.
+
+To install Vidtuber add this PPA to your system:
+
+```
+sudo add-apt-repository ppa:jeanslack/vidtuber
+sudo apt update
+sudo apt install vidtuber
+```
+
+#### Devuan / Debian
+
+A pre-compiled, architecture-independent .deb package is available: [vidtuber_1.0.1-1_all.deb](https://github.com/jeanslack/Vidtuber/releases/download/v1.0.1/vidtuber_1.0.1-1_all.deb)
+
+Minimum requirements:
+
+- Devuan Chimaera
+- Devuan Daedalus
+- Debian11 bullseye
+- Debian12 bookworm
+
+### MS Windows
+
+Portable edition available: [Vidtuber-v1.0.1_x86_64-portable.7z](https://github.com/jeanslack/Vidtuber/releases/download/v1.0.1/Vidtuber-v1.0.1_x86_64-portable.7z)
+
+Minimum requirements:
+
+- Microsoft Windows 10
+- x86_64 Architecture
+
+For space reasons, this portable edition does not include the FFmpeg and yt-dlp executables. 
+Please read the README.txt file included in the 7-zip archive for more information about
+downloading and installing these additional dependencies.
+
+
+## Other installation and execution methods
+
 Please read [INSTALL](https://github.com/jeanslack/Vidtuber/blob/main/INSTALL) file.
 
-### Help translate the program into other languages
+## Help translate the program into other languages
 DISCLAIMER: By sending a translation you agree to publish your work under the GPL3 license!
 - [Localization_Guidelines](https://github.com/jeanslack/Vidtuber/blob/main/docs/Localization_Guidelines.md)
 
