@@ -148,8 +148,14 @@ class PageTwo(wx.Panel):
                              style=wx.ST_ELLIPSIZE_END
                              | wx.ALIGN_CENTRE_HORIZONTAL,
                              )
-        lab2 = wx.StaticText(self, wx.ID_ANY, PageTwo.MSG1)
-        lab3 = wx.StaticText(self, wx.ID_ANY, PageTwo.MSG2)
+        lab2 = wx.StaticText(self, wx.ID_ANY, PageTwo.MSG1,
+                             style=wx.ST_ELLIPSIZE_END
+                             | wx.ALIGN_CENTRE_HORIZONTAL,
+                             )
+        lab3 = wx.StaticText(self, wx.ID_ANY, PageTwo.MSG2,
+                             style=wx.ST_ELLIPSIZE_END
+                             | wx.ALIGN_CENTRE_HORIZONTAL,
+                             )
         self.detectBtn = wx.Button(self, wx.ID_ANY, _("Auto-detection"),
                                    size=(250, -1))
         self.locateBtn = wx.Button(self, wx.ID_ANY, _("Locate"),
@@ -307,8 +313,14 @@ class PageThree(wx.Panel):
                              )
         lab1 = wx.StaticText(self, wx.ID_ANY, PageThree.MSG1,
                              style=wx.ALIGN_CENTRE_HORIZONTAL)
-        lab2 = wx.StaticText(self, wx.ID_ANY, PageThree.MSG2)
-        lab3 = wx.StaticText(self, wx.ID_ANY, PageThree.MSG3)
+        lab2 = wx.StaticText(self, wx.ID_ANY, PageThree.MSG2,
+                             style=wx.ST_ELLIPSIZE_END
+                             | wx.ALIGN_CENTRE_HORIZONTAL,
+                             )
+        lab3 = wx.StaticText(self, wx.ID_ANY, PageThree.MSG3,
+                             style=wx.ST_ELLIPSIZE_END
+                             | wx.ALIGN_CENTRE_HORIZONTAL,
+                             )
         self.detectBtn = wx.Button(self, wx.ID_ANY, _("Auto-detection"),
                                    size=(250, -1))
         self.locateBtn = wx.Button(self, wx.ID_ANY, _("Locate"),
@@ -455,7 +467,10 @@ class PageFour(wx.Panel):
                              style=wx.ST_ELLIPSIZE_END
                              | wx.ALIGN_CENTRE_HORIZONTAL,
                              )
-        lab1 = wx.StaticText(self, wx.ID_ANY, PageFour.MSG1)
+        lab1 = wx.StaticText(self, wx.ID_ANY, PageFour.MSG1,
+                             style=wx.ST_ELLIPSIZE_END
+                             | wx.ALIGN_CENTRE_HORIZONTAL,
+                             )
         #  ffmpeg
         gridffmpeg = wx.BoxSizer(wx.HORIZONTAL)
         self.ffmpegTxt = wx.TextCtrl(self, wx.ID_ANY, "",
