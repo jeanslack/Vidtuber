@@ -7,6 +7,11 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
+Thu, 11 July 2025 V.1.02.1
+
+  * Fixed button `Nex` disabled on Wizard dialog
+
++------------------------------------+
 Thu, 10 July 2025 V.1.0.1
 
   * Initial release .

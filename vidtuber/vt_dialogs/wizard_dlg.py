@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: wizard_dlg.py
-Porpose: wizard setup dialog
+Porpose: wizard setup dialog fot Vidtuber
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
@@ -42,7 +42,6 @@ def write_changes(ffmpeg, ffprobe, ytdlp, ffbinfound, ytbinfound):
     dataread['ffmpeg_cmd'] = ffmpeg
     dataread['ffprobe_cmd'] = ffprobe
     dataread['yt-dlp_cmd'] = ytdlp
-    # local = False if binfound == 'system' else True
     fflocal = not ffbinfound == 'system'
     dataread['ffmpeg_islocal'] = fflocal
     dataread['ffprobe_islocal'] = fflocal
@@ -510,6 +509,7 @@ class PageFour(wx.Panel):
         # bindings
         self.Bind(wx.EVT_BUTTON, self.on_ffmpeg, self.ffmpegBtn)
         self.Bind(wx.EVT_BUTTON, self.on_ffprobe, self.ffprobeBtn)
+    # -------------------------------------------------------------------#
 
     def on_ffmpeg(self, event):
         """
@@ -534,6 +534,8 @@ class PageFour(wx.Panel):
                     ffmpegpath = PageFour.GETPATH(fdlg.GetPath())
                     self.ffmpegTxt.write(ffmpegpath)
                     self.parent.ffmpeg = ffmpegpath
+                    self.check_text_fields()
+    # -------------------------------------------------------------------#
 
     def on_ffprobe(self, event):
         """
@@ -559,6 +561,18 @@ class PageFour(wx.Panel):
                     ffprobepath = PageFour.GETPATH(fdlg.GetPath())
                     self.ffprobeTxt.write(ffprobepath)
                     self.parent.ffprobe = ffprobepath
+                    self.check_text_fields()
+    # -------------------------------------------------------------------#
+
+    def check_text_fields(self):
+        """
+        Both text fields must be completed to enable the
+        parent.Next button
+        """
+        if self.ffprobeTxt.GetValue() and self.ffmpegTxt.GetValue():
+            self.parent.btnNext.Enable()
+        else:
+            self.parent.btnNext.Disable()
 
 
 class PageFinish(wx.Panel):
@@ -706,9 +720,6 @@ class Wizard(wx.Dialog):
                 self.btnNext.Disable()
 
         elif self.pageTwo.IsShown():
-            if (self.pageTwo.locateBtn.IsEnabled()
-                    and self.pageTwo.detectBtn.IsEnabled()):
-                self.btnNext.Disable()
             self.pageTwo.Hide()
             self.pageThree.Show()
             if (self.pageThree.locateBtn.IsEnabled()
@@ -716,23 +727,21 @@ class Wizard(wx.Dialog):
                 self.btnNext.Disable()
 
         elif self.pageThree.IsShown():
-            self.pageThree.Hide()
-
-            if not self.pageThree.locateBtn.IsEnabled():
+            if self.pageThree.detectBtn.IsEnabled():
+                self.pageThree.Hide()
                 self.pageFour.Show()
+                if (not self.pageFour.ffmpegTxt.GetValue()
+                        and not self.pageFour.ffprobeTxt.GetValue()):
+                    self.btnNext.Disable()
             else:
+                self.pageThree.Hide()
                 self.pageFinish.Show()
                 self.btnNext.SetLabel(_('Finish'))
 
         elif self.pageFour.IsShown():
-            if (self.pageFour.ffmpegTxt.GetValue()
-                    and self.pageFour.ffprobeTxt.GetValue()):
-                self.pageFour.Hide()
-                self.pageFinish.Show()
-                self.btnNext.SetLabel(_('Finish'))
-            else:
-                wx.MessageBox(_("Some text boxes are still incomplete"),
-                              "Vidtuber", wx.ICON_INFORMATION, self)
+            self.pageFour.Hide()
+            self.pageFinish.Show()
+            self.btnNext.SetLabel(_('Finish'))
         self.Layout()
     # -------------------------------------------------------------------#
 
@@ -749,10 +758,12 @@ class Wizard(wx.Dialog):
         elif self.pageThree.IsShown():
             self.pageThree.Hide()
             self.pageTwo.Show()
+            self.btnNext.Enable()
 
         elif self.pageFour.IsShown():
             self.pageFour.Hide()
             self.pageThree.Show()
+            self.btnNext.Enable()
 
         elif self.pageFinish.IsShown():
             self.btnNext.SetLabel(_('Next >'))
