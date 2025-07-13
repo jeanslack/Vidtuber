@@ -7,9 +7,14 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Thu, 11 July 2025 V.1.02.1
+Sun, 13 July 2025 V.1.1.1
 
-  * Fixed button `Nex` disabled on Wizard dialog
+  * Fixed issue on wizard dialog where the `Next` button was disabled when
+    not needed.
+  * Improved wizard UI.
+  * Fixed pyproject.toml file to include only essential data in the source
+    archive
+
 
 +------------------------------------+
 Thu, 10 July 2025 V.1.0.1

@@ -45,6 +45,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Multimedia :: Video"
 ]
 dependencies = [
@@ -82,7 +83,6 @@ path = "vidtuber/vt_sys/about_app.py"
 [tool.hatch.build.targets.sdist]
 include = [
     "vidtuber",
-    "debian",
     "docs/man",
     "develop",
     "tests",
@@ -102,6 +102,8 @@ include = [
     ".pylintrc",
 ]
 exclude = [
+    "debian",
+    "docs/Localization_Guidelines.md",
     "vidtuber/data/icons/vidtuber.icns",
     "vidtuber/data/icons/vidtuber.ico",
     "vidtuber/data/locale/vidtuber.pot",
