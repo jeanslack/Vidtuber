@@ -29,9 +29,9 @@ sudo apt install vidtuber
 
 #### Devuan / Debian
 
-A pre-compiled, architecture-independent .deb package is available: [vidtuber_1.0.1-1_all.deb](https://github.com/jeanslack/Vidtuber/releases/download/v1.0.1/vidtuber_1.0.1-1_all.deb)
+A pre-compiled, architecture-independent .deb package is available: [vidtuber_1.1.1-1_all.deb](https://github.com/jeanslack/Vidtuber/releases/download/v1.1.1/vidtuber_1.1.1-1_all.deb)
 
-Minimum requirements:
+Tested on:
 
 - Devuan Chimaera
 - Devuan Daedalus
@@ -40,14 +40,14 @@ Minimum requirements:
 
 ### MS Windows
 
-Portable edition available: [Vidtuber-v1.0.1_x86_64-portable.7z](https://github.com/jeanslack/Vidtuber/releases/download/v1.0.1/Vidtuber-v1.0.1_x86_64-portable.7z)
+Portable edition available: [Vidtuber-v1.1.1_x86_64-portable.7z](https://github.com/jeanslack/Vidtuber/releases/download/v1.1.1/Vidtuber-v1.1.1_x86_64-portable.7z)
 
 Minimum requirements:
 
 - Microsoft Windows 10
 - x86_64 Architecture
 
-For space reasons, this portable edition does not include the FFmpeg and yt-dlp executables. 
+For space reasons, this portable edition does not include the FFmpeg nor yt-dlp executables. 
 Please read the README.txt file included in the 7-zip archive for more information about
 downloading and installing these additional dependencies.
 
