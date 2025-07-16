@@ -1,5 +1,5 @@
 # **Vidtuber**
-[![Image](https://img.shields.io/static/v1?label=python&logo=python&message=3.9%20|%203.10%20|%203.11%20|%203.12&color=blue)](https://www.python.org/downloads/)
+[![Image](https://img.shields.io/static/v1?label=python&logo=python&message=3.9%20|%203.10%20|%203.11%20|%203.12%20|%203.13&color=blue)](https://www.python.org/downloads/)
 [![Image](https://img.shields.io/badge/license-GPLv3-orange)](https://github.com/jeanslack/Vidtuber/blob/master/LICENSE)
 [![Python application](https://github.com/jeanslack/Vidtuber/actions/workflows/python-package.yml/badge.svg)](https://github.com/jeanslack/Vidtuber/actions/workflows/python-package.yml)
 
