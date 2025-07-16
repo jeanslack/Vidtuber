@@ -7,14 +7,19 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Sun, 13 July 2025 V.1.1.1
+Wed, 16 July 2025 V.1.1.1
 
   * Fixed issue on wizard dialog where the `Next` button was disabled when
     not needed.
   * Improved wizard UI.
   * Fixed pyproject.toml file to include only essential data in the source
     archive
-
+  * Added User Guide files to "docs/UserGuide" in pdf format (work in progress).
+  * Fixed issue on "Downloader Messages Monitoring" where the `Stop` button was
+    incorrectly disabled.
+  * Fixed missing icon issue for application launch on Ubuntu using deb package
+    from PPA. This was fixed by upgrading to the Ubuntu "Noble" series for
+    application build.
 
 +------------------------------------+
 Thu, 10 July 2025 V.1.0.1

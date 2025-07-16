@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: March.22.2025
+Rev: July.16.2025
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -706,7 +706,7 @@ class Wizard(wx.Dialog):
 
     def on_Next(self, event):
         """
-        Set the panel to show when the 'Next'button is clicked
+        Set the panel to show when the 'Next' button is clicked
         """
         if self.btnNext.GetLabel() == _('Finish'):
             self.wizard_Finish()

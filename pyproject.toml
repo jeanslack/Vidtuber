@@ -103,7 +103,7 @@ include = [
 ]
 exclude = [
     "debian",
-    "docs/Localization_Guidelines.md",
+    "docs/UserGuide",
     "vidtuber/data/icons/vidtuber.icns",
     "vidtuber/data/icons/vidtuber.ico",
     "vidtuber/data/locale/vidtuber.pot",

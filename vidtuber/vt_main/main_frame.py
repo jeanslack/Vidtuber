@@ -774,7 +774,7 @@ class MainFrame(wx.Frame):
              self.setupItem.Enable(False)
              )
             [self.toolbar.EnableTool(x, False) for x in (20, 21, 23, 26)]
-            self.toolbar.EnableTool(22, True)
+            self.toolbar.EnableTool(24, True)
 
         self.SetTitle(_('Vidtuber - Downloader Message Monitoring'))
         self.textDnDTarget.Hide()
