@@ -197,6 +197,8 @@ class Downloader(wx.Panel):
                                 size=(-1, -1),
                                 )
         self.choice.SetSelection(0)
+        txtdmode = wx.StaticText(self, wx.ID_ANY, _('Mode:'))
+        fgs1.Add(txtdmode, 0, wx.LEFT | wx.CENTRE, 20)
         fgs1.Add(self.choice, 0, wx.LEFT | wx.CENTRE, 5)
 
         self.ckbx_pl = wx.CheckBox(self, wx.ID_ANY,
@@ -208,11 +210,13 @@ class Downloader(wx.Panel):
         self.btn_plidx.SetBitmap(bmplistindx, wx.LEFT)
         fgs1.Add(self.btn_plidx, 0, wx.LEFT | wx.CENTRE, 2)
         self.btn_plidx.Disable()
+        txtsubt = wx.StaticText(self, wx.ID_ANY, _('Subtitles:'))
+        fgs1.Add(txtsubt, 0, wx.LEFT | wx.CENTRE, 20)
         self.btn_subeditor = wx.Button(self, wx.ID_ANY, "",
                                        size=(40, -1))
         self.btn_subeditor.SetBitmap(bmpsubtitles, wx.LEFT)
         self.btn_subeditor.SetToolTip(_('Subtitles Editor'))
-        fgs1.Add(self.btn_subeditor, 0, wx.LEFT | wx.CENTRE, 20)
+        fgs1.Add(self.btn_subeditor, 0, wx.LEFT | wx.CENTRE, 5)
         if sett['subtitles_options']['writesubtitles']:
             self.btn_subeditor.SetBackgroundColour(
                 wx.Colour(Downloader.VIOLET))

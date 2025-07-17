@@ -7,6 +7,14 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
+Fri, 18 July 2025 V.1.1.2
+
+  * Improved UI.
+  * Updated translation catalogs to Vidtuber v1.1.2
+  * Updated Russian language, thanks to ChourS .
+  * Updated Italian language by jeanslack.
+
++------------------------------------+
 Wed, 16 July 2025 V.1.1.1
 
   * Fixed issue on wizard dialog where the `Next` button was disabled when
