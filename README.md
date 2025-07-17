@@ -33,9 +33,7 @@ A pre-compiled, architecture-independent .deb package is available: [vidtuber_1.
 
 Tested on:
 
-- Devuan Chimaera
 - Devuan Daedalus
-- Debian11 bullseye
 - Debian12 bookworm
 
 ### MS Windows

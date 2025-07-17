@@ -5,19 +5,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Vidtuber 5.0.20\n"
+"Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 21:32+0200\n"
-"PO-Revision-Date: 2025-07-09 21:37+0200\n"
+"POT-Creation-Date: 2025-07-17 23:46+0200\n"
+"PO-Revision-Date: 2025-07-17 21:22+0300\n"
 "Last-Translator: ChourS <ChourS2008@yandex.ru>\n"
-"Language-Team: Chour <ChourS2008@yandex.ru>\n"
 "Language: ru_RU\n"
+"Language-Team: Chour <ChourS2008@yandex.ru>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Generated-By: Babel 2.17.0\n"
-"X-Generator: Poedit 3.2.2\n"
+"Generated-By: Babel 2.10.3\n"
 
 #: ../../gui_app.py:198
 #, python-brace-format
@@ -32,7 +31,7 @@ msgstr ""
 
 #: ../../vt_dialogs/about_dialog.py:52
 msgid "A simple cross-platform GUI for yt-dlp"
-msgstr ""
+msgstr "Простой кроссплатформенный графический интерфейс для yt-dlp"
 
 #: ../../vt_dialogs/check_new_version.py:63
 msgid "Get Latest Version"
@@ -60,6 +59,10 @@ msgid ""
 "This is Vidtuber v.{0}\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"Это Vidtuber v.{0}\n"
+"\n"
 
 #: ../../vt_dialogs/playlist_indexing.py:50
 msgid "URL"
@@ -79,7 +82,7 @@ msgstr ""
 "Также можно указать интервалы, например. «1-3,7,10-13», с помощью которого будут загружаться медиафайлы с индексами 1, 2, 3, 7, 10, 11, 12 и 13.\n"
 
 #: ../../vt_dialogs/playlist_indexing.py:108
-#: ../../vt_panels/youtubedl_ui.py:207
+#: ../../vt_panels/youtubedl_ui.py:209
 msgid "Playlist Editor"
 msgstr "Редактор плейлистов(playlist)"
 
@@ -106,7 +109,7 @@ msgstr "ВНИМАНИЕ! Выбранный URL-адрес не относит�
 #: ../../vt_dialogs/settings_vidtuber.py:76
 #, python-brace-format
 msgid "Specify the {0} executable"
-msgstr ""
+msgstr "Укажите исполняемый файл {0}"
 
 #: ../../vt_dialogs/settings_vidtuber.py:79
 #, python-brace-format
@@ -130,13 +133,15 @@ msgstr "Изменить"
 
 #: ../../vt_dialogs/settings_vidtuber.py:105
 msgid "Specifying FFmpeg executables"
-msgstr ""
+msgstr "Укажите исполняемые файлы FFmpeg"
 
 #: ../../vt_dialogs/settings_vidtuber.py:107
 msgid ""
 "For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables.\n"
 "Here you can customize the paths to these executables."
 msgstr ""
+"Для выполнения различных задач постобработки yt-dlp требуются исполняемые файлы ffmpeg и ffprobe.\n"
+"Здесь вы можете настроить пути к этим исполняемым файлам."
 
 #: ../../vt_dialogs/settings_vidtuber.py:113
 msgid "Enable a custom location to run FFmpeg"
@@ -260,37 +265,37 @@ msgstr "Введите здесь пароль sudo, только для Unix-п
 
 #: ../../vt_dialogs/settings_vidtuber.py:339
 msgid "Application Preferences"
-msgstr ""
+msgstr "Настройки приложения"
 
 #: ../../vt_dialogs/settings_vidtuber.py:479
 #: ../../vt_dialogs/settings_vidtuber.py:500
 #: ../../vt_dialogs/settings_vidtuber.py:531
 #: ../../vt_dialogs/settings_vidtuber.py:552
 #: ../../vt_dialogs/settings_vidtuber.py:586
-#: ../../vt_dialogs/settings_vidtuber.py:617 ../../vt_dialogs/wizard_dlg.py:214
-#: ../../vt_dialogs/wizard_dlg.py:246 ../../vt_dialogs/wizard_dlg.py:399
-#: ../../vt_dialogs/wizard_dlg.py:511 ../../vt_dialogs/wizard_dlg.py:536
+#: ../../vt_dialogs/settings_vidtuber.py:617 ../../vt_dialogs/wizard_dlg.py:219
+#: ../../vt_dialogs/wizard_dlg.py:251 ../../vt_dialogs/wizard_dlg.py:410
+#: ../../vt_dialogs/wizard_dlg.py:526 ../../vt_dialogs/wizard_dlg.py:553
 msgid "Execute permission is not granted for this file:"
-msgstr ""
+msgstr "Разрешение на выполнение этого файла не предоставлено:"
 
 #: ../../vt_dialogs/settings_vidtuber.py:481
 #: ../../vt_dialogs/settings_vidtuber.py:502
 #: ../../vt_dialogs/settings_vidtuber.py:533
 #: ../../vt_dialogs/settings_vidtuber.py:554
 #: ../../vt_dialogs/settings_vidtuber.py:588
-#: ../../vt_dialogs/settings_vidtuber.py:619 ../../vt_dialogs/wizard_dlg.py:216
-#: ../../vt_dialogs/wizard_dlg.py:248 ../../vt_dialogs/wizard_dlg.py:401
-#: ../../vt_dialogs/wizard_dlg.py:513 ../../vt_dialogs/wizard_dlg.py:538
+#: ../../vt_dialogs/settings_vidtuber.py:619 ../../vt_dialogs/wizard_dlg.py:221
+#: ../../vt_dialogs/wizard_dlg.py:253 ../../vt_dialogs/wizard_dlg.py:412
+#: ../../vt_dialogs/wizard_dlg.py:528 ../../vt_dialogs/wizard_dlg.py:555
 #: ../../vt_main/main_frame.py:202 ../../vt_main/main_frame.py:225
-#: ../../vt_panels/youtubedl_ui.py:354 ../../vt_panels/youtubedl_ui.py:579
-#: ../../vt_panels/youtubedl_ui.py:792
+#: ../../vt_panels/youtubedl_ui.py:358 ../../vt_panels/youtubedl_ui.py:583
+#: ../../vt_panels/youtubedl_ui.py:796
 msgid "Vidtuber - Warning!"
-msgstr ""
+msgstr "Vidtuber - Предупреждение!"
 
 #: ../../vt_dialogs/settings_vidtuber.py:492
 #: ../../vt_dialogs/settings_vidtuber.py:544
-#: ../../vt_dialogs/settings_vidtuber.py:611 ../../vt_dialogs/wizard_dlg.py:208
-#: ../../vt_dialogs/wizard_dlg.py:503 ../../vt_dialogs/wizard_dlg.py:527
+#: ../../vt_dialogs/settings_vidtuber.py:611 ../../vt_dialogs/wizard_dlg.py:213
+#: ../../vt_dialogs/wizard_dlg.py:518 ../../vt_dialogs/wizard_dlg.py:544
 #, python-brace-format
 msgid "{} location"
 msgstr "{} исполняемый файл"
@@ -374,7 +379,7 @@ msgstr "Аргументы внешнего загрузчика"
 
 #: ../../vt_dialogs/settings_ytdlp.py:165
 msgid "External Downloader"
-msgstr ""
+msgstr "Внешний загрузчик"
 
 #: ../../vt_dialogs/settings_ytdlp.py:171
 msgid "Using a proxy server"
@@ -539,15 +544,15 @@ msgstr "Cookies"
 
 #: ../../vt_dialogs/settings_ytdlp.py:403
 msgid "Yt-dlp options setting"
-msgstr ""
+msgstr "Настройка параметров Yt-dlp"
 
 #: ../../vt_dialogs/settings_ytdlp.py:436
 msgid "Do you want to remove the current cookie file from your system?"
 msgstr "Вы хотите удалить текущий файл cookie из вашей системы?"
 
 #: ../../vt_dialogs/settings_ytdlp.py:438 ../../vt_dialogs/showlogs.py:162
-#: ../../vt_dialogs/wizard_dlg.py:254 ../../vt_dialogs/wizard_dlg.py:407
-#: ../../vt_panels/youtubedl_ui.py:541 ../../vt_panels/youtubedl_ui.py:557
+#: ../../vt_dialogs/wizard_dlg.py:259 ../../vt_dialogs/wizard_dlg.py:418
+#: ../../vt_panels/youtubedl_ui.py:545 ../../vt_panels/youtubedl_ui.py:561
 msgid "Please confirm"
 msgstr "Пожалуйста, подтвердите"
 
@@ -555,7 +560,7 @@ msgstr "Пожалуйста, подтвердите"
 msgid "Locate your cookie file"
 msgstr "Найдите ваш файл cookie"
 
-#: ../../vt_dialogs/settings_ytdlp.py:504 ../../vt_main/main_frame.py:415
+#: ../../vt_dialogs/settings_ytdlp.py:504 ../../vt_main/main_frame.py:444
 msgid "Choose Destination"
 msgstr "Выберите папку назначения"
 
@@ -687,7 +692,7 @@ msgstr "Вставить субтитры в видеофайл"
 msgid "Download subtitles only (do not include audio and video)"
 msgstr "Загружать только субтитры (без аудио и видео)"
 
-#: ../../vt_dialogs/subtitles_editor.py:137 ../../vt_panels/youtubedl_ui.py:214
+#: ../../vt_dialogs/subtitles_editor.py:137 ../../vt_panels/youtubedl_ui.py:218
 msgid "Subtitles Editor"
 msgstr "Редактор субтитров"
 
@@ -717,128 +722,136 @@ msgstr ""
 "запрошенных языков, например «all, -it.*, -nl.*», -fr.*» загрузит все субтитры, \n"
 "кроме итальянских, голландских и французских."
 
-#: ../../vt_dialogs/widget_utils.py:120 ../../vt_main/main_frame.py:632
+#: ../../vt_dialogs/widget_utils.py:120 ../../vt_main/main_frame.py:678
 msgid "Stop"
 msgstr "Стоп"
 
-#: ../../vt_dialogs/wizard_dlg.py:62
+#: ../../vt_dialogs/wizard_dlg.py:61
 msgid "Please take a moment to set up the application"
 msgstr "Пожалуйста, найдите время, чтобы настроить приложение"
 
-#: ../../vt_dialogs/wizard_dlg.py:63
+#: ../../vt_dialogs/wizard_dlg.py:62
 msgid "Click the \"Next\" button to get started"
 msgstr "Нажмите кнопку \"Next\", чтобы начать"
 
-#: ../../vt_dialogs/wizard_dlg.py:78
+#: ../../vt_dialogs/wizard_dlg.py:77
 msgid "Welcome to the Vidtuber Wizard!"
-msgstr ""
+msgstr "Добро пожаловать в \"Мастер Vidtuber\"!"
 
-#: ../../vt_dialogs/wizard_dlg.py:127
+#: ../../vt_dialogs/wizard_dlg.py:126
 #, python-brace-format
 msgid "Specifying {0} executable\n"
-msgstr ""
+msgstr "Укажите {0} исполняемые файлы\n"
 
-#: ../../vt_dialogs/wizard_dlg.py:129 ../../vt_dialogs/wizard_dlg.py:284
+#: ../../vt_dialogs/wizard_dlg.py:128 ../../vt_dialogs/wizard_dlg.py:289
 #, python-brace-format
 msgid ""
 "If you have already installed {0} on your operating system,\n"
 "click the «Auto-detection» button."
 msgstr ""
+"Если вы уже установили {0} в свою операционную систему,\n"
+"нажмите на кнопку «Автоматическое обнаружение»."
 
-#: ../../vt_dialogs/wizard_dlg.py:132 ../../vt_dialogs/wizard_dlg.py:287
+#: ../../vt_dialogs/wizard_dlg.py:131 ../../vt_dialogs/wizard_dlg.py:292
 #, python-brace-format
 msgid ""
 "If you want to use a version of {0} located on your filesystem\n"
 "but not installed on your operating system, click the «Locate» button."
 msgstr ""
+"Если вы хотите использовать версию{0} расположенную в вашей файловой системе\n"
+"но она не установлена в вашей операционной системе, нажмите кнопку «Найти»."
 
-#: ../../vt_dialogs/wizard_dlg.py:153 ../../vt_dialogs/wizard_dlg.py:312
+#: ../../vt_dialogs/wizard_dlg.py:158 ../../vt_dialogs/wizard_dlg.py:323
 msgid "Auto-detection"
 msgstr "Автоматическое определение"
 
-#: ../../vt_dialogs/wizard_dlg.py:155 ../../vt_dialogs/wizard_dlg.py:314
+#: ../../vt_dialogs/wizard_dlg.py:160 ../../vt_dialogs/wizard_dlg.py:325
 msgid "Locate"
 msgstr "Найдите"
 
-#: ../../vt_dialogs/wizard_dlg.py:239 ../../vt_dialogs/wizard_dlg.py:385
+#: ../../vt_dialogs/wizard_dlg.py:244 ../../vt_dialogs/wizard_dlg.py:396
 #, python-brace-format
 msgid "'{}' is not installed on your computer. Install it or indicate another location by clicking the 'Locate' button."
 msgstr "'{}' не установлен на вашем компьютере. Установите его или укажите другое место, нажав кнопку 'Найти'."
 
-#: ../../vt_dialogs/wizard_dlg.py:252
+#: ../../vt_dialogs/wizard_dlg.py:257
 #, python-brace-format
 msgid ""
 "Vidtuber already seems to include {}.\n"
 "\n"
 "Do you want to use that?"
 msgstr ""
+"Vidtuber, похоже, уже включает в себя {}.\n"
+"\n"
+"Вы хотите этим воспользоваться?"
 
-#: ../../vt_dialogs/wizard_dlg.py:279
+#: ../../vt_dialogs/wizard_dlg.py:284
 msgid "Specifying FFmpeg executables\n"
-msgstr ""
+msgstr "Укажите исполняемые файлы FFmpeg\n"
 
-#: ../../vt_dialogs/wizard_dlg.py:281
+#: ../../vt_dialogs/wizard_dlg.py:286
 msgid "For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables."
-msgstr ""
+msgstr "Для выполнения различных задач постобработки yt-dlp требуются исполняемые файлы ffmpeg и ffprobe."
 
-#: ../../vt_dialogs/wizard_dlg.py:364
+#: ../../vt_dialogs/wizard_dlg.py:375
 msgid "Click the \"Next\" button"
 msgstr "Нажмите кнопку \"Next\""
 
-#: ../../vt_dialogs/wizard_dlg.py:405
+#: ../../vt_dialogs/wizard_dlg.py:416
 msgid ""
 "Vidtuber already seems to include FFmpeg.\n"
 "\n"
 "Do you want to use that?"
 msgstr ""
+"Vidtuber, похоже, уже включает FFmpeg.\n"
+"\n"
+"Вы хотите этим воспользоваться?"
 
-#: ../../vt_dialogs/wizard_dlg.py:430
+#: ../../vt_dialogs/wizard_dlg.py:441
 msgid "Locating FFmpeg executables\n"
 msgstr "Поиск исполняемых файлов FFmpeg\n"
 
-#: ../../vt_dialogs/wizard_dlg.py:432
+#: ../../vt_dialogs/wizard_dlg.py:443
 msgid ""
 "\"ffmpeg\" and \"ffprobe\" are required. Complete all\n"
 "the text boxes below by clicking on the respective buttons."
 msgstr ""
+"Требуются \"ffmpeg\" и \"ffprobe\". Заполните все\n"
+"текстовые поля ниже, нажав на соответствующие кнопки."
 
-#: ../../vt_dialogs/wizard_dlg.py:555
+#: ../../vt_dialogs/wizard_dlg.py:584
 msgid "Wizard completed successfully!\n"
 msgstr "Помощник успешно завершен!\n"
 
-#: ../../vt_dialogs/wizard_dlg.py:556
+#: ../../vt_dialogs/wizard_dlg.py:585
 msgid "Remember that you can always change these settings later, through the Preferences dialog."
 msgstr "Помните, что вы всегда можете изменить эти настройки позже через диалоговое окно «Настройки»."
 
-#: ../../vt_dialogs/wizard_dlg.py:558
+#: ../../vt_dialogs/wizard_dlg.py:587
 msgid "Thank You!"
 msgstr "Благодарю вас!"
 
 # сделал одинарные кавычки
-#: ../../vt_dialogs/wizard_dlg.py:559
+#: ../../vt_dialogs/wizard_dlg.py:588
 msgid "To exit click the \"Finish\" button"
 msgstr "Для выхода нажмите кнопку \"Завершено\""
 
-#: ../../vt_dialogs/wizard_dlg.py:647
+#: ../../vt_dialogs/wizard_dlg.py:676
 msgid "< Previous"
 msgstr "< Предыдущий"
 
-#: ../../vt_dialogs/wizard_dlg.py:650 ../../vt_dialogs/wizard_dlg.py:754
+#: ../../vt_dialogs/wizard_dlg.py:679 ../../vt_dialogs/wizard_dlg.py:769
 msgid "Next >"
 msgstr "Следующий >"
 
-#: ../../vt_dialogs/wizard_dlg.py:655
+#: ../../vt_dialogs/wizard_dlg.py:684
 msgid "Vidtuber Wizard"
-msgstr ""
+msgstr "Мастер Vidtuber"
 
-#: ../../vt_dialogs/wizard_dlg.py:682 ../../vt_dialogs/wizard_dlg.py:710
-#: ../../vt_dialogs/wizard_dlg.py:717 ../../vt_dialogs/wizard_dlg.py:727
+#: ../../vt_dialogs/wizard_dlg.py:711 ../../vt_dialogs/wizard_dlg.py:739
+#: ../../vt_dialogs/wizard_dlg.py:744
 msgid "Finish"
 msgstr "Завершено"
-
-#: ../../vt_dialogs/wizard_dlg.py:719
-msgid "Some text boxes are still incomplete"
-msgstr "Некоторые текстовые поля все еще не заполнены"
 
 #: ../../vt_io/checkup.py:43
 #, python-brace-format
@@ -852,13 +865,13 @@ msgstr ""
 "\"{}\"\n"
 
 #: ../../vt_io/checkup.py:44 ../../vt_io/io_tools.py:76
-#: ../../vt_panels/youtubedl_ui.py:358
+#: ../../vt_panels/youtubedl_ui.py:362
 msgid "Vidtuber - Error!"
 msgstr "Vidtuber - Ошибка!"
 
 #: ../../vt_io/io_tools.py:50
 msgid "Vidtuber - Loading..."
-msgstr ""
+msgstr "Vidtuber - Идёт загрузка..."
 
 #: ../../vt_io/io_tools.py:51
 msgid ""
@@ -868,12 +881,12 @@ msgstr ""
 "Пожалуйста, подождите...\n"
 "Получение необходимых данных."
 
-#: ../../vt_main/main_frame.py:89 ../../vt_main/main_frame.py:695
+#: ../../vt_main/main_frame.py:89 ../../vt_main/main_frame.py:741
 msgid "Vidtuber - List of URLs"
-msgstr ""
+msgstr "Vidtuber - Список URL-адресов"
 
-#: ../../vt_main/main_frame.py:105 ../../vt_main/main_frame.py:694
-#: ../../vt_panels/textdrop.py:233 ../../vt_panels/youtubedl_ui.py:369
+#: ../../vt_main/main_frame.py:105 ../../vt_main/main_frame.py:740
+#: ../../vt_panels/textdrop.py:233 ../../vt_panels/youtubedl_ui.py:373
 msgid "Ready"
 msgstr "Готово"
 
@@ -934,7 +947,7 @@ msgstr "Основные настройки\tCtrl+P"
 
 #: ../../vt_main/main_frame.py:277
 msgid "Main application preferences"
-msgstr ""
+msgstr "Основные настройки приложения"
 
 #: ../../vt_main/main_frame.py:278
 msgid "Edit"
@@ -962,7 +975,7 @@ msgstr "Отображает полезную информацию об yt-dlp"
 
 #: ../../vt_main/main_frame.py:292
 msgid "View"
-msgstr "Посмотр"
+msgstr "Смотреть"
 
 #: ../../vt_main/main_frame.py:295
 msgid "User guide"
@@ -970,11 +983,11 @@ msgstr "Руководство пользователя"
 
 #: ../../vt_main/main_frame.py:299
 msgid "System information"
-msgstr ""
+msgstr "Системная информация"
 
 #: ../../vt_main/main_frame.py:300
 msgid "Get generic information about the installed system."
-msgstr ""
+msgstr "Получить общую информацию об установленной системе."
 
 #: ../../vt_main/main_frame.py:303
 msgid "Show log files\tCtrl+L"
@@ -994,53 +1007,60 @@ msgstr "Внести свой вклад в проект"
 
 #: ../../vt_main/main_frame.py:314
 msgid "Sponsor this project"
-msgstr ""
+msgstr "Спонсируйте этот проект"
 
 #: ../../vt_main/main_frame.py:315
 msgid "Become a developer supporter"
-msgstr ""
+msgstr "Станьте сторонником разработчиков"
 
 #: ../../vt_main/main_frame.py:316
 msgid "Donate"
-msgstr ""
+msgstr "Пожертвовать"
 
 #: ../../vt_main/main_frame.py:317
 msgid "Donate to the app developer"
-msgstr ""
-
-#: ../../vt_main/main_frame.py:319
-msgid "About Vidtuber"
-msgstr ""
-
-#: ../../vt_main/main_frame.py:320
-msgid "Check latest version"
-msgstr ""
+msgstr "Пожертвуйте разработчику приложения"
 
 #: ../../vt_main/main_frame.py:321
-msgid "Check and download the latest version of the application"
+msgid "Other projects by the developer"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:323
+#: ../../vt_main/main_frame.py:338
+msgid "About Vidtuber"
+msgstr "О программе Vidtuber"
+
+#: ../../vt_main/main_frame.py:339
+msgid "Check latest version"
+msgstr "Проверить последнюю версию"
+
+#: ../../vt_main/main_frame.py:340
+msgid "Check and download the latest version of the application"
+msgstr "Проверьте и загрузите последнюю версию приложения"
+
+#: ../../vt_main/main_frame.py:342
 msgid "Help"
 msgstr "Помощь"
 
-#: ../../vt_main/main_frame.py:393
+#: ../../vt_main/main_frame.py:422
 #, python-brace-format
 msgid ""
 "- Executable version currently used: {0}\n"
 "Latest version available on github.com: {1}\n"
 "{2}"
 msgstr ""
+"- Используемая в настоящее время исполняемая версия: {0}\n"
+"Последняя версия доступна на github.com: {1}\n"
+"{2}"
 
-#: ../../vt_main/main_frame.py:396
+#: ../../vt_main/main_frame.py:425
 msgid "Vidtuber - About «yt-dlp»"
-msgstr ""
+msgstr "Vidtuber - About «yt-dlp»"
 
-#: ../../vt_main/main_frame.py:437
+#: ../../vt_main/main_frame.py:466
 msgid "Some changes require restarting the application."
 msgstr "Некоторые изменения требуют перезапуска приложения."
 
-#: ../../vt_main/main_frame.py:442
+#: ../../vt_main/main_frame.py:471
 #, python-brace-format
 msgid ""
 "{0}\n"
@@ -1051,100 +1071,102 @@ msgstr ""
 "\n"
 "Хотите перезапустить приложение сейчас?"
 
-#: ../../vt_main/main_frame.py:444
+#: ../../vt_main/main_frame.py:473
 msgid "Restart Vidtuber?"
-msgstr ""
+msgstr "Перезапустить Vidtuber?"
 
-#: ../../vt_main/main_frame.py:535
+#: ../../vt_main/main_frame.py:581
 msgid ""
 "No publications found!\n"
 "ERROR: tag_name"
 msgstr ""
+"Публикаций не найдено!\n"
+"ОШИБКА: tag_name"
 
-#: ../../vt_main/main_frame.py:551
+#: ../../vt_main/main_frame.py:597
 #, python-brace-format
 msgid "A new release is available - v.{0}\n"
 msgstr "Доступна новая версия - v.{0}\n"
 
-#: ../../vt_main/main_frame.py:554
+#: ../../vt_main/main_frame.py:600
 msgid "You are using a development version that has not yet been released!\n"
 msgstr "Вы используете версию для разработки, которая еще не выпущена!\n"
 
-#: ../../vt_main/main_frame.py:557
+#: ../../vt_main/main_frame.py:603
 msgid "Congratulation! You are already using the latest version.\n"
 msgstr "Поздравляю! Вы уже используете последнюю версию.\n"
 
-#: ../../vt_main/main_frame.py:614
+#: ../../vt_main/main_frame.py:660
 msgid "Go to the previous panel"
 msgstr "Перейти к предыдущей панели"
 
-#: ../../vt_main/main_frame.py:615
+#: ../../vt_main/main_frame.py:661
 msgid "Back"
 msgstr "Назад"
 
-#: ../../vt_main/main_frame.py:619
+#: ../../vt_main/main_frame.py:665
 msgid "Go to the next panel"
 msgstr "Перейти к следующей панели"
 
-#: ../../vt_main/main_frame.py:620
+#: ../../vt_main/main_frame.py:666
 msgid "Next"
 msgstr "Вперед"
 
-#: ../../vt_main/main_frame.py:624
+#: ../../vt_main/main_frame.py:670
 msgid "yt-dlp options setting"
-msgstr ""
+msgstr "настройка параметров yt-dlp"
 
-#: ../../vt_main/main_frame.py:625
+#: ../../vt_main/main_frame.py:671
 msgid "Options"
 msgstr "Параметры"
 
-#: ../../vt_main/main_frame.py:627
+#: ../../vt_main/main_frame.py:673
 msgid "Start downloading"
 msgstr "Начать загрузку"
 
-#: ../../vt_main/main_frame.py:628
+#: ../../vt_main/main_frame.py:674
 msgid "Download"
 msgstr "Скачать"
 
-#: ../../vt_main/main_frame.py:631
+#: ../../vt_main/main_frame.py:677
 msgid "Stops current process"
 msgstr "Останавливает текущий процесс"
 
-#: ../../vt_main/main_frame.py:703
+#: ../../vt_main/main_frame.py:749
 msgid "Vidtuber - Download Settings"
-msgstr ""
+msgstr "Vidtuber - Настройки загрузки"
 
-#: ../../vt_main/main_frame.py:720
+#: ../../vt_main/main_frame.py:766
 msgid "Viewing last log"
 msgstr "Просмотр последнего log-журнала"
 
-#: ../../vt_main/main_frame.py:733
+#: ../../vt_main/main_frame.py:779
 msgid "Vidtuber - Downloader Message Monitoring"
-msgstr ""
+msgstr "Vidtuber - Мониторинг сообщений загрузчика"
 
 # русское сокращение последнего слова
-#: ../../vt_main/main_frame.py:803
+#: ../../vt_main/main_frame.py:849
 #, python-brace-format
 msgid "The system will turn off in {0} seconds"
 msgstr "Система выключится через {0} сек."
 
-#: ../../vt_main/main_frame.py:804
+#: ../../vt_main/main_frame.py:850
 msgid "Vidtuber - Shutdown!"
-msgstr ""
+msgstr "Vidtuber - Выключение!"
 
-#: ../../vt_main/main_frame.py:811
+#: ../../vt_main/main_frame.py:857
 msgid "Error while shutting down. Please see file log for details."
 msgstr "Ошибка при выключении. Подробности смотрите в журнале файлов."
 
 # русское сокращение последнего слова
-#: ../../vt_main/main_frame.py:823
+#: ../../vt_main/main_frame.py:869
 #, python-brace-format
 msgid "Exiting the application in {0} seconds"
 msgstr "Выход из приложения через {0} сек."
 
-#: ../../vt_main/main_frame.py:824
+#: ../../vt_main/main_frame.py:870
 msgid "Vidtuber - Exiting!"
-msgstr ""
+msgstr "Vidtuber - Выход!"
 
 #: ../../vt_panels/formatcode_exec.py:98 ../../vt_panels/formatcode_lib.py:98
 #: ../../vt_panels/youtubedl_ui.py:117
@@ -1213,11 +1235,11 @@ msgstr ""
 
 #: ../../vt_panels/long_task_ytdlp.py:45
 msgid "[Vidtuber]: SUCCESS !"
-msgstr ""
+msgstr "[Vidtuber]: УСПЕШНО !"
 
 #: ../../vt_panels/long_task_ytdlp.py:46
 msgid "[Vidtuber]: FAILED !"
-msgstr ""
+msgstr "[Vidtuber]: НЕУДАЧНО !"
 
 #: ../../vt_panels/long_task_ytdlp.py:47
 msgid "Sorry, all task failed !"
@@ -1320,27 +1342,35 @@ msgstr "Загрузить только аудиофайл"
 msgid "Download by format code"
 msgstr "Скачать код формата"
 
-#: ../../vt_panels/youtubedl_ui.py:203
+#: ../../vt_panels/youtubedl_ui.py:200
+msgid "Mode:"
+msgstr ""
+
+#: ../../vt_panels/youtubedl_ui.py:205
 msgid "Include playlists"
 msgstr "Включить плейлисты"
 
-#: ../../vt_panels/youtubedl_ui.py:221
+#: ../../vt_panels/youtubedl_ui.py:213
+msgid "Subtitles:"
+msgstr ""
+
+#: ../../vt_panels/youtubedl_ui.py:225
 msgid "Quality settings"
 msgstr "Настройки качества"
 
-#: ../../vt_panels/youtubedl_ui.py:233
+#: ../../vt_panels/youtubedl_ui.py:237
 msgid "When not available, the chosen video resolution will be replaced with the closest one"
 msgstr "Когда недоступно, выбранное разрешение видео будет заменено ближайшим"
 
-#: ../../vt_panels/youtubedl_ui.py:237
+#: ../../vt_panels/youtubedl_ui.py:241
 msgid "Video format:"
 msgstr "Формат видео:"
 
-#: ../../vt_panels/youtubedl_ui.py:258
+#: ../../vt_panels/youtubedl_ui.py:262
 msgid "Audio format:"
 msgstr "Аудио формат:"
 
-#: ../../vt_panels/youtubedl_ui.py:350
+#: ../../vt_panels/youtubedl_ui.py:354
 #, python-brace-format
 msgid ""
 "Unable to get format codes on {0}, unsupported URL:\n"
@@ -1351,19 +1381,19 @@ msgstr ""
 "\n"
 "{1}"
 
-#: ../../vt_panels/youtubedl_ui.py:500
+#: ../../vt_panels/youtubedl_ui.py:504
 msgid "URLs have no playlist references"
 msgstr "URL-адреса не имеют ссылок на плейлисты"
 
-#: ../../vt_panels/youtubedl_ui.py:539
+#: ../../vt_panels/youtubedl_ui.py:543
 msgid "The URLs contain playlists. Are you sure you want to continue?"
 msgstr "URL-адреса содержат списки воспроизведения. Вы уверены, что хотите продолжить?"
 
-#: ../../vt_panels/youtubedl_ui.py:555
+#: ../../vt_panels/youtubedl_ui.py:559
 msgid "The URLs contain channels. Are you sure you want to continue?"
 msgstr "URL-адреса содержат видеоканалы. Вы уверены, что хотите продолжить?"
 
-#: ../../vt_panels/youtubedl_ui.py:575 ../../vt_panels/youtubedl_ui.py:788
+#: ../../vt_panels/youtubedl_ui.py:579 ../../vt_panels/youtubedl_ui.py:792
 #, python-brace-format
 msgid ""
 "Missing executable: «{0}».\n"
@@ -1371,3 +1401,7 @@ msgid ""
 msgstr ""
 "Отсутствующий исполняемый файл: «{0}».\n"
 "Прежде чем продолжить, убедитесь в правильности настроек в диалоговом окне настроек."
+
+#~ msgid "Some text boxes are still incomplete"
+#~ msgstr "Некоторые текстовые поля все еще не заполнены"
+
