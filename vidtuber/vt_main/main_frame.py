@@ -263,7 +263,7 @@ class MainFrame(wx.Frame):
         # ------------------ Edit menu
         editButton = wx.Menu()
         dscrp = (_("Paste\tCtrl+V"),
-                 _("Paste the copied URLs to clipboard"))
+                 _("Paste the copied URLs from clipboard"))
         self.paste = editButton.Append(wx.ID_PASTE, dscrp[0], dscrp[1])
         dscrp = (_("Remove selected URL\tDEL"),
                  _("Remove the selected URL from the list"))

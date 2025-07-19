@@ -27,6 +27,10 @@ sudo apt update
 sudo apt install vidtuber
 ```
 
+#### Slackware
+
+Vidtuber is available on the [SlackBuilds.org](https://slackbuilds.org/) ("Sbo") repository, a collection of third-party SlackBuild scripts to build Slackware packages from sources.
+
 #### Devuan / Debian
 
 A pre-compiled, architecture-independent .deb package is available: [vidtuber_1.1.1-1_all.deb](https://github.com/jeanslack/Vidtuber/releases/download/v1.1.1/vidtuber_1.1.1-1_all.deb)
@@ -48,7 +52,6 @@ Minimum requirements:
 For space reasons, this portable edition does not include the FFmpeg nor yt-dlp executables. 
 Please read the README.txt file included in the 7-zip archive for more information about
 downloading and installing these additional dependencies.
-
 
 ## Other installation and execution methods
 

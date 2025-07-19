@@ -883,7 +883,7 @@ msgid "Paste\tCtrl+V"
 msgstr "Coller\tCtrl+V"
 
 #: ../../vt_main/main_frame.py:266
-msgid "Paste the copied URLs to clipboard"
+msgid "Paste the copied URLs from clipboard"
 msgstr "Coller l'URL à partir du presse-papier"
 
 #: ../../vt_main/main_frame.py:268 ../../vt_panels/textdrop.py:190
