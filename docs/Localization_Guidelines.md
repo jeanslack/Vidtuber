@@ -1,18 +1,9 @@
----
-layout: default
-title: Translate Vidtuber Offline
-parent: Contribute
-nav_order: 1
----
-
 # Localization Guidelines
 
 Help to translate Vidtuber to other languages
-{: .fs-6 .text-grey-dk-100}
 -----------------
 
 ## Updates an existing translation
-{: .bg-green-300}
 
 #### Requirements:
 - [poEdit](https://poedit.net/), to do the actual translation you can use [poEdit](https://poedit.net/). It allows you to create, update and start translating a translation catalog from a `PO` file, and finally generate a `MO` file needed to apply the translation of a program.
@@ -67,7 +58,6 @@ At your disposal for clarification.
 -----------------
 
 ## Start with a new translation
-{: .bg-green-300}
 
 If you cannot find support for the language you wish to translate on Vidtuber, 
 please make a request for new language support by contacting the application developer 
@@ -81,7 +71,6 @@ Thanks!
 -----------------
 
 ## General rules
-{: .bg-green-300}
 
 - Variables such as `{0}`, `{1}`, `{dir}`, `{0:.1f}`, etc should be copied exactly as they appear in the translation box.
 - Leave keyboard accelerator shortcuts such as `\tCtrl+O`, `\tCtrl+Shift+H`, `\tDEL`, `\tShift+DEL`, etc as they appear in the translation box.
@@ -92,7 +81,6 @@ Thanks!
 -----------------
 
 ## Useful Resources
-{: .bg-green-300}
 - [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
 - [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
 - [PO file format](https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html)

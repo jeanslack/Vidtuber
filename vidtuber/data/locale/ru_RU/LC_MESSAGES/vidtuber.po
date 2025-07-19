@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-17 23:46+0200\n"
-"PO-Revision-Date: 2025-07-17 21:22+0300\n"
+"PO-Revision-Date: 2025-07-18 21:06+0300\n"
 "Last-Translator: ChourS <ChourS2008@yandex.ru>\n"
-"Language: ru_RU\n"
 "Language-Team: Chour <ChourS2008@yandex.ru>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.10.3\n"
+"X-Generator: Poedit 3.6\n"
 
 #: ../../gui_app.py:198
 #, python-brace-format
@@ -165,11 +166,11 @@ msgstr "Темы значков"
 
 #: ../../vt_dialogs/settings_vidtuber.py:163
 msgid "At the top of window (default)"
-msgstr "Вверху (по умолчанию)"
+msgstr "В верхней части окна (по умолчанию)"
 
 #: ../../vt_dialogs/settings_vidtuber.py:164
 msgid "At the bottom of window"
-msgstr "Внизу"
+msgstr "В нижней части окна"
 
 #: ../../vt_dialogs/settings_vidtuber.py:165
 msgid "At the right of window"
@@ -298,7 +299,7 @@ msgstr "Vidtuber - Предупреждение!"
 #: ../../vt_dialogs/wizard_dlg.py:518 ../../vt_dialogs/wizard_dlg.py:544
 #, python-brace-format
 msgid "{} location"
-msgstr "{} исполняемый файл"
+msgstr "{} локация"
 
 #: ../../vt_dialogs/settings_ytdlp.py:65
 msgid "Workarounds"
@@ -347,7 +348,7 @@ msgstr "Где вы предпочитаете сохранять загрузк
 
 #: ../../vt_dialogs/settings_ytdlp.py:126
 msgid "Auto-create subdirectories when downloading playlists"
-msgstr "Автоматически создавать подкаталоги при загрузке плейлистов"
+msgstr "Автоматическое создание подкаталогов при загрузке плейлистов"
 
 # Изменил 14-5-2021
 #: ../../vt_dialogs/settings_ytdlp.py:131
@@ -371,7 +372,7 @@ msgstr ""
 
 #: ../../vt_dialogs/settings_ytdlp.py:149
 msgid "External downloader executable path"
-msgstr "Исполняемый путь внешнего загрузчика"
+msgstr "Путь к исполняемому файлу внешнего загрузчика"
 
 #: ../../vt_dialogs/settings_ytdlp.py:157
 msgid "External downloader arguments"
@@ -410,7 +411,7 @@ msgstr "Параметры гео-ограничения"
 
 #: ../../vt_dialogs/settings_ytdlp.py:199
 msgid "Use the following options to try bypassing geographic restriction."
-msgstr "Используйте следующие параметры, чтобы попытаться обойти географические ограничения."
+msgstr "Используйте следующие опции, чтобы попытаться обойти географические ограничения."
 
 #: ../../vt_dialogs/settings_ytdlp.py:206
 msgid "Geo verification proxy"
@@ -420,11 +421,11 @@ msgstr "Прокси-сервер для геопроверки"
 msgid "URL of the proxy to use for IP address verification on geo-restricted sites."
 msgstr ""
 "URL-адрес прокси-сервера, который будет использоваться для проверки IP-адреса на сайтах \n"
-"с географическим ограничением."
+"с географическим ограничением доступа."
 
 #: ../../vt_dialogs/settings_ytdlp.py:215
 msgid "Geo bypass"
-msgstr "Геообход"
+msgstr "Гео обход"
 
 #: ../../vt_dialogs/settings_ytdlp.py:219
 msgid "Bypass geographic restriction via faking X-Forwarded-For HTTP header. One of \"default\" (only when known to be useful), or \"never\""
@@ -452,7 +453,7 @@ msgstr "Гео-ограничение"
 
 #: ../../vt_dialogs/settings_ytdlp.py:254
 msgid "Authentication with login credentials"
-msgstr "Аутентификация с использованием учётных данных для входа"
+msgstr "Аутентификация с использованием учетных данных для входа в систему"
 
 #: ../../vt_dialogs/settings_ytdlp.py:257
 msgid ""
@@ -461,7 +462,7 @@ msgid ""
 "cookie file for authentication (see cookies tab)."
 msgstr ""
 "Если вам необходимо войти в систему, используя свои учетные данные, обратите внимание, \n"
-"что вход с паролем не поддерживается для некоторых веб-сайтов (например, YouTube, CloudFlare).\n"
+"что вход с паролем не поддерживается на некоторых веб-сайтах (например, YouTube, CloudFlare).\n"
 "В этом случае вы можете включить файл cookie для аутентификации (см. вкладку «cookies»)."
 
 #: ../../vt_dialogs/settings_ytdlp.py:266
@@ -524,7 +525,7 @@ msgstr "Файл cookie"
 
 #: ../../vt_dialogs/settings_ytdlp.py:331
 msgid "File name from where cookies should be read and dumped to"
-msgstr "Имя файла, из которого файлы cookie должны быть прочитаны и сохранены"
+msgstr "Имя файла, из которого файлы cookie должны быть прочитаны и отправлены в"
 
 #: ../../vt_dialogs/settings_ytdlp.py:334
 msgid "Browse"
@@ -686,7 +687,7 @@ msgstr "Включить автоматически созданные субт�
 
 #: ../../vt_dialogs/subtitles_editor.py:117
 msgid "Embed subtitles into video file"
-msgstr "Вставить субтитры в видеофайл"
+msgstr "Вставлять субтитры в видеофайл"
 
 #: ../../vt_dialogs/subtitles_editor.py:120
 msgid "Download subtitles only (do not include audio and video)"
@@ -710,13 +711,13 @@ msgid ""
 "requested languages, e.g. \"all, -it.*, -nl.*\", -fr.*\" will download all\n"
 "subtitles except those in Italian, Dutch and French."
 msgstr ""
-"Введите в текстовом поле сбоку один или несколько языковых кодов субтитров, \n"
-"которые нужно загрузить, через запятую, например: «en, ja, ar» для английского, \n"
+"Введите в текстовом поле сбоку один или несколько языковых кодов субтитров \n"
+"для загрузки через запятую, например: «en, ja, ar» для английского, \n"
 "японского и арабского языков соответственно.\n"
 "\n"
 "Вы можете использовать regex (регулярное выражение), например. «en.*, ja, ar.*», \n"
-"где перед звездочкой стоит точка, позволит вам скачать все, что связано \n"
-"с субтитрами на определенном языке.\n"
+"где перед звёздочкой стоит точка, позволит вам скачать всё, что связано \n"
+"с субтитрами на определённом языке.\n"
 "\n"
 "Вы можете добавить к коду языка префикс «-», чтобы исключить его из \n"
 "запрошенных языков, например «all, -it.*, -nl.*», -fr.*» загрузит все субтитры, \n"
@@ -728,11 +729,11 @@ msgstr "Стоп"
 
 #: ../../vt_dialogs/wizard_dlg.py:61
 msgid "Please take a moment to set up the application"
-msgstr "Пожалуйста, найдите время, чтобы настроить приложение"
+msgstr "Пожалуйста, уделите немного времени для настройки приложения"
 
 #: ../../vt_dialogs/wizard_dlg.py:62
 msgid "Click the \"Next\" button to get started"
-msgstr "Нажмите кнопку \"Next\", чтобы начать"
+msgstr "Нажмите кнопку \"Следующий\", чтобы начать настройку"
 
 #: ../../vt_dialogs/wizard_dlg.py:77
 msgid "Welcome to the Vidtuber Wizard!"
@@ -741,7 +742,7 @@ msgstr "Добро пожаловать в \"Мастер Vidtuber\"!"
 #: ../../vt_dialogs/wizard_dlg.py:126
 #, python-brace-format
 msgid "Specifying {0} executable\n"
-msgstr "Укажите {0} исполняемые файлы\n"
+msgstr "Укажите {0} исполняемого файла\n"
 
 #: ../../vt_dialogs/wizard_dlg.py:128 ../../vt_dialogs/wizard_dlg.py:289
 #, python-brace-format
@@ -758,21 +759,23 @@ msgid ""
 "If you want to use a version of {0} located on your filesystem\n"
 "but not installed on your operating system, click the «Locate» button."
 msgstr ""
-"Если вы хотите использовать версию{0} расположенную в вашей файловой системе\n"
-"но она не установлена в вашей операционной системе, нажмите кнопку «Найти»."
+"Если вы хотите использовать версию {0}, расположенную в вашей файловой системе,\n"
+"но не установленную в вашей операционной системе, нажмите кнопку «Найти»."
 
 #: ../../vt_dialogs/wizard_dlg.py:158 ../../vt_dialogs/wizard_dlg.py:323
 msgid "Auto-detection"
-msgstr "Автоматическое определение"
+msgstr "Автоматическое обнаружение"
 
 #: ../../vt_dialogs/wizard_dlg.py:160 ../../vt_dialogs/wizard_dlg.py:325
 msgid "Locate"
-msgstr "Найдите"
+msgstr "Определить местонахождение"
 
 #: ../../vt_dialogs/wizard_dlg.py:244 ../../vt_dialogs/wizard_dlg.py:396
 #, python-brace-format
 msgid "'{}' is not installed on your computer. Install it or indicate another location by clicking the 'Locate' button."
-msgstr "'{}' не установлен на вашем компьютере. Установите его или укажите другое место, нажав кнопку 'Найти'."
+msgstr ""
+"'{}' не установлен на вашем компьютере. Установите его или укажите другое местоположение, \n"
+"нажав кнопку 'Найти'."
 
 #: ../../vt_dialogs/wizard_dlg.py:257
 #, python-brace-format
@@ -795,7 +798,7 @@ msgstr "Для выполнения различных задач постобр
 
 #: ../../vt_dialogs/wizard_dlg.py:375
 msgid "Click the \"Next\" button"
-msgstr "Нажмите кнопку \"Next\""
+msgstr "Нажмите кнопку \"Следующий\""
 
 #: ../../vt_dialogs/wizard_dlg.py:416
 msgid ""
@@ -821,7 +824,7 @@ msgstr ""
 
 #: ../../vt_dialogs/wizard_dlg.py:584
 msgid "Wizard completed successfully!\n"
-msgstr "Помощник успешно завершен!\n"
+msgstr "Мастер успешно завершил свою работу!\n"
 
 #: ../../vt_dialogs/wizard_dlg.py:585
 msgid "Remember that you can always change these settings later, through the Preferences dialog."
@@ -831,7 +834,6 @@ msgstr "Помните, что вы всегда можете изменить �
 msgid "Thank You!"
 msgstr "Благодарю вас!"
 
-# сделал одинарные кавычки
 #: ../../vt_dialogs/wizard_dlg.py:588
 msgid "To exit click the \"Finish\" button"
 msgstr "Для выхода нажмите кнопку \"Завершено\""
@@ -920,8 +922,8 @@ msgid "Paste\tCtrl+V"
 msgstr "Вставить\tCtrl+V"
 
 #: ../../vt_main/main_frame.py:266
-msgid "Paste the copied URLs to clipboard"
-msgstr "Вставьте скопированные URL-адреса в буфер обмена"
+msgid "Paste the copied URLs from clipboard"
+msgstr "Вставьте скопированные URL-адреса из буфера обмена"
 
 #: ../../vt_main/main_frame.py:268 ../../vt_panels/textdrop.py:190
 #: ../../vt_panels/textdrop.py:209
@@ -967,7 +969,7 @@ msgstr "Инструменты"
 
 #: ../../vt_main/main_frame.py:289
 msgid "About yt-dlp"
-msgstr "О yt-dlp"
+msgstr "Об yt-dlp"
 
 #: ../../vt_main/main_frame.py:290
 msgid "Shows useful information about yt-dlp"
@@ -999,7 +1001,7 @@ msgstr "Просмотр сообщений log-журнала"
 
 #: ../../vt_main/main_frame.py:307
 msgid "Issue tracker"
-msgstr "Сообщить о проблеме"
+msgstr "Отслеживание проблем"
 
 #: ../../vt_main/main_frame.py:311
 msgid "Contribute to the project"
@@ -1023,7 +1025,7 @@ msgstr "Пожертвуйте разработчику приложения"
 
 #: ../../vt_main/main_frame.py:321
 msgid "Other projects by the developer"
-msgstr ""
+msgstr "Другие проекты разработчика"
 
 #: ../../vt_main/main_frame.py:338
 msgid "About Vidtuber"
@@ -1048,13 +1050,13 @@ msgid ""
 "Latest version available on github.com: {1}\n"
 "{2}"
 msgstr ""
-"- Используемая в настоящее время исполняемая версия: {0}\n"
+"- Используемая в настоящее время версия: {0}\n"
 "Последняя версия доступна на github.com: {1}\n"
 "{2}"
 
 #: ../../vt_main/main_frame.py:425
 msgid "Vidtuber - About «yt-dlp»"
-msgstr "Vidtuber - About «yt-dlp»"
+msgstr "Vidtuber - Об «yt-dlp»"
 
 #: ../../vt_main/main_frame.py:466
 msgid "Some changes require restarting the application."
@@ -1080,8 +1082,8 @@ msgid ""
 "No publications found!\n"
 "ERROR: tag_name"
 msgstr ""
-"Публикаций не найдено!\n"
-"ОШИБКА: tag_name"
+"No publications found!\n"
+"ERROR: tag_name"
 
 #: ../../vt_main/main_frame.py:597
 #, python-brace-format
@@ -1112,9 +1114,10 @@ msgstr "Перейти к следующей панели"
 msgid "Next"
 msgstr "Вперед"
 
+# Особенность русской фразы
 #: ../../vt_main/main_frame.py:670
 msgid "yt-dlp options setting"
-msgstr "настройка параметров yt-dlp"
+msgstr "Настройка параметров yt-dlp"
 
 #: ../../vt_main/main_frame.py:671
 msgid "Options"
@@ -1142,7 +1145,7 @@ msgstr "Просмотр последнего log-журнала"
 
 #: ../../vt_main/main_frame.py:779
 msgid "Vidtuber - Downloader Message Monitoring"
-msgstr "Vidtuber - Мониторинг сообщений загрузчика"
+msgstr "Vidtuber - Контроль сообщений загрузчика"
 
 # русское сокращение последнего слова
 #: ../../vt_main/main_frame.py:849
@@ -1156,7 +1159,7 @@ msgstr "Vidtuber - Выключение!"
 
 #: ../../vt_main/main_frame.py:857
 msgid "Error while shutting down. Please see file log for details."
-msgstr "Ошибка при выключении. Подробности смотрите в журнале файлов."
+msgstr "Ошибка при выключении. Подробности смотрите в журнале log-файлов."
 
 # русское сокращение последнего слова
 #: ../../vt_main/main_frame.py:869
@@ -1171,7 +1174,9 @@ msgstr "Vidtuber - Выход!"
 #: ../../vt_panels/formatcode_exec.py:98 ../../vt_panels/formatcode_lib.py:98
 #: ../../vt_panels/youtubedl_ui.py:117
 msgid "At least one \"Format Code\" must be checked for each URL selected in green."
-msgstr "По крайней мере один \" Код формата \" должен быть проверен для каждого URL, выделенного зеленым цветом."
+msgstr ""
+"Для каждого URL-адреса, выделенного зеленым цветом, должен быть отмечен \n"
+"хотя бы один \"Код формата\"."
 
 #: ../../vt_panels/formatcode_exec.py:129 ../../vt_panels/formatcode_lib.py:129
 msgid "Format Code"
@@ -1196,9 +1201,7 @@ msgstr "Не объединять никакие файлы"
 
 #: ../../vt_panels/formatcode_exec.py:140 ../../vt_panels/formatcode_lib.py:145
 msgid "Download only the best selected qualities"
-msgstr ""
-"Скачивайте только лучшие \n"
-"отобранные качества"
+msgstr "Загружайте только вариант с наилучшим качеством"
 
 #: ../../vt_panels/formatcode_lib.py:131
 msgid "Title"
@@ -1344,7 +1347,7 @@ msgstr "Скачать код формата"
 
 #: ../../vt_panels/youtubedl_ui.py:200
 msgid "Mode:"
-msgstr ""
+msgstr "Режим:"
 
 #: ../../vt_panels/youtubedl_ui.py:205
 msgid "Include playlists"
@@ -1352,7 +1355,7 @@ msgstr "Включить плейлисты"
 
 #: ../../vt_panels/youtubedl_ui.py:213
 msgid "Subtitles:"
-msgstr ""
+msgstr "Субтитры:"
 
 #: ../../vt_panels/youtubedl_ui.py:225
 msgid "Quality settings"
@@ -1360,7 +1363,7 @@ msgstr "Настройки качества"
 
 #: ../../vt_panels/youtubedl_ui.py:237
 msgid "When not available, the chosen video resolution will be replaced with the closest one"
-msgstr "Когда недоступно, выбранное разрешение видео будет заменено ближайшим"
+msgstr "Если оно недоступно, выбранное разрешение видео будет заменено на наиболее близкое к нему"
 
 #: ../../vt_panels/youtubedl_ui.py:241
 msgid "Video format:"
@@ -1377,7 +1380,7 @@ msgid ""
 "\n"
 "{1}"
 msgstr ""
-"Не удалось получить коды формата {0}, неподдерживаемый URL-адрес:\n"
+"Не удалось получить коды формата {0}, не поддерживаемый URL-адрес:\n"
 "\n"
 "{1}"
 
@@ -1399,9 +1402,8 @@ msgid ""
 "Missing executable: «{0}».\n"
 "Before continuing, be sure to make the correct settings in the preferences dialog."
 msgstr ""
-"Отсутствующий исполняемый файл: «{0}».\n"
+"Отсутствует исполняемый файл: «{0}».\n"
 "Прежде чем продолжить, убедитесь в правильности настроек в диалоговом окне настроек."
 
 #~ msgid "Some text boxes are still incomplete"
 #~ msgstr "Некоторые текстовые поля все еще не заполнены"
-

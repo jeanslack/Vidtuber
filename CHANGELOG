@@ -7,12 +7,13 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Fri, 18 July 2025 V.1.1.2
+Sat, 19 July 2025 V.1.1.2
 
   * Improved UI.
   * Updated translation catalogs to Vidtuber v1.1.2
   * Updated Russian language, thanks to ChourS .
   * Updated Italian language by jeanslack.
+  * Added Vidtuber Slackbuild to https://slackbuilds.org/
 
 +------------------------------------+
 Wed, 16 July 2025 V.1.1.1

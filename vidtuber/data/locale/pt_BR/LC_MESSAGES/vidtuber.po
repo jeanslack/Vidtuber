@@ -903,7 +903,7 @@ msgid "Paste\tCtrl+V"
 msgstr ""
 
 #: ../../vt_main/main_frame.py:266
-msgid "Paste the copied URLs to clipboard"
+msgid "Paste the copied URLs from clipboard"
 msgstr ""
 
 #: ../../vt_main/main_frame.py:268 ../../vt_panels/textdrop.py:190
