@@ -55,6 +55,10 @@ downloading and installing these additional dependencies.
 
 Please read [INSTALL](https://github.com/jeanslack/Vidtuber/blob/main/INSTALL) file.
 
+## DOCUMENTATION
+
+The documentation is already included in these sources in PDF format: [docs/UserGuide](https://github.com/jeanslack/Vidtuber/tree/main/docs/UserGuide)
+
 ## TRANSLATIONS
 
 ### Help translate the program into other languages
