@@ -8,16 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-17 23:46+0200\n"
+"POT-Creation-Date: 2025-07-23 00:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.17.0\n"
 
 #: ../../gui_app.py:198
+#, python-brace-format
 msgid ""
 "Unexpected error while deleting file contents:\n"
 "\n"
@@ -44,6 +45,7 @@ msgid ""
 msgstr ""
 
 #: ../../vt_dialogs/check_new_version.py:95
+#, python-brace-format
 msgid ""
 "\n"
 "\n"
@@ -91,10 +93,12 @@ msgid "WARNING: The selected URL does not refer to a playlist. Only lines marked
 msgstr ""
 
 #: ../../vt_dialogs/settings_vidtuber.py:76
+#, python-brace-format
 msgid "Specify the {0} executable"
 msgstr ""
 
 #: ../../vt_dialogs/settings_vidtuber.py:79
+#, python-brace-format
 msgid ""
 "Here you can provide the path to the latest version of the {0} executable, this allows you\n"
 "to always keep it up to date."
@@ -270,6 +274,7 @@ msgstr ""
 #: ../../vt_dialogs/settings_vidtuber.py:544
 #: ../../vt_dialogs/settings_vidtuber.py:611 ../../vt_dialogs/wizard_dlg.py:213
 #: ../../vt_dialogs/wizard_dlg.py:518 ../../vt_dialogs/wizard_dlg.py:544
+#, python-brace-format
 msgid "{} location"
 msgstr ""
 
@@ -353,6 +358,7 @@ msgid "Using a proxy server"
 msgstr ""
 
 #: ../../vt_dialogs/settings_ytdlp.py:175
+#, python-brace-format
 msgid ""
 "Use the specified HTTP/HTTPS/SOCKS proxy. To enable SOCKS proxy, specify a proper\n"
 "scheme, e.g.\t{}\n"
@@ -455,6 +461,7 @@ msgid "Using cookies to gain access to websites"
 msgstr ""
 
 #: ../../vt_dialogs/settings_ytdlp.py:304
+#, python-brace-format
 msgid ""
 "Here you can pass your `Netscape HTTP Cookie File` in order to access websites that require authentication.\n"
 "If you don't know how to obtain this type of file, you can let the application try to extract it from your browser\n"
@@ -678,16 +685,19 @@ msgid "Welcome to the Vidtuber Wizard!"
 msgstr ""
 
 #: ../../vt_dialogs/wizard_dlg.py:126
+#, python-brace-format
 msgid "Specifying {0} executable\n"
 msgstr ""
 
 #: ../../vt_dialogs/wizard_dlg.py:128 ../../vt_dialogs/wizard_dlg.py:289
+#, python-brace-format
 msgid ""
 "If you have already installed {0} on your operating system,\n"
 "click the «Auto-detection» button."
 msgstr ""
 
 #: ../../vt_dialogs/wizard_dlg.py:131 ../../vt_dialogs/wizard_dlg.py:292
+#, python-brace-format
 msgid ""
 "If you want to use a version of {0} located on your filesystem\n"
 "but not installed on your operating system, click the «Locate» button."
@@ -702,10 +712,12 @@ msgid "Locate"
 msgstr ""
 
 #: ../../vt_dialogs/wizard_dlg.py:244 ../../vt_dialogs/wizard_dlg.py:396
+#, python-brace-format
 msgid "'{}' is not installed on your computer. Install it or indicate another location by clicking the 'Locate' button."
 msgstr ""
 
 #: ../../vt_dialogs/wizard_dlg.py:257
+#, python-brace-format
 msgid ""
 "Vidtuber already seems to include {}.\n"
 "\n"
@@ -775,6 +787,7 @@ msgid "Finish"
 msgstr ""
 
 #: ../../vt_io/checkup.py:43
+#, python-brace-format
 msgid ""
 "Output folder does not exist:\n"
 "\n"
@@ -957,6 +970,7 @@ msgid "Help"
 msgstr ""
 
 #: ../../vt_main/main_frame.py:422
+#, python-brace-format
 msgid ""
 "- Executable version currently used: {0}\n"
 "Latest version available on github.com: {1}\n"
@@ -972,6 +986,7 @@ msgid "Some changes require restarting the application."
 msgstr ""
 
 #: ../../vt_main/main_frame.py:471
+#, python-brace-format
 msgid ""
 "{0}\n"
 "\n"
@@ -989,6 +1004,7 @@ msgid ""
 msgstr ""
 
 #: ../../vt_main/main_frame.py:597
+#, python-brace-format
 msgid "A new release is available - v.{0}\n"
 msgstr ""
 
@@ -1049,6 +1065,7 @@ msgid "Vidtuber - Downloader Message Monitoring"
 msgstr ""
 
 #: ../../vt_main/main_frame.py:849
+#, python-brace-format
 msgid "The system will turn off in {0} seconds"
 msgstr ""
 
@@ -1061,6 +1078,7 @@ msgid "Error while shutting down. Please see file log for details."
 msgstr ""
 
 #: ../../vt_main/main_frame.py:869
+#, python-brace-format
 msgid "Exiting the application in {0} seconds"
 msgstr ""
 
@@ -1119,6 +1137,7 @@ msgid "Size"
 msgstr ""
 
 #: ../../vt_panels/formatcode_lib.py:249
+#, python-brace-format
 msgid ""
 "ERROR: Unable to get format codes.\n"
 "\n"
@@ -1264,6 +1283,7 @@ msgid "Audio format:"
 msgstr ""
 
 #: ../../vt_panels/youtubedl_ui.py:354
+#, python-brace-format
 msgid ""
 "Unable to get format codes on {0}, unsupported URL:\n"
 "\n"
@@ -1283,6 +1303,7 @@ msgid "The URLs contain channels. Are you sure you want to continue?"
 msgstr ""
 
 #: ../../vt_panels/youtubedl_ui.py:579 ../../vt_panels/youtubedl_ui.py:792
+#, python-brace-format
 msgid ""
 "Missing executable: «{0}».\n"
 "Before continuing, be sure to make the correct settings in the preferences dialog."

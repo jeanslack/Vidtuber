@@ -27,7 +27,7 @@ This file is part of Vidtuber.
 PRGNAME = 'vidtuber'
 RELNAME = 'Vidtuber'
 VERSION = '1.1.2'
-RELSTATE = 'not released'
+RELSTATE = 'released'
 COPYRIGHT = '2023-2025'
 WEBSITE = 'http://jeanslack.github.io/Vidtuber/'
 AUTHOR = ('Gianluca Pernigotto', '(aka jeanslack)')
