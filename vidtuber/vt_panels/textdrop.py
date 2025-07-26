@@ -169,8 +169,25 @@ class Url_DnD_Panel(wx.Panel):
         self.text_path_save.SetToolTip(_("Destination folder of downloads"))
 
         # ---------------------- Binding (EVT) ----------------------#
+        self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select, self.urlctrl)
+        self.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.on_deselect, self.urlctrl)
         self.Bind(wx.EVT_CONTEXT_MENU, self.onContext)
     # ---------------------------------------------------------
+
+    def on_select(self, event):
+        """
+        Selecting line with mouse or up/down keyboard buttons
+        """
+        self.parent.delete.Enable(True)
+    # ----------------------------------------------------------------------
+
+    def on_deselect(self, event):
+        """
+        Event to deselect a line when clicking
+        in an empty space of the control list
+        """
+        self.parent.delete.Enable(False)
+    # ----------------------------------------------------------------------
 
     def onContext(self, event):
         """
@@ -187,8 +204,18 @@ class Url_DnD_Panel(wx.Panel):
         # build the menu
         menu = wx.Menu()
         menu.Append(popupID2, _("Paste\tCtrl+V"))
-        menu.Append(popupID1, _("Remove selected URL\tDEL"))
-        menu.Append(popupID3, _("Clear list\tShift+DEL"))
+        delurl = menu.Append(popupID1, _("Remove selected URL\tDEL"))
+        clearall = menu.Append(popupID3, _("Clear list\tShift+DEL"))
+        # Enabling the correct items
+        if self.parent.data_url:
+            clearall.Enable(True)
+            if not self.urlctrl.GetFirstSelected() == -1:  # None:
+                delurl.Enable(True)
+            else:
+                delurl.Enable(False)
+        else:
+            delurl.Enable(False)
+            clearall.Enable(False)
         # show the popup menu
         self.PopupMenu(menu)
         menu.Destroy()
@@ -233,6 +260,8 @@ class Url_DnD_Panel(wx.Panel):
         self.parent.statusbar_msg(_('Ready'), None)
         self.parent.data_url = data.copy()
         self.parent.destroy_orphaned_window()
+        self.parent.clearall.Enable(True)
+        self.parent.delete.Enable(True)
         self.parent.toolbar.EnableTool(25, True)
     # -----------------------------------------------------------------------
 
@@ -263,6 +292,8 @@ class Url_DnD_Panel(wx.Panel):
         self.urlctrl.DeleteAllItems()
         self.parent.destroy_orphaned_window()
         self.parent.toolbar.EnableTool(25, False)
+        self.parent.clearall.Enable(False)
+        self.parent.delete.Enable(False)
         del self.parent.data_url[:]
     # -----------------------------------------------------------
 

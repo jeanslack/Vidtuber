@@ -7,14 +7,19 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Tue, 22 July 2025 V.1.1.2
+Sat, 26 July 2025 V.1.1.2
 
   * Improved UI.
   * Updated translation catalogs to Vidtuber v1.1.2
   * Updated Russian language, thanks to ChourS .
   * Updated Italian language by jeanslack.
   * Added Vidtuber Slackbuild to https://slackbuilds.org/
-  * Fix compatibility issues between versions of the Python requests.
+  * Improved babelutils.py file for update translation catalogs.
+  * Fixed compatibility issues between versions of the Python requests.
+  * Fixed "Edit" menu subitems according to user actions.
+  * Fixed the popup menu (aka context menu) items when right-clicking in the
+    "List of URL's" panel. Enabling/disabling items depends on user actions.
+  * Added events for selecting/deselecting items on drag N drop panel.
 
 +------------------------------------+
 Wed, 16 July 2025 V.1.1.1

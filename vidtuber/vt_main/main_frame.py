@@ -268,9 +268,11 @@ class MainFrame(wx.Frame):
         dscrp = (_("Remove selected URL\tDEL"),
                  _("Remove the selected URL from the list"))
         self.delete = editButton.Append(wx.ID_REMOVE, dscrp[0], dscrp[1])
+        self.delete.Enable(False)
         dscrp = (_("Clear list\tShift+DEL"),
                  _("Clear the URL list"))
         self.clearall = editButton.Append(wx.ID_CLEAR, dscrp[0], dscrp[1])
+        self.clearall.Enable(False)
         editButton.AppendSeparator()
         self.setupItem = editButton.Append(wx.ID_PREFERENCES,
                                            _("Preferences\tCtrl+P"),
@@ -729,10 +731,11 @@ class MainFrame(wx.Frame):
         self.ProcessPanel.Hide()
         self.ytDownloader.Hide()
         self.textDnDTarget.Show()
-        (self.delete.Enable(True),
-         self.paste.Enable(True),
-         self.clearall.Enable(True)
-         )
+        self.paste.Enable(True)
+        if self.data_url:
+            self.clearall.Enable(True)
+        if not self.textDnDTarget.urlctrl.GetFirstSelected() == -1:
+            self.delete.Enable(True)
         self.toolbar.EnableTool(21, True)
         [self.toolbar.EnableTool(x, False) for x in (20, 23, 24)]
         self.toolbar.Realize()
@@ -768,14 +771,13 @@ class MainFrame(wx.Frame):
             [self.toolbar.EnableTool(x, True) for x in (20, 23)]
 
         elif args[0] == 'YouTube Downloader':
-            (self.delete.Enable(False),
-             self.paste.Enable(False),
-             self.clearall.Enable(False),
-             self.setupItem.Enable(False)
-             )
+            self.setupItem.Enable(False)
             [self.toolbar.EnableTool(x, False) for x in (20, 21, 23, 26)]
             self.toolbar.EnableTool(24, True)
 
+        self.delete.Enable(False)
+        self.paste.Enable(False)
+        self.clearall.Enable(False)
         self.SetTitle(_('Vidtuber - Downloader Message Monitoring'))
         self.textDnDTarget.Hide()
         self.ytDownloader.Hide()
