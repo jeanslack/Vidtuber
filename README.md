@@ -13,11 +13,11 @@ written in [Python3](https://www.python.org/) using the
 
 ### Ubuntu PPA
 
-This PPA currently publishes packages for Ubuntu, including official and
+This PPA currently publishes packages for [Ubuntu](https://ubuntu.com/), including official and
 derivative distributions such as Ubuntu, Xubuntu, Kubuntu, Lubuntu, LinuxMint,
 etc.
 
-To install Vidtuber add this PPA to your system:
+To install Vidtuber add this [PPA](https://launchpad.net/~jeanslack/+archive/ubuntu/vidtuber) to your system:
 
 ```
 sudo add-apt-repository ppa:jeanslack/vidtuber
