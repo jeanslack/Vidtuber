@@ -31,7 +31,7 @@ Vidtuber is available on the [SlackBuilds.org](https://slackbuilds.org/) ("Sbo")
 
 ### Devuan / Debian
 
-A pre-compiled, architecture-independent .deb package is available: [vidtuber_1.1.1-1_all.deb](https://github.com/jeanslack/Vidtuber/releases/download/v1.1.1/vidtuber_1.1.1-1_all.deb)
+A pre-compiled, architecture-independent .deb package is available on [Latest Releases](https://github.com/jeanslack/Vidtuber/releases/latest)
 
 Tested on:
 
@@ -40,7 +40,7 @@ Tested on:
 
 ### MS Windows
 
-Portable edition available: [Vidtuber-v1.1.1_x86_64-portable.7z](https://github.com/jeanslack/Vidtuber/releases/download/v1.1.1/Vidtuber-v1.1.1_x86_64-portable.7z)
+Portable edition available on [Latest releases](https://github.com/jeanslack/Vidtuber/releases/latest)
 
 Minimum requirements:
 
