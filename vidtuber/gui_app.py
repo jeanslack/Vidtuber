@@ -29,10 +29,7 @@ import sys
 from shutil import which, rmtree
 import builtins
 import wx
-try:
-    from wx.svg import SVGimage
-except ModuleNotFoundError:
-    pass
+from wx.svg import SVGimage
 from vidtuber.vt_sys.argparser import arguments
 from vidtuber.vt_sys.configurator import DataSource
 from vidtuber.vt_sys import app_const as appC

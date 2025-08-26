@@ -7,4 +7,4 @@
 pypubsub
 requests
 yt-dlp[default]
-wxpython>=4.0.7; platform_system == "Windows" or platform_system == "Darwin"
+wxpython>=4.1.0; platform_system == "Windows" or platform_system == "Darwin"

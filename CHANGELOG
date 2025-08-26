@@ -7,6 +7,21 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
+Tue, 26 Aug 2025 V.1.1.5
+
+  * Fixed "Download by format code" merging file issue. This fix adds
+    `--audio-multistreams` and `--video-multistreams` arguments when the user
+    check "Merge all files into a single file" option (now enabled by default).
+  * Fixed the format codes of mhtml storyboard files, which are always
+    downloaded as separate files.
+  * Drop support for wxPython == 4.0.7, now require only wxPython >= 4.1.0 .
+  * Removed obsolete codes for wxPython v4.0.7.
+  * Drop support for Ubuntu Jammy.
+  * Added a confirmation dialog with ability to edit the command-line arguments
+    on the fly.
+  * Improvements to writing user settings preferences when closing the app.
+
++------------------------------------+
 Sat, 26 July 2025 V.1.1.2
 
   * Improved UI.

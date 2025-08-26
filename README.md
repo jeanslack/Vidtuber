@@ -13,8 +13,9 @@ written in [Python3](https://www.python.org/) using the
 
 ### Ubuntu PPA
 
-This PPA currently publishes packages for [Ubuntu](https://ubuntu.com/) flavors, including [official derivatives](https://ubuntu.com/desktop/flavors) and
-unofficial derivative distributions such as LinuxMint, etc.
+This PPA currently publishes packages for [Ubuntu](https://ubuntu.com/), including official and
+derivative distributions such as Ubuntu, Xubuntu, Kubuntu, Lubuntu, LinuxMint,
+etc.
 
 To install Vidtuber add this [PPA](https://launchpad.net/~jeanslack/+archive/ubuntu/vidtuber) to your system:
 
@@ -26,11 +27,11 @@ sudo apt install vidtuber
 
 ### Slackware
 
-Vidtuber is available on the [SlackBuilds.org](https://slackbuilds.org/) repository, a collection of third-party SlackBuild scripts to build Slackware packages from sources.
+Vidtuber is available on the [SlackBuilds.org](https://slackbuilds.org/) ("Sbo") repository, a collection of third-party SlackBuild scripts to build Slackware packages from sources.
 
 ### Devuan / Debian
 
-A pre-compiled, architecture-independent DEB package is available on the [Latest Releases](https://github.com/jeanslack/Vidtuber/releases/latest) repository.
+A pre-compiled, architecture-independent .deb package is available on [Latest Releases](https://github.com/jeanslack/Vidtuber/releases/latest)
 
 Tested on:
 
@@ -39,14 +40,14 @@ Tested on:
 
 ### MS Windows
 
-A portable edition is available on the [Latest releases](https://github.com/jeanslack/Vidtuber/releases/latest) repository.
+Portable edition available on [Latest releases](https://github.com/jeanslack/Vidtuber/releases/latest)
 
 Minimum requirements:
 
 - Microsoft Windows 10
 - x86_64 Architecture
 
-For space reasons, this portable edition does not include the FFmpeg executables neither yt-dlp executable. 
+For space reasons, this portable edition does not include the FFmpeg nor yt-dlp executables. 
 Please read the README.txt file included in the 7-zip archive for more information about
 downloading and installing these additional dependencies.
 

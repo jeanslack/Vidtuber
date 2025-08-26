@@ -49,7 +49,7 @@ classifiers = [
     "Topic :: Multimedia :: Video"
 ]
 dependencies = [
-    "wxpython>=4.0.7;platform_system == 'Windows' or platform_system == 'Darwin'",
+    "wxpython>=4.1.0;platform_system == 'Windows' or platform_system == 'Darwin'",
     "pypubsub>=4.0.3",
     "requests",
     "yt-dlp"

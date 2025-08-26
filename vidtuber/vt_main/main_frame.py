@@ -25,7 +25,6 @@ This file is part of Vidtuber.
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
-import sys
 import webbrowser
 import wx
 from pubsub import pub
@@ -177,6 +176,10 @@ class MainFrame(wx.Frame):
                          self.ytDownloader.panel_cod.fcode.GetColumnWidth(3),
                          ]
         sett['fcode_column_width'] = fcodecolwidth
+        val = self.ytDownloader.panel_cod.ckbx_mrg.GetValue()
+        sett['merge_single_file'] = val
+        val = self.ytDownloader.panel_cod.ckbx_best.GetValue()
+        sett['only_best_quality'] = val
         confmanager.write_options(**sett)
     # ------------------------------------------------------------------#
 
@@ -642,19 +645,11 @@ class MainFrame(wx.Frame):
                     int(self.appdata['toolbarsize']))
         self.toolbar.SetToolBitmapSize(bmp_size)
 
-        if 'wx.svg' in sys.modules:  # available only in wx version 4.1 to up
-            bmpback = get_bmp(self.icons['previous'], bmp_size)
-            bmpnext = get_bmp(self.icons['next'], bmp_size)
-            bmpydl = get_bmp(self.icons['download'], bmp_size)
-            bmpstop = get_bmp(self.icons['stop'], bmp_size)
-            bmpopt = get_bmp(self.icons['options'], bmp_size)
-
-        else:
-            bmpback = wx.Bitmap(self.icons['previous'], wx.BITMAP_TYPE_ANY)
-            bmpnext = wx.Bitmap(self.icons['next'], wx.BITMAP_TYPE_ANY)
-            bmpydl = wx.Bitmap(self.icons['download'], wx.BITMAP_TYPE_ANY)
-            bmpstop = wx.Bitmap(self.icons['stop'], wx.BITMAP_TYPE_ANY)
-            bmpopt = wx.Bitmap(self.icons['options'], wx.BITMAP_TYPE_ANY)
+        bmpback = get_bmp(self.icons['previous'], bmp_size)
+        bmpnext = get_bmp(self.icons['next'], bmp_size)
+        bmpydl = get_bmp(self.icons['download'], bmp_size)
+        bmpstop = get_bmp(self.icons['stop'], bmp_size)
+        bmpopt = get_bmp(self.icons['options'], bmp_size)
 
         self.toolbar.SetFont(wx.Font(9, wx.DEFAULT, wx.NORMAL,
                                      wx.NORMAL, 0, ""))

@@ -24,12 +24,12 @@ This file is part of Vidtuber.
    You should have received a copy of the GNU General Public License
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
-import sys
 import shutil
 import itertools
 import wx
 from vidtuber.vt_utils.get_bmpfromsvg import get_bmp
 from vidtuber.vt_dialogs.playlist_indexing import Indexing
+from vidtuber.vt_dialogs.confirm_dialog import Confirmation_Dlg
 from vidtuber.vt_dialogs.subtitles_editor import SubtitleEditor
 from vidtuber.vt_panels.formatcode_exec import FormatCode
 from vidtuber.vt_sys.settings_manager import ConfigManager
@@ -42,7 +42,8 @@ def from_api_to_cli(data, execpath):
     if not data["format"]:
         dformat = ''
     else:
-        dformat = f'--format "{data["format"]}"'
+        dformat = (f'--format "{data["format"]}" {data["audio-multistreams"]} '
+                   f'{data["video-multistreams"]}')
     opt = (f'"{execpath}" {dformat} --progress-template '
            f'"download-title:%(info.id)s-%(progress.eta)s" '
            f'--newline --compat-options "{data["compat_opts"]}" '
@@ -169,12 +170,8 @@ class Downloader(wx.Panel):
         confmanager = ConfigManager(self.appdata['fileconfpath'])
         sett = confmanager.read_options()
 
-        if 'wx.svg' in sys.modules:  # available only in wx version 4.1 to up
-            bmplistindx = get_bmp(icons['playlist'], ((16, 16)))
-            bmpsubtitles = get_bmp(icons['subtitles'], ((16, 16)))
-        else:
-            bmplistindx = wx.Bitmap(icons['playlist'], wx.BITMAP_TYPE_ANY)
-            bmpsubtitles = wx.Bitmap(icons['subtitles'], wx.BITMAP_TYPE_ANY)
+        bmplistindx = get_bmp(icons['playlist'], ((16, 16)))
+        bmpsubtitles = get_bmp(icons['subtitles'], ((16, 16)))
 
         self.opt = {("NO_PLAYLIST"): True,
                     ("V_QUALITY"): Downloader.VPCOMP['Best precompiled video'],
@@ -185,7 +182,6 @@ class Downloader(wx.Panel):
         self.plidx = {'': ''}
         self.format_dict = {}  # format codes order with URL matching
         self.quality = 'best'
-        self.oldwx = None  # test result of hasattr EVT_LIST_ITEM_CHECKED
 
         wx.Panel.__init__(self, parent, -1, style=wx.TAB_TRAVERSAL)
         sizer_base = wx.BoxSizer(wx.VERTICAL)
@@ -210,13 +206,11 @@ class Downloader(wx.Panel):
         self.btn_plidx.SetBitmap(bmplistindx, wx.LEFT)
         fgs1.Add(self.btn_plidx, 0, wx.LEFT | wx.CENTRE, 2)
         self.btn_plidx.Disable()
-        txtsubt = wx.StaticText(self, wx.ID_ANY, _('Subtitles:'))
-        fgs1.Add(txtsubt, 0, wx.LEFT | wx.CENTRE, 20)
-        self.btn_subeditor = wx.Button(self, wx.ID_ANY, "",
-                                       size=(40, -1))
+        self.btn_subeditor = wx.Button(self, wx.ID_ANY, "Subtitles",
+                                       size=(-1, -1))
         self.btn_subeditor.SetBitmap(bmpsubtitles, wx.LEFT)
         self.btn_subeditor.SetToolTip(_('Subtitles Editor'))
-        fgs1.Add(self.btn_subeditor, 0, wx.LEFT | wx.CENTRE, 5)
+        fgs1.Add(self.btn_subeditor, 0, wx.LEFT | wx.CENTRE, 20)
         if sett['subtitles_options']['writesubtitles']:
             self.btn_subeditor.SetBackgroundColour(
                 wx.Colour(Downloader.VIOLET))
@@ -335,7 +329,7 @@ class Downloader(wx.Panel):
             return None
         cmd = self.default_statistics_options()
         if not cmd:
-            return
+            return None
 
         def _error(msg, icon, cap):
             wx.MessageBox(msg, cap, icon, self)
@@ -568,7 +562,6 @@ class Downloader(wx.Panel):
 
     def default_statistics_options(self):
         """
-
         Main mapping for Statistics options used by to
         get info and format code datas.
         return a type dict object.
@@ -679,6 +672,8 @@ class Downloader(wx.Panel):
         data["geo_bypass_ip_block"] = self.appdata["geo_bypass_ip_block"]
         data['ffmpeg_location'] = f'{self.appdata["ffmpeg_cmd"]}'
         data['postprocessors'] = postprocessors
+        data["audio-multistreams"] = ''
+        data["video-multistreams"] = ''
 
         return data
     # -----------------------------------------------------------------#
@@ -773,6 +768,9 @@ class Downloader(wx.Panel):
                                           Downloader.WHITE
                                           )
                 return
+            data['audio-multistreams'] = code[1]
+            data['video-multistreams'] = code[2]
+            code = code[0]
 
         self.to_processing(self.build_args(outtmpl,
                                            formatquality,
@@ -781,7 +779,7 @@ class Downloader(wx.Panel):
                                            ))
     # -----------------------------------------------------------------#
 
-    def to_processing(self, datalist):
+    def to_processing(self, datalist, getcmd=False):
         """
         Call `main_ytdlp.switch_to_processing`
         """
@@ -798,4 +796,23 @@ class Downloader(wx.Panel):
 
         for args in datalist:
             execlist.append(from_api_to_cli(args, execpath))
-        self.parent.switch_to_processing('YouTube Downloader', execlist)
+
+        with Confirmation_Dlg(self,
+                              execlist,
+                              self.parent.data_url
+                              ) as epilogue:
+            if epilogue.ShowModal() == wx.ID_OK:
+                newdata = epilogue.getvalue()
+                if not newdata == execlist:
+                    if wx.MessageBox(_('Changes have been made to the command '
+                                       'line arguments.\n\nDo you want to '
+                                       'proceed anyway?'), _('Please confirm'),
+                                     wx.ICON_QUESTION | wx.CANCEL
+                                     | wx.YES_NO, self) != wx.YES:
+                        return
+                    self.parent.switch_to_processing('YouTube Downloader',
+                                                     newdata)
+                else:
+                    self.parent.switch_to_processing('YouTube Downloader',
+                                                     execlist)
+    # -----------------------------------------------------------------#

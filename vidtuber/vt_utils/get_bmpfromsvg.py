@@ -24,10 +24,7 @@ This file is part of Vidtuber.
    You should have received a copy of the GNU General Public License
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
-try:
-    from wx.svg import SVGimage
-except ModuleNotFoundError:
-    pass
+from wx.svg import SVGimage
 
 
 def get_bmp(imgfile, size):
