@@ -83,7 +83,7 @@ class FormatCode(wx.Panel):
         sizer_base.Add(self.fcode, 1, wx.ALL | wx.EXPAND, 5)
         sizeropt = wx.BoxSizer(wx.HORIZONTAL)
         sizer_base.Add(sizeropt, 0)
-        msg = _("Merge all files into a single file")
+        msg = _("Merge files into one file")
         self.ckbx_mrg = wx.CheckBox(self, wx.ID_ANY, msg)
         sizeropt.Add(self.ckbx_mrg, 0, wx.ALL | wx.EXPAND, 5)
         self.ckbx_mrg.SetValue(FormatCode.appdata['merge_single_file'])
@@ -133,8 +133,9 @@ class FormatCode(wx.Panel):
                         elif self.fcode.GetItemText(i, 2) == 'mhtml':
                             disph = self.fcode.GetItemText(i, 0)
                             self.format_dict[url].append('mhtml: ' + disph)
-                        else:  # everything else could also be audio
-                               # it depends on the video site (not youtube)
+                        else:
+                            # everything else could also be audio
+                            # it depends on the video site (not youtube)
                             dispv = self.fcode.GetItemText(i, 0)
                             self.format_dict[url].append('Video: ' + dispv)
     # ----------------------------------------------------------------------

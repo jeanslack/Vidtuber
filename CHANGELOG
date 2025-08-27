@@ -19,7 +19,9 @@ Tue, 26 Aug 2025 V.1.1.5
   * Drop support for Ubuntu Jammy.
   * Added a confirmation dialog with ability to edit the command-line arguments
     on the fly.
-  * Improvements to writing user settings preferences when closing the app.
+  * Fixed writing user settings preferences when closing the app.
+  * Update France language (Thanks to ChourS).
+  * Update Russian language (Thanks to ChourS).
 
 +------------------------------------+
 Sat, 26 July 2025 V.1.1.2

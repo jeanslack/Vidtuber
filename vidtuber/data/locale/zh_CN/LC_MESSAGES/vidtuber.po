@@ -1,13 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2024 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# Chinese (Simplified, China) translations for Vidtuber.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the Vidtuber project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-23 00:30+0200\n"
+"POT-Creation-Date: 2025-08-27 11:49+0200\n"
 "PO-Revision-Date: 2025-07-09 21:38+0200\n"
 "Last-Translator: Gao Zimu <gaozimu_0502@163.com>\n"
 "Language: zh_CN\n"
@@ -18,7 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: ../../gui_app.py:198
 #, python-brace-format
 msgid ""
 "Unexpected error while deleting file contents:\n"
@@ -29,19 +28,15 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../../vt_dialogs/about_dialog.py:52
 msgid "A simple cross-platform GUI for yt-dlp"
 msgstr ""
 
-#: ../../vt_dialogs/check_new_version.py:63
 msgid "Get Latest Version"
 msgstr "获取最新版本"
 
-#: ../../vt_dialogs/check_new_version.py:67
 msgid "Checking for newer version"
 msgstr "检查更新的版本"
 
-#: ../../vt_dialogs/check_new_version.py:94
 msgid ""
 "\n"
 "\n"
@@ -51,7 +46,6 @@ msgstr ""
 "\n"
 "新版本修复了错误并提供了新的功能。"
 
-#: ../../vt_dialogs/check_new_version.py:95
 #, python-brace-format
 msgid ""
 "\n"
@@ -60,16 +54,25 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../../vt_dialogs/playlist_indexing.py:50
+msgid "URL Summary"
+msgstr ""
+
+msgid "Edit command arguments"
+msgstr ""
+
+msgid "Command arguments"
+msgstr ""
+
+msgid "Confirmation Procedure"
+msgstr ""
+
 msgid "URL"
 msgstr "链接"
 
-#: ../../vt_dialogs/playlist_indexing.py:51
 #, fuzzy
 msgid "Playlist Items"
 msgstr "播放列表项目"
 
-#: ../../vt_dialogs/playlist_indexing.py:72
 #, fuzzy
 msgid ""
 "To index the media of a playlist, click on the \"Playlist Items\" column of each corresponding URL and specify the numerical indexes separated by commas, e.g. \"1,2,5,8\" if you want to download the indexed media at 1, 2, 5, 8 of the playlist.\n"
@@ -80,302 +83,213 @@ msgstr ""
 "您可以指定范围。\"1-3,7,10-13\" 它将下载索引为1、2、3、7、10、11、12和13的视频。\n"
 "\n"
 
-#: ../../vt_dialogs/playlist_indexing.py:108
-#: ../../vt_panels/youtubedl_ui.py:209
 msgid "Playlist Editor"
 msgstr "播放列表编辑器"
 
-#: ../../vt_dialogs/playlist_indexing.py:117
 msgid "Help viewer"
 msgstr "帮助查看器"
 
-#: ../../vt_dialogs/playlist_indexing.py:224
 msgid "ERROR: Invalid option"
 msgstr "错误：无效的选项"
 
-#: ../../vt_dialogs/playlist_indexing.py:225
 msgid "please try again."
 msgstr "请重试。"
 
-#: ../../vt_dialogs/playlist_indexing.py:226
 #, fuzzy
 msgid "OK: Indexes to download"
 msgstr "确定：要下载的索引"
 
-#: ../../vt_dialogs/playlist_indexing.py:255
 #, fuzzy
 msgid "WARNING: The selected URL does not refer to a playlist. Only lines marked green can be indexed."
 msgstr "警告：所选的URL并不是指一个播放列表。只有标记为绿色的行可以被索引。"
 
-#: ../../vt_dialogs/settings_vidtuber.py:76
 #, python-brace-format
 msgid "Specify the {0} executable"
 msgstr ""
 
-#: ../../vt_dialogs/settings_vidtuber.py:79
 #, python-brace-format
 msgid ""
 "Here you can provide the path to the latest version of the {0} executable, this allows you\n"
 "to always keep it up to date."
 msgstr ""
 
-#: ../../vt_dialogs/settings_vidtuber.py:84
 msgid "Enable a custom location to run yt-dlp executable."
 msgstr ""
 
-#: ../../vt_dialogs/settings_vidtuber.py:88
-#: ../../vt_dialogs/settings_vidtuber.py:115
-#: ../../vt_dialogs/settings_vidtuber.py:127
-#: ../../vt_dialogs/settings_ytdlp.py:123 ../../vt_panels/textdrop.py:153
 msgid "Change"
 msgstr "更改"
 
-#: ../../vt_dialogs/settings_vidtuber.py:105
 msgid "Specifying FFmpeg executables"
 msgstr ""
 
-#: ../../vt_dialogs/settings_vidtuber.py:107
 msgid ""
 "For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables.\n"
 "Here you can customize the paths to these executables."
 msgstr ""
 
-#: ../../vt_dialogs/settings_vidtuber.py:113
 msgid "Enable a custom location to run FFmpeg"
 msgstr "启用自定义位置来运行 FFmpeg"
 
-#: ../../vt_dialogs/settings_vidtuber.py:125
 msgid "Enable a custom location to run FFprobe"
 msgstr "启用自定义位置来运行 FFprobe"
 
-#: ../../vt_dialogs/settings_vidtuber.py:138
 msgid "FFmpeg"
 msgstr "FFmpeg"
 
-#: ../../vt_dialogs/settings_vidtuber.py:144
 msgid "Look and Feel (requires application restart)"
 msgstr "外观（需要重启）"
 
-#: ../../vt_dialogs/settings_vidtuber.py:149
 msgid "Icon themes"
 msgstr "图标主题"
 
-#: ../../vt_dialogs/settings_vidtuber.py:163
 msgid "At the top of window (default)"
 msgstr "在窗口的顶部（默认）"
 
-#: ../../vt_dialogs/settings_vidtuber.py:164
 msgid "At the bottom of window"
 msgstr "在窗口的底部"
 
-#: ../../vt_dialogs/settings_vidtuber.py:165
 msgid "At the right of window"
 msgstr "在窗口的右边"
 
-#: ../../vt_dialogs/settings_vidtuber.py:166
 msgid "At the left of window"
 msgstr "在窗口的左边"
 
-#: ../../vt_dialogs/settings_vidtuber.py:168
 msgid "Place the toolbar"
 msgstr "工具栏放置位置"
 
-#: ../../vt_dialogs/settings_vidtuber.py:177
 msgid "Toolbar's icons size:"
 msgstr "工具栏图标大小："
 
-#: ../../vt_dialogs/settings_vidtuber.py:191
 msgid "Application Language (requires application restart)"
 msgstr "应用程序语言（需要重启）"
 
-#: ../../vt_dialogs/settings_vidtuber.py:203
 msgid "Look and Language"
 msgstr "外观和语言"
 
-#: ../../vt_dialogs/settings_vidtuber.py:209
 msgid "Upon exiting the application"
 msgstr "在退出应用程序时"
 
-#: ../../vt_dialogs/settings_vidtuber.py:214
 msgid "Always ask me to confirm"
 msgstr "总是要求我确认"
 
-#: ../../vt_dialogs/settings_vidtuber.py:216
 msgid "Clean the log files"
 msgstr "清理日志文件"
 
-#: ../../vt_dialogs/settings_vidtuber.py:219
 msgid "Remove cached files"
 msgstr "移除缓存文件"
 
-#: ../../vt_dialogs/settings_vidtuber.py:223
 msgid "On operations completion"
 msgstr "操作完成后"
 
-#: ../../vt_dialogs/settings_vidtuber.py:226
 msgid "These settings will remain active until the application is closed, If necessary, remember to reactivate them."
 msgstr "这些设置将一直保持有效，直到应用程序关闭。如果需要，请记住重新激活它们。"
 
-#: ../../vt_dialogs/settings_vidtuber.py:231 ../../vt_main/main_frame.py:260
 msgid "Exit the application"
 msgstr "退出应用程序"
 
-#: ../../vt_dialogs/settings_vidtuber.py:234
 msgid "Shutdown the system"
 msgstr "关闭系统"
 
-#: ../../vt_dialogs/settings_vidtuber.py:238
 msgid "SUDO password:"
 msgstr "SUDO 密码："
 
-#: ../../vt_dialogs/settings_vidtuber.py:247
 msgid "Exit and Shutdown"
 msgstr "退出和关机"
 
-#: ../../vt_dialogs/settings_vidtuber.py:253
 msgid "Default application directories"
 msgstr "默认应用程序文件夹"
 
-#: ../../vt_dialogs/settings_vidtuber.py:257
 msgid "Configuration directory"
 msgstr "配置文件夹"
 
-#: ../../vt_dialogs/settings_vidtuber.py:270
 msgid "Cache directory"
 msgstr "缓存文件夹"
 
-#: ../../vt_dialogs/settings_vidtuber.py:282
 msgid "Log directory"
 msgstr "日志文件夹"
 
-#: ../../vt_dialogs/settings_vidtuber.py:296
 msgid "Advanced"
 msgstr "高级"
 
-#: ../../vt_dialogs/settings_vidtuber.py:336
 msgid "Type sudo password here, only for Unix-like operating systems, not for MS Windows"
 msgstr "在这里输入 sudo 密码（仅使用于类 Unix 系统，不适用于 MS Windows）"
 
-#: ../../vt_dialogs/settings_vidtuber.py:339
 msgid "Application Preferences"
 msgstr ""
 
-#: ../../vt_dialogs/settings_vidtuber.py:479
-#: ../../vt_dialogs/settings_vidtuber.py:500
-#: ../../vt_dialogs/settings_vidtuber.py:531
-#: ../../vt_dialogs/settings_vidtuber.py:552
-#: ../../vt_dialogs/settings_vidtuber.py:586
-#: ../../vt_dialogs/settings_vidtuber.py:617 ../../vt_dialogs/wizard_dlg.py:219
-#: ../../vt_dialogs/wizard_dlg.py:251 ../../vt_dialogs/wizard_dlg.py:410
-#: ../../vt_dialogs/wizard_dlg.py:526 ../../vt_dialogs/wizard_dlg.py:553
 msgid "Execute permission is not granted for this file:"
 msgstr ""
 
-#: ../../vt_dialogs/settings_vidtuber.py:481
-#: ../../vt_dialogs/settings_vidtuber.py:502
-#: ../../vt_dialogs/settings_vidtuber.py:533
-#: ../../vt_dialogs/settings_vidtuber.py:554
-#: ../../vt_dialogs/settings_vidtuber.py:588
-#: ../../vt_dialogs/settings_vidtuber.py:619 ../../vt_dialogs/wizard_dlg.py:221
-#: ../../vt_dialogs/wizard_dlg.py:253 ../../vt_dialogs/wizard_dlg.py:412
-#: ../../vt_dialogs/wizard_dlg.py:528 ../../vt_dialogs/wizard_dlg.py:555
-#: ../../vt_main/main_frame.py:202 ../../vt_main/main_frame.py:225
-#: ../../vt_panels/youtubedl_ui.py:358 ../../vt_panels/youtubedl_ui.py:583
-#: ../../vt_panels/youtubedl_ui.py:796
 msgid "Vidtuber - Warning!"
 msgstr ""
 
-#: ../../vt_dialogs/settings_vidtuber.py:492
-#: ../../vt_dialogs/settings_vidtuber.py:544
-#: ../../vt_dialogs/settings_vidtuber.py:611 ../../vt_dialogs/wizard_dlg.py:213
-#: ../../vt_dialogs/wizard_dlg.py:518 ../../vt_dialogs/wizard_dlg.py:544
 #, python-brace-format
 msgid "{} location"
 msgstr "{} 位置"
 
-#: ../../vt_dialogs/settings_ytdlp.py:65
 msgid "Workarounds"
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:68
 msgid "Don’t check SSL certificate"
 msgstr "不要检查 SSL 证书"
 
-#: ../../vt_dialogs/settings_ytdlp.py:73
 msgid "Filename options"
 msgstr "文件名选项"
 
-#: ../../vt_dialogs/settings_ytdlp.py:76
 msgid "Include the ID in file names"
 msgstr "在文件名中包含 ID"
 
-#: ../../vt_dialogs/settings_ytdlp.py:82
 #, fuzzy
 msgid "Restrict file names to ASCII characters"
 msgstr "限制文件名"
 
-#: ../../vt_dialogs/settings_ytdlp.py:88
 #, fuzzy
 msgid "Post-Process options"
 msgstr "打印更多选项"
 
-#: ../../vt_dialogs/settings_ytdlp.py:91
 msgid "Embed thumbnail in audio file"
 msgstr "在音频文件中嵌入缩略图"
 
-#: ../../vt_dialogs/settings_ytdlp.py:96
 msgid "Add metadata to file"
 msgstr "为文件添加元数据"
 
-#: ../../vt_dialogs/settings_ytdlp.py:101
 msgid "Overwrite all files and metadata"
 msgstr "覆盖所有文件和元数据"
 
-#: ../../vt_dialogs/settings_ytdlp.py:106
 msgid "General"
 msgstr "一般"
 
-#: ../../vt_dialogs/settings_ytdlp.py:112
 msgid "Where do you prefer to save your downloads?"
 msgstr "你想在哪里保存你的下载？"
 
-#: ../../vt_dialogs/settings_ytdlp.py:126
 #, fuzzy
 msgid "Auto-create subdirectories when downloading playlists"
 msgstr "下载播放列表时自动创建子文件夹"
 
-#: ../../vt_dialogs/settings_ytdlp.py:131
 msgid "File Preferences"
 msgstr "文件首选项"
 
-#: ../../vt_dialogs/settings_ytdlp.py:137
 msgid "Choosing an external downloader"
 msgstr "选择一个外部下载器"
 
-#: ../../vt_dialogs/settings_ytdlp.py:140
 msgid ""
 "In addition to the default `native` one, yt-dlp can use the following external downloaders:\n"
 "`aria2c`, `avconv`, `axel`, `curl`, `ffmpeg`, `httpie`, `wget`.\n"
 "Please note that using an external downloader the download status information may not be available."
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:149
 msgid "External downloader executable path"
 msgstr "外部下载器可执行文件路径"
 
-#: ../../vt_dialogs/settings_ytdlp.py:157
 msgid "External downloader arguments"
 msgstr "外部下载器参数"
 
-#: ../../vt_dialogs/settings_ytdlp.py:165
 msgid "External Downloader"
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:171
 msgid "Using a proxy server"
 msgstr "使用代理服务器"
 
-#: ../../vt_dialogs/settings_ytdlp.py:175
 #, python-brace-format
 msgid ""
 "Use the specified HTTP/HTTPS/SOCKS proxy. To enable SOCKS proxy, specify a proper\n"
@@ -385,102 +299,78 @@ msgstr ""
 "使用指定的 HTTP/HTTPS/SOCKS 代理。要启用 SOCKS 代理，指定一个合适的协议，例如\t{}\n"
 "将文本框留空来直接连接。"
 
-#: ../../vt_dialogs/settings_ytdlp.py:183
 msgid "Proxy"
 msgstr "代理"
 
-#: ../../vt_dialogs/settings_ytdlp.py:191
 msgid "Network"
 msgstr "网络"
 
-#: ../../vt_dialogs/settings_ytdlp.py:196
 msgid "Geo-restriction options"
 msgstr "地理限制选项"
 
-#: ../../vt_dialogs/settings_ytdlp.py:199
 msgid "Use the following options to try bypassing geographic restriction."
 msgstr "使用以下选项尝试绕过地理限制。"
 
-#: ../../vt_dialogs/settings_ytdlp.py:206
 msgid "Geo verification proxy"
 msgstr "地理验证代理"
 
-#: ../../vt_dialogs/settings_ytdlp.py:210
 msgid "URL of the proxy to use for IP address verification on geo-restricted sites."
 msgstr "用于在有地理限制的网站上进行 IP 地址验证的代理链接。"
 
-#: ../../vt_dialogs/settings_ytdlp.py:215
 msgid "Geo bypass"
 msgstr "地理绕过"
 
-#: ../../vt_dialogs/settings_ytdlp.py:219
 msgid "Bypass geographic restriction via faking X-Forwarded-For HTTP header. One of \"default\" (only when known to be useful), or \"never\""
 msgstr "通过伪造 X-Forwarded-For HTTP 标头来绕过地理限制。可选值为 \"default\"（仅在已知有用时使用）或 \"never\"（从不使用）"
 
-#: ../../vt_dialogs/settings_ytdlp.py:226
 msgid "Geo bypass country"
 msgstr "进行地理限制绕过的国家"
 
-#: ../../vt_dialogs/settings_ytdlp.py:230
 msgid "Two-letter ISO 3166-2 country code that will be used for explicit geographic restriction bypassing via faking X-Forwarded-For HTTP header."
 msgstr "用于通过伪造 X-Forwarded-For HTTP 标头来明确绕过地理限制的两字母 ISO 3166-2 国家代码。"
 
-#: ../../vt_dialogs/settings_ytdlp.py:238
 msgid "Geo bypass ip block"
 msgstr "进行地理限制绕过的 IP 段"
 
-#: ../../vt_dialogs/settings_ytdlp.py:242
 msgid "IP range in CIDR notation that will be used similarly to geo_bypass_country"
 msgstr "类似于 geo_bypass_country 使用的 CIDR 表示法的 IP 段"
 
-#: ../../vt_dialogs/settings_ytdlp.py:249
 msgid "Geo-Restriction"
 msgstr "地理限制"
 
-#: ../../vt_dialogs/settings_ytdlp.py:254
 msgid "Authentication with login credentials"
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:257
 msgid ""
 "If you need to login with your credentials please note that login with password is not\n"
 "supported for some websites (e.g. YouTube, CloudFlare). In this case you can include a\n"
 "cookie file for authentication (see cookies tab)."
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:266
 msgid "Username"
 msgstr "用户名"
 
-#: ../../vt_dialogs/settings_ytdlp.py:270
 msgid "Username for authentication purposes"
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:274
 msgid "Password"
 msgstr "密码"
 
-#: ../../vt_dialogs/settings_ytdlp.py:278
 msgid "Password for authentication purposes"
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:283
 msgid "Video Password"
 msgstr "视频密码"
 
-#: ../../vt_dialogs/settings_ytdlp.py:287
 msgid "Password for accessing a video"
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:293
 msgid "Authentication"
 msgstr "身份验证"
 
-#: ../../vt_dialogs/settings_ytdlp.py:299
 msgid "Using cookies to gain access to websites"
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:304
 #, python-brace-format
 msgid ""
 "Here you can pass your `Netscape HTTP Cookie File` in order to access websites that require authentication.\n"
@@ -491,190 +381,142 @@ msgid ""
 "For more information please consult the documentation at the following link:"
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:321
 msgid "Allow cookies for authentication"
 msgstr "允许使用 Cookie 进行身份验证"
 
-#: ../../vt_dialogs/settings_ytdlp.py:325
 msgid "Cookie file"
 msgstr "Cookie 文件"
 
-#: ../../vt_dialogs/settings_ytdlp.py:331
 msgid "File name from where cookies should be read and dumped to"
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:334
 msgid "Browse"
 msgstr "浏览"
 
-#: ../../vt_dialogs/settings_ytdlp.py:337
 msgid "Extract cookies automatically from your browser"
 msgstr "自动从你的浏览器提取 Cookie"
 
-#: ../../vt_dialogs/settings_ytdlp.py:343
 msgid "Web Browser"
 msgstr "网页浏览器"
 
-#: ../../vt_dialogs/settings_ytdlp.py:360
 msgid "Cookies"
 msgstr "Cookies"
 
-#: ../../vt_dialogs/settings_ytdlp.py:403
 msgid "Yt-dlp options setting"
 msgstr ""
 
-#: ../../vt_dialogs/settings_ytdlp.py:436
 msgid "Do you want to remove the current cookie file from your system?"
 msgstr "确定从系统里删除当前的 Cookie 文件吗？"
 
-#: ../../vt_dialogs/settings_ytdlp.py:438 ../../vt_dialogs/showlogs.py:162
-#: ../../vt_dialogs/wizard_dlg.py:259 ../../vt_dialogs/wizard_dlg.py:418
-#: ../../vt_panels/youtubedl_ui.py:545 ../../vt_panels/youtubedl_ui.py:561
 msgid "Please confirm"
 msgstr "请确认"
 
-#: ../../vt_dialogs/settings_ytdlp.py:489
 msgid "Locate your cookie file"
 msgstr "定位你的 Cookie 文件"
 
-#: ../../vt_dialogs/settings_ytdlp.py:504 ../../vt_main/main_frame.py:444
 msgid "Choose Destination"
 msgstr "选择输出目录"
 
-#: ../../vt_dialogs/showlogs.py:74
 msgid "Log file list"
 msgstr "日志文件列表"
 
-#: ../../vt_dialogs/showlogs.py:76 ../../vt_dialogs/showlogs.py:110
 msgid "Log messages"
 msgstr "日志信息"
 
-#: ../../vt_dialogs/showlogs.py:99
 msgid "Refresh log messages"
 msgstr "刷新日志消息"
 
-#: ../../vt_dialogs/showlogs.py:101
 msgid "Clear log messages"
 msgstr "清空日志消息"
 
-#: ../../vt_dialogs/showlogs.py:154
 msgid "Select a log file"
 msgstr "选择一个日志文件"
 
-#: ../../vt_dialogs/showlogs.py:161
 msgid "Are you sure you want to clear the selected log file?"
 msgstr "你确定要清除选定的日志文件吗？"
 
-#: ../../vt_dialogs/subtitles_editor.py:42
 msgid "English"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:43
 msgid "French"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:44
 msgid "German"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:45
 msgid "Greek"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:46
 msgid "Hebrew"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:47
 msgid "Italian"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:48
 msgid "Dutch"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:49
 msgid "Polish"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:50
 msgid "Portuguese"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:51
 msgid "Russian"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:52
 msgid "Spanish"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:53
 msgid "Swedish"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:54
 msgid "Turkish"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:55
 msgid "Albanian"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:56
 msgid "Chinese"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:70
 msgid "Subtitles"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:74
 msgid "None"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:75
 msgid "All available subtitles"
 msgstr "所有可用的字幕"
 
-#: ../../vt_dialogs/subtitles_editor.py:76
 msgid "Select by default language"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:77
 msgid "Custom language subtitles"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:94
 msgid "Custom language"
 msgstr ""
 
-#: ../../vt_dialogs/subtitles_editor.py:100
 msgid "Read me"
 msgstr "说明"
 
-#: ../../vt_dialogs/subtitles_editor.py:110
 msgid "Subtitle options"
 msgstr "字幕选项"
 
-#: ../../vt_dialogs/subtitles_editor.py:114
 msgid "Include automatically generated subtitle (YouTube only)"
 msgstr "包含自动生成的字幕（只适用于 YouTube）"
 
-#: ../../vt_dialogs/subtitles_editor.py:117
 #, fuzzy
 msgid "Embed subtitles into video file"
 msgstr "为视频编写字幕"
 
-#: ../../vt_dialogs/subtitles_editor.py:120
 msgid "Download subtitles only (do not include audio and video)"
 msgstr "仅下载字幕（不包含音频和视频）"
 
-#: ../../vt_dialogs/subtitles_editor.py:137 ../../vt_panels/youtubedl_ui.py:218
 msgid "Subtitles Editor"
 msgstr "字幕编辑器"
 
-#: ../../vt_dialogs/subtitles_editor.py:248
 msgid ""
 "Write in the text field on the side, one or more language codes of the\n"
 "subtitles to download separated by commas, e.g. \"en, ja, ar\" for English,\n"
@@ -689,55 +531,44 @@ msgid ""
 "subtitles except those in Italian, Dutch and French."
 msgstr ""
 
-#: ../../vt_dialogs/widget_utils.py:120 ../../vt_main/main_frame.py:678
 msgid "Stop"
 msgstr "停止"
 
-#: ../../vt_dialogs/wizard_dlg.py:61
 msgid "Please take a moment to set up the application"
 msgstr "请花一点时间来设置应用程序"
 
-#: ../../vt_dialogs/wizard_dlg.py:62
 msgid "Click the \"Next\" button to get started"
 msgstr "点击 “下一步” 按钮，开始使用"
 
-#: ../../vt_dialogs/wizard_dlg.py:77
 msgid "Welcome to the Vidtuber Wizard!"
 msgstr ""
 
-#: ../../vt_dialogs/wizard_dlg.py:126
 #, python-brace-format
 msgid "Specifying {0} executable\n"
 msgstr ""
 
-#: ../../vt_dialogs/wizard_dlg.py:128 ../../vt_dialogs/wizard_dlg.py:289
 #, python-brace-format
 msgid ""
 "If you have already installed {0} on your operating system,\n"
 "click the «Auto-detection» button."
 msgstr ""
 
-#: ../../vt_dialogs/wizard_dlg.py:131 ../../vt_dialogs/wizard_dlg.py:292
 #, python-brace-format
 msgid ""
 "If you want to use a version of {0} located on your filesystem\n"
 "but not installed on your operating system, click the «Locate» button."
 msgstr ""
 
-#: ../../vt_dialogs/wizard_dlg.py:158 ../../vt_dialogs/wizard_dlg.py:323
 msgid "Auto-detection"
 msgstr "自动检测"
 
-#: ../../vt_dialogs/wizard_dlg.py:160 ../../vt_dialogs/wizard_dlg.py:325
 msgid "Locate"
 msgstr "定位"
 
-#: ../../vt_dialogs/wizard_dlg.py:244 ../../vt_dialogs/wizard_dlg.py:396
 #, python-brace-format
 msgid "'{}' is not installed on your computer. Install it or indicate another location by clicking the 'Locate' button."
 msgstr "你的电脑上没有安装 “{}”。安装它或通过点击 “定位” 按钮指出其他位置。"
 
-#: ../../vt_dialogs/wizard_dlg.py:257
 #, python-brace-format
 msgid ""
 "Vidtuber already seems to include {}.\n"
@@ -745,69 +576,53 @@ msgid ""
 "Do you want to use that?"
 msgstr ""
 
-#: ../../vt_dialogs/wizard_dlg.py:284
 msgid "Specifying FFmpeg executables\n"
 msgstr ""
 
-#: ../../vt_dialogs/wizard_dlg.py:286
 msgid "For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables."
 msgstr ""
 
-#: ../../vt_dialogs/wizard_dlg.py:375
 msgid "Click the \"Next\" button"
 msgstr "点击 “下一步” 按钮"
 
-#: ../../vt_dialogs/wizard_dlg.py:416
 msgid ""
 "Vidtuber already seems to include FFmpeg.\n"
 "\n"
 "Do you want to use that?"
 msgstr ""
 
-#: ../../vt_dialogs/wizard_dlg.py:441
 msgid "Locating FFmpeg executables\n"
 msgstr "定位 FFmpeg 可执行文件\n"
 
-#: ../../vt_dialogs/wizard_dlg.py:443
 msgid ""
 "\"ffmpeg\" and \"ffprobe\" are required. Complete all\n"
 "the text boxes below by clicking on the respective buttons."
 msgstr ""
 
-#: ../../vt_dialogs/wizard_dlg.py:584
 msgid "Wizard completed successfully!\n"
 msgstr "向导已成功完成！\n"
 
-#: ../../vt_dialogs/wizard_dlg.py:585
 msgid "Remember that you can always change these settings later, through the Preferences dialog."
 msgstr "你可以随时在“首选项”中更改这些设置。"
 
-#: ../../vt_dialogs/wizard_dlg.py:587
 msgid "Thank You!"
 msgstr "谢谢你！"
 
-#: ../../vt_dialogs/wizard_dlg.py:588
 msgid "To exit click the \"Finish\" button"
 msgstr "要退出，请点击“完成”按钮"
 
-#: ../../vt_dialogs/wizard_dlg.py:676
 msgid "< Previous"
 msgstr "< 上一步"
 
-#: ../../vt_dialogs/wizard_dlg.py:679 ../../vt_dialogs/wizard_dlg.py:769
 msgid "Next >"
 msgstr "下一步 >"
 
-#: ../../vt_dialogs/wizard_dlg.py:684
 msgid "Vidtuber Wizard"
 msgstr ""
 
-#: ../../vt_dialogs/wizard_dlg.py:711 ../../vt_dialogs/wizard_dlg.py:739
-#: ../../vt_dialogs/wizard_dlg.py:744
 msgid "Finish"
 msgstr "完成"
 
-#: ../../vt_io/checkup.py:43
 #, python-brace-format
 msgid ""
 "Output folder does not exist:\n"
@@ -818,16 +633,12 @@ msgstr ""
 "\n"
 "“{}”\n"
 
-#: ../../vt_io/checkup.py:44 ../../vt_io/io_tools.py:76
-#: ../../vt_panels/youtubedl_ui.py:362
 msgid "Vidtuber - Error!"
 msgstr "Vidtuber - 错误！"
 
-#: ../../vt_io/io_tools.py:50
 msgid "Vidtuber - Loading..."
 msgstr ""
 
-#: ../../vt_io/io_tools.py:51
 #, fuzzy
 msgid ""
 "Wait....\n"
@@ -836,170 +647,126 @@ msgstr ""
 "Wait....\n"
 "检索所需数据。"
 
-#: ../../vt_main/main_frame.py:89 ../../vt_main/main_frame.py:741
 msgid "Vidtuber - List of URLs"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:105 ../../vt_main/main_frame.py:740
-#: ../../vt_panels/textdrop.py:233 ../../vt_panels/youtubedl_ui.py:373
 msgid "Ready"
 msgstr "准备就绪"
 
-#: ../../vt_main/main_frame.py:199 ../../vt_main/main_frame.py:222
 msgid "There are still active windows with running processes, make sure you finish your work before exit."
 msgstr ""
 
-#: ../../vt_main/main_frame.py:206
 msgid "Are you sure you want to exit the application?"
 msgstr "确定要退出吗？"
 
-#: ../../vt_main/main_frame.py:208
 msgid "Exit"
 msgstr "退出"
 
-#: ../../vt_main/main_frame.py:255
 #, fuzzy
 msgid "Open destination folder of downloads\tCtrl+D"
 msgstr "选择一个临时的下载目的地"
 
-#: ../../vt_main/main_frame.py:259
 msgid "Exit\tCtrl+Q"
 msgstr "退出\tCtrl+Q"
 
-#: ../../vt_main/main_frame.py:261
 msgid "File"
 msgstr "文件"
 
-#: ../../vt_main/main_frame.py:265 ../../vt_panels/textdrop.py:189
-#: ../../vt_panels/textdrop.py:206
 msgid "Paste\tCtrl+V"
 msgstr "粘贴\tCtrl+Q"
 
-#: ../../vt_main/main_frame.py:266
 msgid "Paste the copied URLs from clipboard"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:268 ../../vt_panels/textdrop.py:190
-#: ../../vt_panels/textdrop.py:209
 msgid "Remove selected URL\tDEL"
 msgstr "移除选中的链接\tDEL"
 
-#: ../../vt_main/main_frame.py:269
 msgid "Remove the selected URL from the list"
 msgstr "从列表中移除选中的链接"
 
-#: ../../vt_main/main_frame.py:271 ../../vt_panels/textdrop.py:191
-#: ../../vt_panels/textdrop.py:212
 msgid "Clear list\tShift+DEL"
 msgstr "清空列表\tShift+DEL"
 
-#: ../../vt_main/main_frame.py:272
 msgid "Clear the URL list"
 msgstr "清空链接列表"
 
-#: ../../vt_main/main_frame.py:276
 msgid "Preferences\tCtrl+P"
 msgstr "首选项\tCtrl+P"
 
-#: ../../vt_main/main_frame.py:277
 msgid "Main application preferences"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:278
 msgid "Edit"
 msgstr "编辑"
 
-#: ../../vt_main/main_frame.py:282
 #, fuzzy
 msgid "Work notes\tCtrl+N"
 msgstr "工作笔记\tCtrl+N"
 
-#: ../../vt_main/main_frame.py:283
 #, fuzzy
 msgid "Read and write useful notes and reminders."
 msgstr "阅读和撰写有用的笔记和提醒。"
 
-#: ../../vt_main/main_frame.py:285
 msgid "Tools"
 msgstr "工具"
 
-#: ../../vt_main/main_frame.py:289
 msgid "About yt-dlp"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:290
 msgid "Shows useful information about yt-dlp"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:292
 msgid "View"
 msgstr "视图"
 
-#: ../../vt_main/main_frame.py:295
 msgid "User guide"
 msgstr "用户指南"
 
-#: ../../vt_main/main_frame.py:299
 msgid "System information"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:300
 msgid "Get generic information about the installed system."
 msgstr ""
 
-#: ../../vt_main/main_frame.py:303
 msgid "Show log files\tCtrl+L"
 msgstr "显示日志文件\tCtrl+L"
 
-#: ../../vt_main/main_frame.py:304
 msgid "Viewing log messages"
 msgstr "查看日志信息"
 
-#: ../../vt_main/main_frame.py:307
 msgid "Issue tracker"
 msgstr "问题跟踪器"
 
-#: ../../vt_main/main_frame.py:311
 msgid "Contribute to the project"
 msgstr "向这个项目贡献"
 
-#: ../../vt_main/main_frame.py:314
 msgid "Sponsor this project"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:315
 msgid "Become a developer supporter"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:316
 msgid "Donate"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:317
 msgid "Donate to the app developer"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:321
 msgid "Other projects by the developer"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:338
 msgid "About Vidtuber"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:339
 msgid "Check latest version"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:340
 msgid "Check and download the latest version of the application"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:342
 msgid "Help"
 msgstr "帮助"
 
-#: ../../vt_main/main_frame.py:422
 #, python-brace-format
 msgid ""
 "- Executable version currently used: {0}\n"
@@ -1007,15 +774,12 @@ msgid ""
 "{2}"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:425
 msgid "Vidtuber - About «yt-dlp»"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:466
 msgid "Some changes require restarting the application."
 msgstr "一些更改需要重启应用。"
 
-#: ../../vt_main/main_frame.py:471
 #, python-brace-format
 msgid ""
 "{0}\n"
@@ -1026,305 +790,202 @@ msgstr ""
 "\n"
 "确定要重启应用吗？"
 
-#: ../../vt_main/main_frame.py:473
 msgid "Restart Vidtuber?"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:581
 msgid ""
 "No publications found!\n"
 "ERROR: tag_name"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:597
 #, python-brace-format
 msgid "A new release is available - v.{0}\n"
 msgstr "新版本可用 - v.{0}\n"
 
-#: ../../vt_main/main_frame.py:600
 msgid "You are using a development version that has not yet been released!\n"
 msgstr "您正在使用一个尚未发布的开发版本！\n"
 
-#: ../../vt_main/main_frame.py:603
 msgid "Congratulation! You are already using the latest version.\n"
 msgstr "恭喜！您正在使用最新版本。\n"
 
-#: ../../vt_main/main_frame.py:660
 msgid "Go to the previous panel"
 msgstr "转到上一个面板"
 
-#: ../../vt_main/main_frame.py:661
 msgid "Back"
 msgstr "上一步"
 
-#: ../../vt_main/main_frame.py:665
 msgid "Go to the next panel"
 msgstr "转到下一个面板"
 
-#: ../../vt_main/main_frame.py:666
 msgid "Next"
 msgstr "下一步"
 
-#: ../../vt_main/main_frame.py:670
 msgid "yt-dlp options setting"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:671
 msgid "Options"
 msgstr "选项"
 
-#: ../../vt_main/main_frame.py:673
 msgid "Start downloading"
 msgstr "开始下载"
 
-#: ../../vt_main/main_frame.py:674
 msgid "Download"
 msgstr "下载"
 
-#: ../../vt_main/main_frame.py:677
 msgid "Stops current process"
 msgstr "停止当前过程"
 
-#: ../../vt_main/main_frame.py:749
 msgid "Vidtuber - Download Settings"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:766
 msgid "Viewing last log"
 msgstr "查看最后的日志"
 
-#: ../../vt_main/main_frame.py:779
 msgid "Vidtuber - Downloader Message Monitoring"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:849
 #, python-brace-format
 msgid "The system will turn off in {0} seconds"
 msgstr "系统将在 {0} 秒后关机"
 
-#: ../../vt_main/main_frame.py:850
 msgid "Vidtuber - Shutdown!"
 msgstr ""
 
-#: ../../vt_main/main_frame.py:857
 msgid "Error while shutting down. Please see file log for details."
 msgstr "关机时出现错误。请查看日志以获取详情。"
 
-#: ../../vt_main/main_frame.py:869
 #, python-brace-format
 msgid "Exiting the application in {0} seconds"
 msgstr "此程序将在 {0} 秒后退出"
 
-#: ../../vt_main/main_frame.py:870
 msgid "Vidtuber - Exiting!"
 msgstr ""
 
-#: ../../vt_panels/formatcode_exec.py:98 ../../vt_panels/formatcode_lib.py:98
-#: ../../vt_panels/youtubedl_ui.py:117
 #, fuzzy
 msgid "At least one \"Format Code\" must be checked for each URL selected in green."
 msgstr "对于每个以绿色选择的URL，必须至少勾选一个 \"格式代码\"。"
 
-#: ../../vt_panels/formatcode_exec.py:129 ../../vt_panels/formatcode_lib.py:129
 msgid "Format Code"
 msgstr "格式代码"
 
-#: ../../vt_panels/formatcode_exec.py:130 ../../vt_panels/formatcode_lib.py:130
-#: ../../vt_panels/textdrop.py:59
 msgid "Url"
 msgstr "网址"
 
-#: ../../vt_panels/formatcode_exec.py:131 ../../vt_panels/formatcode_lib.py:132
 msgid "Extension"
 msgstr "扩展"
 
-#: ../../vt_panels/formatcode_exec.py:132 ../../vt_panels/formatcode_lib.py:133
 msgid "Resolution"
 msgstr "分辨率"
 
-#: ../../vt_panels/formatcode_exec.py:137 ../../vt_panels/formatcode_lib.py:142
-msgid "Don't merge any files"
-msgstr "不要合并任何文件"
+msgid "Merge files into one file"
+msgstr ""
 
-#: ../../vt_panels/formatcode_exec.py:140 ../../vt_panels/formatcode_lib.py:145
 msgid "Download only the best selected qualities"
 msgstr "只下载选择的最好质量"
 
-#: ../../vt_panels/formatcode_lib.py:131
-msgid "Title"
-msgstr "标题"
-
-#: ../../vt_panels/formatcode_lib.py:134
-msgid "Video Codec"
-msgstr "视频编解码器"
-
-#: ../../vt_panels/formatcode_lib.py:135
-msgid "fps"
-msgstr "fps"
-
-#: ../../vt_panels/formatcode_lib.py:136
-msgid "Audio Codec"
-msgstr "音频编解码器"
-
-#: ../../vt_panels/formatcode_lib.py:137
-msgid "Size"
-msgstr "大小"
-
-#: ../../vt_panels/formatcode_lib.py:249
-#, fuzzy, python-brace-format
-msgid ""
-"ERROR: Unable to get format codes.\n"
-"\n"
-"Unsupported URL:\n"
-"'{0}'"
-msgstr ""
-"ERROR: Unable to get format codes.\n"
-"\n"
-"不支持的URL:/n\n"
-"'{0}'"
-
-#: ../../vt_panels/long_task_ytdlp.py:45
 msgid "[Vidtuber]: SUCCESS !"
 msgstr ""
 
-#: ../../vt_panels/long_task_ytdlp.py:46
 msgid "[Vidtuber]: FAILED !"
 msgstr ""
 
-#: ../../vt_panels/long_task_ytdlp.py:47
 msgid "Sorry, all task failed !"
 msgstr "抱歉，全部任务失败了！"
 
-#: ../../vt_panels/long_task_ytdlp.py:48
 #, fuzzy
 msgid "The process was stopped due to a fatal error."
 msgstr "该进程由于一个致命的错误而被停止。"
 
-#: ../../vt_panels/long_task_ytdlp.py:49
 msgid "Interrupted Process !"
 msgstr "过程已中断 !"
 
-#: ../../vt_panels/long_task_ytdlp.py:50
 msgid "Successfully completed !"
 msgstr "成功完成 !"
 
-#: ../../vt_panels/long_task_ytdlp.py:51
 msgid "Not everything was successful."
 msgstr "有一部分任务没有成功。"
 
-#: ../../vt_panels/long_task_ytdlp.py:78
 msgid "Download Status"
 msgstr "下载状态"
 
-#: ../../vt_panels/long_task_ytdlp.py:85
 msgid "Current Log"
 msgstr "当前日志"
 
-#: ../../vt_panels/long_task_ytdlp.py:213
 msgid "Fatal Error !"
 msgstr "致命错误！"
 
-#: ../../vt_panels/long_task_ytdlp.py:222
 #, fuzzy
 msgid "Get your files at the destination you specified"
 msgstr "在你指定的目的地获取你的文件"
 
-#: ../../vt_panels/long_task_ytdlp.py:230
-#: ../../vt_panels/long_task_ytdlp.py:237
 #, fuzzy
 msgid "Check the current output or read the related log file for more information."
 msgstr "检查当前的输出或阅读相关的日志文件以了解更多信息。"
 
-#: ../../vt_panels/long_task_ytdlp.py:242
 msgid "...Finished"
 msgstr "...完成"
 
-#: ../../vt_panels/long_task_ytdlp.py:256
 #, fuzzy
 msgid "Please wait... interruption in progress"
 msgstr "等等... 我打断了"
 
-#: ../../vt_panels/long_task_ytdlp.py:270
 msgid "Done"
 msgstr "完成"
 
-#: ../../vt_panels/textdrop.py:68
 msgid "Invalid URL"
 msgstr "无效的链接"
 
-#: ../../vt_panels/textdrop.py:86
 msgid "Error list"
 msgstr "错误列表"
 
-#: ../../vt_panels/textdrop.py:87
 msgid "Invalid URLs"
 msgstr "无效的链接"
 
-#: ../../vt_panels/textdrop.py:133
 msgid "Drag or paste URLs here"
 msgstr "在此处拖入或粘贴链接"
 
-#: ../../vt_panels/textdrop.py:143
 msgid "Save to:"
 msgstr "保存至："
 
-#: ../../vt_panels/textdrop.py:167
 msgid "Set a new destination folder for downloads"
 msgstr "设置一个新的下载内容保存文件夹"
 
-#: ../../vt_panels/textdrop.py:169
 msgid "Destination folder of downloads"
 msgstr "下载内容保存文件夹"
 
-#: ../../vt_panels/youtubedl_ui.py:150
 msgid "Precompiled Videos"
 msgstr "预编译的视频"
 
-#: ../../vt_panels/youtubedl_ui.py:151
 msgid "Download videos by resolution"
 msgstr "按分辨率下载视频"
 
-#: ../../vt_panels/youtubedl_ui.py:152
 msgid "Download split audio and video"
 msgstr "下载分割的音频和视频"
 
-#: ../../vt_panels/youtubedl_ui.py:153
 msgid "Download Audio only"
 msgstr "仅下载音频"
 
-#: ../../vt_panels/youtubedl_ui.py:154
 msgid "Download by format code"
 msgstr "按格式代码下载"
 
-#: ../../vt_panels/youtubedl_ui.py:200
 msgid "Mode:"
 msgstr ""
 
-#: ../../vt_panels/youtubedl_ui.py:205
 msgid "Include playlists"
 msgstr ""
 
-#: ../../vt_panels/youtubedl_ui.py:213
-msgid "Subtitles:"
-msgstr ""
-
-#: ../../vt_panels/youtubedl_ui.py:225
 msgid "Quality settings"
 msgstr "质量设置"
 
-#: ../../vt_panels/youtubedl_ui.py:237
 msgid "When not available, the chosen video resolution will be replaced with the closest one"
 msgstr "当不可用时，所选择的视频分辨率将被替换成最接近的一个"
 
-#: ../../vt_panels/youtubedl_ui.py:241
 msgid "Video format:"
 msgstr "视频格式："
 
-#: ../../vt_panels/youtubedl_ui.py:262
 msgid "Audio format:"
 msgstr "音频格式："
 
-#: ../../vt_panels/youtubedl_ui.py:354
 #, fuzzy, python-brace-format
 msgid ""
 "Unable to get format codes on {0}, unsupported URL:\n"
@@ -1336,20 +997,16 @@ msgstr ""
 "Unsupported '{0}':n\n"
 "'{1}'"
 
-#: ../../vt_panels/youtubedl_ui.py:504
 #, fuzzy
 msgid "URLs have no playlist references"
 msgstr "URLs没有播放列表参考"
 
-#: ../../vt_panels/youtubedl_ui.py:543
 msgid "The URLs contain playlists. Are you sure you want to continue?"
 msgstr "这些链接包含播放列表。确定要继续吗？"
 
-#: ../../vt_panels/youtubedl_ui.py:559
 msgid "The URLs contain channels. Are you sure you want to continue?"
 msgstr "这些链接包含频道。确定要继续吗？"
 
-#: ../../vt_panels/youtubedl_ui.py:579 ../../vt_panels/youtubedl_ui.py:792
 #, python-brace-format
 msgid ""
 "Missing executable: «{0}».\n"
@@ -1358,6 +1015,42 @@ msgstr ""
 "缺失可执行文件：«{0}»。\n"
 "继续前，请确定你设置了正确的首选项。"
 
-#~ msgid "Some text boxes are still incomplete"
-#~ msgstr "一些文本框仍然不完整"
+msgid ""
+"Changes have been made to the command arguments.\n"
+"\n"
+"Are you sure you want to apply them?"
+msgstr ""
+
+msgid "Apply changes?"
+msgstr ""
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Video Codec"
+msgstr "视频编解码器"
+
+msgid "fps"
+msgstr "fps"
+
+msgid "Audio Codec"
+msgstr "音频编解码器"
+
+msgid "Size"
+msgstr "大小"
+
+msgid "Don't merge any files"
+msgstr "不要合并任何文件"
+
+#, fuzzy, python-brace-format
+msgid ""
+"ERROR: Unable to get format codes.\n"
+"\n"
+"Unsupported URL:\n"
+"'{0}'"
+msgstr ""
+"ERROR: Unable to get format codes.\n"
+"\n"
+"不支持的URL:/n\n"
+"'{0}'"
 

@@ -805,8 +805,8 @@ class Downloader(wx.Panel):
                 newdata = epilogue.getvalue()
                 if not newdata == execlist:
                     if wx.MessageBox(_('Changes have been made to the command '
-                                       'line arguments.\n\nDo you want to '
-                                       'proceed anyway?'), _('Please confirm'),
+                                       'arguments.\n\nAre you sure you want '
+                                       'to apply them?'), _('Apply changes?'),
                                      wx.ICON_QUESTION | wx.CANCEL
                                      | wx.YES_NO, self) != wx.YES:
                         return

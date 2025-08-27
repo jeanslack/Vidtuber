@@ -60,10 +60,10 @@ class Confirmation_Dlg(wx.Dialog):
         self.url_select.SetMinSize((600, 200))
         self.url_select.InsertColumn(0, _('URL Summary'), width=700)
         sizer_base.Add(self.url_select, 0, wx.ALL | wx.EXPAND, 5)
-        msg = _('Edit command-line arguments')
+        msg = _('Edit command arguments')
         self.ckbx_showcmd = wx.CheckBox(self, wx.ID_ANY, msg)
         sizer_base.Add(self.ckbx_showcmd, 0, wx.ALL | wx.EXPAND, 5)
-        self.labcmd = wx.StaticText(self, label=_('Command-line arguments'))
+        self.labcmd = wx.StaticText(self, label=_('Command arguments'))
         sizer_base.Add(self.labcmd, 0, wx.ALL, 5)
         self.labcmd.Hide()
         self.textargs = wx.TextCtrl(self,
@@ -71,8 +71,7 @@ class Confirmation_Dlg(wx.Dialog):
                                     style=wx.TE_MULTILINE | wx.TE_RICH2,
                                     )
         self.textargs.SetMinSize((600, 200))
-        self.textargs.SetBackgroundColour(black)
-        self.textargs.SetDefaultStyle(wx.TextAttr(green))
+
         if get.appset['ostype'] == 'Darwin':
             self.textargs.SetFont(wx.Font(12, wx.FONTFAMILY_TELETYPE,
                                           wx.NORMAL, wx.NORMAL))
@@ -96,6 +95,8 @@ class Confirmation_Dlg(wx.Dialog):
         self.SetSizer(sizer_base)
         self.Fit()
         self.Layout()
+        self.textargs.SetBackgroundColour(black)
+        self.textargs.SetForegroundColour(green)
         # populate ListCtrl and set self.logdata dict
         if not self.edited:
             self.on_deselect(None)
