@@ -7,7 +7,7 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Tue, 26 Aug 2025 V.1.1.5
+Thu, 28 Aug 2025 V.1.1.6
 
   * Fixed "Download by format code" merging file issue. This fix adds
     `--audio-multistreams` and `--video-multistreams` arguments when the user
@@ -23,6 +23,7 @@ Tue, 26 Aug 2025 V.1.1.5
   * Update France language (Thanks to ChourS).
   * Update Russian language (Thanks to ChourS).
   * Update Italian language (Thanks to jeanslack).
+  * Fixed versioning error on debian control file related to python3-wxgtk4.0.
 
 +------------------------------------+
 Sat, 26 July 2025 V.1.1.2
