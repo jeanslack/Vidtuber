@@ -392,7 +392,7 @@ class DataSource():
                      'x22': f'{icodir}/Vidtuber-Light/24x24'},
                     }
         choose = iconames.get(icontheme)  # set appropriate icontheme
-        ext = 'svg' if 'wx.svg' in sys.modules else 'png'
+        ext = 'svg'  # if 'wx.svg' in sys.modules else 'png'
         iconset = (self.prg_icon,
                    f"{choose.get('x22')}/go-previous.{ext}",
                    f"{choose.get('x22')}/go-next.{ext}",

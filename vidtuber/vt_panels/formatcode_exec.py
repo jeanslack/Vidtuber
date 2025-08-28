@@ -29,48 +29,6 @@ from vidtuber.vt_io.io_tools import youtubedl_getstatistics
 from vidtuber.vt_io.make_filelog import make_log_template
 
 
-if not hasattr(wx, 'EVT_LIST_ITEM_CHECKED'):
-    import wx.lib.mixins.listctrl as listmix
-
-    class TestListCtrl(wx.ListCtrl,
-                       listmix.CheckListCtrlMixin,
-                       listmix.ListCtrlAutoWidthMixin
-                       ):
-        """
-        This class is responsible for maintaining backward
-        compatibility of wxPython which do not have a `ListCtrl`
-        module with checkboxes feature:
-
-        Examples of errors raised using a ListCtrl with checkboxes
-        not yet implemented:
-
-        AttributeError:
-            - 'ListCtrl' object has no attribute 'EnableCheckBoxes'
-            - module 'wx' has no attribute `EVT_LIST_ITEM_CHECKED`
-            - module 'wx' has no attribute `EVT_LIST_ITEM_UNCHECKED`
-        """
-        def __init__(self,
-                     parent,
-                     ID,
-                     pos=wx.DefaultPosition,
-                     size=wx.DefaultSize,
-                     style=0
-                     ):
-            self.parent = parent
-            wx.ListCtrl.__init__(self, parent, ID, pos, size, style)
-            listmix.CheckListCtrlMixin.__init__(self)
-            listmix.ListCtrlAutoWidthMixin.__init__(self)
-            # self.setResizeColumn(3)
-
-        def OnCheckItem(self, index, flag):
-            """
-            Send to parent (class FormatCode) index and flag.
-            index = int(num) of checked item.
-            flag = boolean True or False of the checked or un-checked item
-            """
-            self.parent.on_checkbox(self)
-
-
 class FormatCode(wx.Panel):
     """
     This panel implements a kind of wx.ListCtrl for
@@ -107,24 +65,15 @@ class FormatCode(wx.Panel):
         self.parent = parent
         self.urls = []
         self.format_dict = format_dict  # format codes order with URL matching
-        self.oldwx = None  # test result of hasattr EVT_LIST_ITEM_CHECKED
 
         wx.Panel.__init__(self, parent, -1, style=wx.TAB_TRAVERSAL)
         sizer_base = wx.BoxSizer(wx.VERTICAL)
         # -------------listctrl
-        if hasattr(wx, 'EVT_LIST_ITEM_CHECKED'):
-            self.oldwx = False
-            self.fcode = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_REPORT
-                                     | wx.SUNKEN_BORDER | wx.LC_SINGLE_SEL
-                                     )
-        else:
-            self.oldwx = True
-            t_id = wx.ID_ANY
-            self.fcode = TestListCtrl(self, t_id, style=wx.LC_REPORT
-                                      | wx.SUNKEN_BORDER | wx.LC_SINGLE_SEL
-                                      )
-        if not self.oldwx:
-            self.fcode.EnableCheckBoxes(enable=True)
+
+        self.fcode = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_REPORT
+                                 | wx.SUNKEN_BORDER | wx.LC_SINGLE_SEL
+                                 )
+        self.fcode.EnableCheckBoxes(enable=True)
         colw = FormatCode.appdata['fcode_column_width']
         self.fcode.InsertColumn(0, (_('Format Code')), width=colw[0])
         self.fcode.InsertColumn(1, (_('Url')), width=colw[1])
@@ -134,21 +83,21 @@ class FormatCode(wx.Panel):
         sizer_base.Add(self.fcode, 1, wx.ALL | wx.EXPAND, 5)
         sizeropt = wx.BoxSizer(wx.HORIZONTAL)
         sizer_base.Add(sizeropt, 0)
-        msg = _("Don't merge any files")
-        self.ckbx_nomerge = wx.CheckBox(self, wx.ID_ANY, msg)
-        sizeropt.Add(self.ckbx_nomerge, 0, wx.ALL | wx.EXPAND, 5)
+        msg = _("Merge files into one file")
+        self.ckbx_mrg = wx.CheckBox(self, wx.ID_ANY, msg)
+        sizeropt.Add(self.ckbx_mrg, 0, wx.ALL | wx.EXPAND, 5)
+        self.ckbx_mrg.SetValue(FormatCode.appdata['merge_single_file'])
         msg = _("Download only the best selected qualities")
         self.ckbx_best = wx.CheckBox(self, wx.ID_ANY, msg)
         sizeropt.Add(self.ckbx_best, 0, wx.ALL | wx.EXPAND, 5)
-        self.ckbx_best.SetValue(True)
+        self.ckbx_best.SetValue(FormatCode.appdata['only_best_quality'])
         # -----------------------
         self.SetSizer(sizer_base)
         self.Layout()
 
         # ----------------------Binder (EVT)----------------------#
-        if not self.oldwx:
-            self.fcode.Bind(wx.EVT_LIST_ITEM_CHECKED, self.on_checkbox)
-            self.fcode.Bind(wx.EVT_LIST_ITEM_UNCHECKED, self.on_checkbox)
+        self.fcode.Bind(wx.EVT_LIST_ITEM_CHECKED, self.on_checkbox)
+        self.fcode.Bind(wx.EVT_LIST_ITEM_UNCHECKED, self.on_checkbox)
 
     def enable_widgets(self, enable=True):
         """
@@ -157,40 +106,36 @@ class FormatCode(wx.Panel):
         if enable:
             self.fcode.Enable()
             self.ckbx_best.Enable()
-            self.ckbx_nomerge.Enable()
+            self.ckbx_mrg.Enable()
         else:
             self.fcode.Disable()
             self.ckbx_best.Disable()
-            self.ckbx_nomerge.Disable()
+            self.ckbx_mrg.Disable()
     # ----------------------------------------------------------------------
 
     def on_checkbox(self, event):
         """
         get data from the enabled checkbox and set the values
-        on corresponding key e.g.:
+        on corresponding key e.g. Resolution or Extension.
 
-            `key=url: values=[Audio: code, Video: code]`
+            `key=url: values=[mhtml: fcode, Audio: fcode, Video: fcode]`
         """
-        viddisp, auddisp = 'video', 'audio only'
-
-        if not self.oldwx:
-            check = self.fcode.IsItemChecked
-        else:
-            check = self.fcode.IsChecked
-
+        check = self.fcode.IsItemChecked
         num = self.fcode.GetItemCount()
         for url in self.urls:
             self.format_dict[url] = []
             for i in range(num):
                 if check(i):
                     if (self.fcode.GetItemText(i, 1)) == url:
-                        if viddisp in self.fcode.GetItemText(i, 3):
-                            dispv = self.fcode.GetItemText(i, 0)
-                            self.format_dict[url].append('Video: ' + dispv)
-                        elif auddisp in self.fcode.GetItemText(i, 3):
+                        if 'audio only' in self.fcode.GetItemText(i, 3):
                             dispa = self.fcode.GetItemText(i, 0)
                             self.format_dict[url].append('Audio: ' + dispa)
+                        elif self.fcode.GetItemText(i, 2) == 'mhtml':
+                            disph = self.fcode.GetItemText(i, 0)
+                            self.format_dict[url].append('mhtml: ' + disph)
                         else:
+                            # everything else could also be audio
+                            # it depends on the video site (not youtube)
                             dispv = self.fcode.GetItemText(i, 0)
                             self.format_dict[url].append('Video: ' + dispv)
     # ----------------------------------------------------------------------
@@ -240,55 +185,81 @@ class FormatCode(wx.Panel):
 
     def getformatcode(self):
         """
-        Called by `on_Start` parent method. Return format code list.
+        Called by `on_Start` parent method.
+        Return format code list. None type otherwise.
         """
         format_code = []
-        sep = ',' if self.ckbx_nomerge.GetValue() else '+'
+        sep = ',' if not self.ckbx_mrg.GetValue() else '+'
         sepany = '/' if self.ckbx_best.GetValue() else sep
+        amerge = '' if not self.ckbx_mrg.GetValue() else '--audio-multistreams'
+        vmerge = '' if not self.ckbx_mrg.GetValue() else '--video-multistreams'
 
         for url, key, val in zip(self.urls,
                                  self.format_dict.keys(),
                                  self.format_dict.values()
                                  ):
             if key == url:
-                video, audio = '', ''
-                if len(val) == 1:
-                    if val[0].startswith('Audio: '):
-                        audio = val[0].split('Audio: ')[1]
-                    elif val[0].startswith('Video: '):
-                        video = val[0].split('Video: ')[1]
-                    else:
-                        video = val[0].split('Video: ')[1]
-                else:
-                    index_1, index_2 = 0, 0
-                    for idx in val:
-                        if idx.startswith('Video: '):
-                            index_1 += 1
-                            if index_1 > 1:
-                                video += f"{sepany}{idx.split('Video: ')[1]}"
-                            else:
-                                video = idx.split('Video: ')[1]
+                video, audio, mhtml = self.fcode_concatenate(val, sepany)
 
-                        elif idx.startswith('Audio: '):
-                            index_2 += 1
-                            if index_2 > 1:
-                                audio += f"{sepany}{idx.split('Audio: ')[1]}"
-                            else:
-                                audio = idx.split('Audio: ')[1]
-                        else:
-                            index_1 += 1
-                            if index_1 > 1:
-                                video += f"{sepany}{idx.split('Video: ')[1]}"
-                            else:
-                                video = idx.split('Video: ')[1]
-
-                if video and audio:
-                    format_code.append(f'{video}{sep}{audio}')
-                elif video:
-                    format_code.append(f'{video}')
-                elif audio:
-                    format_code.append(f'{audio}')
-
+                if audio or video or mhtml:
+                    format_code.append(self.finalize_urlcodes(video,
+                                                              audio,
+                                                              mhtml,
+                                                              sep
+                                                              ))
         if len(format_code) != len(self.urls):
             return None
-        return format_code
+        return format_code, amerge, vmerge
+    # -----------------------------------------------------------------#
+
+    def fcode_concatenate(self, val, sepany):
+        """
+        Concatenate the selected format codes appropriately
+        """
+        video, audio, mhtml = None, None, None
+        index_v, index_a, index_h = 0, 0, 0
+
+        for idx in val:
+            if idx.startswith('Video: '):
+                index_v += 1
+                if index_v > 1:
+                    video += f"{sepany}{idx.split('Video: ')[1]}"
+                else:
+                    video = idx.split('Video: ')[1]
+
+            elif idx.startswith('Audio: '):
+                index_a += 1
+                if index_a > 1:
+                    audio += f"{sepany}{idx.split('Audio: ')[1]}"
+                else:
+                    audio = idx.split('Audio: ')[1]
+
+            elif idx.startswith('mhtml: '):
+                index_h += 1
+                if index_h > 1:
+                    mhtml += f",{idx.split('mhtml: ')[1]}"
+                else:
+                    mhtml = idx.split('mhtml: ')[1]
+
+        return video, audio, mhtml
+    # -----------------------------------------------------------------#
+
+    def finalize_urlcodes(self, video, audio, mhtml, sep):
+        """
+        Finalizes the passed format codes for each URL, if any.
+        Return a string with apropriate separators.
+        If no audio, video or mhtml, return None type.
+        """
+        if video and audio:
+            codes = f'{video}{sep}{audio}'
+        elif video:
+            codes = f'{video}'
+        elif audio:
+            codes = f'{audio}'
+        else:
+            codes = None
+
+        if mhtml:
+            codes = f'{codes},{mhtml}' if codes else f'{mhtml}'
+
+        return codes
