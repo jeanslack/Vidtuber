@@ -25,6 +25,7 @@ This file is part of Vidtuber.
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
 import wx
+from vidtuber.vt_utils.get_bmpfromsvg import get_bmp
 from vidtuber.vt_io.io_tools import youtubedl_getstatistics
 from vidtuber.vt_io.make_filelog import make_log_template
 
@@ -65,22 +66,16 @@ class FormatCode(wx.Panel):
         self.parent = parent
         self.urls = []
         self.format_dict = format_dict  # format codes order with URL matching
+        bmpreload = get_bmp(FormatCode.icons['reload'], ((16, 16)))
 
         wx.Panel.__init__(self, parent, -1, style=wx.TAB_TRAVERSAL)
         sizer_base = wx.BoxSizer(wx.VERTICAL)
         # -------------listctrl
+        self.labfcode = wx.StaticText(self, wx.ID_ANY,
+                                      _('Format Code Properties'))
+        sizer_base.Add(self.labfcode, 0, wx.ALL | wx.CENTRE, 5)
+        sizer_base.Add((0, 20))
 
-        self.fcode = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_REPORT
-                                 | wx.SUNKEN_BORDER | wx.LC_SINGLE_SEL
-                                 )
-        self.fcode.EnableCheckBoxes(enable=True)
-        colw = FormatCode.appdata['fcode_column_width']
-        self.fcode.InsertColumn(0, (_('Format Code')), width=colw[0])
-        self.fcode.InsertColumn(1, (_('Url')), width=colw[1])
-        self.fcode.InsertColumn(2, (_('Extension')), width=colw[2])
-        self.fcode.InsertColumn(3, (_('Resolution')), width=colw[3])
-
-        sizer_base.Add(self.fcode, 1, wx.ALL | wx.EXPAND, 5)
         sizeropt = wx.BoxSizer(wx.HORIZONTAL)
         sizer_base.Add(sizeropt, 0)
         msg = _("Merge files into one file")
@@ -91,13 +86,62 @@ class FormatCode(wx.Panel):
         self.ckbx_best = wx.CheckBox(self, wx.ID_ANY, msg)
         sizeropt.Add(self.ckbx_best, 0, wx.ALL | wx.EXPAND, 5)
         self.ckbx_best.SetValue(FormatCode.appdata['only_best_quality'])
+        self.btn_reload = wx.Button(self, wx.ID_ANY, "", size=(40, -1))
+        self.btn_reload.SetBitmap(bmpreload, wx.LEFT)
+        self.btn_reload.SetToolTip(_('Reload format codes'))
+        sizeropt.Add(self.btn_reload, 0, wx.LEFT | wx.CENTRE, 10)
+
+
+
+
+        self.fcode = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_REPORT
+                                 | wx.SUNKEN_BORDER | wx.LC_SINGLE_SEL
+                                 )
+        self.fcode.EnableCheckBoxes(enable=True)
+        colw = FormatCode.appdata['fcode_column_width']
+        self.fcode.InsertColumn(0, (_('Format Code')), width=colw[0])
+        self.fcode.InsertColumn(1, (_('Url')), width=colw[1])
+        self.fcode.InsertColumn(2, (_('Extension')), width=colw[2])
+        self.fcode.InsertColumn(3, (_('Resolution')), width=colw[3])
+        sizer_base.Add(self.fcode, 1, wx.ALL | wx.EXPAND, 5)
+
+
+
+        # sizeropt = wx.BoxSizer(wx.HORIZONTAL)
+        # sizer_base.Add(sizeropt, 0)
+        # msg = _("Merge files into one file")
+        # self.ckbx_mrg = wx.CheckBox(self, wx.ID_ANY, msg)
+        # sizeropt.Add(self.ckbx_mrg, 0, wx.ALL | wx.EXPAND, 5)
+        # self.ckbx_mrg.SetValue(FormatCode.appdata['merge_single_file'])
+        # msg = _("Download only the best selected qualities")
+        # self.ckbx_best = wx.CheckBox(self, wx.ID_ANY, msg)
+        # sizeropt.Add(self.ckbx_best, 0, wx.ALL | wx.EXPAND, 5)
+        # self.ckbx_best.SetValue(FormatCode.appdata['only_best_quality'])
+
+
+        # ----- Properties
+        if FormatCode.appdata['ostype'] == 'Darwin':
+            self.labfcode.SetFont(wx.Font(15, wx.DEFAULT, wx.NORMAL, wx.BOLD))
+        else:
+            self.labfcode.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.BOLD))
         # -----------------------
         self.SetSizer(sizer_base)
         self.Layout()
 
         # ----------------------Binder (EVT)----------------------#
+        self.btn_reload.Bind(wx.EVT_BUTTON, self.reload_format_codes)
         self.fcode.Bind(wx.EVT_LIST_ITEM_CHECKED, self.on_checkbox)
         self.fcode.Bind(wx.EVT_LIST_ITEM_UNCHECKED, self.on_checkbox)
+
+    def reload_format_codes(self, event):
+        """
+        Clear all data and Reload format codes when required
+        e.g changing some user option as use of cookies etc.
+        """
+        self.format_dict.clear()
+        self.fcode.DeleteAllItems()
+        self.parent.on_format_codes()
+    # ---------------------------------------------------------------------
 
     def enable_widgets(self, enable=True):
         """
@@ -107,10 +151,14 @@ class FormatCode(wx.Panel):
             self.fcode.Enable()
             self.ckbx_best.Enable()
             self.ckbx_mrg.Enable()
+            self.btn_reload.Enable()
+            self.labfcode.Enable()
         else:
             self.fcode.Disable()
             self.ckbx_best.Disable()
             self.ckbx_mrg.Disable()
+            self.btn_reload.Disable()
+            self.labfcode.Disable()
     # ----------------------------------------------------------------------
 
     def on_checkbox(self, event):

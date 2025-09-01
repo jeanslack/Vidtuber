@@ -7,16 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-27 11:49+0200\n"
-"PO-Revision-Date: 2025-08-27 11:29+0200\n"
+"POT-Creation-Date: 2025-09-01 00:45+0200\n"
+"PO-Revision-Date: 2025-09-01 00:49+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
-"Language: it_IT\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.17.0\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #, python-brace-format
 msgid ""
@@ -123,17 +124,15 @@ msgid "Specifying FFmpeg executables"
 msgstr "Specificazione degli eseguibili FFmpeg"
 
 msgid ""
-"For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables.\n"
+"For various post-processing tasks, the ffmpeg and ffprobe executables are required.\n"
 "Here you can customize the paths to these executables."
 msgstr ""
-"Per varie attività di post-elaborazione, yt-dlp richiede gli eseguibili ffmpeg e ffprobe.\n"
+"Per varie attività di post-elaborazione, sono richiesti gli eseguibili ffmpeg e ffprobe.\n"
 "Qui è possibile personalizzare i percorsi di questi eseguibili."
 
-msgid "Enable a custom location to run FFmpeg"
-msgstr "Abilita percorso personalizzato esecuzione FFmpeg"
-
-msgid "Enable a custom location to run FFprobe"
-msgstr "Abilita percorso personalizzato esecuzione FFprobe"
+#, python-brace-format
+msgid "Enable a custom location to run {0}"
+msgstr "Abilita percorso personalizzato esecuzione {0}"
 
 msgid "FFmpeg"
 msgstr "FFmpeg"
@@ -419,8 +418,8 @@ msgstr "Browser Web"
 msgid "Cookies"
 msgstr "Cookie"
 
-msgid "Yt-dlp options setting"
-msgstr "Impostazione opzioni yt-dlp"
+msgid "User Options"
+msgstr "Opzioni Utente"
 
 msgid "Do you want to remove the current cookie file from your system?"
 msgstr "Vuoi rimuovere l'attuale file cookie dal sistema?"
@@ -615,8 +614,9 @@ msgstr ""
 msgid "Specifying FFmpeg executables\n"
 msgstr "Specificazione degli eseguibili FFmpeg\n"
 
-msgid "For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables."
-msgstr "Per varie attività di post-elaborazione, yt-dlp richiede gli eseguibili ffmpeg e ffprobe."
+#, python-brace-format
+msgid "For various post-processing tasks, the {0} and {1} executables are required."
+msgstr "Per varie attività di post-elaborazione, sono richiesti gli eseguibili {0} e {1} ."
 
 msgid "Click the \"Next\" button"
 msgstr "Seleziona \"Avanti\""
@@ -688,7 +688,7 @@ msgstr ""
 "Recupero i dati richiesti."
 
 msgid "Vidtuber - List of URLs"
-msgstr "Vidtuber - Lista degli URL"
+msgstr "Vidtuber - Elenco URL"
 
 msgid "Ready"
 msgstr "Pronto"
@@ -862,20 +862,17 @@ msgstr "Vai al prossimo pannello"
 msgid "Next"
 msgstr "Avanti"
 
-msgid "yt-dlp options setting"
-msgstr "impostazione opzioni yt-dlp"
+msgid "User Options and other download settings"
+msgstr "Opzioni utente e altre impostazioni di download"
 
 msgid "Options"
 msgstr "Opzioni"
 
-msgid "Start downloading"
-msgstr "Avvia il download"
-
 msgid "Download"
 msgstr "Scarica"
 
-msgid "Stops current process"
-msgstr "Interrompi il processo corrente"
+msgid "Stop Downloading"
+msgstr "Interrompi il download"
 
 msgid "Vidtuber - Download Settings"
 msgstr "Vidtuber - Impostazioni di download"
@@ -908,6 +905,18 @@ msgstr "Vidtuber - Uscita dall'applicazione!"
 msgid "At least one \"Format Code\" must be checked for each URL selected in green."
 msgstr "È necessario spuntare almeno un \"Codice Formato\" per ciascun URL selezionato in verde."
 
+msgid "Format Code Properties"
+msgstr "Proprietà Codici Formato"
+
+msgid "Merge files into one file"
+msgstr "Unisci i file in un unico file"
+
+msgid "Download only the best selected qualities"
+msgstr "Scarica solo le qualità selezionate migliori"
+
+msgid "Reload format codes"
+msgstr "Ricarica codici formato"
+
 msgid "Format Code"
 msgstr "Codice Formato"
 
@@ -919,12 +928,6 @@ msgstr "Estensione"
 
 msgid "Resolution"
 msgstr "Risoluzione"
-
-msgid "Merge files into one file"
-msgstr "Unisci i file in un unico file"
-
-msgid "Download only the best selected qualities"
-msgstr "Scarica solo le qualità selezionate migliori"
 
 msgid "[Vidtuber]: SUCCESS !"
 msgstr "[Vidtuber]: COMPLETATO !"
@@ -992,23 +995,41 @@ msgstr "Imposta nuova cartella di destinazione per i download"
 msgid "Destination folder of downloads"
 msgstr "Cartella di destinazione dei download"
 
+msgid "Best quality video"
+msgstr "Migliore qualità video"
+
+msgid "Worst quality video"
+msgstr "Peggiore qualità video"
+
+msgid "Best quality Audio/Video"
+msgstr "Migliore qualità Audio/Video"
+
+msgid "Worst quality Audio/Video"
+msgstr "Peggiore qualità Audio/Video"
+
+msgid "Best quality audio"
+msgstr "Migliore qualità audio"
+
+msgid "Worst quality audio"
+msgstr "Peggiore qualità audio"
+
 msgid "Precompiled Videos"
 msgstr "Video Precompilati"
 
-msgid "Download videos by resolution"
-msgstr "Scarica video in base alla risoluzione"
+msgid "Videos by resolution"
+msgstr "Video in base alla risoluzione"
 
-msgid "Download split audio and video"
-msgstr "Scarica audio e video divisi"
+msgid "Split audio and video"
+msgstr "Audio e video divisi"
 
-msgid "Download Audio only"
-msgstr "Scarica solo il file audio"
+msgid "Audio only"
+msgstr "Solo file audio"
 
-msgid "Download by format code"
-msgstr "Scarica per codice formato"
+msgid "Format codes"
+msgstr "Codici formato"
 
-msgid "Mode:"
-msgstr "Modalità:"
+msgid "Download Mode:"
+msgstr "Modalità Download:"
 
 msgid "Include playlists"
 msgstr "Includi le playlist"
@@ -1093,4 +1114,3 @@ msgstr ""
 "\n"
 "URL non supportato:\n"
 "'{0}'"
-

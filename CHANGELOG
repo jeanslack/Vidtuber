@@ -7,6 +7,14 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
+Sun, 31 Aug 2025 V.1.1.7
+
+  * Fixed #10 this solve "Download by resolution" mode.
+  * Improved application strings/names/descriptions etc.
+  * Added "Reload format codes" button.
+  * Fixed quality settings for "Precompiled Videos".
+
++------------------------------------+
 Thu, 28 Aug 2025 V.1.1.6
 
   * Fixed "Download by format code" merging file issue. This fix adds

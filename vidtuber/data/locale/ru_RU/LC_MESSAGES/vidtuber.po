@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-27 11:49+0200\n"
+"POT-Creation-Date: 2025-09-01 00:45+0200\n"
 "PO-Revision-Date: 2025-07-18 21:06+0300\n"
 "Last-Translator: ChourS <ChourS2008@yandex.ru>\n"
 "Language: ru_RU\n"
@@ -124,17 +124,13 @@ msgid "Specifying FFmpeg executables"
 msgstr "Укажите исполняемые файлы FFmpeg"
 
 msgid ""
-"For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables.\n"
+"For various post-processing tasks, the ffmpeg and ffprobe executables are required.\n"
 "Here you can customize the paths to these executables."
 msgstr ""
-"Для выполнения различных задач постобработки yt-dlp требуются исполняемые файлы ffmpeg и ffprobe.\n"
-"Здесь вы можете настроить пути к этим исполняемым файлам."
 
-msgid "Enable a custom location to run FFmpeg"
-msgstr "Включите собственное местоположение для запуска FFmpeg"
-
-msgid "Enable a custom location to run FFprobe"
-msgstr "Включите пользовательское местоположение для запуска FFprobe"
+#, python-brace-format
+msgid "Enable a custom location to run {0}"
+msgstr ""
 
 msgid "FFmpeg"
 msgstr "FFmpeg"
@@ -425,8 +421,8 @@ msgstr "Веб-браузер"
 msgid "Cookies"
 msgstr "Cookies"
 
-msgid "Yt-dlp options setting"
-msgstr "Настройка параметров Yt-dlp"
+msgid "User Options"
+msgstr ""
 
 msgid "Do you want to remove the current cookie file from your system?"
 msgstr "Вы хотите удалить текущий файл cookie из вашей системы?"
@@ -621,8 +617,9 @@ msgstr ""
 msgid "Specifying FFmpeg executables\n"
 msgstr "Укажите исполняемые файлы FFmpeg\n"
 
-msgid "For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables."
-msgstr "Для выполнения различных задач постобработки yt-dlp требуются исполняемые файлы ffmpeg и ffprobe."
+#, python-brace-format
+msgid "For various post-processing tasks, the {0} and {1} executables are required."
+msgstr ""
 
 msgid "Click the \"Next\" button"
 msgstr "Нажмите кнопку \"Следующий\""
@@ -868,21 +865,17 @@ msgstr "Перейти к следующей панели"
 msgid "Next"
 msgstr "Вперед"
 
-# Особенность русской фразы
-msgid "yt-dlp options setting"
-msgstr "Настройка параметров yt-dlp"
+msgid "User Options and other download settings"
+msgstr ""
 
 msgid "Options"
 msgstr "Параметры"
 
-msgid "Start downloading"
-msgstr "Начать загрузку"
-
 msgid "Download"
 msgstr "Скачать"
 
-msgid "Stops current process"
-msgstr "Останавливает текущий процесс"
+msgid "Stop Downloading"
+msgstr ""
 
 msgid "Vidtuber - Download Settings"
 msgstr "Vidtuber - Настройки загрузки"
@@ -917,6 +910,18 @@ msgstr ""
 "Для каждого URL-адреса, выделенного зеленым цветом, должен быть отмечен \n"
 "хотя бы один \"Код формата\"."
 
+msgid "Format Code Properties"
+msgstr ""
+
+msgid "Merge files into one file"
+msgstr ""
+
+msgid "Download only the best selected qualities"
+msgstr "Загружайте только вариант с наилучшим качеством"
+
+msgid "Reload format codes"
+msgstr ""
+
 msgid "Format Code"
 msgstr "Код формата"
 
@@ -928,12 +933,6 @@ msgstr "Расширение"
 
 msgid "Resolution"
 msgstr "Разрешение"
-
-msgid "Merge files into one file"
-msgstr ""
-
-msgid "Download only the best selected qualities"
-msgstr "Загружайте только вариант с наилучшим качеством"
 
 msgid "[Vidtuber]: SUCCESS !"
 msgstr "[Vidtuber]: УСПЕШНО !"
@@ -1001,23 +1000,41 @@ msgstr "Установите новую папку назначения для �
 msgid "Destination folder of downloads"
 msgstr "Папка назначения для загрузок"
 
+msgid "Best quality video"
+msgstr ""
+
+msgid "Worst quality video"
+msgstr ""
+
+msgid "Best quality Audio/Video"
+msgstr ""
+
+msgid "Worst quality Audio/Video"
+msgstr ""
+
+msgid "Best quality audio"
+msgstr ""
+
+msgid "Worst quality audio"
+msgstr ""
+
 msgid "Precompiled Videos"
 msgstr "Предварительно скомпилированные видео"
 
-msgid "Download videos by resolution"
-msgstr "Загрузка видео по разрешению"
+msgid "Videos by resolution"
+msgstr ""
 
-msgid "Download split audio and video"
-msgstr "Скачать аудио и видео раздельно"
+msgid "Split audio and video"
+msgstr ""
 
-msgid "Download Audio only"
-msgstr "Загрузить только аудиофайл"
+msgid "Audio only"
+msgstr ""
 
-msgid "Download by format code"
-msgstr "Скачать код формата"
+msgid "Format codes"
+msgstr ""
 
-msgid "Mode:"
-msgstr "Режим:"
+msgid "Download Mode:"
+msgstr ""
 
 msgid "Include playlists"
 msgstr "Включить плейлисты"

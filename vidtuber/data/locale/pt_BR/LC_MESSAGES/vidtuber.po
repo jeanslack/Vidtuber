@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-27 11:49+0200\n"
+"POT-Creation-Date: 2025-09-01 00:45+0200\n"
 "PO-Revision-Date: 2025-07-09 21:38+0200\n"
 "Last-Translator: Samuel / http://littlesvr.ca/ostd/\n"
 "Language: pt_BR\n"
@@ -111,17 +111,13 @@ msgid "Specifying FFmpeg executables"
 msgstr ""
 
 msgid ""
-"For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables.\n"
+"For various post-processing tasks, the ffmpeg and ffprobe executables are required.\n"
 "Here you can customize the paths to these executables."
 msgstr ""
 
-#, fuzzy
-msgid "Enable a custom location to run FFmpeg"
-msgstr "Habilite outro local para executar o FFmpeg"
-
-#, fuzzy
-msgid "Enable a custom location to run FFprobe"
-msgstr "Habilite outro local para executar o FFprobe"
+#, python-brace-format
+msgid "Enable a custom location to run {0}"
+msgstr ""
 
 msgid "FFmpeg"
 msgstr "FFmpeg"
@@ -416,7 +412,7 @@ msgstr "Navegar.."
 msgid "Cookies"
 msgstr ""
 
-msgid "Yt-dlp options setting"
+msgid "User Options"
 msgstr ""
 
 msgid "Do you want to remove the current cookie file from your system?"
@@ -603,7 +599,8 @@ msgstr ""
 msgid "Specifying FFmpeg executables\n"
 msgstr ""
 
-msgid "For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables."
+#, python-brace-format
+msgid "For various post-processing tasks, the {0} and {1} executables are required."
 msgstr ""
 
 msgid "Click the \"Next\" button"
@@ -849,21 +846,17 @@ msgstr "Vá para o próximo painel"
 msgid "Next"
 msgstr "Avançar"
 
-msgid "yt-dlp options setting"
+msgid "User Options and other download settings"
 msgstr ""
 
 msgid "Options"
 msgstr "Opções"
 
-#, fuzzy
-msgid "Start downloading"
-msgstr "Inicia"
-
 msgid "Download"
 msgstr "Download"
 
-msgid "Stops current process"
-msgstr "Para o processo atual"
+msgid "Stop Downloading"
+msgstr ""
 
 msgid "Vidtuber - Download Settings"
 msgstr ""
@@ -894,6 +887,19 @@ msgstr ""
 msgid "At least one \"Format Code\" must be checked for each URL selected in green."
 msgstr "Pelo menos um \"Código de formato\" deve ser verificado para cada URL selecionado em verde."
 
+msgid "Format Code Properties"
+msgstr ""
+
+msgid "Merge files into one file"
+msgstr ""
+
+#, fuzzy
+msgid "Download only the best selected qualities"
+msgstr "Baixe as últimas predefinições"
+
+msgid "Reload format codes"
+msgstr ""
+
 msgid "Format Code"
 msgstr "Código de Formato"
 
@@ -905,13 +911,6 @@ msgstr "Extensão"
 
 msgid "Resolution"
 msgstr "Resolução"
-
-msgid "Merge files into one file"
-msgstr ""
-
-#, fuzzy
-msgid "Download only the best selected qualities"
-msgstr "Baixe as últimas predefinições"
 
 msgid "[Vidtuber]: SUCCESS !"
 msgstr ""
@@ -988,24 +987,41 @@ msgstr "Escolha um destino temporário para downloads"
 msgid "Destination folder of downloads"
 msgstr "Escolha um destino temporário para downloads"
 
+msgid "Best quality video"
+msgstr ""
+
+msgid "Worst quality video"
+msgstr ""
+
+msgid "Best quality Audio/Video"
+msgstr ""
+
+msgid "Worst quality Audio/Video"
+msgstr ""
+
+msgid "Best quality audio"
+msgstr ""
+
+msgid "Worst quality audio"
+msgstr ""
+
 #, fuzzy
 msgid "Precompiled Videos"
 msgstr "Bem-vindo ao Vidtuber"
 
-#, fuzzy
-msgid "Download videos by resolution"
-msgstr "Baixe todos os vídeos na lista de reprodução"
+msgid "Videos by resolution"
+msgstr ""
 
-msgid "Download split audio and video"
-msgstr "Baixe áudio e vídeo separadamente"
+msgid "Split audio and video"
+msgstr ""
 
-msgid "Download Audio only"
-msgstr "Baixar apenas áudio"
+msgid "Audio only"
+msgstr ""
 
-msgid "Download by format code"
-msgstr "Baixar por código de formato"
+msgid "Format codes"
+msgstr ""
 
-msgid "Mode:"
+msgid "Download Mode:"
 msgstr ""
 
 msgid "Include playlists"
