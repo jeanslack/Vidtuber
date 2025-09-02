@@ -179,6 +179,11 @@ class MainFrame(wx.Frame):
         sett['merge_single_file'] = val
         val = self.ytDownloader.panel_cod.ckbx_best.GetValue()
         sett['only_best_quality'] = val
+        sett['download_mode'] = self.ytDownloader.choice.GetSelection()
+        sett['video_format'] = self.ytDownloader.cmbx_vformat.GetSelection()
+        sett['audio_format'] = self.ytDownloader.cmbx_af.GetSelection()
+        sett['video_quality'] = self.ytDownloader.cmbx_vq.GetStringSelection()
+
         confmanager.write_options(**sett)
     # ------------------------------------------------------------------#
 

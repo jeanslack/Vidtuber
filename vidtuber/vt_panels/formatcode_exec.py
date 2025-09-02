@@ -53,9 +53,6 @@ class FormatCode(wx.Panel):
     DONE = get.appset['colorscheme']['TXT3']  # code text done
     WARN = get.appset['colorscheme']['WARN']  # code text warn
     RED = get.appset['colorscheme']['ERR1']   # code text err + sb error
-
-    MSG_1 = _('At least one "Format Code" must be checked for each '
-              'URL selected in green.')
     # -----------------------------------------------------------------#
 
     def __init__(self, parent, format_dict):
@@ -90,10 +87,6 @@ class FormatCode(wx.Panel):
         self.btn_reload.SetBitmap(bmpreload, wx.LEFT)
         self.btn_reload.SetToolTip(_('Reload format codes'))
         sizeropt.Add(self.btn_reload, 0, wx.LEFT | wx.CENTRE, 10)
-
-
-
-
         self.fcode = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_REPORT
                                  | wx.SUNKEN_BORDER | wx.LC_SINGLE_SEL
                                  )
@@ -104,20 +97,6 @@ class FormatCode(wx.Panel):
         self.fcode.InsertColumn(2, (_('Extension')), width=colw[2])
         self.fcode.InsertColumn(3, (_('Resolution')), width=colw[3])
         sizer_base.Add(self.fcode, 1, wx.ALL | wx.EXPAND, 5)
-
-
-
-        # sizeropt = wx.BoxSizer(wx.HORIZONTAL)
-        # sizer_base.Add(sizeropt, 0)
-        # msg = _("Merge files into one file")
-        # self.ckbx_mrg = wx.CheckBox(self, wx.ID_ANY, msg)
-        # sizeropt.Add(self.ckbx_mrg, 0, wx.ALL | wx.EXPAND, 5)
-        # self.ckbx_mrg.SetValue(FormatCode.appdata['merge_single_file'])
-        # msg = _("Download only the best selected qualities")
-        # self.ckbx_best = wx.CheckBox(self, wx.ID_ANY, msg)
-        # sizeropt.Add(self.ckbx_best, 0, wx.ALL | wx.EXPAND, 5)
-        # self.ckbx_best.SetValue(FormatCode.appdata['only_best_quality'])
-
 
         # ----- Properties
         if FormatCode.appdata['ostype'] == 'Darwin':
@@ -231,9 +210,9 @@ class FormatCode(wx.Panel):
         return None
     # -----------------------------------------------------------------#
 
-    def getformatcode(self):
+    def getformatcode(self, urls):
         """
-        Called by `on_Start` parent method.
+        Called by `youtubedl_ui.on_Start` parent method.
         Return format code list. None type otherwise.
         """
         format_code = []
@@ -242,7 +221,7 @@ class FormatCode(wx.Panel):
         amerge = '' if not self.ckbx_mrg.GetValue() else '--audio-multistreams'
         vmerge = '' if not self.ckbx_mrg.GetValue() else '--video-multistreams'
 
-        for url, key, val in zip(self.urls,
+        for url, key, val in zip(urls,
                                  self.format_dict.keys(),
                                  self.format_dict.values()
                                  ):
@@ -255,8 +234,8 @@ class FormatCode(wx.Panel):
                                                               mhtml,
                                                               sep
                                                               ))
-        if len(format_code) != len(self.urls):
-            return None
+        if len(format_code) != len(urls):
+            return None, amerge, vmerge
         return format_code, amerge, vmerge
     # -----------------------------------------------------------------#
 

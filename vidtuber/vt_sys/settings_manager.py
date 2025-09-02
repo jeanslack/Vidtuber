@@ -175,7 +175,7 @@ class ConfigManager:
         column width in the format code panel (ytdownloader).
 
     """
-    VERSION = 2.0
+    VERSION = 2.4
     DEFAULT_OPTIONS = {"confversion": VERSION,
                        "yt-dlp_cmd": "",
                        "ytdlp_islocal": False,
@@ -204,6 +204,10 @@ class ConfigManager:
                                              "skip_download": False
                                              },
                        "fcode_column_width": [120, 60, 200, 80],
+                       "download_mode": 0,
+                       "video_format": 0,
+                       "audio_format": 0,
+                       "video_quality": "",
                        "merge_single_file": True,
                        "only_best_quality": False,
                        "external_downloader": None,

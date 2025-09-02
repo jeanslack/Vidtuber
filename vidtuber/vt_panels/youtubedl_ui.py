@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: June.05.2025
+Rev: Sep.01.2025
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -115,8 +115,6 @@ class Downloader(wx.Panel):
     WHITE = '#fbf4f4'  # sb foreground
     VIOLET = '#D64E93'  # activated buttons
 
-    MSG_1 = _('At least one "Format Code" must be checked for each '
-              'URL selected in green.')
     # video resolution
     VRES = {('p1080'): ('best*[height=1080]'),
             ('p720'): ('best*[height=720]'),
@@ -190,7 +188,7 @@ class Downloader(wx.Panel):
                                 choices=Downloader.CHOICE,
                                 size=(-1, -1),
                                 )
-        self.choice.SetSelection(0)
+        self.choice.SetSelection(sett['download_mode'])
         txtdmode = wx.StaticText(self, wx.ID_ANY, _('Download Mode:'))
         fgs1.Add(txtdmode, 0, wx.LEFT | wx.CENTRE, 20)
         fgs1.Add(self.choice, 0, wx.LEFT | wx.CENTRE, 5)
@@ -220,16 +218,13 @@ class Downloader(wx.Panel):
         fgs2 = wx.BoxSizer(wx.HORIZONTAL)
         boxoptions.Add(fgs2, 0, wx.ALL | wx.EXPAND, 0)
         self.cmbx_vq = wx.ComboBox(self, wx.ID_ANY,
-                                   choices=(),
+                                   choices=(sett['video_quality'], ''),
                                    size=(-1, -1), style=wx.CB_DROPDOWN
                                    | wx.CB_READONLY
                                    )
+        self.cmbx_vq.SetSelection(0)
         # grid_v.Add((20, 20), 0,)
         fgs2.Add(self.cmbx_vq, 0, wx.ALL | wx.CENTRE, 5)
-        tip = (_('When not available, the chosen video resolution will '
-                 'be replaced with the closest one'))
-        self.cmbx_vq.SetToolTip(tip)
-
         txtvformat = wx.StaticText(self, wx.ID_ANY, _('Video format:'))
         fgs2.Add(txtvformat, 0, wx.LEFT | wx.CENTRE, 5)
         self.cmbx_vformat = wx.ComboBox(self, wx.ID_ANY,
@@ -237,7 +232,7 @@ class Downloader(wx.Panel):
                                         size=(-1, -1), style=wx.CB_DROPDOWN
                                         | wx.CB_READONLY
                                         )
-        self.cmbx_vformat.SetSelection(0)
+        self.cmbx_vformat.SetSelection(sett['video_format'])
         fgs2.Add(self.cmbx_vformat, 0, wx.ALL | wx.CENTRE, 5)
         fgs2.Add((20, 20), 0,)
         self.cmbx_aq = wx.ComboBox(self, wx.ID_ANY,
@@ -247,7 +242,6 @@ class Downloader(wx.Panel):
                                    | wx.CB_READONLY
                                    )
         self.cmbx_aq.SetSelection(0)
-        self.cmbx_aq.Disable()
         # grid_v.Add((20, 20), 0,)
         fgs2.Add(self.cmbx_aq, 0, wx.ALL | wx.CENTRE, 5)
 
@@ -259,8 +253,7 @@ class Downloader(wx.Panel):
                                    style=wx.CB_DROPDOWN
                                    | wx.CB_READONLY
                                    )
-        self.cmbx_af.Disable()
-        self.cmbx_af.SetSelection(0)
+        self.cmbx_af.SetSelection(sett['audio_format'])
         fgs2.Add(self.cmbx_af, 0, wx.ALL | wx.CENTRE, 5)
 
         # ------------- simple listctrl
@@ -282,7 +275,6 @@ class Downloader(wx.Panel):
         self.ckbx_pl.Bind(wx.EVT_CHECKBOX, self.on_playlist)
         self.btn_plidx.Bind(wx.EVT_BUTTON, self.on_playlist_idx)
         self.btn_subeditor.Bind(wx.EVT_BUTTON, self.on_subtitles_editor)
-        #self.btn_reload.Bind(wx.EVT_BUTTON, self.on_format_codes)
 
     # ----------------------------------------------------------------------
     def on_subtitles_editor(self, event):
@@ -314,9 +306,19 @@ class Downloader(wx.Panel):
                 self.ckbx_pl.SetValue(False)
                 self.on_playlist(self)
                 self.panel_cod.fcode.DeleteAllItems()
-                self.choice.SetSelection(0)
-                self.on_choicebox(self, statusmsg=False)
                 self.format_dict.clear()
+                if self.choice.GetSelection() == 4:
+                    msg = (_('The «Download Mode» is set to "Format codes".\n'
+                             'Would you like to reload/update the format '
+                             'codes list now?'))
+                    if wx.MessageBox(msg, _('Reload format codes?'),
+                                     wx.ICON_QUESTION | wx.CANCEL
+                                     | wx.YES_NO, self) != wx.YES:
+                        self.panel_cod.enable_widgets()
+                        return
+
+                self.on_choicebox(self, statusmsg=False)
+
     # -----------------------------------------------------------------#
 
     def on_format_codes(self):
@@ -764,15 +766,21 @@ class Downloader(wx.Panel):
             data['extractaudio'] = True
 
         elif self.choice.GetSelection() == 4:  # format code
-            code = self.panel_cod.getformatcode()
+            if self.panel_cod.fcode.GetItemCount() == 0:
+                msg = _('Click the Reload Format Codes button.')
+                wx.MessageBox(msg, _('Format Code List Missing'),
+                              wx.ICON_INFORMATION, self)
+                return
+
+            code = self.panel_cod.getformatcode(self.parent.data_url)
             formatquality = ''
             outtmpl = f'{_id}.f%(format_id)s.%(ext)s'
             data['extractaudio'] = False
-            if not code:
-                self.parent.statusbar_msg(Downloader.MSG_1,
-                                          self.red,
-                                          Downloader.WHITE
-                                          )
+            if not code[0]:
+                msg = _('At least one "Format Code" must be checked for each '
+                        'URL selected in green.')
+                wx.MessageBox(msg, _('Incomplete Format Code Selection'),
+                              wx.ICON_INFORMATION, self)
                 return
             data['audio-multistreams'] = code[1]
             data['video-multistreams'] = code[2]
