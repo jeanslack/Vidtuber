@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-03 13:15+0200\n"
+"POT-Creation-Date: 2025-09-03 17:50+0200\n"
 "PO-Revision-Date: 2025-07-18 21:06+0300\n"
 "Last-Translator: ChourS <ChourS2008@yandex.ru>\n"
 "Language: ru_RU\n"
@@ -913,6 +913,9 @@ msgstr ""
 
 msgid "Download only the best selected qualities"
 msgstr "Загружайте только вариант с наилучшим качеством"
+
+msgid "Reload"
+msgstr ""
 
 msgid "Reload format codes"
 msgstr ""

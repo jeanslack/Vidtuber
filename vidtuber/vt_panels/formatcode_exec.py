@@ -83,7 +83,8 @@ class FormatCode(wx.Panel):
         self.ckbx_best = wx.CheckBox(self, wx.ID_ANY, msg)
         sizeropt.Add(self.ckbx_best, 0, wx.ALL | wx.EXPAND, 5)
         self.ckbx_best.SetValue(FormatCode.appdata['only_best_quality'])
-        self.btn_reload = wx.Button(self, wx.ID_ANY, "", size=(40, -1))
+        self.btn_reload = wx.Button(self, wx.ID_ANY, _("Reload"),
+                                    size=(-1, -1))
         self.btn_reload.SetBitmap(bmpreload, wx.LEFT)
         self.btn_reload.SetToolTip(_('Reload format codes'))
         sizeropt.Add(self.btn_reload, 0, wx.LEFT | wx.CENTRE, 10)

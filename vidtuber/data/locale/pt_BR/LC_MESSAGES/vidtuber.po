@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-03 13:15+0200\n"
+"POT-Creation-Date: 2025-09-03 17:50+0200\n"
 "PO-Revision-Date: 2025-07-09 21:38+0200\n"
 "Last-Translator: Samuel / http://littlesvr.ca/ostd/\n"
 "Language: pt_BR\n"
@@ -893,6 +893,9 @@ msgstr ""
 #, fuzzy
 msgid "Download only the best selected qualities"
 msgstr "Baixe as últimas predefinições"
+
+msgid "Reload"
+msgstr ""
 
 msgid "Reload format codes"
 msgstr ""
