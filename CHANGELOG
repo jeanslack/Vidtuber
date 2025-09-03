@@ -7,7 +7,7 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Wed, 03 Sep 2025 V.1.1.7
+Wed, 03 Sep 2025 V.1.1.10
 
   * Fixed #10, this solve "Videos by resolution" mode.
   * Fixed #13, quality settings for "Precompiled Videos" mode.
@@ -18,6 +18,8 @@ Wed, 03 Sep 2025 V.1.1.7
   * Improved error handling (if any) using format codes mode.
   * Improved the "Show Log File" dialog box and "Format_Codes.log" text
     formatting for better understanding of error messages.
+  * Update Italian language by jeanslack.
+  * Update Russian language by ChourS.
 
 +------------------------------------+
 Thu, 28 Aug 2025 V.1.1.6
