@@ -7,7 +7,7 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Tue, 02 Sep 2025 V.1.1.7
+Wed, 03 Sep 2025 V.1.1.7
 
   * Fixed #10, this solve "Videos by resolution" mode.
   * Fixed #13, quality settings for "Precompiled Videos" mode.
@@ -15,6 +15,9 @@ Tue, 02 Sep 2025 V.1.1.7
   * Added "Reload format codes" button on "Format Code Properties".
   * Fixed #11, saves the user's last selection in the "Download Mode" and
     Format drop-down menus when the application closes.
+  * Improved error handling (if any) using format codes mode.
+  * Improved the "Show Log File" dialog box and "Format_Codes.log" text
+    formatting for better understanding of error messages.
 
 +------------------------------------+
 Thu, 28 Aug 2025 V.1.1.6

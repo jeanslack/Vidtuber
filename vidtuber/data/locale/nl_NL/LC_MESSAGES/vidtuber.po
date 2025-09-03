@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-01 00:45+0200\n"
+"POT-Creation-Date: 2025-09-03 13:15+0200\n"
 "PO-Revision-Date: 2025-07-09 21:38+0200\n"
 "Last-Translator: johannesdedoper <https://github.com/johannesdedoper>\n"
 "Language: nl_NL\n"
@@ -887,9 +887,6 @@ msgstr ""
 msgid "Vidtuber - Exiting!"
 msgstr ""
 
-msgid "At least one \"Format Code\" must be checked for each URL selected in green."
-msgstr "Minstens een \"Formaat Code\" moet gezet zijn voor elke URL, groen geselecteerd."
-
 msgid "Format Code Properties"
 msgstr ""
 
@@ -996,10 +993,13 @@ msgstr ""
 msgid "Worst quality video"
 msgstr ""
 
-msgid "Best quality Audio/Video"
+msgid "Best available quality"
 msgstr ""
 
-msgid "Worst quality Audio/Video"
+msgid "Format 18 (youtube.com only)"
+msgstr ""
+
+msgid "Worst available quality"
 msgstr ""
 
 msgid "Best quality audio"
@@ -1011,16 +1011,16 @@ msgstr ""
 msgid "Precompiled Videos"
 msgstr "Gecompileerde Videos"
 
-msgid "Videos by resolution"
+msgid "Videos by Resolution"
 msgstr ""
 
-msgid "Split audio and video"
+msgid "Split Audio and Video"
 msgstr ""
 
-msgid "Audio only"
+msgid "Audio Only"
 msgstr ""
 
-msgid "Format codes"
+msgid "Format Codes"
 msgstr ""
 
 msgid "Download Mode:"
@@ -1033,9 +1033,6 @@ msgstr ""
 msgid "Quality settings"
 msgstr "Markeer instellingen"
 
-msgid "When not available, the chosen video resolution will be replaced with the closest one"
-msgstr "Indien niet beschikbaar, wordt er gekozen voor de dichtstbijzijnde video resolutie"
-
 #, fuzzy
 msgid "Video format:"
 msgstr "Video transformatie"
@@ -1043,6 +1040,14 @@ msgstr "Video transformatie"
 #, fuzzy
 msgid "Audio format:"
 msgstr "Audio Normalisatie"
+
+msgid ""
+"The «Download Mode» is set to \"Format codes\".\n"
+"Would you like to reload/update the format codes list now?"
+msgstr ""
+
+msgid "Reload format codes?"
+msgstr ""
 
 #, fuzzy, python-brace-format
 msgid ""
@@ -1054,6 +1059,11 @@ msgstr ""
 "\n"
 "Niet ondersteund '{0}':\n"
 "'{1}"
+
+msgid ""
+"An error occurred while retrieving the requested data.\n"
+"See the related log file for more details."
+msgstr ""
 
 msgid "URLs have no playlist references"
 msgstr "URLs staan niet in de afspeellijst"
@@ -1070,6 +1080,18 @@ msgid ""
 "Before continuing, be sure to make the correct settings in the preferences dialog."
 msgstr ""
 
+msgid "Click the Reload Format Codes button."
+msgstr ""
+
+msgid "Format Code List Missing"
+msgstr ""
+
+msgid "At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr "Minstens een \"Formaat Code\" moet gezet zijn voor elke URL, groen geselecteerd."
+
+msgid "Incomplete Format Code Selection"
+msgstr ""
+
 msgid ""
 "Changes have been made to the command arguments.\n"
 "\n"
@@ -1078,34 +1100,4 @@ msgstr ""
 
 msgid "Apply changes?"
 msgstr ""
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "Video Codec"
-msgstr "Video Codec"
-
-msgid "fps"
-msgstr "fps"
-
-msgid "Audio Codec"
-msgstr "Audio Codec"
-
-msgid "Size"
-msgstr "Grootte"
-
-msgid "Don't merge any files"
-msgstr ""
-
-#, python-brace-format
-msgid ""
-"ERROR: Unable to get format codes.\n"
-"\n"
-"Unsupported URL:\n"
-"'{0}'"
-msgstr ""
-"FOUT: Format kan niet worden verkregen.\n"
-"\n"
-"Geen geldige URL:\n"
-"'{0}'"
 

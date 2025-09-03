@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.5\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-01 00:45+0200\n"
+"POT-Creation-Date: 2025-09-03 13:15+0200\n"
 "PO-Revision-Date: 2025-08-14 18:39+0300\n"
 "Last-Translator: ChourS <ChourS2008@yandex.ru>\n"
 "Language: fr_FR\n"
@@ -888,9 +888,6 @@ msgstr "Quitter l'application en {0} secondes"
 msgid "Vidtuber - Exiting!"
 msgstr "Vidtuber - Sortie!"
 
-msgid "At least one \"Format Code\" must be checked for each URL selected in green."
-msgstr "Au moins un \"code format\" doit être sélectionné pour chaque URL sélectionnée en vert."
-
 msgid "Format Code Properties"
 msgstr ""
 
@@ -987,10 +984,13 @@ msgstr ""
 msgid "Worst quality video"
 msgstr ""
 
-msgid "Best quality Audio/Video"
+msgid "Best available quality"
 msgstr ""
 
-msgid "Worst quality Audio/Video"
+msgid "Format 18 (youtube.com only)"
+msgstr ""
+
+msgid "Worst available quality"
 msgstr ""
 
 msgid "Best quality audio"
@@ -1002,16 +1002,16 @@ msgstr ""
 msgid "Precompiled Videos"
 msgstr "Vidéos pré-compilées"
 
-msgid "Videos by resolution"
+msgid "Videos by Resolution"
 msgstr ""
 
-msgid "Split audio and video"
+msgid "Split Audio and Video"
 msgstr ""
 
-msgid "Audio only"
+msgid "Audio Only"
 msgstr ""
 
-msgid "Format codes"
+msgid "Format Codes"
 msgstr ""
 
 msgid "Download Mode:"
@@ -1023,14 +1023,19 @@ msgstr "Inclure playlists"
 msgid "Quality settings"
 msgstr "Réglages Qualité"
 
-msgid "When not available, the chosen video resolution will be replaced with the closest one"
-msgstr "Lorsqu'elle n'est pas disponible, la résolution vidéo choisie sera remplacée par la plus proche"
-
 msgid "Video format:"
 msgstr "Format Vidéo:"
 
 msgid "Audio format:"
 msgstr "Format audio:"
+
+msgid ""
+"The «Download Mode» is set to \"Format codes\".\n"
+"Would you like to reload/update the format codes list now?"
+msgstr ""
+
+msgid "Reload format codes?"
+msgstr ""
 
 #, python-brace-format
 msgid ""
@@ -1041,6 +1046,11 @@ msgstr ""
 "Impossible d'obtenir les codes de format sur {0},URL non prise en charge:\n"
 "\n"
 "{1}"
+
+msgid ""
+"An error occurred while retrieving the requested data.\n"
+"See the related log file for more details."
+msgstr ""
 
 msgid "URLs have no playlist references"
 msgstr "Les URL ne correspondent pas à la playlist"
@@ -1059,6 +1069,18 @@ msgstr ""
 "Exécutable manquant:«{0}».\n"
 "Avant de continuer, assurez-vous de définir les paramètres corrects dans la boîte de dialogue Préférences."
 
+msgid "Click the Reload Format Codes button."
+msgstr ""
+
+msgid "Format Code List Missing"
+msgstr ""
+
+msgid "At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr "Au moins un \"code format\" doit être sélectionné pour chaque URL sélectionnée en vert."
+
+msgid "Incomplete Format Code Selection"
+msgstr ""
+
 msgid ""
 "Changes have been made to the command arguments.\n"
 "\n"
@@ -1067,34 +1089,4 @@ msgstr ""
 
 msgid "Apply changes?"
 msgstr ""
-
-msgid "Title"
-msgstr "Titre"
-
-msgid "Video Codec"
-msgstr "Codec Vidéo"
-
-msgid "fps"
-msgstr "fps"
-
-msgid "Audio Codec"
-msgstr "Codec Audio"
-
-msgid "Size"
-msgstr "Taille"
-
-msgid "Don't merge any files"
-msgstr "Ne pas assembler les fichiers"
-
-#, python-brace-format
-msgid ""
-"ERROR: Unable to get format codes.\n"
-"\n"
-"Unsupported URL:\n"
-"'{0}'"
-msgstr ""
-"ERREUR: Impossible d'obtenir les codes format\n"
-"\n"
-"URL non prise en charge:\n"
-"'{0}'"
 

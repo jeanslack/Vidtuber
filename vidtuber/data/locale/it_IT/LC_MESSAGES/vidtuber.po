@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-01 00:45+0200\n"
-"PO-Revision-Date: 2025-09-01 00:49+0200\n"
+"POT-Creation-Date: 2025-09-03 13:15+0200\n"
+"PO-Revision-Date: 2025-09-03 13:19+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it_IT\n"
@@ -902,9 +902,6 @@ msgstr "Chiusura dell'applicazione tra {0} secondi"
 msgid "Vidtuber - Exiting!"
 msgstr "Vidtuber - Uscita dall'applicazione!"
 
-msgid "At least one \"Format Code\" must be checked for each URL selected in green."
-msgstr "È necessario spuntare almeno un \"Codice Formato\" per ciascun URL selezionato in verde."
-
 msgid "Format Code Properties"
 msgstr "Proprietà Codici Formato"
 
@@ -1001,11 +998,14 @@ msgstr "Migliore qualità video"
 msgid "Worst quality video"
 msgstr "Peggiore qualità video"
 
-msgid "Best quality Audio/Video"
-msgstr "Migliore qualità Audio/Video"
+msgid "Best available quality"
+msgstr "Migliore qualità disponibile"
 
-msgid "Worst quality Audio/Video"
-msgstr "Peggiore qualità Audio/Video"
+msgid "Format 18 (youtube.com only)"
+msgstr "Formato 18 (solo youtube.com)"
+
+msgid "Worst available quality"
+msgstr "Peggiore qualità disponibile"
 
 msgid "Best quality audio"
 msgstr "Migliore qualità audio"
@@ -1016,17 +1016,17 @@ msgstr "Peggiore qualità audio"
 msgid "Precompiled Videos"
 msgstr "Video Precompilati"
 
-msgid "Videos by resolution"
-msgstr "Video in base alla risoluzione"
+msgid "Videos by Resolution"
+msgstr "Video basati su Risoluzione"
 
-msgid "Split audio and video"
-msgstr "Audio e video divisi"
+msgid "Split Audio and Video"
+msgstr "Audio e Video Divisi"
 
-msgid "Audio only"
-msgstr "Solo file audio"
+msgid "Audio Only"
+msgstr "Solo Audio"
 
-msgid "Format codes"
-msgstr "Codici formato"
+msgid "Format Codes"
+msgstr "Codici Formato"
 
 msgid "Download Mode:"
 msgstr "Modalità Download:"
@@ -1037,14 +1037,21 @@ msgstr "Includi le playlist"
 msgid "Quality settings"
 msgstr "Impostazioni qualità"
 
-msgid "When not available, the chosen video resolution will be replaced with the closest one"
-msgstr "Quando non disponibile, la risoluzione video selezionata verrà sostituita con quella più vicina"
-
 msgid "Video format:"
 msgstr "Formato Video:"
 
 msgid "Audio format:"
 msgstr "Formato audio:"
+
+msgid ""
+"The «Download Mode» is set to \"Format codes\".\n"
+"Would you like to reload/update the format codes list now?"
+msgstr ""
+"La «Modalità Download» è impostata su \"Codici Formato\".\n"
+"Vuoi ricaricare/aggiornare l'elenco dei codici formato ora?"
+
+msgid "Reload format codes?"
+msgstr "Ricaricare codici formato?"
 
 #, python-brace-format
 msgid ""
@@ -1055,6 +1062,13 @@ msgstr ""
 "Impossibile ottenere i codici di formato su {0}, URL non supportato:\n"
 "\n"
 "{1}"
+
+msgid ""
+"An error occurred while retrieving the requested data.\n"
+"See the related log file for more details."
+msgstr ""
+"Si è verificato un errore durante il recupero dei dati richiesti.\n"
+"Per maggiori dettagli, consultare il file di registro correlato."
 
 msgid "URLs have no playlist references"
 msgstr "Gli URL non hanno riferimenti a playlist"
@@ -1073,6 +1087,18 @@ msgstr ""
 "Eseguibile mancante: «{0}».\n"
 "Prima di continuare, assicurati di effettuare le impostazioni corrette nella finestra di dialogo 'Preferenze'."
 
+msgid "Click the Reload Format Codes button."
+msgstr "Clicca sul pulsante Ricarica Codici Formato."
+
+msgid "Format Code List Missing"
+msgstr "Elenco Codici Formato Mancante"
+
+msgid "At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr "È necessario spuntare almeno un \"Codice Formato\" per ciascun URL selezionato in verde."
+
+msgid "Incomplete Format Code Selection"
+msgstr "Selezione Codici Formato Incompleta"
+
 msgid ""
 "Changes have been made to the command arguments.\n"
 "\n"
@@ -1084,33 +1110,3 @@ msgstr ""
 
 msgid "Apply changes?"
 msgstr "Applicare le modifiche?"
-
-msgid "Title"
-msgstr "Titolo"
-
-msgid "Video Codec"
-msgstr "Codec Video"
-
-msgid "fps"
-msgstr "fps"
-
-msgid "Audio Codec"
-msgstr "Codec Audio"
-
-msgid "Size"
-msgstr "Dimensione"
-
-msgid "Don't merge any files"
-msgstr "Non unire alcun file"
-
-#, python-brace-format
-msgid ""
-"ERROR: Unable to get format codes.\n"
-"\n"
-"Unsupported URL:\n"
-"'{0}'"
-msgstr ""
-"ERRORE: Impossibile ottenere i codici di formato.\n"
-"\n"
-"URL non supportato:\n"
-"'{0}'"

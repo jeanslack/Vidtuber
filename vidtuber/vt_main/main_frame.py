@@ -506,16 +506,17 @@ class MainFrame(wx.Frame):
 
     def view_logs(self, event, flog=None):
         """
-        Show to view log files dialog
+        Displays log file dialog
         flog: filename to select on showlog if any.
         """
         if self.showlogs:
             self.showlogs.Raise()
+            self.showlogs.on_flog_select(flog)
             return
 
         self.showlogs = ShowLogs(self,
                                  self.appdata['logdir'],
-                                 self.appdata['ostype'],
+                                 speclogname=flog,
                                  )
         self.showlogs.Show()
     # ------------------------------------------------------------------#

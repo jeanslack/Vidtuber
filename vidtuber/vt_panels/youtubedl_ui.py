@@ -128,8 +128,9 @@ class Downloader(wx.Panel):
              _('Worst quality video'): ('worstvideo'),
              }
     # precompiled videos
-    VPCOMP = {_('Best quality Audio/Video'): ('bestvideo*+bestaudio/best'),
-              _('Worst quality Audio/Video'): ('worstvideo+worstaudio/worst'),
+    VPCOMP = {_('Best available quality'): (''),
+              _('Format 18 (youtube.com only)'): ('18'),
+              _('Worst available quality'): ('worstvideo+worstaudio/worst'),
               }
     AFORMATS = {("Auto"): ("best"),
                 ("wav"): ("wav"),
@@ -145,10 +146,10 @@ class Downloader(wx.Panel):
              _('Worst quality audio'): ('worstaudio')}
 
     CHOICE = [_('Precompiled Videos'),
-              _('Videos by resolution'),
-              _('Split audio and video'),
-              _('Audio only'),
-              _('Format codes')
+              _('Videos by Resolution'),
+              _('Split Audio and Video'),
+              _('Audio Only'),
+              _('Format Codes')
               ]
     # -----------------------------------------------------------------#
 
@@ -334,12 +335,6 @@ class Downloader(wx.Panel):
         if not cmd:
             return None
 
-        def _error(msg, icon, cap):
-            wx.MessageBox(msg, cap, icon, self)
-            self.choice.SetSelection(0)
-            self.on_choicebox(self, False)
-            return True
-
         for url in self.parent.data_url:
             for unsupp in ('/playlists',
                            '/channels',
@@ -351,12 +346,18 @@ class Downloader(wx.Panel):
                     msg = _("Unable to get format codes on {0}, "
                             "unsupported URL:\n\n{1}"
                             ).format(unsupp.split('/')[1], url)
-                    return _error(msg, wx.ICON_WARNING,
-                                  _('Vidtuber - Warning!'))
+                    wx.MessageBox(msg, _('Vidtuber - Warning!'),
+                                  wx.ICON_WARNING, self)
+                    return True
 
         ret = self.panel_cod.set_formatcode(self.parent.data_url, cmd)
         if ret:
-            return _error(ret, wx.ICON_ERROR, _('Vidtuber - Error!'))
+            msg = _('An error occurred while retrieving the requested data.\n'
+                    'See the related log file for more details.')
+            wx.MessageBox(msg, _('Vidtuber - Error!'), wx.ICON_ERROR, self)
+            self.parent.view_logs(None, flog='Format_Codes.log')
+            return True
+
         return None
     # -----------------------------------------------------------------#
 
@@ -451,8 +452,13 @@ class Downloader(wx.Panel):
         vformat = self.cmbx_vformat.GetValue()
 
         if self.choice.GetSelection() == 0:
+            if self.opt["V_QUALITY"] == '':
+                qbar = 'Default best quality'
+            else:
+                qbar = self.opt["V_QUALITY"]
             quality = self.opt["V_QUALITY"]
-            self.parent.statusbar_msg(f'Quality: {quality}', None)
+
+            self.parent.statusbar_msg(f'Quality: {qbar}', None)
 
         elif self.choice.GetSelection() == 1:
             vf = '' if vformat == 'Auto' else f'[ext={vformat}]'
