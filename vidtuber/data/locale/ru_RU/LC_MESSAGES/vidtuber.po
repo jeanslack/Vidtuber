@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: Vidtuber 1.1.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-03 17:50+0200\n"
-"PO-Revision-Date: 2025-07-18 21:06+0300\n"
+"PO-Revision-Date: 2025-09-03 22:27+0300\n"
 "Last-Translator: ChourS <ChourS2008@yandex.ru>\n"
-"Language: ru_RU\n"
 "Language-Team: Chour <ChourS2008@yandex.ru>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.17.0\n"
+"X-Generator: Poedit 3.7\n"
 
 #, python-brace-format
 msgid ""
@@ -59,16 +60,16 @@ msgstr ""
 "\n"
 
 msgid "URL Summary"
-msgstr ""
+msgstr "Краткое описание URL-адреса"
 
 msgid "Edit command arguments"
-msgstr ""
+msgstr "Редактировать аргументы команды"
 
 msgid "Command arguments"
-msgstr ""
+msgstr "Аргументы команды"
 
 msgid "Confirmation Procedure"
-msgstr ""
+msgstr "Подтвердить процедуру"
 
 msgid "URL"
 msgstr "URL"
@@ -127,10 +128,13 @@ msgid ""
 "For various post-processing tasks, the ffmpeg and ffprobe executables are required.\n"
 "Here you can customize the paths to these executables."
 msgstr ""
+"Для выполнения различных задач постобработки требуются \n"
+"исполняемые файлы ffmpeg и ffprobe.\n"
+"Здесь вы можете настроить пути к этим исполняемым файлам."
 
 #, python-brace-format
 msgid "Enable a custom location to run {0}"
-msgstr ""
+msgstr "Включите пользовательское местоположение для запуска {0}"
 
 msgid "FFmpeg"
 msgstr "FFmpeg"
@@ -422,7 +426,7 @@ msgid "Cookies"
 msgstr "Cookies"
 
 msgid "User Options"
-msgstr ""
+msgstr "Пользовательские параметры"
 
 msgid "Do you want to remove the current cookie file from your system?"
 msgstr "Вы хотите удалить текущий файл cookie из вашей системы?"
@@ -619,7 +623,7 @@ msgstr "Укажите исполняемые файлы FFmpeg\n"
 
 #, python-brace-format
 msgid "For various post-processing tasks, the {0} and {1} executables are required."
-msgstr ""
+msgstr "Для различных задач постобработки требуются исполняемые файлы {0} и {1} ."
 
 msgid "Click the \"Next\" button"
 msgstr "Нажмите кнопку \"Следующий\""
@@ -866,7 +870,7 @@ msgid "Next"
 msgstr "Вперед"
 
 msgid "User Options and other download settings"
-msgstr ""
+msgstr "Пользовательские параметры и другие настройки загрузки"
 
 msgid "Options"
 msgstr "Параметры"
@@ -875,7 +879,7 @@ msgid "Download"
 msgstr "Скачать"
 
 msgid "Stop Downloading"
-msgstr ""
+msgstr "Остановить загрузку"
 
 msgid "Vidtuber - Download Settings"
 msgstr "Vidtuber - Настройки загрузки"
@@ -906,19 +910,19 @@ msgid "Vidtuber - Exiting!"
 msgstr "Vidtuber - Выход!"
 
 msgid "Format Code Properties"
-msgstr ""
+msgstr "Свойства кода формата"
 
 msgid "Merge files into one file"
-msgstr ""
+msgstr "Объединить файлы в один файл"
 
 msgid "Download only the best selected qualities"
 msgstr "Загружайте только вариант с наилучшим качеством"
 
 msgid "Reload"
-msgstr ""
+msgstr "Перезагрузить"
 
 msgid "Reload format codes"
-msgstr ""
+msgstr "Перезагрузить коды формата"
 
 msgid "Format Code"
 msgstr "Код формата"
@@ -999,43 +1003,43 @@ msgid "Destination folder of downloads"
 msgstr "Папка назначения для загрузок"
 
 msgid "Best quality video"
-msgstr ""
+msgstr "Видео самого высокого качества"
 
 msgid "Worst quality video"
-msgstr ""
+msgstr "Видео самого низкого качества"
 
 msgid "Best available quality"
-msgstr ""
+msgstr "Наилучшее доступное качество"
 
 msgid "Format 18 (youtube.com only)"
-msgstr ""
+msgstr "Формат 18 (только youtube.com)"
 
 msgid "Worst available quality"
-msgstr ""
+msgstr "Наихудшее доступное качество"
 
 msgid "Best quality audio"
-msgstr ""
+msgstr "Звук самого высокого качества"
 
 msgid "Worst quality audio"
-msgstr ""
+msgstr "Звук самого низкого качества"
 
 msgid "Precompiled Videos"
 msgstr "Предварительно скомпилированные видео"
 
 msgid "Videos by Resolution"
-msgstr ""
+msgstr "Видео по разрешению"
 
 msgid "Split Audio and Video"
-msgstr ""
+msgstr "Разделение аудио и видео"
 
 msgid "Audio Only"
-msgstr ""
+msgstr "Только аудио"
 
 msgid "Format Codes"
-msgstr ""
+msgstr "Коды формата"
 
 msgid "Download Mode:"
-msgstr ""
+msgstr "Режим загрузки:"
 
 msgid "Include playlists"
 msgstr "Включить плейлисты"
@@ -1053,9 +1057,11 @@ msgid ""
 "The «Download Mode» is set to \"Format codes\".\n"
 "Would you like to reload/update the format codes list now?"
 msgstr ""
+"В «Режиме загрузки» установлено значение \"Коды формата\".\n"
+"Хотите ли вы перезагрузить/обновить список кодов формата прямо сейчас?"
 
 msgid "Reload format codes?"
-msgstr ""
+msgstr "Перезагрузить коды формата?"
 
 #, python-brace-format
 msgid ""
@@ -1071,6 +1077,8 @@ msgid ""
 "An error occurred while retrieving the requested data.\n"
 "See the related log file for more details."
 msgstr ""
+"При получении запрошенных данных произошла ошибка.\n"
+"Более подробную информацию смотрите в соответствующем файле журнала."
 
 msgid "URLs have no playlist references"
 msgstr "URL-адреса не имеют ссылок на плейлисты"
@@ -1090,10 +1098,10 @@ msgstr ""
 "Прежде чем продолжить, убедитесь в правильности настроек в диалоговом окне настроек."
 
 msgid "Click the Reload Format Codes button."
-msgstr ""
+msgstr "Нажмите кнопку \"Перезагрузить коды форматов\"."
 
 msgid "Format Code List Missing"
-msgstr ""
+msgstr "Список кодов формата отсутствует"
 
 msgid "At least one \"Format Code\" must be checked for each URL selected in green."
 msgstr ""
@@ -1101,14 +1109,16 @@ msgstr ""
 "хотя бы один \"Код формата\"."
 
 msgid "Incomplete Format Code Selection"
-msgstr ""
+msgstr "Неполный выбор кода формата"
 
 msgid ""
 "Changes have been made to the command arguments.\n"
 "\n"
 "Are you sure you want to apply them?"
 msgstr ""
+"В аргументы команды были внесены изменения.\n"
+"\n"
+"Вы уверены, что хотите их применить?"
 
 msgid "Apply changes?"
-msgstr ""
-
+msgstr "Применить изменения?"
