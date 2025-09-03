@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: June.05.2025
+Rev: Sep.03.2025
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -66,7 +66,7 @@ class YdlExtractInfo(Thread):
         self.data = None
         self.cmd = f'{args} "{url}"'
 
-        logwrite(f'INFO: COMMAND: {self.cmd}\n', '',
+        logwrite(f'INFO: COMMAND: {self.cmd}', '',
                  self.logfile)  # write log cmd
 
         Thread.__init__(self)
@@ -90,7 +90,8 @@ class YdlExtractInfo(Thread):
                 out = proc.communicate()
 
                 if proc.returncode:  # if returncode == 1
-                    logwrite('', (f"[VIDTUBER]: ERROR: {out}"), self.logfile)
+                    logwrite('', (f"[VIDTUBER]: ERROR: {out[0]}"),
+                             self.logfile)
                     self.status = (out[0], 'error')
                 else:
                     self.status = (out[0], out[1])

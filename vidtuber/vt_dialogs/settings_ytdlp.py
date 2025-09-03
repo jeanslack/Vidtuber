@@ -400,7 +400,7 @@ class YtdlpSettings(wx.Dialog):
             labcooktitle.SetFont(wx.Font(10, wx.DEFAULT, wx.NORMAL, wx.BOLD))
             labcookgen.SetFont(wx.Font(8, wx.SWISS, wx.NORMAL, wx.NORMAL))
 
-        self.SetTitle(_("Yt-dlp options setting"))
+        self.SetTitle(_("User Options"))
 
         # ------ set sizer
         self.SetMinSize((700, 450))

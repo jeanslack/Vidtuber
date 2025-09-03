@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-27 11:49+0200\n"
+"POT-Creation-Date: 2025-09-03 17:50+0200\n"
 "PO-Revision-Date: 2025-07-09 21:42+0200\n"
 "Last-Translator: \n"
 "Language: ar_SA\n"
@@ -109,14 +109,12 @@ msgid "Specifying FFmpeg executables"
 msgstr ""
 
 msgid ""
-"For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables.\n"
+"For various post-processing tasks, the ffmpeg and ffprobe executables are required.\n"
 "Here you can customize the paths to these executables."
 msgstr ""
 
-msgid "Enable a custom location to run FFmpeg"
-msgstr ""
-
-msgid "Enable a custom location to run FFprobe"
+#, python-brace-format
+msgid "Enable a custom location to run {0}"
 msgstr ""
 
 msgid "FFmpeg"
@@ -383,7 +381,7 @@ msgstr ""
 msgid "Cookies"
 msgstr ""
 
-msgid "Yt-dlp options setting"
+msgid "User Options"
 msgstr ""
 
 msgid "Do you want to remove the current cookie file from your system?"
@@ -559,7 +557,8 @@ msgstr ""
 msgid "Specifying FFmpeg executables\n"
 msgstr ""
 
-msgid "For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables."
+#, python-brace-format
+msgid "For various post-processing tasks, the {0} and {1} executables are required."
 msgstr ""
 
 msgid "Click the \"Next\" button"
@@ -788,19 +787,16 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-msgid "yt-dlp options setting"
+msgid "User Options and other download settings"
 msgstr ""
 
 msgid "Options"
 msgstr ""
 
-msgid "Start downloading"
-msgstr ""
-
 msgid "Download"
 msgstr ""
 
-msgid "Stops current process"
+msgid "Stop Downloading"
 msgstr ""
 
 msgid "Vidtuber - Download Settings"
@@ -829,7 +825,19 @@ msgstr ""
 msgid "Vidtuber - Exiting!"
 msgstr ""
 
-msgid "At least one \"Format Code\" must be checked for each URL selected in green."
+msgid "Format Code Properties"
+msgstr ""
+
+msgid "Merge files into one file"
+msgstr ""
+
+msgid "Download only the best selected qualities"
+msgstr ""
+
+msgid "Reload"
+msgstr ""
+
+msgid "Reload format codes"
 msgstr ""
 
 msgid "Format Code"
@@ -842,12 +850,6 @@ msgid "Extension"
 msgstr ""
 
 msgid "Resolution"
-msgstr ""
-
-msgid "Merge files into one file"
-msgstr ""
-
-msgid "Download only the best selected qualities"
 msgstr ""
 
 msgid "[Vidtuber]: SUCCESS !"
@@ -916,22 +918,43 @@ msgstr ""
 msgid "Destination folder of downloads"
 msgstr ""
 
+msgid "Best quality video"
+msgstr ""
+
+msgid "Worst quality video"
+msgstr ""
+
+msgid "Best available quality"
+msgstr ""
+
+msgid "Format 18 (youtube.com only)"
+msgstr ""
+
+msgid "Worst available quality"
+msgstr ""
+
+msgid "Best quality audio"
+msgstr ""
+
+msgid "Worst quality audio"
+msgstr ""
+
 msgid "Precompiled Videos"
 msgstr ""
 
-msgid "Download videos by resolution"
+msgid "Videos by Resolution"
 msgstr ""
 
-msgid "Download split audio and video"
+msgid "Split Audio and Video"
 msgstr ""
 
-msgid "Download Audio only"
+msgid "Audio Only"
 msgstr ""
 
-msgid "Download by format code"
+msgid "Format Codes"
 msgstr ""
 
-msgid "Mode:"
+msgid "Download Mode:"
 msgstr ""
 
 msgid "Include playlists"
@@ -940,13 +963,18 @@ msgstr ""
 msgid "Quality settings"
 msgstr ""
 
-msgid "When not available, the chosen video resolution will be replaced with the closest one"
-msgstr ""
-
 msgid "Video format:"
 msgstr ""
 
 msgid "Audio format:"
+msgstr ""
+
+msgid ""
+"The «Download Mode» is set to \"Format codes\".\n"
+"Would you like to reload/update the format codes list now?"
+msgstr ""
+
+msgid "Reload format codes?"
 msgstr ""
 
 #, python-brace-format
@@ -954,6 +982,11 @@ msgid ""
 "Unable to get format codes on {0}, unsupported URL:\n"
 "\n"
 "{1}"
+msgstr ""
+
+msgid ""
+"An error occurred while retrieving the requested data.\n"
+"See the related log file for more details."
 msgstr ""
 
 msgid "URLs have no playlist references"
@@ -971,6 +1004,18 @@ msgid ""
 "Before continuing, be sure to make the correct settings in the preferences dialog."
 msgstr ""
 
+msgid "Click the Reload Format Codes button."
+msgstr ""
+
+msgid "Format Code List Missing"
+msgstr ""
+
+msgid "At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr ""
+
+msgid "Incomplete Format Code Selection"
+msgstr ""
+
 msgid ""
 "Changes have been made to the command arguments.\n"
 "\n"
@@ -978,31 +1023,5 @@ msgid ""
 msgstr ""
 
 msgid "Apply changes?"
-msgstr ""
-
-msgid "Title"
-msgstr ""
-
-msgid "Video Codec"
-msgstr ""
-
-msgid "fps"
-msgstr ""
-
-msgid "Audio Codec"
-msgstr ""
-
-msgid "Size"
-msgstr ""
-
-msgid "Don't merge any files"
-msgstr ""
-
-#, python-brace-format
-msgid ""
-"ERROR: Unable to get format codes.\n"
-"\n"
-"Unsupported URL:\n"
-"'{0}'"
 msgstr ""
 

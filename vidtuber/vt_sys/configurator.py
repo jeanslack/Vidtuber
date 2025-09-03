@@ -372,7 +372,7 @@ class DataSource():
         """
         keys = ('vidtuber', 'previous', 'next', 'download',
                 'statistics', 'playlist', 'subtitles', 'logpanel',
-                'stop', 'clear', 'options',
+                'stop', 'clear', 'options', 'reload',
                 )  # must match with items on `iconset` tuple, see following
         icodir = self.dataloc['icodir']
         iconames = {'Vidtuber-Light':  # Vidtuber icons for light themes
@@ -404,6 +404,7 @@ class DataSource():
                    f"{choose.get('x22')}/stop.{ext}",
                    f"{choose.get('x22')}/clear.{ext}",
                    f"{choose.get('x22')}/options.{ext}",
+                   f"{choose.get('x16')}/reload.{ext}",
                    )
         values = [os.path.join(norm) for norm in iconset]  # normalize pathns
 

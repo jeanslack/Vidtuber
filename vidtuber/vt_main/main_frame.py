@@ -63,8 +63,7 @@ class MainFrame(wx.Frame):
         self.appdata = appdata
         self.icons = get.iconset
         self.data_url = []  # list of urls in text box
-        self.changed = True  # previous list is different from new one
-        self.infomediadlg = False  # media info dialog
+        self.changed = True  # previous list is different to the new one
         self.showlogs = False
 
         wx.Frame.__init__(self, None, -1, style=wx.DEFAULT_FRAME_STYLE)
@@ -180,6 +179,11 @@ class MainFrame(wx.Frame):
         sett['merge_single_file'] = val
         val = self.ytDownloader.panel_cod.ckbx_best.GetValue()
         sett['only_best_quality'] = val
+        sett['download_mode'] = self.ytDownloader.choice.GetSelection()
+        sett['video_format'] = self.ytDownloader.cmbx_vformat.GetSelection()
+        sett['audio_format'] = self.ytDownloader.cmbx_af.GetSelection()
+        sett['video_quality'] = self.ytDownloader.cmbx_vq.GetStringSelection()
+
         confmanager.write_options(**sett)
     # ------------------------------------------------------------------#
 
@@ -502,16 +506,17 @@ class MainFrame(wx.Frame):
 
     def view_logs(self, event, flog=None):
         """
-        Show to view log files dialog
+        Displays log file dialog
         flog: filename to select on showlog if any.
         """
         if self.showlogs:
             self.showlogs.Raise()
+            self.showlogs.on_flog_select(flog)
             return
 
         self.showlogs = ShowLogs(self,
                                  self.appdata['logdir'],
-                                 self.appdata['ostype'],
+                                 speclogname=flog,
                                  )
         self.showlogs.Show()
     # ------------------------------------------------------------------#
@@ -664,14 +669,14 @@ class MainFrame(wx.Frame):
                                        bmpnext,
                                        tip, wx.ITEM_NORMAL,
                                        )
-        tip = _("yt-dlp options setting")
+        tip = _("User Options and other download settings")
         options = self.toolbar.AddTool(26, _('Options'),
                                        bmpopt, tip, wx.ITEM_NORMAL)
-        tip = _("Start downloading")
+        tip = _("Download")
         self.run_download = self.toolbar.AddTool(23, _('Download'),
                                                  bmpydl, tip, wx.ITEM_NORMAL,
                                                  )
-        tip = _("Stops current process")
+        tip = _("Stop Downloading")
         stop = self.toolbar.AddTool(24, _('Stop'), bmpstop,
                                     tip, wx.ITEM_NORMAL,
                                     )

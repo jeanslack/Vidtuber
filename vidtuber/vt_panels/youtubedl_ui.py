@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: June.05.2025
+Rev: Sep.01.2025
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -115,27 +115,24 @@ class Downloader(wx.Panel):
     WHITE = '#fbf4f4'  # sb foreground
     VIOLET = '#D64E93'  # activated buttons
 
-    MSG_1 = _('At least one "Format Code" must be checked for each '
-              'URL selected in green.')
     # video resolution
-    VRES = {('p1080'): ('best[height<=?1080]'),
-            ('p720'): ('best[height<=?720]'),
-            ('p480'): ('best[height<=?480]'),
-            ('p360'): ('best[height<=?360]'),
-            ('p240'): ('best[height<=?240]'),
-            ('p144'): ('best[height>=?144]'),
+    VRES = {('p1080'): ('best*[height=1080]'),
+            ('p720'): ('best*[height=720]'),
+            ('p480'): ('best*[height=480]'),
+            ('p360'): ('best*[height=360]'),
+            ('p240'): ('best*[height=240]'),
+            ('p144'): ('best*[height=144]'),
             }
     # video qualities best or worst
-    VQUAL = {('Best quality video'): ('bestvideo'),
-             ('Worst quality video'): ('worstvideo'),
+    VQUAL = {_('Best quality video'): ('bestvideo'),
+             _('Worst quality video'): ('worstvideo'),
              }
-    # precompiled video
-    VPCOMP = {('Best precompiled video'): ('bestvideo+bestaudio/best'),
-              ('Medium High precompiled video'): ('bestvideo*+bestaudio/best'),
-              ('Medium Low precompiled video'): ('18'),
-              ('Worst precompiled video'): ('worstvideo+worstaudio/worst'),
+    # precompiled videos
+    VPCOMP = {_('Best available quality'): (''),
+              _('Format 18 (youtube.com only)'): ('18'),
+              _('Worst available quality'): ('worstvideo+worstaudio/worst'),
               }
-    AFORMATS = {("Default"): ("best"),
+    AFORMATS = {("Auto"): ("best"),
                 ("wav"): ("wav"),
                 ("mp3"): ("mp3"),
                 ("aac"): ("aac"),
@@ -145,14 +142,14 @@ class Downloader(wx.Panel):
                 ("flac"): ("flac"),
                 }
     # audio qualities best or worst
-    AQUAL = {('Best quality audio'): ('bestaudio'),
-             ('Worst quality audio'): ('worstaudio')}
+    AQUAL = {_('Best quality audio'): ('bestaudio'),
+             _('Worst quality audio'): ('worstaudio')}
 
     CHOICE = [_('Precompiled Videos'),
-              _('Download videos by resolution'),
-              _('Download split audio and video'),
-              _('Download Audio only'),
-              _('Download by format code')
+              _('Videos by Resolution'),
+              _('Split Audio and Video'),
+              _('Audio Only'),
+              _('Format Codes')
               ]
     # -----------------------------------------------------------------#
 
@@ -174,7 +171,7 @@ class Downloader(wx.Panel):
         bmpsubtitles = get_bmp(icons['subtitles'], ((16, 16)))
 
         self.opt = {("NO_PLAYLIST"): True,
-                    ("V_QUALITY"): Downloader.VPCOMP['Best precompiled video'],
+                    ("V_QUALITY"): list(Downloader.VPCOMP)[0],
                     ("A_FORMAT"): "best",
                     ("A_QUALITY"): "bestaudio",
                     ("SUBS"): sett['subtitles_options'],
@@ -192,8 +189,8 @@ class Downloader(wx.Panel):
                                 choices=Downloader.CHOICE,
                                 size=(-1, -1),
                                 )
-        self.choice.SetSelection(0)
-        txtdmode = wx.StaticText(self, wx.ID_ANY, _('Mode:'))
+        self.choice.SetSelection(sett['download_mode'])
+        txtdmode = wx.StaticText(self, wx.ID_ANY, _('Download Mode:'))
         fgs1.Add(txtdmode, 0, wx.LEFT | wx.CENTRE, 20)
         fgs1.Add(self.choice, 0, wx.LEFT | wx.CENTRE, 5)
 
@@ -222,24 +219,21 @@ class Downloader(wx.Panel):
         fgs2 = wx.BoxSizer(wx.HORIZONTAL)
         boxoptions.Add(fgs2, 0, wx.ALL | wx.EXPAND, 0)
         self.cmbx_vq = wx.ComboBox(self, wx.ID_ANY,
-                                   choices=(),
+                                   choices=(sett['video_quality'], ''),
                                    size=(-1, -1), style=wx.CB_DROPDOWN
                                    | wx.CB_READONLY
                                    )
+        self.cmbx_vq.SetSelection(0)
         # grid_v.Add((20, 20), 0,)
         fgs2.Add(self.cmbx_vq, 0, wx.ALL | wx.CENTRE, 5)
-        tip = (_('When not available, the chosen video resolution will '
-                 'be replaced with the closest one'))
-        self.cmbx_vq.SetToolTip(tip)
-
         txtvformat = wx.StaticText(self, wx.ID_ANY, _('Video format:'))
         fgs2.Add(txtvformat, 0, wx.LEFT | wx.CENTRE, 5)
         self.cmbx_vformat = wx.ComboBox(self, wx.ID_ANY,
-                                        choices=['Default', 'webm', 'mp4'],
+                                        choices=['Auto', 'webm', 'mp4'],
                                         size=(-1, -1), style=wx.CB_DROPDOWN
                                         | wx.CB_READONLY
                                         )
-        self.cmbx_vformat.SetSelection(0)
+        self.cmbx_vformat.SetSelection(sett['video_format'])
         fgs2.Add(self.cmbx_vformat, 0, wx.ALL | wx.CENTRE, 5)
         fgs2.Add((20, 20), 0,)
         self.cmbx_aq = wx.ComboBox(self, wx.ID_ANY,
@@ -249,7 +243,6 @@ class Downloader(wx.Panel):
                                    | wx.CB_READONLY
                                    )
         self.cmbx_aq.SetSelection(0)
-        self.cmbx_aq.Disable()
         # grid_v.Add((20, 20), 0,)
         fgs2.Add(self.cmbx_aq, 0, wx.ALL | wx.CENTRE, 5)
 
@@ -261,8 +254,7 @@ class Downloader(wx.Panel):
                                    style=wx.CB_DROPDOWN
                                    | wx.CB_READONLY
                                    )
-        self.cmbx_af.Disable()
-        self.cmbx_af.SetSelection(0)
+        self.cmbx_af.SetSelection(sett['audio_format'])
         fgs2.Add(self.cmbx_af, 0, wx.ALL | wx.CENTRE, 5)
 
         # ------------- simple listctrl
@@ -315,27 +307,33 @@ class Downloader(wx.Panel):
                 self.ckbx_pl.SetValue(False)
                 self.on_playlist(self)
                 self.panel_cod.fcode.DeleteAllItems()
-                self.choice.SetSelection(0)
-                self.on_choicebox(self, statusmsg=False)
                 self.format_dict.clear()
+                if self.choice.GetSelection() == 4:
+                    msg = (_('The «Download Mode» is set to "Format codes".\n'
+                             'Would you like to reload/update the format '
+                             'codes list now?'))
+                    if wx.MessageBox(msg, _('Reload format codes?'),
+                                     wx.ICON_QUESTION | wx.CANCEL
+                                     | wx.YES_NO, self) != wx.YES:
+                        self.panel_cod.enable_widgets()
+                        return
+
+                self.on_choicebox(self, statusmsg=False)
+
     # -----------------------------------------------------------------#
 
     def on_format_codes(self):
         """
         Check data given from `self.panel_cod.set_formatcode()` method
         which allow to enabling download by "Format Code".
+        If GetItemCount == 0 (False) and forcereload == False
+        it Return None (i.e the format codes list is already set).
         """
-        if self.panel_cod.fcode.GetItemCount():  # not changed, already set
+        if self.panel_cod.fcode.GetItemCount():
             return None
         cmd = self.default_statistics_options()
         if not cmd:
             return None
-
-        def _error(msg, icon, cap):
-            wx.MessageBox(msg, cap, icon, self)
-            self.choice.SetSelection(0)
-            self.on_choicebox(self, False)
-            return True
 
         for url in self.parent.data_url:
             for unsupp in ('/playlists',
@@ -348,12 +346,18 @@ class Downloader(wx.Panel):
                     msg = _("Unable to get format codes on {0}, "
                             "unsupported URL:\n\n{1}"
                             ).format(unsupp.split('/')[1], url)
-                    return _error(msg, wx.ICON_WARNING,
-                                  _('Vidtuber - Warning!'))
+                    wx.MessageBox(msg, _('Vidtuber - Warning!'),
+                                  wx.ICON_WARNING, self)
+                    return True
 
         ret = self.panel_cod.set_formatcode(self.parent.data_url, cmd)
         if ret:
-            return _error(ret, wx.ICON_ERROR, _('Vidtuber - Error!'))
+            msg = _('An error occurred while retrieving the requested data.\n'
+                    'See the related log file for more details.')
+            wx.MessageBox(msg, _('Vidtuber - Error!'), wx.ICON_ERROR, self)
+            self.parent.view_logs(None, flog='Format_Codes.log')
+            return True
+
         return None
     # -----------------------------------------------------------------#
 
@@ -371,6 +375,7 @@ class Downloader(wx.Panel):
             self.cmbx_aq.Disable()
             self.cmbx_vq.Enable()
             self.cmbx_vformat.Disable()
+            self.ckbx_pl.Enable()
             self.panel_cod.enable_widgets(False)
             self.cmbx_vq.Clear()
             self.cmbx_vq.Append(list(Downloader.VPCOMP.keys()))
@@ -383,6 +388,7 @@ class Downloader(wx.Panel):
             self.cmbx_aq.Disable()
             self.cmbx_vq.Enable()
             self.cmbx_vformat.Enable()
+            self.ckbx_pl.Enable()
             self.panel_cod.enable_widgets(False)
             self.cmbx_vq.Clear()
             self.cmbx_vq.Append(list(Downloader.VRES.keys()))
@@ -394,6 +400,7 @@ class Downloader(wx.Panel):
             self.cmbx_af.Disable()
             self.cmbx_aq.Enable()
             self.cmbx_vq.Enable()
+            self.ckbx_pl.Enable()
             self.cmbx_vformat.Disable()
             self.panel_cod.enable_widgets(False)
             self.cmbx_vq.Clear()
@@ -407,6 +414,7 @@ class Downloader(wx.Panel):
             self.cmbx_aq.Enable()
             self.cmbx_af.Enable()
             self.cmbx_vformat.Disable()
+            self.ckbx_pl.Enable()
             self.panel_cod.enable_widgets(False)
             self.Layout()
             self.on_aformat(self)
@@ -416,6 +424,7 @@ class Downloader(wx.Panel):
             self.cmbx_aq.Disable()
             self.cmbx_af.Disable()
             self.cmbx_vformat.Disable()
+            self.ckbx_pl.Disable()
             self.panel_cod.enable_widgets()
             ret = self.on_format_codes()
             if ret:
@@ -443,11 +452,16 @@ class Downloader(wx.Panel):
         vformat = self.cmbx_vformat.GetValue()
 
         if self.choice.GetSelection() == 0:
+            if self.opt["V_QUALITY"] == '':
+                qbar = 'Default best quality'
+            else:
+                qbar = self.opt["V_QUALITY"]
             quality = self.opt["V_QUALITY"]
-            self.parent.statusbar_msg(f'Quality: {quality}', None)
+
+            self.parent.statusbar_msg(f'Quality: {qbar}', None)
 
         elif self.choice.GetSelection() == 1:
-            vf = '' if vformat == 'Default' else f'[ext={vformat}]'
+            vf = '' if vformat == 'Auto' else f'[ext={vformat}]'
             quality = self.opt["V_QUALITY"] + vf
             self.parent.statusbar_msg(f'Quality: {quality}', None)
 
@@ -758,15 +772,21 @@ class Downloader(wx.Panel):
             data['extractaudio'] = True
 
         elif self.choice.GetSelection() == 4:  # format code
-            code = self.panel_cod.getformatcode()
+            if self.panel_cod.fcode.GetItemCount() == 0:
+                msg = _('Click the Reload Format Codes button.')
+                wx.MessageBox(msg, _('Format Code List Missing'),
+                              wx.ICON_INFORMATION, self)
+                return
+
+            code = self.panel_cod.getformatcode(self.parent.data_url)
             formatquality = ''
             outtmpl = f'{_id}.f%(format_id)s.%(ext)s'
             data['extractaudio'] = False
-            if not code:
-                self.parent.statusbar_msg(Downloader.MSG_1,
-                                          self.red,
-                                          Downloader.WHITE
-                                          )
+            if not code[0]:
+                msg = _('At least one "Format Code" must be checked for each '
+                        'URL selected in green.')
+                wx.MessageBox(msg, _('Incomplete Format Code Selection'),
+                              wx.ICON_INFORMATION, self)
                 return
             data['audio-multistreams'] = code[1]
             data['video-multistreams'] = code[2]

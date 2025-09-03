@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: July.17.2023
+Rev: Sep.03.2025
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -31,23 +31,25 @@ from pubsub import pub
 
 class ShowLogs(wx.Dialog):
     """
-    View log data from files within the log directory
+    Displays log data files defined in related LOGNAMES.
+    This class accept a `dirlog` string objetc (the log location
+    directory) and an optional `speclogname` string object
+    (a specific log name to display, from those defined in LOGNAMES).
 
     """
-    # list of logs files to include
+    # list of log names to include
     LOGNAMES = ('generic_task.log',
                 'Download_yt-dlp.log',
                 'Shutdown.log',
                 'Format_Codes.log',
                 )
 
-    def __init__(self, parent, dirlog, OS):
+    def __init__(self, parent, dirlog, speclogname=None):
         """
         Attributes defined here:
-        self.dirlog > log location directory (depends from OS)
+        self.dirlog > log location directory
         self.logdata > dict object {KEY=file name.log: VAL=log data, ...}
         self.selected > None if item on listctrl is not selected
-        file > log file name to view
 
         """
         self.dirlog = dirlog
@@ -56,6 +58,7 @@ class ShowLogs(wx.Dialog):
         get = wx.GetApp()  # get data from bootstrap
         colorscheme = get.appset['colorscheme']
         vidicon = get.iconset['vidtuber']
+        ostype = get.appset['ostype']
 
         wx.Dialog.__init__(self, None,
                            style=wx.DEFAULT_DIALOG_STYLE
@@ -85,7 +88,7 @@ class ShowLogs(wx.Dialog):
         self.textdata.SetBackgroundColour(colorscheme['BACKGRD'])
         self.textdata.SetDefaultStyle(wx.TextAttr(colorscheme['TXT3']))
 
-        if OS == 'Darwin':
+        if ostype == 'Darwin':
             self.textdata.SetFont(wx.Font(12, wx.MODERN, wx.NORMAL,
                                           wx.NORMAL))
         else:
@@ -120,6 +123,10 @@ class ShowLogs(wx.Dialog):
         # populate ListCtrl and set self.logdata dict
         self.on_update(self)
 
+        # displays speclogname if any
+        if speclogname:
+            self.on_flog_select(speclogname)
+
         # ----------------------Binding (EVT)----------------------#
         self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select, self.log_select)
         self.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.on_deselect,
@@ -131,18 +138,21 @@ class ShowLogs(wx.Dialog):
 
     # ----------------------Event handler (callback)----------------------#
 
-    # def on_flog_select(self, logfile):
-    #     """
-    #     Auto-Select a specified logfile name.
-    #     FindItem method:
-    #     <https://docs.wxpython.org/wx.ListCtrl.html#wx.ListCtrl.FindItem>
-    #     """
-    #     logname = os.path.basename(logfile)
-    #     idx = self.log_select.FindItem(-1, logname)
-    #
-    #     if not idx  == -1:
-    #         self.log_select.Focus(idx)  # make the line the current line
-    #         self.log_select.Select(idx, on=1)  # default event selection
+    def on_flog_select(self, logfile):
+        """
+        Auto-Select a specified logfile name.
+        FindItem method:
+        <https://docs.wxpython.org/wx.ListCtrl.html#wx.ListCtrl.FindItem>
+        """
+        if not logfile:
+            return
+        logname = os.path.basename(logfile)
+        if logname in ShowLogs.LOGNAMES:
+            idx = self.log_select.FindItem(-1, logname)
+            if not idx == -1:
+                self.log_select.Focus(idx)  # make the line the current line
+                self.log_select.Select(idx, on=1)  # default event selection
+                self.on_select(self)
     # --------------------------------------------------------------------#
 
     def on_clear(self, event):

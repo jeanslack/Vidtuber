@@ -280,11 +280,15 @@ class PageThree(wx.Panel):
     OS = get.appset['ostype']
     GETPATH = get.appset['getpath']
     FFMPEG_LOCALDIR = get.appset['FFMPEG_DIR']
+    if OS == 'Windows':
+        ffprobe, ffmpeg = 'ffprobe.exe', 'ffmpeg.exe'
+    else:
+        ffprobe, ffmpeg = 'ffprobe', 'ffmpeg'
 
     MSG0 = _('Specifying FFmpeg executables\n')
 
-    MSG1 = (_('For various post-processing tasks, yt-dlp requires '
-              'the ffmpeg and ffprobe executables.'))
+    MSG1 = (_('For various post-processing tasks, the {0} and {1} '
+              'executables are required.').format(ffmpeg, ffprobe))
 
     MSG2 = (_('If you have already installed {0} on your operating '
               'system,\nclick the «Auto-detection» button.').format('FFmpeg'))

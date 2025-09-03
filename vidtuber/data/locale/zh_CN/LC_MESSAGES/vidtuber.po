@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-27 11:49+0200\n"
+"POT-Creation-Date: 2025-09-03 17:50+0200\n"
 "PO-Revision-Date: 2025-07-09 21:38+0200\n"
 "Last-Translator: Gao Zimu <gaozimu_0502@163.com>\n"
 "Language: zh_CN\n"
@@ -123,15 +123,13 @@ msgid "Specifying FFmpeg executables"
 msgstr ""
 
 msgid ""
-"For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables.\n"
+"For various post-processing tasks, the ffmpeg and ffprobe executables are required.\n"
 "Here you can customize the paths to these executables."
 msgstr ""
 
-msgid "Enable a custom location to run FFmpeg"
-msgstr "启用自定义位置来运行 FFmpeg"
-
-msgid "Enable a custom location to run FFprobe"
-msgstr "启用自定义位置来运行 FFprobe"
+#, python-brace-format
+msgid "Enable a custom location to run {0}"
+msgstr ""
 
 msgid "FFmpeg"
 msgstr "FFmpeg"
@@ -402,7 +400,7 @@ msgstr "网页浏览器"
 msgid "Cookies"
 msgstr "Cookies"
 
-msgid "Yt-dlp options setting"
+msgid "User Options"
 msgstr ""
 
 msgid "Do you want to remove the current cookie file from your system?"
@@ -579,7 +577,8 @@ msgstr ""
 msgid "Specifying FFmpeg executables\n"
 msgstr ""
 
-msgid "For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables."
+#, python-brace-format
+msgid "For various post-processing tasks, the {0} and {1} executables are required."
 msgstr ""
 
 msgid "Click the \"Next\" button"
@@ -820,20 +819,17 @@ msgstr "转到下一个面板"
 msgid "Next"
 msgstr "下一步"
 
-msgid "yt-dlp options setting"
+msgid "User Options and other download settings"
 msgstr ""
 
 msgid "Options"
 msgstr "选项"
 
-msgid "Start downloading"
-msgstr "开始下载"
-
 msgid "Download"
 msgstr "下载"
 
-msgid "Stops current process"
-msgstr "停止当前过程"
+msgid "Stop Downloading"
+msgstr ""
 
 msgid "Vidtuber - Download Settings"
 msgstr ""
@@ -861,9 +857,20 @@ msgstr "此程序将在 {0} 秒后退出"
 msgid "Vidtuber - Exiting!"
 msgstr ""
 
-#, fuzzy
-msgid "At least one \"Format Code\" must be checked for each URL selected in green."
-msgstr "对于每个以绿色选择的URL，必须至少勾选一个 \"格式代码\"。"
+msgid "Format Code Properties"
+msgstr ""
+
+msgid "Merge files into one file"
+msgstr ""
+
+msgid "Download only the best selected qualities"
+msgstr "只下载选择的最好质量"
+
+msgid "Reload"
+msgstr ""
+
+msgid "Reload format codes"
+msgstr ""
 
 msgid "Format Code"
 msgstr "格式代码"
@@ -876,12 +883,6 @@ msgstr "扩展"
 
 msgid "Resolution"
 msgstr "分辨率"
-
-msgid "Merge files into one file"
-msgstr ""
-
-msgid "Download only the best selected qualities"
-msgstr "只下载选择的最好质量"
 
 msgid "[Vidtuber]: SUCCESS !"
 msgstr ""
@@ -953,22 +954,43 @@ msgstr "设置一个新的下载内容保存文件夹"
 msgid "Destination folder of downloads"
 msgstr "下载内容保存文件夹"
 
+msgid "Best quality video"
+msgstr ""
+
+msgid "Worst quality video"
+msgstr ""
+
+msgid "Best available quality"
+msgstr ""
+
+msgid "Format 18 (youtube.com only)"
+msgstr ""
+
+msgid "Worst available quality"
+msgstr ""
+
+msgid "Best quality audio"
+msgstr ""
+
+msgid "Worst quality audio"
+msgstr ""
+
 msgid "Precompiled Videos"
 msgstr "预编译的视频"
 
-msgid "Download videos by resolution"
-msgstr "按分辨率下载视频"
+msgid "Videos by Resolution"
+msgstr ""
 
-msgid "Download split audio and video"
-msgstr "下载分割的音频和视频"
+msgid "Split Audio and Video"
+msgstr ""
 
-msgid "Download Audio only"
-msgstr "仅下载音频"
+msgid "Audio Only"
+msgstr ""
 
-msgid "Download by format code"
-msgstr "按格式代码下载"
+msgid "Format Codes"
+msgstr ""
 
-msgid "Mode:"
+msgid "Download Mode:"
 msgstr ""
 
 msgid "Include playlists"
@@ -977,14 +999,19 @@ msgstr ""
 msgid "Quality settings"
 msgstr "质量设置"
 
-msgid "When not available, the chosen video resolution will be replaced with the closest one"
-msgstr "当不可用时，所选择的视频分辨率将被替换成最接近的一个"
-
 msgid "Video format:"
 msgstr "视频格式："
 
 msgid "Audio format:"
 msgstr "音频格式："
+
+msgid ""
+"The «Download Mode» is set to \"Format codes\".\n"
+"Would you like to reload/update the format codes list now?"
+msgstr ""
+
+msgid "Reload format codes?"
+msgstr ""
 
 #, fuzzy, python-brace-format
 msgid ""
@@ -996,6 +1023,11 @@ msgstr ""
 "\n"
 "Unsupported '{0}':n\n"
 "'{1}'"
+
+msgid ""
+"An error occurred while retrieving the requested data.\n"
+"See the related log file for more details."
+msgstr ""
 
 #, fuzzy
 msgid "URLs have no playlist references"
@@ -1015,6 +1047,19 @@ msgstr ""
 "缺失可执行文件：«{0}»。\n"
 "继续前，请确定你设置了正确的首选项。"
 
+msgid "Click the Reload Format Codes button."
+msgstr ""
+
+msgid "Format Code List Missing"
+msgstr ""
+
+#, fuzzy
+msgid "At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr "对于每个以绿色选择的URL，必须至少勾选一个 \"格式代码\"。"
+
+msgid "Incomplete Format Code Selection"
+msgstr ""
+
 msgid ""
 "Changes have been made to the command arguments.\n"
 "\n"
@@ -1023,34 +1068,4 @@ msgstr ""
 
 msgid "Apply changes?"
 msgstr ""
-
-msgid "Title"
-msgstr "标题"
-
-msgid "Video Codec"
-msgstr "视频编解码器"
-
-msgid "fps"
-msgstr "fps"
-
-msgid "Audio Codec"
-msgstr "音频编解码器"
-
-msgid "Size"
-msgstr "大小"
-
-msgid "Don't merge any files"
-msgstr "不要合并任何文件"
-
-#, fuzzy, python-brace-format
-msgid ""
-"ERROR: Unable to get format codes.\n"
-"\n"
-"Unsupported URL:\n"
-"'{0}'"
-msgstr ""
-"ERROR: Unable to get format codes.\n"
-"\n"
-"不支持的URL:/n\n"
-"'{0}'"
 

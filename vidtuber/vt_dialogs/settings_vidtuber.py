@@ -104,13 +104,13 @@ class SetUp(wx.Dialog):
         labFFexec = wx.StaticText(tabTwo, wx.ID_ANY,
                                   _('Specifying FFmpeg executables'))
         sizerFFmpeg.Add(labFFexec, 0, wx.ALL | wx.EXPAND, 5)
-        msg = (_('For various post-processing tasks, yt-dlp requires '
-                 'the ffmpeg and ffprobe executables.\nHere you can '
+        msg = (_('For various post-processing tasks, the ffmpeg and ffprobe '
+                 'executables are required.\nHere you can '
                  'customize the paths to these executables.'))
         labffdescr = wx.StaticText(tabTwo, wx.ID_ANY, msg)
         sizerFFmpeg.Add(labffdescr, 0, wx.ALL | wx.EXPAND, 5)
         sizerFFmpeg.Add((0, 20))
-        msg = _("Enable a custom location to run FFmpeg")
+        msg = _("Enable a custom location to run {0}").format(self.ffmpeg)
         self.ckbx_exeFFmpeg = wx.CheckBox(tabTwo, wx.ID_ANY, (msg))
         self.btn_ffmpeg = wx.Button(tabTwo, wx.ID_ANY, _('Change'))
         self.txtctrl_ffmpeg = wx.TextCtrl(tabTwo, wx.ID_ANY, "",
@@ -122,7 +122,7 @@ class SetUp(wx.Dialog):
         gridFFmpeg.Add(self.txtctrl_ffmpeg, 1, wx.ALL, 5)
         gridFFmpeg.Add(self.btn_ffmpeg, 0, wx.RIGHT | wx.CENTER, 5)
         sizerFFmpeg.Add((0, 15))
-        msg = _("Enable a custom location to run FFprobe")
+        msg = _("Enable a custom location to run {0}").format(self.ffprobe)
         self.ckbx_exeFFprobe = wx.CheckBox(tabTwo, wx.ID_ANY, (msg))
         self.btn_ffprobe = wx.Button(tabTwo, wx.ID_ANY, _('Change'))
         self.txtctrl_ffprobe = wx.TextCtrl(tabTwo, wx.ID_ANY, "",

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-27 11:49+0200\n"
+"POT-Creation-Date: 2025-09-03 17:50+0200\n"
 "PO-Revision-Date: 2025-07-09 21:38+0200\n"
 "Last-Translator: johannesdedoper <https://github.com/johannesdedoper>\n"
 "Language: nl_NL\n"
@@ -119,17 +119,13 @@ msgid "Specifying FFmpeg executables"
 msgstr ""
 
 msgid ""
-"For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables.\n"
+"For various post-processing tasks, the ffmpeg and ffprobe executables are required.\n"
 "Here you can customize the paths to these executables."
 msgstr ""
 
-#, fuzzy
-msgid "Enable a custom location to run FFmpeg"
-msgstr "Activeer een andere lokatie om FFmpeg uit te voeren"
-
-#, fuzzy
-msgid "Enable a custom location to run FFprobe"
-msgstr "Activeer een andere lokatie om FFprobe uit te voeren"
+#, python-brace-format
+msgid "Enable a custom location to run {0}"
+msgstr ""
 
 msgid "FFmpeg"
 msgstr "FFmpeg"
@@ -422,7 +418,7 @@ msgstr "Blader.."
 msgid "Cookies"
 msgstr ""
 
-msgid "Yt-dlp options setting"
+msgid "User Options"
 msgstr ""
 
 msgid "Do you want to remove the current cookie file from your system?"
@@ -608,7 +604,8 @@ msgstr ""
 msgid "Specifying FFmpeg executables\n"
 msgstr ""
 
-msgid "For various post-processing tasks, yt-dlp requires the ffmpeg and ffprobe executables."
+#, python-brace-format
+msgid "For various post-processing tasks, the {0} and {1} executables are required."
 msgstr ""
 
 msgid "Click the \"Next\" button"
@@ -852,21 +849,17 @@ msgstr "Ga naar volgende panel"
 msgid "Next"
 msgstr "Volgende"
 
-msgid "yt-dlp options setting"
+msgid "User Options and other download settings"
 msgstr ""
 
 msgid "Options"
 msgstr "Opties"
 
-#, fuzzy
-msgid "Start downloading"
-msgstr "Start"
-
 msgid "Download"
 msgstr "Download"
 
-msgid "Stops current process"
-msgstr "Stopt huidige proces"
+msgid "Stop Downloading"
+msgstr ""
 
 msgid "Vidtuber - Download Settings"
 msgstr ""
@@ -894,8 +887,21 @@ msgstr ""
 msgid "Vidtuber - Exiting!"
 msgstr ""
 
-msgid "At least one \"Format Code\" must be checked for each URL selected in green."
-msgstr "Minstens een \"Formaat Code\" moet gezet zijn voor elke URL, groen geselecteerd."
+msgid "Format Code Properties"
+msgstr ""
+
+msgid "Merge files into one file"
+msgstr ""
+
+#, fuzzy
+msgid "Download only the best selected qualities"
+msgstr "Download de nieuwste presets"
+
+msgid "Reload"
+msgstr ""
+
+msgid "Reload format codes"
+msgstr ""
 
 msgid "Format Code"
 msgstr "Formaat Code"
@@ -908,13 +914,6 @@ msgstr "Extensie"
 
 msgid "Resolution"
 msgstr "Resolutie"
-
-msgid "Merge files into one file"
-msgstr ""
-
-#, fuzzy
-msgid "Download only the best selected qualities"
-msgstr "Download de nieuwste presets"
 
 msgid "[Vidtuber]: SUCCESS !"
 msgstr ""
@@ -991,22 +990,43 @@ msgstr "Kies een tijdelijke bestemming voor de downloads"
 msgid "Destination folder of downloads"
 msgstr "Kies een tijdelijke bestemming voor de downloads"
 
+msgid "Best quality video"
+msgstr ""
+
+msgid "Worst quality video"
+msgstr ""
+
+msgid "Best available quality"
+msgstr ""
+
+msgid "Format 18 (youtube.com only)"
+msgstr ""
+
+msgid "Worst available quality"
+msgstr ""
+
+msgid "Best quality audio"
+msgstr ""
+
+msgid "Worst quality audio"
+msgstr ""
+
 msgid "Precompiled Videos"
 msgstr "Gecompileerde Videos"
 
-msgid "Download videos by resolution"
-msgstr "Download videos o.b.v. resolutie"
+msgid "Videos by Resolution"
+msgstr ""
 
-msgid "Download split audio and video"
-msgstr "Download audio en video afzonderlijk"
+msgid "Split Audio and Video"
+msgstr ""
 
-msgid "Download Audio only"
-msgstr "Download alleen Audio"
+msgid "Audio Only"
+msgstr ""
 
-msgid "Download by format code"
-msgstr "Download op formaat code"
+msgid "Format Codes"
+msgstr ""
 
-msgid "Mode:"
+msgid "Download Mode:"
 msgstr ""
 
 msgid "Include playlists"
@@ -1016,9 +1036,6 @@ msgstr ""
 msgid "Quality settings"
 msgstr "Markeer instellingen"
 
-msgid "When not available, the chosen video resolution will be replaced with the closest one"
-msgstr "Indien niet beschikbaar, wordt er gekozen voor de dichtstbijzijnde video resolutie"
-
 #, fuzzy
 msgid "Video format:"
 msgstr "Video transformatie"
@@ -1026,6 +1043,14 @@ msgstr "Video transformatie"
 #, fuzzy
 msgid "Audio format:"
 msgstr "Audio Normalisatie"
+
+msgid ""
+"The «Download Mode» is set to \"Format codes\".\n"
+"Would you like to reload/update the format codes list now?"
+msgstr ""
+
+msgid "Reload format codes?"
+msgstr ""
 
 #, fuzzy, python-brace-format
 msgid ""
@@ -1037,6 +1062,11 @@ msgstr ""
 "\n"
 "Niet ondersteund '{0}':\n"
 "'{1}"
+
+msgid ""
+"An error occurred while retrieving the requested data.\n"
+"See the related log file for more details."
+msgstr ""
 
 msgid "URLs have no playlist references"
 msgstr "URLs staan niet in de afspeellijst"
@@ -1053,6 +1083,18 @@ msgid ""
 "Before continuing, be sure to make the correct settings in the preferences dialog."
 msgstr ""
 
+msgid "Click the Reload Format Codes button."
+msgstr ""
+
+msgid "Format Code List Missing"
+msgstr ""
+
+msgid "At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr "Minstens een \"Formaat Code\" moet gezet zijn voor elke URL, groen geselecteerd."
+
+msgid "Incomplete Format Code Selection"
+msgstr ""
+
 msgid ""
 "Changes have been made to the command arguments.\n"
 "\n"
@@ -1061,34 +1103,4 @@ msgstr ""
 
 msgid "Apply changes?"
 msgstr ""
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "Video Codec"
-msgstr "Video Codec"
-
-msgid "fps"
-msgstr "fps"
-
-msgid "Audio Codec"
-msgstr "Audio Codec"
-
-msgid "Size"
-msgstr "Grootte"
-
-msgid "Don't merge any files"
-msgstr ""
-
-#, python-brace-format
-msgid ""
-"ERROR: Unable to get format codes.\n"
-"\n"
-"Unsupported URL:\n"
-"'{0}'"
-msgstr ""
-"FOUT: Format kan niet worden verkregen.\n"
-"\n"
-"Geen geldige URL:\n"
-"'{0}'"
 
