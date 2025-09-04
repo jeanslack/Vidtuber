@@ -145,7 +145,7 @@ class Downloader(wx.Panel):
     AQUAL = {_('Best quality audio'): ('bestaudio'),
              _('Worst quality audio'): ('worstaudio')}
 
-    CHOICE = [_('Precompiled Videos'),
+    CHOICE = [_('Combined Videos'),
               _('Videos by Resolution'),
               _('Split Audio and Video'),
               _('Audio Only'),
