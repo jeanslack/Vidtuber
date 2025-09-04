@@ -18,8 +18,9 @@ Wed, 03 Sep 2025 V.1.1.10
   * Improved error handling (if any) using format codes mode.
   * Improved the "Show Log File" dialog box and "Format_Codes.log" text
     formatting for better understanding of error messages.
-  * Update Italian language by jeanslack.
-  * Update Russian language by ChourS.
+  * French language updated by ChourS.
+  * Russian language updated by ChourS.
+  * Italian language updated by jeanslack.
 
 +------------------------------------+
 Thu, 28 Aug 2025 V.1.1.6

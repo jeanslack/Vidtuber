@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: Vidtuber 1.1.5\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-09-03 17:50+0200\n"
-"PO-Revision-Date: 2025-08-14 18:39+0300\n"
+"PO-Revision-Date: 2025-09-04 00:42+0300\n"
 "Last-Translator: ChourS <ChourS2008@yandex.ru>\n"
-"Language: fr_FR\n"
 "Language-Team: French (FR)\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.17.0\n"
+"X-Generator: Poedit 3.7\n"
 
 #, python-brace-format
 msgid ""
@@ -59,16 +60,16 @@ msgstr ""
 "\n"
 
 msgid "URL Summary"
-msgstr ""
+msgstr "Résumé de l'URL"
 
 msgid "Edit command arguments"
-msgstr ""
+msgstr "Modifier les arguments de la commande"
 
 msgid "Command arguments"
-msgstr ""
+msgstr "Arguments de commande"
 
 msgid "Confirmation Procedure"
-msgstr ""
+msgstr "Procédure de Confirmation"
 
 msgid "URL"
 msgstr "URL"
@@ -125,10 +126,12 @@ msgid ""
 "For various post-processing tasks, the ffmpeg and ffprobe executables are required.\n"
 "Here you can customize the paths to these executables."
 msgstr ""
+"Pour diverses tâches de post-traitement, les exécutables ffmpeg et ffprobe sont requis.\n"
+"Ici, vous pouvez personnaliser les chemins d'accès à ces exécutables."
 
 #, python-brace-format
 msgid "Enable a custom location to run {0}"
-msgstr ""
+msgstr "Activer l'emplacement personnalisé pour démarrer {0}"
 
 msgid "FFmpeg"
 msgstr "FFmpeg"
@@ -410,7 +413,7 @@ msgid "Cookies"
 msgstr "Cookies"
 
 msgid "User Options"
-msgstr ""
+msgstr "Options de l'Utilisateur"
 
 msgid "Do you want to remove the current cookie file from your system?"
 msgstr "Voulez-vous supprimer le fichier cookie actuel de votre système?"
@@ -603,7 +606,7 @@ msgstr "Spécifiez les fichiers exécutables FFmpeg\n"
 
 #, python-brace-format
 msgid "For various post-processing tasks, the {0} and {1} executables are required."
-msgstr ""
+msgstr "Pour diverses tâches de post-traitement, les exécutables {0} et {1} sont requis."
 
 msgid "Click the \"Next\" button"
 msgstr "Cliquer le bouton \"Suivant\""
@@ -702,7 +705,7 @@ msgid "Paste\tCtrl+V"
 msgstr "Coller\tCtrl+V"
 
 msgid "Paste the copied URLs from clipboard"
-msgstr ""
+msgstr "Collez les URL copiées à partir du clipboard"
 
 msgid "Remove selected URL\tDEL"
 msgstr "Effacer l' URL sélectionnée\tDEL"
@@ -777,7 +780,7 @@ msgid "Donate to the app developer"
 msgstr "Faire un don au développeur de l'application"
 
 msgid "Other projects by the developer"
-msgstr ""
+msgstr "Autres projets du développeur"
 
 msgid "About Vidtuber"
 msgstr "À propos de Vidtuber"
@@ -850,7 +853,7 @@ msgid "Next"
 msgstr "Suivant"
 
 msgid "User Options and other download settings"
-msgstr ""
+msgstr "Options utilisateur et autres paramètres de téléchargement"
 
 msgid "Options"
 msgstr "Options"
@@ -859,7 +862,7 @@ msgid "Download"
 msgstr "Télécharger"
 
 msgid "Stop Downloading"
-msgstr ""
+msgstr "Arrêter le Téléchargement"
 
 msgid "Vidtuber - Download Settings"
 msgstr "Vidtuber - Настройки загрузки"
@@ -889,19 +892,19 @@ msgid "Vidtuber - Exiting!"
 msgstr "Vidtuber - Sortie!"
 
 msgid "Format Code Properties"
-msgstr ""
+msgstr "Propriétés du Code de Format"
 
 msgid "Merge files into one file"
-msgstr ""
+msgstr "Fusionner des fichiers en un seul fichier"
 
 msgid "Download only the best selected qualities"
 msgstr "Ne téléchargez que les meilleurs qualités"
 
 msgid "Reload"
-msgstr ""
+msgstr "Recharger"
 
 msgid "Reload format codes"
-msgstr ""
+msgstr "Recharger les codes de format"
 
 msgid "Format Code"
 msgstr "Code format"
@@ -982,43 +985,43 @@ msgid "Destination folder of downloads"
 msgstr "Destination pour les téléchargements"
 
 msgid "Best quality video"
-msgstr ""
+msgstr "Meilleure qualité vidéo"
 
 msgid "Worst quality video"
-msgstr ""
+msgstr "Vidéo de la pire qualité"
 
 msgid "Best available quality"
-msgstr ""
+msgstr "La meilleure qualité disponible"
 
 msgid "Format 18 (youtube.com only)"
-msgstr ""
+msgstr "Format 18 (youtube.com seulement)"
 
 msgid "Worst available quality"
-msgstr ""
+msgstr "La pire qualité disponible"
 
 msgid "Best quality audio"
-msgstr ""
+msgstr "Meilleure qualité audio"
 
 msgid "Worst quality audio"
-msgstr ""
+msgstr "Audio de la pire qualité"
 
 msgid "Precompiled Videos"
 msgstr "Vidéos pré-compilées"
 
 msgid "Videos by Resolution"
-msgstr ""
+msgstr "Vidéos par Résolution"
 
 msgid "Split Audio and Video"
-msgstr ""
+msgstr "Diviser l'Audio et la Vidéo"
 
 msgid "Audio Only"
-msgstr ""
+msgstr "Audio Uniquement"
 
 msgid "Format Codes"
-msgstr ""
+msgstr "Codes de Format"
 
 msgid "Download Mode:"
-msgstr ""
+msgstr "Mode de Téléchargement:"
 
 msgid "Include playlists"
 msgstr "Inclure playlists"
@@ -1036,9 +1039,11 @@ msgid ""
 "The «Download Mode» is set to \"Format codes\".\n"
 "Would you like to reload/update the format codes list now?"
 msgstr ""
+"Le «Mode de téléchargement\" est réglé le \"Format des codes\".\n"
+"Voulez-vous recharger/mettre à jour la liste des codes de format maintenant?"
 
 msgid "Reload format codes?"
-msgstr ""
+msgstr "Recharger les codes de format?"
 
 #, python-brace-format
 msgid ""
@@ -1054,6 +1059,8 @@ msgid ""
 "An error occurred while retrieving the requested data.\n"
 "See the related log file for more details."
 msgstr ""
+"Une erreur s'est produite lors de la récupération des données demandées.\n"
+"Voir le fichier journal associé pour plus de détails."
 
 msgid "URLs have no playlist references"
 msgstr "Les URL ne correspondent pas à la playlist"
@@ -1073,23 +1080,25 @@ msgstr ""
 "Avant de continuer, assurez-vous de définir les paramètres corrects dans la boîte de dialogue Préférences."
 
 msgid "Click the Reload Format Codes button."
-msgstr ""
+msgstr "Cliquez sur le bouton Recharger les codes de format."
 
 msgid "Format Code List Missing"
-msgstr ""
+msgstr "Liste de Codes de Format Manquante"
 
 msgid "At least one \"Format Code\" must be checked for each URL selected in green."
 msgstr "Au moins un \"code format\" doit être sélectionné pour chaque URL sélectionnée en vert."
 
 msgid "Incomplete Format Code Selection"
-msgstr ""
+msgstr "Sélection Incomplète Du Code de Format"
 
 msgid ""
 "Changes have been made to the command arguments.\n"
 "\n"
 "Are you sure you want to apply them?"
 msgstr ""
+"Des modifications ont été apportées aux arguments de la commande.\n"
+"\n"
+"Êtes-vous sûr de vouloir les appliquer?"
 
 msgid "Apply changes?"
-msgstr ""
-
+msgstr "Appliquer des modifications?"
