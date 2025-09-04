@@ -3,7 +3,7 @@ Version=1.0
 Type=Application
 
 Name=Vidtuber
-Comment=Vidtuber is a simple and cross-platform GUI for yt-dlp
+Comment=Vidtuber is a simple yet comprehensive, cross-platform GUI for yt-dlp
 Categories=AudioVideo;
 
 Icon=vidtuber

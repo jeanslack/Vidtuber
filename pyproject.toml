@@ -13,7 +13,7 @@ authors = [
 maintainers = [
   {name = "Gianluca Pernigotto", email = "jeanlucperni@gmail.com"}
 ]
-description = "Vidtuber is a simple, cross-platform graphical user interface for yt-dlp"
+description = "Vidtuber is a simple yet comprehensive, cross-platform GUI for yt-dlp"
 license =  {text = "GNU General Public License v3 (GPLv3)"}
 keywords = [
     "vidtuber",

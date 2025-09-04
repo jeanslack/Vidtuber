@@ -12,7 +12,7 @@
 
   <description>
     <p>
-      Vidtuber is a simple cross-platform GUI for yt-dlp.
+      Vidtuber is a simple yet comprehensive, cross-platform GUI for yt-dlp.
     </p>
     <p>
       Vidtuber is written in Python3 using the wxPython-Phoenix GUI toolkit.

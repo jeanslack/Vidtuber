@@ -44,8 +44,8 @@ COMMENT = ("\nThanks to:\n"
            )
 SHORTDESCRIPT = "Vidtuber is a simple cross-platform GUI for yt-dlp"
 LONGDESCRIPT = """
-Vidtuber is a simple, cross-platform GUI for yt-dlp written in Python3
-using the wxPython4-Phoenix toolkit.
+Vidtuber is a simple yet comprehensive, cross-platform graphical user
+interface for yt-dlp written in Python3 and wxPython4-Phoenix.
 """
 SHORTLICENSE = "GPL-3.0+ (Gnu Public License)"
 LICENSE = (f"Copyleft - all rights reversed - {COPYRIGHT} "

@@ -3,7 +3,8 @@
 [![Image](https://img.shields.io/badge/license-GPLv3-orange)](https://github.com/jeanslack/Vidtuber/blob/master/LICENSE)
 [![Python application](https://github.com/jeanslack/Vidtuber/actions/workflows/python-package.yml/badge.svg)](https://github.com/jeanslack/Vidtuber/actions/workflows/python-package.yml)
 
-A simple, cross-platform graphical user interface for [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+A simple yet comprehensive, cross-platform graphical user interface for [yt-dlp](https://github.com/yt-dlp/yt-dlp). 
+This project is a partial fork of [Videomass](https://github.com/jeanslack/Videomass), which has now dropped support for yt-dlp and the GUI for audio/video download.
 
 Vidtuber is [Free (libre) Software](https://en.wikipedia.org/wiki/Free_software),
 written in [Python3](https://www.python.org/) using the
@@ -31,7 +32,7 @@ Vidtuber is available on the [SlackBuilds.org](https://slackbuilds.org/) ("Sbo")
 
 ### Devuan / Debian
 
-A pre-compiled, architecture-independent .deb package is available on [Latest Releases](https://github.com/jeanslack/Vidtuber/releases/latest)
+No arch deb package: [Latest Releases](https://github.com/jeanslack/Vidtuber/releases/latest)
 
 Tested on:
 
@@ -40,7 +41,7 @@ Tested on:
 
 ### MS Windows
 
-Portable edition available on [Latest releases](https://github.com/jeanslack/Vidtuber/releases/latest)
+Portable edition: [Latest releases](https://github.com/jeanslack/Vidtuber/releases/latest)
 
 Minimum requirements:
 
@@ -53,11 +54,11 @@ downloading and installing these additional dependencies.
 
 ### Other installation and execution methods
 
-Please read [INSTALL](https://github.com/jeanslack/Vidtuber/blob/main/INSTALL) file.
+[INSTALL](https://github.com/jeanslack/Vidtuber/blob/main/INSTALL)
 
 ## DOCUMENTATION
 
-The documentation is already included in these sources in PDF format: [docs/UserGuide](https://github.com/jeanslack/Vidtuber/tree/main/docs/UserGuide)
+[docs/UserGuide](https://github.com/jeanslack/Vidtuber/tree/main/docs/UserGuide)
 
 ## TRANSLATIONS
 

@@ -3,7 +3,7 @@ vidtuber for Debian
 Please edit this to provide information specific to
 this vidtuber Debian package.
 
-    Vidtuber is a simple, cross-platform graphical user interface for yt-dlp
+    Vidtuber is a simple yet comprehensive, cross-platform GUI for yt-dlp.
     It features graphical tools to downloading audio, videos, subtitles and
     more via yt-dlp.
 
@@ -47,4 +47,4 @@ this vidtuber Debian package.
     - Easy and friendly access via cookies.
     - and many more…
 
- -- Gianluca Pernigotto <jeanlucperni@gmail.com>  Sun, 29 Jun 2025 10:09:27 +0200
+ -- Gianluca Pernigotto <jeanlucperni@gmail.com>  Thu, 04 Sep 2025 10:30:27 +0200
