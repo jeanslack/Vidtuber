@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 """
-Name: ydl_downloader.py
+Name: downloader_thread.py
 Porpose: long processing task using yt-dlp executable
 Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
@@ -46,11 +46,11 @@ def killbill(pid):
     lambda: os.kill(pid, signal.CTRL_C_EVENT)
 
 
-class YtdlExecDL(Thread):
+class DownloadProcess(Thread):
     """
-    YtdlExecDL represents a separate thread for running
-    youtube-dl executable with subprocess class to download
-    media and capture its stdout/stderr output in real time .
+    DownloadProcess represents a separate thread for running
+    download using yt-dlp as subprocess and capture its stdout/stderr
+    in real time .
 
     """
     STOP = '[Vidtuber]: STOP command received.'
@@ -120,7 +120,7 @@ class YtdlExecDL(Thread):
                                          duration=100,
                                          status='ERROR',
                                          )
-                            logwrite('', YtdlExecDL.STOP, self.logfile)
+                            logwrite('', DownloadProcess.STOP, self.logfile)
                             time.sleep(.5)
                             wx.CallAfter(pub.sendMessage, "END_YTDL_EVT")
                             return

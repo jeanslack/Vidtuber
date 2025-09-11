@@ -24,25 +24,84 @@ This file is part of Vidtuber.
    You should have received a copy of the GNU General Public License
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
+import os
 from urllib.parse import urlparse
 import wx
-from vidtuber.vt_dialogs.list_warning import ListWarning
+from vidtuber.vt_io.io_tools import ytdlp_dump_single_json
+
+
+def drag_and_drop_command_build():
+    """
+    Builds yt-dlp comand for dump single JSON data structure
+    using `--flat-playlist` and `--dump-single-json` arguments.
+    return a command arguments str object.
+    """
+    get = wx.GetApp()  # get data from bootstrap
+    appdata = get.appset
+    execpath = appdata['yt-dlp_cmd']
+    kwa = {}
+
+    if (appdata["use_cookie_file"] and appdata["cookiefile"].strip()):
+        kwa["cookiefile"] = appdata["cookiefile"]
+    if appdata["autogen_cookie_file"]:
+        cfb = tuple(appdata["cookiesfrombrowser"])
+        kwa["cookiesfrombrowser"] = cfb
+    kwa['nocheckcertificate'] = appdata["ssl_certificate"]
+    kwa['proxy'] = appdata["proxy"]
+    kwa['username'] = appdata["username"]
+    kwa['password'] = appdata["password"]
+    kwa['videopassword'] = appdata["videopassword"]
+    kwa["geo_verification_proxy"] = appdata["geo_verification_proxy"]
+    kwa["geo_bypass"] = appdata["geo_bypass"]
+    kwa["geo_bypass_country"] = appdata["geo_bypass_country"]
+    kwa["geo_bypass_ip_block"] = appdata["geo_bypass_ip_block"]
+
+    opt = (f'"{execpath}" --newline --compat-options "youtube-dl" '
+            f'--ignore-errors --ignore-config --no-color '
+            f'--restrict-filenames ')
+
+    opt += '--no-check-certificates ' if kwa['nocheckcertificate'] else ''
+    opt += f'--proxy "{kwa["proxy"]}" ' if kwa["proxy"] else ''
+    if kwa['geo_verification_proxy']:
+        opt += (f'--geo-verification-proxy '
+                f'"{kwa["geo_verification_proxy"]}" ')
+    geo = (f'{kwa["geo_bypass"]} {kwa["geo_bypass_country"]} '
+            f'{kwa["geo_bypass_ip_block"]}')
+    if geo.strip():
+        opt += f'--xff "{geo}" '
+    if kwa['username']:
+        opt += f'--username {kwa["username"]} '
+        opt += f'--password {kwa["password"]} '
+    if kwa['videopassword']:
+        opt += f'--video-password {kwa["videopassword"]} '
+    if kwa.get("cookiefile"):
+        opt += f'--cookies "{kwa["cookiefile"]}" '
+    if kwa.get("cookiesfrombrowser"):
+        opt += f'--cookies-from-browser "{kwa["cookiesfrombrowser"][0]}" '
+    opt += '--flat-playlist -J '
+
+    return opt
 
 
 class MyListCtrl(wx.ListCtrl):
     """
     This is the listControl widget.
-    Note that this wideget has DnDPanel parented.
+    Note that this wideget has Url_DnD_Panel parented.
     """
-    def __init__(self, parent):
+    get = wx.GetApp()  # get vidtuber wx.App attribute
+
+    def __init__(self, parent, logfile):
         """
         Constructor.
         WARNING to avoid segmentation error on removing items by
         listctrl, style must be wx.LC_SINGLE_SEL .
         """
         self.index = None
-        self.parent = parent  # parent is DnDPanel class
-        self.errors = {}
+        self.parent = parent  # parent is Url_DnD_Panel class
+        self.data_url = self.parent.data_url
+        self.errors = False
+        self.logfile = logfile
+
         wx.ListCtrl.__init__(self,
                              parent,
                              style=wx.LC_REPORT
@@ -55,24 +114,47 @@ class MyListCtrl(wx.ListCtrl):
         """
         make default colums
         """
-        self.InsertColumn(0, ('#'), width=30)
-        self.InsertColumn(1, (_('Url')), width=600)
+        colw = MyListCtrl.get.appset['textdndpaste_column_width']
+        self.InsertColumn(0, ('#'), width=colw[0])
+        self.InsertColumn(1, (_('Url')), width=colw[1])
+        self.InsertColumn(2, (_('Title')), width=colw[2])
+        self.InsertColumn(3, (_('Domain')), width=colw[3])
+        self.InsertColumn(4, (_('Type')), width=colw[4])
 
     def dropUpdate(self, url):
         """
         Update list-control during drag and drop.
         """
         self.index = self.GetItemCount()
+        self.Disable()
+
         res = urlparse(url)
         if not res[1]:  # if empty netloc given from ParseResult
-            self.errors[f'{url}'] = _('Invalid URL')
+            self.Enable()
             return False
 
-        self.InsertItem(self.index, str(self.index + 1))
-        self.SetItem(self.index, 1, url)
-        self.index += 1
+        if not next((item for item in self.data_url if url in item), None):
+            data = ytdlp_dump_single_json(url,
+                                          drag_and_drop_command_build(),
+                                          self.logfile,
+                                          parent=self.GetParent()
+                                          )
+            if data[1]:
+                self.errors = True
+                return False
 
-        self.parent.changes_in_progress()
+            self.data_url.append({url: data[0]})  # update url dict
+
+            self.InsertItem(self.index, str(self.index + 1))
+            self.SetItem(self.index, 1, url)
+            self.SetItem(self.index, 2, data[0]['title'])
+            self.SetItem(self.index, 3, data[0]['domain'])
+            self.SetItem(self.index, 4, data[0]['urltype'])
+            self.index += 1
+
+            self.parent.changes_in_progress()
+
+        self.Enable()
         return True
     # ----------------------------------------------------------------------#
 
@@ -81,14 +163,12 @@ class MyListCtrl(wx.ListCtrl):
         Handles all rejected URLs if any
         """
         if self.errors:
-            with ListWarning(self,
-                             self.errors,
-                             caption=_('Error list'),
-                             header=_('Invalid URLs'),
-                             buttons='OK',
-                             ) as log:
-                log.ShowModal()
-            self.errors.clear()  # clear values here
+            msg = _('Errors occurred while retrieving the requested data.\n'
+                    'See the related log file for more details.')
+            wx.MessageBox(msg, _('Vidtuber'), wx.ICON_ERROR, self)
+            self.parent.parent.view_logs(None, flog='Drag_And_Drop.log')
+            self.errors = False  # restore default value here
+            self.Enable()
 
 
 class UrlDropTarget(wx.TextDropTarget):
@@ -119,13 +199,15 @@ class Url_DnD_Panel(wx.Panel):
     """
     Panel responsible to embed URLs controls
     """
-    def __init__(self, parent):
+    def __init__(self, parent, data_url):
         """
         parent is the MainFrame
         """
         get = wx.GetApp()  # get data from bootstrap
         self.appdata = get.appset
         self.parent = parent
+        self.data_url = data_url
+        logfile = os.path.join(self.appdata['logdir'], 'Drag_And_Drop.log')
         wx.Panel.__init__(self, parent, -1)
 
         sizer = wx.BoxSizer(wx.VERTICAL)
@@ -134,7 +216,7 @@ class Url_DnD_Panel(wx.Panel):
         lbl_info = wx.StaticText(self, wx.ID_ANY, label=infomsg)
         sizer.Add(lbl_info, 0, wx.ALL | wx.EXPAND, 5)
         sizer.Add((0, 10))
-        self.urlctrl = MyListCtrl(self)
+        self.urlctrl = MyListCtrl(self, logfile)
         dragt = UrlDropTarget(self, self.urlctrl)
         self.urlctrl.SetDropTarget(dragt)
         sizer.Add(self.urlctrl, 1, wx.EXPAND | wx.ALL, 5)
@@ -254,11 +336,11 @@ class Url_DnD_Panel(wx.Panel):
         for x in range(self.urlctrl.GetItemCount()):
             data.append(self.urlctrl.GetItemText(x, 1))
 
-        if not data == self.parent.data_url:
+        if not data == [list(k.keys())[0] for k in self.parent.data_url]:
             self.parent.changed = True
 
         self.parent.statusbar_msg(_('Ready'), None)
-        self.parent.data_url = data.copy()
+        self.parent.data_url = self.data_url.copy()
         self.parent.destroy_orphaned_window()
         self.parent.clearall.Enable(True)
         self.parent.delete.Enable(True)
@@ -295,6 +377,7 @@ class Url_DnD_Panel(wx.Panel):
         self.parent.clearall.Enable(False)
         self.parent.delete.Enable(False)
         del self.parent.data_url[:]
+        del self.data_url[:]
     # -----------------------------------------------------------
 
     def on_del_url_selected(self, event):
@@ -321,6 +404,7 @@ class Url_DnD_Panel(wx.Panel):
         for num in sorted(indexes, reverse=True):
             self.urlctrl.DeleteItem(num)  # remove selected items
             self.urlctrl.Select(num - 1)  # select the previous one
+            del self.data_url[num]
         self.changes_in_progress(setfocus=False)
 
         for x in range(self.urlctrl.GetItemCount()):

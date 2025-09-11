@@ -171,11 +171,11 @@ class ConfigManager:
         webbrowser (str),
         cookiesfrombrowser (list)
 
-    fcode_column_width (list of int)
+    frmtcode_column_width (list of int)
         column width in the format code panel (ytdownloader).
 
     """
-    VERSION = 2.4
+    VERSION = 2.7
     DEFAULT_OPTIONS = {"confversion": VERSION,
                        "yt-dlp_cmd": "",
                        "ytdlp_islocal": False,
@@ -203,7 +203,9 @@ class ConfigManager:
                                              "embedsubtitle": False,
                                              "skip_download": False
                                              },
-                       "fcode_column_width": [120, 60, 200, 80],
+                       "textdndpaste_column_width": [30, 150, 350, 100, 100],
+                       "frmtcode_column_width": [120, 60, 200, 80, 160,
+                                              110, 80, 110, 100, 100],
                        "download_mode": 0,
                        "video_format": 0,
                        "audio_format": 0,
@@ -231,7 +233,7 @@ class ConfigManager:
                        "embed_thumbnails": False,
                        "overwr_dl_files": False,
                        "include_ID_name": False,
-                       "restrict_fname": False,
+                       "restrict_fname": True,
                        }
 
     def __init__(self, filename, makeportable=None):

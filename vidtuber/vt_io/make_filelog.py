@@ -34,8 +34,8 @@ def logwrite(cmd, stderr, logfile, txtenc="utf-8"):
     This function writes status messages
     to a given `logfile` during a process.
     """
-    sep = ('\n==============================================='
-           '==============================================\n')
+    sep = ('\n-----------------------------------------------'
+           '----------------------------------------------\n')
     if stderr:
         apnd = f"\n{stderr}\n"
     else:
@@ -45,26 +45,29 @@ def logwrite(cmd, stderr, logfile, txtenc="utf-8"):
         log.write(apnd)
 
 
-def make_log_template(logname, logdir, mode="a", txtenc="utf-8"):
+def make_log_template(logfile, mode="a", txtenc="utf-8"):
     """
     Most log files are initialized from a template
     before starting a process and writing status
     messages to a given log file.
 
-    - logname,  example: `mylog.log`
-    - logdir, log files location
+    - logfile, str(full path name of log file)
+    - mode,  str(open modality, a(ppend), w(rite), etc, default is "a")
+    - txtenc, str(encoding type, default is UTF8)
 
     Returns an absolute/relative pathname of the logfile.
     """
+    sep = ('==============================================='
+           '==============================================')
     current_date = time.strftime("%c")  # date/time
-    logfile = os.path.join(logdir, logname)
 
     with open(logfile, mode, encoding=txtenc) as log:
-        log.write(f"""
-[DATE]: {current_date}
+        log.write(f"""{sep}
 
-[LOCATION]: "{logfile}"
+[PROGRAM NAME]: Vidtuber
 
-[VIDTUBER]:
+[SESSION DATE]: {current_date}
+
+[LOGFILE LOCATION]: "{logfile}"
 """)
     return logfile

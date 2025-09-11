@@ -24,6 +24,7 @@ This file is part of Vidtuber.
    You should have received a copy of the GNU General Public License
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
+import os
 import subprocess
 import wx
 from vidtuber.vt_utils.utils import Popen
@@ -53,7 +54,9 @@ def shutdown_system(password=None):
     get = wx.GetApp()
     appdata = get.appset
     ostype = appdata['ostype']
-    logfile = make_log_template("Shutdown.log", appdata['logdir'], mode="w")
+    os.path
+    logfilepath = os.path.join(appdata['logdir'], "Shutdown.log")
+    logfile = make_log_template(logfilepath, mode="w")
 
     if ostype == 'Linux':
         if password:

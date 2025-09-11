@@ -29,7 +29,7 @@ from pubsub import pub
 import wx
 from vidtuber.vt_dialogs.widget_utils import notification_area
 from vidtuber.vt_io.make_filelog import make_log_template
-from vidtuber.vt_threads.ydl_downloader import YtdlExecDL
+from vidtuber.vt_threads.downloader_thread import DownloadProcess
 from vidtuber.vt_io import io_tools
 
 
@@ -130,12 +130,10 @@ class LogOut(wx.Panel):
 
         self.txtout.Clear()
         self.labprog.SetLabel('')
-        self.logfile = make_log_template("Download_yt-dlp.log",
-                                         self.appdata['logdir'],
-                                         mode="w",
-                                         )
+        logfilepath = os.path.join(self.appdata['logdir'], "Downloader.log")
+        self.logfile = make_log_template(logfilepath, mode="w")
         self.btn_viewlog.Disable()
-        self.thread_type = YtdlExecDL(args[1], urls, self.logfile)
+        self.thread_type = DownloadProcess(args[1], urls, self.logfile)
     # ----------------------------------------------------------------------
 
     def youtubedl_exec(self, output, duration, status):

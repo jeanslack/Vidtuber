@@ -26,8 +26,6 @@ This file is part of Vidtuber.
 """
 import wx
 from vidtuber.vt_utils.get_bmpfromsvg import get_bmp
-from vidtuber.vt_io.io_tools import youtubedl_getstatistics
-from vidtuber.vt_io.make_filelog import make_log_template
 
 
 class FormatCode(wx.Panel):
@@ -49,10 +47,10 @@ class FormatCode(wx.Panel):
     else:
         GREEN = '#40804C'
 
-    BACKGRD = get.appset['colorscheme']['BACKGRD']  # help viewer backgrd
-    DONE = get.appset['colorscheme']['TXT3']  # code text done
-    WARN = get.appset['colorscheme']['WARN']  # code text warn
-    RED = get.appset['colorscheme']['ERR1']   # code text err + sb error
+    # BACKGRD = get.appset['colorscheme']['BACKGRD']  # help viewer backgrd
+    # DONE = get.appset['colorscheme']['TXT3']  # code text done
+    # WARN = get.appset['colorscheme']['WARN']  # code text warn
+    # RED = get.appset['colorscheme']['ERR1']   # code text err + sb error
     # -----------------------------------------------------------------#
 
     def __init__(self, parent, format_dict):
@@ -61,7 +59,7 @@ class FormatCode(wx.Panel):
         always reset for any change to the URLs list.
         """
         self.parent = parent
-        self.urls = []
+        self.urllist = []
         self.format_dict = format_dict  # format codes order with URL matching
         bmpreload = get_bmp(FormatCode.icons['reload'], ((16, 16)))
 
@@ -88,15 +86,23 @@ class FormatCode(wx.Panel):
         self.btn_reload.SetBitmap(bmpreload, wx.LEFT)
         self.btn_reload.SetToolTip(_('Reload format codes'))
         sizeropt.Add(self.btn_reload, 0, wx.LEFT | wx.CENTRE, 10)
+        sizer_base.Add((0, 20))
         self.fcode = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_REPORT
                                  | wx.SUNKEN_BORDER | wx.LC_SINGLE_SEL
                                  )
         self.fcode.EnableCheckBoxes(enable=True)
-        colw = FormatCode.appdata['fcode_column_width']
-        self.fcode.InsertColumn(0, (_('Format Code')), width=colw[0])
+        colw = FormatCode.appdata['frmtcode_column_width']
+        self.fcode.InsertColumn(0, (_('Id')), width=colw[0])
         self.fcode.InsertColumn(1, (_('Url')), width=colw[1])
-        self.fcode.InsertColumn(2, (_('Extension')), width=colw[2])
-        self.fcode.InsertColumn(3, (_('Resolution')), width=colw[3])
+        self.fcode.InsertColumn(2, (_('Title')), width=colw[2])
+        self.fcode.InsertColumn(3, (_('Extension')), width=colw[3])
+        self.fcode.InsertColumn(4, (_('Resolution')), width=colw[4])
+        self.fcode.InsertColumn(5, (_('Video Codec')), width=colw[5])
+        self.fcode.InsertColumn(6, (_('fps')), width=colw[6])
+        self.fcode.InsertColumn(7, (_('Audio Codec')), width=colw[7])
+        self.fcode.InsertColumn(8, (_('Language')), width=colw[8])
+        self.fcode.InsertColumn(9, (_('Size')), width=colw[9])
+
         sizer_base.Add(self.fcode, 1, wx.ALL | wx.EXPAND, 5)
 
         # ----- Properties
@@ -150,15 +156,16 @@ class FormatCode(wx.Panel):
         """
         check = self.fcode.IsItemChecked
         num = self.fcode.GetItemCount()
-        for url in self.urls:
+
+        for url in self.urllist:
             self.format_dict[url] = []
             for i in range(num):
                 if check(i):
                     if (self.fcode.GetItemText(i, 1)) == url:
-                        if 'audio only' in self.fcode.GetItemText(i, 3):
+                        if 'audio only' in self.fcode.GetItemText(i, 4):
                             dispa = self.fcode.GetItemText(i, 0)
                             self.format_dict[url].append('Audio: ' + dispa)
-                        elif self.fcode.GetItemText(i, 2) == 'mhtml':
+                        elif self.fcode.GetItemText(i, 3) == 'mhtml':
                             disph = self.fcode.GetItemText(i, 0)
                             self.format_dict[url].append('mhtml: ' + disph)
                         else:
@@ -168,50 +175,36 @@ class FormatCode(wx.Panel):
                             self.format_dict[url].append('Video: ' + dispv)
     # ----------------------------------------------------------------------
 
-    def set_formatcode(self, data_url, arg):
+    def set_formatcode(self, data_url):
         """
-        Get URLs data and format codes by generator object
-        `youtubedl_getstatistics`. Return `True` if `meta[1]`
-        (error), otherwise return None as exit status.
+        Set list control with format code items
         """
-        logfile = make_log_template("Format_Codes.log",
-                                    FormatCode.appdata['logdir'],
-                                    mode="w",
-                                    )
-        self.urls = data_url.copy()
-        meta = None, None
+        del self.urllist[:]
         index = 0
-        for link in data_url:
-            data = youtubedl_getstatistics(link,
-                                           arg,
-                                           logfile,
-                                           parent=self.GetParent()
-                                           )
-            for meta in data:
-                if meta[1]:
-                    return meta[0]
-                i = 0
-                for count, fc in enumerate(meta[0].split('\n')):
-                    if not count > i:
-                        i += 1
-                    elif fc != '':
-                        self.fcode.InsertItem(index, fc.split()[0])
-                        self.fcode.SetItem(index, 1, link)
-                        self.fcode.SetItem(index, 2, fc.split()[1])
-                        note = ' '.join(fc.split()[2:])
-                        self.fcode.SetItem(index, 3, note)
+        for listurl in data_url:
+            for url, value in listurl.items():
+                if not value.get('formats'):
+                    break
+                self.urllist.append(url)
 
-                        if i + 1 == count:
-                            green = FormatCode.GREEN
-                            self.fcode.SetItemBackgroundColour(index, green)
-                        index += 1
+                for num, frmts in enumerate(value['formats']):
+                    self.fcode.InsertItem(index, frmts['id'])
+                    self.fcode.SetItem(index, 1, url)
+                    self.fcode.SetItem(index, 2, listurl[url]['title'])
+                    self.fcode.SetItem(index, 3, frmts['ext'])
+                    self.fcode.SetItem(index, 4, frmts['resolution'])
+                    self.fcode.SetItem(index, 5, frmts['vcodec'])
+                    self.fcode.SetItem(index, 6, frmts['fps'])
+                    self.fcode.SetItem(index, 7, frmts['acodec'])
+                    self.fcode.SetItem(index, 8, frmts['lang'])
+                    self.fcode.SetItem(index, 9, frmts['size'])
+                    if num == 0:
+                        self.fcode.SetItemBackgroundColour(index,
+                                                           FormatCode.GREEN)
+                    index += 1
+    # ----------------------------------------------------------------------
 
-                    if fc.startswith('format code '):
-                        i = count  # limit
-        return None
-    # -----------------------------------------------------------------#
-
-    def getformatcode(self, urls):
+    def getformatcode(self):
         """
         Called by `youtubedl_ui.on_Start` parent method.
         Return format code list. None type otherwise.
@@ -222,7 +215,7 @@ class FormatCode(wx.Panel):
         amerge = '' if not self.ckbx_mrg.GetValue() else '--audio-multistreams'
         vmerge = '' if not self.ckbx_mrg.GetValue() else '--video-multistreams'
 
-        for url, key, val in zip(urls,
+        for url, key, val in zip(self.urllist,
                                  self.format_dict.keys(),
                                  self.format_dict.values()
                                  ):
@@ -235,7 +228,7 @@ class FormatCode(wx.Panel):
                                                               mhtml,
                                                               sep
                                                               ))
-        if len(format_code) != len(urls):
+        if len(format_code) != len(self.urllist):
             return None, amerge, vmerge
         return format_code, amerge, vmerge
     # -----------------------------------------------------------------#

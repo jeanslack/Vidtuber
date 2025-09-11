@@ -38,10 +38,10 @@ class ShowLogs(wx.Dialog):
 
     """
     # list of log names to include
-    LOGNAMES = ('generic_task.log',
-                'Download_yt-dlp.log',
+    LOGNAMES = ('Generic_Task.log',
+                'Downloader.log',
                 'Shutdown.log',
-                'Format_Codes.log',
+                'Drag_And_Drop.log',
                 )
 
     def __init__(self, parent, dirlog, speclogname=None):

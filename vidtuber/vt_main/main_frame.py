@@ -63,6 +63,7 @@ class MainFrame(wx.Frame):
         self.appdata = appdata
         self.icons = get.iconset
         self.data_url = []  # list of urls in text box
+        #self.data_json = []  # data in json format by -J
         self.changed = True  # previous list is different to the new one
         self.showlogs = False
 
@@ -70,7 +71,7 @@ class MainFrame(wx.Frame):
 
         # ---------- panel instances:
         self.ytDownloader = Downloader(self)
-        self.textDnDTarget = Url_DnD_Panel(self)
+        self.textDnDTarget = Url_DnD_Panel(self, self.data_url)
         self.ProcessPanel = LogOut(self)
         # hide panels
         self.ProcessPanel.Hide()
@@ -169,12 +170,25 @@ class MainFrame(wx.Frame):
         sett['window_size'] = list(self.GetSize())
         sett['window_position'] = list(self.GetPosition())
         sett['subtitles_options'] = self.ytDownloader.opt["SUBS"]
+        textdndpastcolwidth = [self.textDnDTarget.urlctrl.GetColumnWidth(0),
+                               self.textDnDTarget.urlctrl.GetColumnWidth(1),
+                               self.textDnDTarget.urlctrl.GetColumnWidth(2),
+                               self.textDnDTarget.urlctrl.GetColumnWidth(3),
+                               self.textDnDTarget.urlctrl.GetColumnWidth(4),
+                            ]
+        sett['textdndpaste_column_width'] = textdndpastcolwidth
         fcodecolwidth = [self.ytDownloader.panel_cod.fcode.GetColumnWidth(0),
                          self.ytDownloader.panel_cod.fcode.GetColumnWidth(1),
                          self.ytDownloader.panel_cod.fcode.GetColumnWidth(2),
                          self.ytDownloader.panel_cod.fcode.GetColumnWidth(3),
+                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(4),
+                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(5),
+                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(6),
+                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(7),
+                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(8),
+                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(9),
                          ]
-        sett['fcode_column_width'] = fcodecolwidth
+        sett['frmtcode_column_width'] = fcodecolwidth
         val = self.ytDownloader.panel_cod.ckbx_mrg.GetValue()
         sett['merge_single_file'] = val
         val = self.ytDownloader.panel_cod.ckbx_best.GetValue()
@@ -783,7 +797,8 @@ class MainFrame(wx.Frame):
         self.ytDownloader.Hide()
         self.ProcessPanel.Show()
         self.Layout()
-        self.ProcessPanel.topic_thread(args, self.data_url)
+        urls = [list(k.keys())[0] for k in self.data_url]
+        self.ProcessPanel.topic_thread(args, urls)
     # ------------------------------------------------------------------#
 
     def click_start(self, event):
@@ -850,7 +865,7 @@ class MainFrame(wx.Frame):
 
         msgdlg = _('The system will turn off in {0} seconds')
         title = _('Vidtuber - Shutdown!')
-        dlg = CountDownDlg(self, timeout=59, message=msgdlg, caption=title)
+        dlg = CountDownDlg(self, timeout=5, message=msgdlg, caption=title)
         res = dlg.ShowModal() == wx.ID_OK
         dlg.Destroy()
         if res:
@@ -859,6 +874,7 @@ class MainFrame(wx.Frame):
                 msg = (_("Error while shutting down. Please see "
                          "file log for details."))
                 wx.LogError(msg)
+                self.view_logs(None, flog='Shutdown.log')
     # ------------------------------------------------------------------#
 
     def auto_exit(self):

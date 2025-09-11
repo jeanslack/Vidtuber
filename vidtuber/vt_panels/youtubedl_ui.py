@@ -30,6 +30,7 @@ import wx
 from vidtuber.vt_utils.get_bmpfromsvg import get_bmp
 from vidtuber.vt_dialogs.playlist_indexing import Indexing
 from vidtuber.vt_dialogs.confirm_dialog import Confirmation_Dlg
+from vidtuber.vt_dialogs.list_warning import ListWarning
 from vidtuber.vt_dialogs.subtitles_editor import SubtitleEditor
 from vidtuber.vt_panels.formatcode_exec import FormatCode
 from vidtuber.vt_sys.settings_manager import ConfigManager
@@ -308,18 +309,7 @@ class Downloader(wx.Panel):
                 self.on_playlist(self)
                 self.panel_cod.fcode.DeleteAllItems()
                 self.format_dict.clear()
-                if self.choice.GetSelection() == 4:
-                    msg = (_('The «Download Mode» is set to "Format codes".\n'
-                             'Would you like to reload/update the format '
-                             'codes list now?'))
-                    if wx.MessageBox(msg, _('Reload format codes?'),
-                                     wx.ICON_QUESTION | wx.CANCEL
-                                     | wx.YES_NO, self) != wx.YES:
-                        self.panel_cod.enable_widgets()
-                        return
-
                 self.on_choicebox(self, statusmsg=False)
-
     # -----------------------------------------------------------------#
 
     def on_format_codes(self):
@@ -331,33 +321,27 @@ class Downloader(wx.Panel):
         """
         if self.panel_cod.fcode.GetItemCount():
             return None
-        cmd = self.default_statistics_options()
-        if not cmd:
-            return None
 
+        unsuppurls = []
         for url in self.parent.data_url:
-            for unsupp in ('/playlists',
-                           '/channels',
-                           '/playlist',
-                           '/channel',
-                           '/videos',
-                           ):
-                if unsupp in url:
-                    msg = _("Unable to get format codes on {0}, "
-                            "unsupported URL:\n\n{1}"
-                            ).format(unsupp.split('/')[1], url)
-                    wx.MessageBox(msg, _('Vidtuber - Warning!'),
-                                  wx.ICON_WARNING, self)
-                    return True
-
-        ret = self.panel_cod.set_formatcode(self.parent.data_url, cmd)
-        if ret:
-            msg = _('An error occurred while retrieving the requested data.\n'
-                    'See the related log file for more details.')
-            wx.MessageBox(msg, _('Vidtuber - Error!'), wx.ICON_ERROR, self)
-            self.parent.view_logs(None, flog='Format_Codes.log')
+            for key, value in url.items():
+                if not value.get('formats'):
+                    unsuppurls.append(f'"{key}"')
+        if unsuppurls:
+            msg = _('Unable to get format codes for playlists, '
+                    'channels and/or multiple videos.\nPlease list '
+                    'only individual video URLs or choose another '
+                    'download mode.')
+            with ListWarning(self,
+                             dict.fromkeys(unsuppurls, _('Unsupported')),
+                             caption='Unsupported URLs',
+                             header=msg,
+                             buttons='OK',
+                             ) as log:
+                log.ShowModal()
             return True
 
+        self.panel_cod.set_formatcode(self.parent.data_url)
         return None
     # -----------------------------------------------------------------#
 
@@ -500,16 +484,20 @@ class Downloader(wx.Panel):
         """
         Enable or disable playlists downloading
         """
-        if not self.parent.data_url:
+        urls = [list(k.keys())[0] for k in self.parent.data_url]
+        if not urls:
             self.ckbx_pl.SetValue(False)
             self.parent.click_start(None)
             return
 
         if self.ckbx_pl.IsChecked():
-            playlist = [url for url in self.parent.data_url
-                        if '/playlist' in url]
-            if not playlist:
-                wx.MessageBox(_("URLs have no playlist references"),
+            playlist = [url for url in urls if '/playlist' in url]
+            dataplaylist = next((item for item in self.parent.data_url
+                                 for (k, v) in item.items() if v['urltype']
+                                 == 'playlist'), None)
+            if not playlist or not dataplaylist:
+                wx.MessageBox(_("The URLs do not reference an "
+                                "individual playlist"),
                               "Vidtuber", wx.ICON_INFORMATION, self)
                 self.ckbx_pl.SetValue(False)
                 return
@@ -528,7 +516,7 @@ class Downloader(wx.Panel):
         Dialog for setting playlist indexing
         """
         with Indexing(self,
-                      self.parent.data_url,
+                      [list(k.keys())[0] for k in self.parent.data_url],
                       self.plidx) as idxdialog:
             if idxdialog.ShowModal() == wx.ID_OK:
                 data = idxdialog.getvalue()
@@ -545,8 +533,12 @@ class Downloader(wx.Panel):
         """
         Check for playlists and warn the user before continue.
         """
-        urls = self.parent.data_url
-        if [url for url in urls if 'playlist' in url]:
+        urls = [list(k.keys())[0] for k in self.parent.data_url]
+        playlist = [url for url in urls if '/playlist' in url]
+        dataplaylist = next((item for item in self.parent.data_url
+                                 for (k, v) in item.items() if v['urltype']
+                                 == 'playlist'), None)
+        if playlist or dataplaylist:
             if not self.ckbx_pl.IsChecked():
                 if wx.MessageBox(_('The URLs contain playlists. '
                                    'Are you sure you want to continue?'),
@@ -562,7 +554,7 @@ class Downloader(wx.Panel):
         """
         Check for channels and warn the user before continue.
         """
-        urls = self.parent.data_url
+        urls = [list(k.keys())[0] for k in self.parent.data_url]
         if [url for url in urls if 'channel' in url]:
             if wx.MessageBox(_('The URLs contain channels. '
                                'Are you sure you want to continue?'),
@@ -572,66 +564,6 @@ class Downloader(wx.Panel):
             return True
 
         return False
-    # -----------------------------------------------------------------#
-
-    def default_statistics_options(self):
-        """
-        Main mapping for Statistics options used by to
-        get info and format code datas.
-        return a type dict object.
-        """
-        execpath = self.appdata['yt-dlp_cmd']
-        if (not execpath.strip().endswith(self.execname)
-                or not shutil.which(execpath)):
-            wx.MessageBox(_('Missing executable: «{0}».\nBefore '
-                            'continuing, be sure to make the correct '
-                            'settings in the preferences dialog.'
-                            ).format(self.execname),
-                          _('Vidtuber - Warning!'), wx.ICON_WARNING, self)
-            return None
-
-        kwa = {}
-        if (self.appdata["use_cookie_file"]
-                and self.appdata["cookiefile"].strip()):
-            kwa["cookiefile"] = self.appdata["cookiefile"]
-        if self.appdata["autogen_cookie_file"]:
-            cfb = tuple(self.appdata["cookiesfrombrowser"])
-            kwa["cookiesfrombrowser"] = cfb
-        kwa['nocheckcertificate'] = self.appdata["ssl_certificate"]
-        kwa['proxy'] = self.appdata["proxy"]
-        kwa['username'] = self.appdata["username"]
-        kwa['password'] = self.appdata["password"]
-        kwa['videopassword'] = self.appdata["videopassword"]
-        kwa["geo_verification_proxy"] = self.appdata["geo_verification_proxy"]
-        kwa["geo_bypass"] = self.appdata["geo_bypass"]
-        kwa["geo_bypass_country"] = self.appdata["geo_bypass_country"]
-        kwa["geo_bypass_ip_block"] = self.appdata["geo_bypass_ip_block"]
-
-        opt = (f'"{execpath}" --newline --compat-options "youtube-dl" '
-               f'--ignore-errors --ignore-config --no-color '
-               f'--restrict-filenames --no-playlist ')
-
-        opt += '--no-check-certificates ' if kwa['nocheckcertificate'] else ''
-        opt += f'--proxy "{kwa["proxy"]}" ' if kwa["proxy"] else ''
-        if kwa['geo_verification_proxy']:
-            opt += (f'--geo-verification-proxy '
-                    f'"{kwa["geo_verification_proxy"]}" ')
-        geo = (f'{kwa["geo_bypass"]} {kwa["geo_bypass_country"]} '
-               f'{kwa["geo_bypass_ip_block"]}')
-        if geo.strip():
-            opt += f'--xff "{geo}" '
-        if kwa['username']:
-            opt += f'--username {kwa["username"]} '
-            opt += f'--password {kwa["password"]} '
-        if kwa['videopassword']:
-            opt += f'--video-password {kwa["videopassword"]} '
-        if kwa.get("cookiefile"):
-            opt += f'--cookies "{kwa["cookiefile"]}" '
-        if kwa.get("cookiesfrombrowser"):
-            opt += f'--cookies-from-browser "{kwa["cookiesfrombrowser"][0]}" '
-        opt += '-F '
-
-        return opt
     # -----------------------------------------------------------------#
 
     def default_download_options(self):
@@ -698,7 +630,7 @@ class Downloader(wx.Panel):
         return a type list object.
         """
         datalist = []
-        urlslist = self.parent.data_url
+        urlslist = [list(k.keys())[0] for k in self.parent.data_url]
 
         if self.appdata['playlistsubfolder']:
             subdir = ('%(uploader)s/%(playlist_title)'
@@ -778,7 +710,7 @@ class Downloader(wx.Panel):
                               wx.ICON_INFORMATION, self)
                 return
 
-            code = self.panel_cod.getformatcode(self.parent.data_url)
+            code = self.panel_cod.getformatcode()
             formatquality = ''
             outtmpl = f'{_id}.f%(format_id)s.%(ext)s'
             data['extractaudio'] = False
@@ -819,7 +751,7 @@ class Downloader(wx.Panel):
 
         with Confirmation_Dlg(self,
                               execlist,
-                              self.parent.data_url
+                              [list(k.keys())[0] for k in self.parent.data_url]
                               ) as epilogue:
             if epilogue.ShowModal() == wx.ID_OK:
                 newdata = epilogue.getvalue()
