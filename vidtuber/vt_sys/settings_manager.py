@@ -205,7 +205,7 @@ class ConfigManager:
                                              },
                        "textdndpaste_column_width": [30, 150, 350, 100, 100],
                        "frmtcode_column_width": [120, 60, 200, 80, 160,
-                                              110, 80, 110, 100, 100],
+                                                 110, 80, 110, 100, 100],
                        "download_mode": 0,
                        "video_format": 0,
                        "audio_format": 0,

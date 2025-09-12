@@ -25,26 +25,40 @@ This file is part of Vidtuber.
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
+import time
 import subprocess
 import wx
 from vidtuber.vt_utils.utils import Popen
 from vidtuber.vt_io.make_filelog import make_log_template
 
 
-def logwrite(logfile, cmd):
+def loginfo(info, logfile, usesep=True, txtenc="utf-8"):
     """
-    write ffmpeg command log
+    This function writes log events as information messages
+    to a given `logfile` during the process.
     """
-    with open(logfile, "a", encoding='utf-8') as log:
-        log.write(f"{cmd}\n")
+    current_date = time.strftime("%c")  # date/time
+    if usesep:
+        sep = ('\n-----------------------------------------------'
+               '----------------------------------------------\n')
+    else:
+        sep = '\n'
+
+    apnd = f'{sep}DATE: {current_date}\n{info}\n'
+
+    with open(logfile, "a", encoding=txtenc) as log:
+        log.write(apnd)
+# ----------------------------------------------------------------#
 
 
-def logerror(logfile, output):
+def logerror(err, logfile, txtenc="utf-8"):
     """
-    write ffmpeg volumedected errors
+    This function writes log events as error messages
+    to a given `logfile` during the process.
     """
-    with open(logfile, "a", encoding='utf-8') as logerr:
-        logerr.write(f"\nERRORS:\n{output}\n")
+    with open(logfile, "a", encoding=txtenc) as log:
+        log.write(f'{err}\n')
+# ----------------------------------------------------------------#
 
 
 def shutdown_system(password=None):
@@ -54,7 +68,6 @@ def shutdown_system(password=None):
     get = wx.GetApp()
     appdata = get.appset
     ostype = appdata['ostype']
-    os.path
     logfilepath = os.path.join(appdata['logdir'], "Shutdown.log")
     logfile = make_log_template(logfilepath, mode="w")
 
@@ -79,6 +92,8 @@ def shutdown_system(password=None):
     else:
         return 'Error: unsupported platform'
 
+    loginfo(f'INFO: VIDTUBER COMMAND: {" ".join(cmd)}', logfile)
+
     try:
         with Popen(cmd,
                    stdin=subprocess.PIPE,
@@ -90,11 +105,11 @@ def shutdown_system(password=None):
 
             output = proc.communicate(password)[1]
             proc.wait()
-            logwrite(logfile, output)
+            logerror(output, logfile)
             return not output or output == "Password:"
 
     except (OSError, FileNotFoundError) as err:
-        logerror(logfile, output)
+        logerror(f'VIDTUBER: ERROR: {err}', logfile)
         return err
 
     return None

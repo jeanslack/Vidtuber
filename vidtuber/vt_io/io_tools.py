@@ -98,7 +98,6 @@ def ytdlp_dump_single_json(url, args, logfile, parent=None):
     dlgload.Destroy()
     if data[1]:
         return data
-
     try:
         jdata = json.loads(data[0])
     except json.decoder.JSONDecodeError as err:
@@ -116,7 +115,6 @@ def ytdlp_dump_single_json(url, args, logfile, parent=None):
 
     elif jdata.get('formats'):
         newdata = dump_formats(newdata, jdata)
-
 
     return newdata, None
 # --------------------------------------------------------------------------#

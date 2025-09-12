@@ -34,7 +34,7 @@ import subprocess
 import wx
 from pubsub import pub
 from vidtuber.vt_utils.utils import Popen
-from vidtuber.vt_io.make_filelog import logwrite
+from vidtuber.vt_io.make_filelog import loginfo, logerror
 if not platform.system() == 'Windows':
     import shlex
 
@@ -53,7 +53,8 @@ class DownloadProcess(Thread):
     in real time .
 
     """
-    STOP = '[Vidtuber]: STOP command received.'
+    STOP = ('ERROR: VIDTUBER: STOP command received by signal '
+            'event.\nTerminated process ')
     # -----------------------------------------------------------------------#
 
     def __init__(self, args, urls, logfile):
@@ -94,7 +95,9 @@ class DownloadProcess(Thread):
                          end='CONTINUE',
                          )
             cmd = f'{opts} "{url}"'
-            logwrite(f'{count}\n{cmd}\n', '', self.logfile)  # write log cmd
+            # write log cmd
+            loginfo(f'INFO: {count}\nINFO: VIDTUBER COMMAND: {cmd}\n',
+                    self.logfile, url)
             if not platform.system() == 'Windows':
                 cmd = shlex.split(cmd)
             try:
@@ -120,7 +123,9 @@ class DownloadProcess(Thread):
                                          duration=100,
                                          status='ERROR',
                                          )
-                            logwrite('', DownloadProcess.STOP, self.logfile)
+                            msg = (DownloadProcess.STOP
+                                   + f'with PID {proc.pid}')
+                            logerror(msg, self.logfile, usesep=False)
                             time.sleep(.5)
                             wx.CallAfter(pub.sendMessage, "END_YTDL_EVT")
                             return
@@ -132,8 +137,8 @@ class DownloadProcess(Thread):
                                      duration=100,
                                      status='ERROR',
                                      )
-                        logwrite('', (f"[VIDTUBER]: Error Exit Status: "
-                                      f"{proc.wait()}"), self.logfile)
+                        logerror(f"[YT-DLP]: {proc.wait()}",
+                                 self.logfile, usesep=False)
                         time.sleep(1)
                         continue
 
@@ -146,7 +151,7 @@ class DownloadProcess(Thread):
                              duration=0,
                              end='ERROR'
                              )
-                logwrite('', err, self.logfile)
+                logerror(f'VIDTUBER: ERROR: {err}', self.logfile, usesep=False)
                 break
 
             if proc.wait() == 0:  # ..Finished

@@ -81,10 +81,10 @@ class FormatCode(wx.Panel):
         self.ckbx_best = wx.CheckBox(self, wx.ID_ANY, msg)
         sizeropt.Add(self.ckbx_best, 0, wx.ALL | wx.EXPAND, 5)
         self.ckbx_best.SetValue(FormatCode.appdata['only_best_quality'])
-        self.btn_reload = wx.Button(self, wx.ID_ANY, _("Reload"),
+        self.btn_reload = wx.Button(self, wx.ID_ANY, _("Load"),
                                     size=(-1, -1))
         self.btn_reload.SetBitmap(bmpreload, wx.LEFT)
-        self.btn_reload.SetToolTip(_('Reload format codes'))
+        self.btn_reload.SetToolTip(_('Reload format codes if needed'))
         sizeropt.Add(self.btn_reload, 0, wx.LEFT | wx.CENTRE, 10)
         sizer_base.Add((0, 20))
         self.fcode = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_REPORT
@@ -129,28 +129,11 @@ class FormatCode(wx.Panel):
         self.parent.on_format_codes()
     # ---------------------------------------------------------------------
 
-    def enable_widgets(self, enable=True):
-        """
-        Enable if download by format code is used.
-        """
-        if enable:
-            self.fcode.Enable()
-            self.ckbx_best.Enable()
-            self.ckbx_mrg.Enable()
-            self.btn_reload.Enable()
-            self.labfcode.Enable()
-        else:
-            self.fcode.Disable()
-            self.ckbx_best.Disable()
-            self.ckbx_mrg.Disable()
-            self.btn_reload.Disable()
-            self.labfcode.Disable()
-    # ----------------------------------------------------------------------
-
     def on_checkbox(self, event):
         """
-        get data from the enabled checkbox and set the values
-        on corresponding key e.g. Resolution or Extension.
+        Takes data from the checked columns in the list control
+        and maps it to the corresponding URL on the dict object.
+        This method set `self.format_dict` attribute.
 
             `key=url: values=[mhtml: fcode, Audio: fcode, Video: fcode]`
         """
@@ -177,7 +160,9 @@ class FormatCode(wx.Panel):
 
     def set_formatcode(self, data_url):
         """
-        Set list control with format code items
+        Set list control with format code items.
+        This method is only called by `on_format_codes`
+        parent method.
         """
         del self.urllist[:]
         index = 0
@@ -206,8 +191,10 @@ class FormatCode(wx.Panel):
 
     def getformatcode(self):
         """
-        Called by `youtubedl_ui.on_Start` parent method.
-        Return format code list. None type otherwise.
+        Build a list of format code arguments for each URL .
+        This method is only called by `on_Start` parent method.
+
+        Return a format code list. None type otherwise.
         """
         format_code = []
         sep = ',' if not self.ckbx_mrg.GetValue() else '+'

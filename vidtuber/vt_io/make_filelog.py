@@ -24,25 +24,45 @@ This file is part of Vidtuber.
    You should have received a copy of the GNU General Public License
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
-
 import time
-import os
 
 
-def logwrite(cmd, stderr, logfile, txtenc="utf-8"):
+def loginfo(info, logfile, url, usesep=True, txtenc="utf-8"):
     """
-    This function writes status messages
-    to a given `logfile` during a process.
+    This function writes log events as information messages
+    to a given `logfile` during the process.
     """
-    sep = ('\n-----------------------------------------------'
-           '----------------------------------------------\n')
-    if stderr:
-        apnd = f"\n{stderr}\n"
+    current_date = time.strftime("%c")  # date/time
+    if usesep:
+        sep = ('\n-----------------------------------------------'
+               '----------------------------------------------\n')
     else:
-        apnd = f"{sep}{cmd}\n\n"
+        sep = '\n'
+
+    apnd = f'{sep}DATE: {current_date}\nURL: "{url}"\n{info}\n'
 
     with open(logfile, "a", encoding=txtenc) as log:
         log.write(apnd)
+# ----------------------------------------------------------------#
+
+
+def logerror(err, logfile, usesep=True, txtenc="utf-8"):
+    """
+    This function writes log events as error messages
+    to a given `logfile` during the process.
+    """
+    current_date = time.strftime("%c")  # date/time
+    if usesep:
+        sep = ('\n-----------------------------------------------'
+               '----------------------------------------------\n')
+    else:
+        sep = '\n'
+
+    apnd = f'{sep}DATE: {current_date}\n{err}\n'
+
+    with open(logfile, "a", encoding=txtenc) as log:
+        log.write(apnd)
+# ----------------------------------------------------------------#
 
 
 def make_log_template(logfile, mode="a", txtenc="utf-8"):

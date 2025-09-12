@@ -263,7 +263,6 @@ class Downloader(wx.Panel):
         boxpanel = wx.StaticBoxSizer(box, wx.VERTICAL)
         sizer_base.Add(boxpanel, 1, wx.ALL | wx.EXPAND, 5)
         self.panel_cod = FormatCode(self, self.format_dict)
-        self.panel_cod.enable_widgets(False)
         boxpanel.Add(self.panel_cod, 1, wx.EXPAND)
         self.SetSizer(sizer_base)
         self.Layout()
@@ -360,7 +359,6 @@ class Downloader(wx.Panel):
             self.cmbx_vq.Enable()
             self.cmbx_vformat.Disable()
             self.ckbx_pl.Enable()
-            self.panel_cod.enable_widgets(False)
             self.cmbx_vq.Clear()
             self.cmbx_vq.Append(list(Downloader.VPCOMP.keys()))
             self.cmbx_vq.SetSelection(0)
@@ -373,7 +371,6 @@ class Downloader(wx.Panel):
             self.cmbx_vq.Enable()
             self.cmbx_vformat.Enable()
             self.ckbx_pl.Enable()
-            self.panel_cod.enable_widgets(False)
             self.cmbx_vq.Clear()
             self.cmbx_vq.Append(list(Downloader.VRES.keys()))
             self.cmbx_vq.SetSelection(0)
@@ -386,7 +383,6 @@ class Downloader(wx.Panel):
             self.cmbx_vq.Enable()
             self.ckbx_pl.Enable()
             self.cmbx_vformat.Disable()
-            self.panel_cod.enable_widgets(False)
             self.cmbx_vq.Clear()
             self.cmbx_vq.Append(list(Downloader.VQUAL.keys()))
             self.cmbx_vq.SetSelection(0)
@@ -399,7 +395,6 @@ class Downloader(wx.Panel):
             self.cmbx_af.Enable()
             self.cmbx_vformat.Disable()
             self.ckbx_pl.Enable()
-            self.panel_cod.enable_widgets(False)
             self.Layout()
             self.on_aformat(self)
 
@@ -409,7 +404,6 @@ class Downloader(wx.Panel):
             self.cmbx_af.Disable()
             self.cmbx_vformat.Disable()
             self.ckbx_pl.Disable()
-            self.panel_cod.enable_widgets()
             ret = self.on_format_codes()
             if ret:
                 return
@@ -536,8 +530,8 @@ class Downloader(wx.Panel):
         urls = [list(k.keys())[0] for k in self.parent.data_url]
         playlist = [url for url in urls if '/playlist' in url]
         dataplaylist = next((item for item in self.parent.data_url
-                                 for (k, v) in item.items() if v['urltype']
-                                 == 'playlist'), None)
+                             for (k, v) in item.items() if v['urltype']
+                             == 'playlist'), None)
         if playlist or dataplaylist:
             if not self.ckbx_pl.IsChecked():
                 if wx.MessageBox(_('The URLs contain playlists. '

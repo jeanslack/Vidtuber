@@ -3,20 +3,9 @@
 URGENCY: to do soon
 --------------------
 
-- Quando incolli un url e successivamente ne incolli un altro, mentre quello
-  precedente è ancora in attesa dati (or stuck) viene completamente sostituito.
-  RESOLVE: fare in modo che l'interfaccia sia veramente bloccata quando è presente
-           il dialogo pop-up modale. [DONE]
-
-- controlla URL doppioni quando incolli url uguali. [DONE]
-
-- Controllare meglio in quale colonna parsare "audio only" o "storyboard" o "video" [DONE]
-
-- Verificare i nomi dei log in 'share/vidtuber/log' per chiarire meglio le idee. [DONE]
-
-- aggiornare l'output del registro downloader che sia in linea con quello dei thread_data.
-
 - Playlist necessita di essere completamente revisionato
+- Quando premi STOP nel dialogo pop-up dovrebbe fermare tutti i processi in
+  successione.
 
 --------------
 URGENCY: high

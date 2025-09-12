@@ -57,8 +57,8 @@ def drag_and_drop_command_build():
     kwa["geo_bypass_ip_block"] = appdata["geo_bypass_ip_block"]
 
     opt = (f'"{execpath}" --newline --compat-options "youtube-dl" '
-            f'--ignore-errors --ignore-config --no-color '
-            f'--restrict-filenames ')
+           f'--ignore-errors --ignore-config --no-color '
+           f'--restrict-filenames ')
 
     opt += '--no-check-certificates ' if kwa['nocheckcertificate'] else ''
     opt += f'--proxy "{kwa["proxy"]}" ' if kwa["proxy"] else ''
@@ -66,7 +66,7 @@ def drag_and_drop_command_build():
         opt += (f'--geo-verification-proxy '
                 f'"{kwa["geo_verification_proxy"]}" ')
     geo = (f'{kwa["geo_bypass"]} {kwa["geo_bypass_country"]} '
-            f'{kwa["geo_bypass_ip_block"]}')
+           f'{kwa["geo_bypass_ip_block"]}')
     if geo.strip():
         opt += f'--xff "{geo}" '
     if kwa['username']:
@@ -78,7 +78,7 @@ def drag_and_drop_command_build():
         opt += f'--cookies "{kwa["cookiefile"]}" '
     if kwa.get("cookiesfrombrowser"):
         opt += f'--cookies-from-browser "{kwa["cookiesfrombrowser"][0]}" '
-    opt += '--flat-playlist -J '
+    opt += '--flat-playlist --dump-single-json  '
 
     return opt
 

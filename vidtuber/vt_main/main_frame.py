@@ -63,7 +63,6 @@ class MainFrame(wx.Frame):
         self.appdata = appdata
         self.icons = get.iconset
         self.data_url = []  # list of urls in text box
-        #self.data_json = []  # data in json format by -J
         self.changed = True  # previous list is different to the new one
         self.showlogs = False
 
@@ -175,7 +174,7 @@ class MainFrame(wx.Frame):
                                self.textDnDTarget.urlctrl.GetColumnWidth(2),
                                self.textDnDTarget.urlctrl.GetColumnWidth(3),
                                self.textDnDTarget.urlctrl.GetColumnWidth(4),
-                            ]
+                               ]
         sett['textdndpaste_column_width'] = textdndpastcolwidth
         fcodecolwidth = [self.ytDownloader.panel_cod.fcode.GetColumnWidth(0),
                          self.ytDownloader.panel_cod.fcode.GetColumnWidth(1),
