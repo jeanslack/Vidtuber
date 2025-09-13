@@ -47,8 +47,9 @@ class ListCtrl(wx.ListCtrl,
     def populate(self):
         """populate with default colums"""
         self.InsertColumn(0, '#', width=30)
-        self.InsertColumn(1, _('URL'), width=400)
-        self.InsertColumn(2, _('Playlist Items'), width=200)
+        self.InsertColumn(1, _('URL'), width=150)
+        self.InsertColumn(2, _('Title'), width=200)
+        self.InsertColumn(3, _('Playlist Items'), width=200)
 
 
 class Indexing(wx.Dialog):
@@ -83,6 +84,7 @@ class Indexing(wx.Dialog):
 
         """
         self.clrs = Indexing.appdata['colorscheme']
+        self.listurl = [list(k.keys())[0] for k in url]
         self.urls = url
         self.data = data
 
@@ -143,18 +145,20 @@ class Indexing(wx.Dialog):
         self.Layout()
 
         index = 0
+        for item in self.urls:
+            for link, dictdata in item.items():
+                self.lctrl.InsertItem(index, str(index + 1))
+                self.lctrl.SetItem(index, 1, link)
+                self.lctrl.SetItem(index, 2, dictdata['title'])
 
-        for link in url:
-            self.lctrl.InsertItem(index, str(index + 1))
-            self.lctrl.SetItem(index, 1, link)
-            if '/playlist' in link:
-                self.lctrl.SetItemBackgroundColour(index, Indexing.GREEN)
+                if dictdata['urltype'] == 'playlist':
+                    self.lctrl.SetItemBackgroundColour(index, Indexing.GREEN)
 
-            if not self.data == {'': ''}:
-                for key, val in self.data.items():
-                    if key == link:
-                        self.lctrl.SetItem(index, 2, val)
-            index += 1
+                if not self.data == {'': ''}:
+                    for key, val in self.data.items():
+                        if key == link:
+                            self.lctrl.SetItem(index, 3, val)
+                index += 1
 
         if Indexing.OS == 'Darwin':
             self.lctrl.SetFont(wx.Font(12, wx.MODERN, wx.NORMAL, wx.NORMAL))
@@ -190,10 +194,11 @@ class Indexing(wx.Dialog):
         by the caller. See the caller for more info and usage.
         """
         diz = {}
-        for row, url in enumerate(self.urls):
-            txt = self.lctrl.GetItem(row, 2).GetText()
+        for row, url in enumerate(self.listurl):
+            txt = self.lctrl.GetItem(row, 3).GetText()
             if txt:
                 diz[url] = ''.join(txt.split())
+
         return diz
 
     # ----------------------Event handler (callback)----------------------#
@@ -252,14 +257,17 @@ class Indexing(wx.Dialog):
 
         wxd = wx.DateTime.Now()
         date = wxd.Format('%H:%M:%S')
-        invalidmsg = _('WARNING: The selected URL does not refer to a '
+        invalidmsg = _('The selected URL does not refer to an individual '
                        'playlist. Only lines marked green can be indexed.')
+
+        #invalidmsg = _('WARNING: The selected URL does not refer to a '
+        #                'playlist. Only lines marked green can be indexed.')
 
         colour = Indexing.GREEN
 
-        if event.GetColumn() in (0, 1):
+        if event.GetColumn() in (0, 1, 2):
             event.Veto()
-        elif event.GetColumn() == 2:
+        elif event.GetColumn() == 3:
             # It looks like the HTML color codes are translated to RGB here
             if self.lctrl.GetItemBackgroundColour(row_id) != colour:
                 self.tctrl.SetDefaultStyle(wx.TextAttr(self.clrs['WARN']))
@@ -277,7 +285,7 @@ class Indexing(wx.Dialog):
         """
         rows = self.lctrl.GetItemCount()  # Get the total number of rows
         for row in range(rows):
-            self.lctrl.SetItem(row, 2, '')
+            self.lctrl.SetItem(row, 3, '')
 
         self.textstyle()
     # ------------------------------------------------------------------#

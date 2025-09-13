@@ -30,6 +30,7 @@ import wx
 from vidtuber.vt_threads.check_bin import subp
 from vidtuber.vt_utils.utils import open_default_application
 from vidtuber.vt_utils.utils import format_bytes
+from vidtuber.vt_utils.utils import integer_to_time
 from vidtuber.vt_io.make_filelog import make_log_template
 from vidtuber.vt_dialogs.widget_utils import PopupDialog
 from vidtuber.vt_threads.get_output_thread import FetchOutputDataProcess
@@ -96,6 +97,8 @@ def ytdlp_dump_single_json(url, args, logfile, parent=None):
     # thread.join()
     data = thread.data
     dlgload.Destroy()
+    if thread.stop_work_thread:
+        return None, 'stop work thread'
     if data[1]:
         return data
     try:
@@ -108,8 +111,14 @@ def ytdlp_dump_single_json(url, args, logfile, parent=None):
     newdata = {'title': jdata.get('title', 'Unknown Title'),
                'domain': jdata.get('webpage_url_domain', 'Unknown Domain'),
                'urltype': jdata.get('webpage_url_basename', 'Unknown Type'),
-               'formats': [],
+               'duration': 'N/A', 'formats': [],
                }
+    duration = jdata.get('duration')
+    if duration:
+        if isinstance(duration, (float, int)):
+            duration = round(duration) * 1000
+            newdata['duration'] = integer_to_time(duration, mills=False)
+
     if url in ('/playlists', '/channels', '/playlist', '/channel', '/videos'):
         newdata['formats'] = []
 

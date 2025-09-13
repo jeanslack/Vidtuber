@@ -118,7 +118,7 @@ class ConfigManager:
         "en_US" or "fr_FR", etc.
 
     yt-dlp_cmd (str):
-        Path to the yt-dlp (yt-dlp.exe on Windows) executable.
+        Path to the yt-dlp executable.
 
     ytdlp_islocal (bool):
         If `True`, the user enables a custom location (pathname) for
@@ -203,7 +203,8 @@ class ConfigManager:
                                              "embedsubtitle": False,
                                              "skip_download": False
                                              },
-                       "textdndpaste_column_width": [30, 150, 350, 100, 100],
+                       "textdndpaste_column_width": [30, 150, 350, 100, 100,
+                                                     100],
                        "frmtcode_column_width": [120, 60, 200, 80, 160,
                                                  110, 80, 110, 100, 100],
                        "download_mode": 0,

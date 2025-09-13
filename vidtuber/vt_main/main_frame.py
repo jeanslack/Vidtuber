@@ -174,6 +174,7 @@ class MainFrame(wx.Frame):
                                self.textDnDTarget.urlctrl.GetColumnWidth(2),
                                self.textDnDTarget.urlctrl.GetColumnWidth(3),
                                self.textDnDTarget.urlctrl.GetColumnWidth(4),
+                               self.textDnDTarget.urlctrl.GetColumnWidth(5),
                                ]
         sett['textdndpaste_column_width'] = textdndpastcolwidth
         fcodecolwidth = [self.ytDownloader.panel_cod.fcode.GetColumnWidth(0),

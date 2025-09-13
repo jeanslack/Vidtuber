@@ -25,6 +25,7 @@ This file is part of Vidtuber.
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
+import shutil
 from urllib.parse import urlparse
 import wx
 from vidtuber.vt_io.io_tools import ytdlp_dump_single_json
@@ -118,16 +119,26 @@ class MyListCtrl(wx.ListCtrl):
         self.InsertColumn(0, ('#'), width=colw[0])
         self.InsertColumn(1, (_('Url')), width=colw[1])
         self.InsertColumn(2, (_('Title')), width=colw[2])
-        self.InsertColumn(3, (_('Domain')), width=colw[3])
-        self.InsertColumn(4, (_('Type')), width=colw[4])
+        self.InsertColumn(3, (_('Duration')), width=colw[3])
+        self.InsertColumn(4, (_('Domain')), width=colw[4])
+        self.InsertColumn(5, (_('Type')), width=colw[5])
 
     def dropUpdate(self, url):
         """
         Update list-control during drag and drop.
-        """
-        self.index = self.GetItemCount()
-        self.Disable()
 
+        """
+        self.Disable()  # to avoid overwriting or overloading.
+
+        if not shutil.which(MyListCtrl.get.appset['yt-dlp_cmd']):
+            wx.MessageBox(_('Missing «yt-dlp» executable. Please check the '
+                            'execution permissions and be sure to make the '
+                            'correct settings in the preferences dialog.'
+                            ), _('Vidtuber - Error!'), wx.ICON_ERROR, self)
+            self.Enable()
+            return 'INTERRUPTED'
+
+        self.index = self.GetItemCount()
         res = urlparse(url)
         if not res[1]:  # if empty netloc given from ParseResult
             self.Enable()
@@ -141,6 +152,8 @@ class MyListCtrl(wx.ListCtrl):
                                           )
             if data[1]:
                 self.errors = True
+                if data[1] == 'stop work thread':
+                    return 'INTERRUPTED'
                 return False
 
             self.data_url.append({url: data[0]})  # update url dict
@@ -148,8 +161,9 @@ class MyListCtrl(wx.ListCtrl):
             self.InsertItem(self.index, str(self.index + 1))
             self.SetItem(self.index, 1, url)
             self.SetItem(self.index, 2, data[0]['title'])
-            self.SetItem(self.index, 3, data[0]['domain'])
-            self.SetItem(self.index, 4, data[0]['urltype'])
+            self.SetItem(self.index, 3, data[0]['duration'])
+            self.SetItem(self.index, 4, data[0]['domain'])
+            self.SetItem(self.index, 5, data[0]['urltype'])
             self.index += 1
 
             self.parent.changes_in_progress()
@@ -189,7 +203,9 @@ class UrlDropTarget(wx.TextDropTarget):
         Update ListCtrl object by dragging text inside it.
         """
         for url in data.split():
-            self.listctrl.dropUpdate(url)
+            ret = self.listctrl.dropUpdate(url)
+            if ret == 'INTERRUPTED':
+                break
         self.listctrl.rejected_urls()
 
         return True
@@ -349,8 +365,11 @@ class Url_DnD_Panel(wx.Panel):
 
     def on_paste(self, event):
         """
-        Event on clicking paste button to paste
-        text data on the ListCtrl
+        Event on clicking paste button to paste text data on
+        the ListCtrl: Here it is important to note that the
+        `dropUpdate()` method is called directly which replaces
+        the `OnDropText` event which is fired only when dragging
+        text.
         """
         text_data = wx.TextDataObject()
         success = False
@@ -360,7 +379,9 @@ class Url_DnD_Panel(wx.Panel):
         if success:
             data = text_data.GetText().split()
             for url in data:
-                self.urlctrl.dropUpdate(url)
+                ret = self.urlctrl.dropUpdate(url)
+                if ret == 'INTERRUPTED':
+                    break
             self.urlctrl.rejected_urls()
     # ----------------------------------------------------------------------
 

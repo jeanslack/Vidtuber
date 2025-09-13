@@ -161,8 +161,6 @@ class Downloader(wx.Panel):
         get = wx.GetApp()  # get data from bootstrap
         icons = get.iconset
         self.appdata = get.appset
-        self.execname = ('yt-dlp.exe' if self.appdata['ostype']
-                         == 'Windows' else 'yt-dlp')
         self.parent = parent
         self.red = self.appdata['colorscheme']['ERR1']  # code err + sb error
         confmanager = ConfigManager(self.appdata['fileconfpath'])
@@ -196,10 +194,10 @@ class Downloader(wx.Panel):
         fgs1.Add(self.choice, 0, wx.LEFT | wx.CENTRE, 5)
 
         self.ckbx_pl = wx.CheckBox(self, wx.ID_ANY,
-                                   (_('Include playlists'))
+                                   (_('Include playlist'))
                                    )
         fgs1.Add(self.ckbx_pl, 0, wx.LEFT | wx.CENTRE, 20)
-        self.btn_plidx = wx.Button(self, wx.ID_ANY, "", size=(40, -1))
+        self.btn_plidx = wx.Button(self, wx.ID_ANY, "Playlist", size=(-1, -1))
         self.btn_plidx.SetToolTip(_('Playlist Editor'))
         self.btn_plidx.SetBitmap(bmplistindx, wx.LEFT)
         fgs1.Add(self.btn_plidx, 0, wx.LEFT | wx.CENTRE, 2)
@@ -478,23 +476,23 @@ class Downloader(wx.Panel):
         """
         Enable or disable playlists downloading
         """
-        urls = [list(k.keys())[0] for k in self.parent.data_url]
-        if not urls:
-            self.ckbx_pl.SetValue(False)
-            self.parent.click_start(None)
-            return
+        # urls = [list(k.keys())[0] for k in self.parent.data_url]
+        # if not urls:
+        #     self.ckbx_pl.SetValue(False)
+        #     self.parent.click_start(None)
+        #     return
 
         if self.ckbx_pl.IsChecked():
-            playlist = [url for url in urls if '/playlist' in url]
-            dataplaylist = next((item for item in self.parent.data_url
-                                 for (k, v) in item.items() if v['urltype']
-                                 == 'playlist'), None)
-            if not playlist or not dataplaylist:
-                wx.MessageBox(_("The URLs do not reference an "
-                                "individual playlist"),
-                              "Vidtuber", wx.ICON_INFORMATION, self)
-                self.ckbx_pl.SetValue(False)
-                return
+            # playlist = [url for url in urls if '/playlist' in url]
+            # dataplaylist = next((item for item in self.parent.data_url
+            #                      for (k, v) in item.items() if v['urltype']
+            #                      == 'playlist'), None)
+            # if not playlist or not dataplaylist:
+            #     wx.MessageBox(_("The URLs do not reference an "
+            #                     "individual playlist"),
+            #                   "Vidtuber", wx.ICON_INFORMATION, self)
+            #     self.ckbx_pl.SetValue(False)
+            #     return
             self.opt["NO_PLAYLIST"] = False
             self.btn_plidx.Enable()
 
@@ -510,7 +508,7 @@ class Downloader(wx.Panel):
         Dialog for setting playlist indexing
         """
         with Indexing(self,
-                      [list(k.keys())[0] for k in self.parent.data_url],
+                      self.parent.data_url,
                       self.plidx) as idxdialog:
             if idxdialog.ShowModal() == wx.ID_OK:
                 data = idxdialog.getvalue()
@@ -521,43 +519,6 @@ class Downloader(wx.Panel):
                     self.btn_plidx.SetBackgroundColour(
                         wx.Colour(Downloader.VIOLET))
                     self.plidx = data
-    # -----------------------------------------------------------------#
-
-    def check_for_playlist(self):
-        """
-        Check for playlists and warn the user before continue.
-        """
-        urls = [list(k.keys())[0] for k in self.parent.data_url]
-        playlist = [url for url in urls if '/playlist' in url]
-        dataplaylist = next((item for item in self.parent.data_url
-                             for (k, v) in item.items() if v['urltype']
-                             == 'playlist'), None)
-        if playlist or dataplaylist:
-            if not self.ckbx_pl.IsChecked():
-                if wx.MessageBox(_('The URLs contain playlists. '
-                                   'Are you sure you want to continue?'),
-                                 _('Please confirm'), wx.ICON_QUESTION
-                                 | wx.CANCEL | wx.YES_NO, self) == wx.YES:
-                    return False
-                return True
-
-        return False
-    # -----------------------------------------------------------------#
-
-    def check_for_channels(self):
-        """
-        Check for channels and warn the user before continue.
-        """
-        urls = [list(k.keys())[0] for k in self.parent.data_url]
-        if [url for url in urls if 'channel' in url]:
-            if wx.MessageBox(_('The URLs contain channels. '
-                               'Are you sure you want to continue?'),
-                             _('Please confirm'), wx.ICON_QUESTION
-                             | wx.CANCEL | wx.YES_NO, self) == wx.YES:
-                return False
-            return True
-
-        return False
     # -----------------------------------------------------------------#
 
     def default_download_options(self):
@@ -631,7 +592,7 @@ class Downloader(wx.Panel):
                       's/%(playlist_index)s - ')
         else:
             subdir = ''
-
+        print(self.plidx)
         for url, code in itertools.zip_longest(urlslist,
                                                args[2],
                                                fillvalue='',
@@ -667,9 +628,6 @@ class Downloader(wx.Panel):
         """
         Pass options list to processing.
         """
-        if self.check_for_playlist() or self.check_for_channels():
-            return
-
         data = self.default_download_options()
 
         if self.appdata["include_ID_name"]:
@@ -731,13 +689,11 @@ class Downloader(wx.Panel):
         """
         execlist = []
         execpath = self.appdata['yt-dlp_cmd']
-        if (not execpath.strip().endswith(self.execname)
-                or not shutil.which(execpath)):
-            wx.MessageBox(_('Missing executable: «{0}».\nBefore '
-                            'continuing, be sure to make the correct '
-                            'settings in the preferences dialog.'
-                            ).format(self.execname),
-                          _('Vidtuber - Warning!'), wx.ICON_WARNING, self)
+        if not shutil.which(execpath):
+            wx.MessageBox(_('Missing «yt-dlp» executable. Please check the '
+                            'execution permissions and be sure to make the '
+                            'correct settings in the preferences dialog.'),
+                          _('Vidtuber - Error!'), wx.ICON_ERROR, self)
             return
 
         for args in datalist:

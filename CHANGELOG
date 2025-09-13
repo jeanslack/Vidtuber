@@ -13,6 +13,12 @@ Fri, 12 Sep 2025 V.2.0.1
     platforms during drag-and-drop URL stage #15.
   * Added more detailed information managing URLs #15.
   * Improved data management for GUI logging operations #15.
+  * Removed checks for channel/playlist URLs when the Download button is pressed
+    and "Include playlist" is unchecked.
+  * Fixed inconsistencies checking only the 'yt-dlp'/'yt-dlp.exe' executables
+    instead of the entire available range of executables ('yt-dlp',
+    'yt-dlp.exe', 'yt-dlp_macos', 'yt-dlp_linux').
+  *
 
 +------------------------------------+
 Wed, 03 Sep 2025 V.1.1.10
