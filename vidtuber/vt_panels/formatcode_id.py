@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 """
-Name: formatcodelist.py
+Name: formatcode_id.py
 Porpose: user interface panel for format codes tasks
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
@@ -28,7 +28,7 @@ import wx
 from vidtuber.vt_utils.get_bmpfromsvg import get_bmp
 
 
-class FormatCode(wx.Panel):
+class FormatCodeList(wx.Panel):
     """
     This panel implements a kind of wx.ListCtrl for
     the format codes tasks. Format codes are identifier
@@ -53,15 +53,15 @@ class FormatCode(wx.Panel):
     # RED = get.appset['colorscheme']['ERR1']   # code text err + sb error
     # -----------------------------------------------------------------#
 
-    def __init__(self, parent, format_dict):
+    def __init__(self, parent, format_codeid):
         """
         Note that most of the objects defined here are
         always reset for any change to the URLs list.
         """
         self.parent = parent
         self.urllist = []
-        self.format_dict = format_dict  # format codes order with URL matching
-        bmpreload = get_bmp(FormatCode.icons['reload'], ((16, 16)))
+        self.format_codeid = format_codeid  # format codes order
+        bmpreload = get_bmp(FormatCodeList.icons['reload'], ((16, 16)))
 
         wx.Panel.__init__(self, parent, -1, style=wx.TAB_TRAVERSAL)
         sizer_base = wx.BoxSizer(wx.VERTICAL)
@@ -76,11 +76,11 @@ class FormatCode(wx.Panel):
         msg = _("Merge files into one file")
         self.ckbx_mrg = wx.CheckBox(self, wx.ID_ANY, msg)
         sizeropt.Add(self.ckbx_mrg, 0, wx.ALL | wx.EXPAND, 5)
-        self.ckbx_mrg.SetValue(FormatCode.appdata['merge_single_file'])
+        self.ckbx_mrg.SetValue(FormatCodeList.appdata['merge_single_file'])
         msg = _("Download only the best selected qualities")
         self.ckbx_best = wx.CheckBox(self, wx.ID_ANY, msg)
         sizeropt.Add(self.ckbx_best, 0, wx.ALL | wx.EXPAND, 5)
-        self.ckbx_best.SetValue(FormatCode.appdata['only_best_quality'])
+        self.ckbx_best.SetValue(FormatCodeList.appdata['only_best_quality'])
         self.btn_reload = wx.Button(self, wx.ID_ANY, _("Load"),
                                     size=(-1, -1))
         self.btn_reload.SetBitmap(bmpreload, wx.LEFT)
@@ -91,7 +91,7 @@ class FormatCode(wx.Panel):
                                  | wx.SUNKEN_BORDER | wx.LC_SINGLE_SEL
                                  )
         self.fcode.EnableCheckBoxes(enable=True)
-        colw = FormatCode.appdata['frmtcode_column_width']
+        colw = FormatCodeList.appdata['frmtcode_column_width']
         self.fcode.InsertColumn(0, (_('Id')), width=colw[0])
         self.fcode.InsertColumn(1, (_('Url')), width=colw[1])
         self.fcode.InsertColumn(2, (_('Title')), width=colw[2])
@@ -106,7 +106,7 @@ class FormatCode(wx.Panel):
         sizer_base.Add(self.fcode, 1, wx.ALL | wx.EXPAND, 5)
 
         # ----- Properties
-        if FormatCode.appdata['ostype'] == 'Darwin':
+        if FormatCodeList.appdata['ostype'] == 'Darwin':
             self.labfcode.SetFont(wx.Font(15, wx.DEFAULT, wx.NORMAL, wx.BOLD))
         else:
             self.labfcode.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.BOLD))
@@ -124,7 +124,7 @@ class FormatCode(wx.Panel):
         Clear all data and Reload format codes when required
         e.g changing some user option as use of cookies etc.
         """
-        self.format_dict.clear()
+        self.format_codeid.clear()
         self.fcode.DeleteAllItems()
         self.parent.on_format_codes()
     # ---------------------------------------------------------------------
@@ -133,7 +133,7 @@ class FormatCode(wx.Panel):
         """
         Takes data from the checked columns in the list control
         and maps it to the corresponding URL on the dict object.
-        This method set `self.format_dict` attribute.
+        This method set `self.format_codeid` attribute.
 
             `key=url: values=[mhtml: fcode, Audio: fcode, Video: fcode]`
         """
@@ -141,21 +141,21 @@ class FormatCode(wx.Panel):
         num = self.fcode.GetItemCount()
 
         for url in self.urllist:
-            self.format_dict[url] = []
+            self.format_codeid[url] = []
             for i in range(num):
                 if check(i):
                     if (self.fcode.GetItemText(i, 1)) == url:
                         if 'audio only' in self.fcode.GetItemText(i, 4):
                             dispa = self.fcode.GetItemText(i, 0)
-                            self.format_dict[url].append('Audio: ' + dispa)
+                            self.format_codeid[url].append('Audio: ' + dispa)
                         elif self.fcode.GetItemText(i, 3) == 'mhtml':
                             disph = self.fcode.GetItemText(i, 0)
-                            self.format_dict[url].append('mhtml: ' + disph)
+                            self.format_codeid[url].append('mhtml: ' + disph)
                         else:
                             # everything else could also be audio
                             # it depends on the video site (not youtube)
                             dispv = self.fcode.GetItemText(i, 0)
-                            self.format_dict[url].append('Video: ' + dispv)
+                            self.format_codeid[url].append('Video: ' + dispv)
     # ----------------------------------------------------------------------
 
     def set_formatcode(self, data_url):
@@ -184,12 +184,12 @@ class FormatCode(wx.Panel):
                     self.fcode.SetItem(index, 8, frmts['lang'])
                     self.fcode.SetItem(index, 9, frmts['size'])
                     if num == 0:
-                        self.fcode.SetItemBackgroundColour(index,
-                                                           FormatCode.GREEN)
+                        green = FormatCodeList.GREEN
+                        self.fcode.SetItemBackgroundColour(index, green)
                     index += 1
     # ----------------------------------------------------------------------
 
-    def getformatcode(self):
+    def get_formatcode(self):
         """
         Build a list of format code arguments for each URL .
         This method is only called by `on_Start` parent method.
@@ -203,8 +203,8 @@ class FormatCode(wx.Panel):
         vmerge = '' if not self.ckbx_mrg.GetValue() else '--video-multistreams'
 
         for url, key, val in zip(self.urllist,
-                                 self.format_dict.keys(),
-                                 self.format_dict.values()
+                                 self.format_codeid.keys(),
+                                 self.format_codeid.values()
                                  ):
             if key == url:
                 video, audio, mhtml = self.fcode_concatenate(val, sepany)

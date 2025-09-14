@@ -131,10 +131,10 @@ class ConfigManager:
     ("ssl_certificate", "add_metadata", "embed_thumbnails",
     "overwr_dl_files", "include_ID_name", "restrict_fname")
     (bool):
-        Checkboxes option (see YouTube Downloader)
+        Checkboxes option (see downloader_gui)
 
     subtitles_options (dict):
-        (see YouTube Downloader)
+        (see downloader_gui)
 
     external_downloader (str):
         external downloader used by yt-dlp. Default is None
