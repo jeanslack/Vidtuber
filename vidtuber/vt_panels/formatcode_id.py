@@ -98,7 +98,7 @@ class FormatCodeList(wx.Panel):
         self.fcode.InsertColumn(3, (_('Extension')), width=colw[3])
         self.fcode.InsertColumn(4, (_('Resolution')), width=colw[4])
         self.fcode.InsertColumn(5, (_('Video Codec')), width=colw[5])
-        self.fcode.InsertColumn(6, (_('fps')), width=colw[6])
+        self.fcode.InsertColumn(6, (_('Fps')), width=colw[6])
         self.fcode.InsertColumn(7, (_('Audio Codec')), width=colw[7])
         self.fcode.InsertColumn(8, (_('Language')), width=colw[8])
         self.fcode.InsertColumn(9, (_('Size')), width=colw[9])

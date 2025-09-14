@@ -54,11 +54,11 @@ class PlayListCtrl(wx.ListCtrl):
         populate with default colums
         """
         self.EnableCheckBoxes(enable=True)
-        self.InsertColumn(0, _('Selection'), width=80)
+        self.InsertColumn(0, _('Assignment'), width=120)
         self.InsertColumn(1, _('URL'), width=150)
         self.InsertColumn(2, _('Title'), width=200)
         self.InsertColumn(3, _('Type'), width=100)
-        self.InsertColumn(4, _('Playlist Items'), width=200)
+        self.InsertColumn(4, _('Playlist Indexes'), width=230)
 
 
 class PlaylistIndexing(wx.Dialog):
@@ -242,15 +242,16 @@ class PlaylistIndexing(wx.Dialog):
         """
         event on button help
         """
-        msg = (_("To assign a playlist, check the related URL/Title row. This "
+        msg = (_("To assign a playlist, check the box related to the row. This"
                  " will download the title and\nthe playlist containing it. "
-                 "If the title is not present, the playlist will still be "
-                 "downloaded\nif the URL refers to a playlist.\n\n"
+                 "If not any title is present, the playlist will still be "
+                 "downloaded\nonly if the URL refers to a playlist.\n\n"
                  "To index the playlist, use the «Add Item» and «Add Range» "
-                 "controls and then click the\n«Add» button. You can use "
-                 "these controls multiple times for the same playlist.\n\n"
-                 "To remove a playlist assignment, uncheck the related "
-                 "URL/Title row.\nTo remove all assignments, click the "
+                 "controls and then confirm\nclicking the «Add» button. You "
+                 "can use these controls multiple times for the same\n"
+                 "selected row.\n\n"
+                 "To remove a playlist assignment, uncheck the box related "
+                 "to the row.\nTo remove all assignments, click the "
                  "«Clear» button.\nTo confirm everything, click the «OK» "
                  "button.\n\n"
                  "Examples:\n"

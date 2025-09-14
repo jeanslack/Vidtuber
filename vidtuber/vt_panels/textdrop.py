@@ -179,7 +179,7 @@ class MyListCtrl(wx.ListCtrl):
         if self.errors:
             msg = _('Errors occurred while retrieving the requested data.\n'
                     'See the related log file for more details.')
-            wx.MessageBox(msg, _('Vidtuber'), wx.ICON_ERROR, self)
+            wx.MessageBox(msg, 'Vidtuber', wx.ICON_ERROR, self)
             self.parent.parent.view_logs(None, flog='Drag_And_Drop.log')
             self.errors = False  # restore default value here
             self.Enable()

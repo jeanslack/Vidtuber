@@ -18,7 +18,7 @@ Fri, 12 Sep 2025 V.2.0.1
   * Fixed inconsistencies checking only the 'yt-dlp'/'yt-dlp.exe' executables
     instead of the entire available range of executables ('yt-dlp',
     'yt-dlp.exe', 'yt-dlp_macos', 'yt-dlp_linux').
-  *
+  * Completely redesigned the interface for managing playlists.
 
 +------------------------------------+
 Wed, 03 Sep 2025 V.1.1.10
@@ -69,7 +69,6 @@ Sat, 26 July 2025 V.1.1.2
   * Fixed the popup menu (aka context menu) items when right-clicking in the
     "List of URL's" panel. Enabling/disabling items depends on user actions.
   * Added events for selecting/deselecting items on drag N drop panel.
-  * Completely redesigned the interface for managing playlists.
 
 +------------------------------------+
 Wed, 16 July 2025 V.1.1.1

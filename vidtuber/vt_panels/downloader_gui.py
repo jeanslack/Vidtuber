@@ -664,9 +664,9 @@ class DLoad_Gui(wx.Panel):
                                      wx.ICON_QUESTION | wx.CANCEL
                                      | wx.YES_NO, self) != wx.YES:
                         return
-                    self.parent.switch_to_processing('YouTube Downloader',
+                    self.parent.switch_to_processing('Download Process',
                                                      newdata)
                 else:
-                    self.parent.switch_to_processing('YouTube Downloader',
+                    self.parent.switch_to_processing('Download Process',
                                                      execlist)
     # -----------------------------------------------------------------#

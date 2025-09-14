@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-04 11:07+0200\n"
+"POT-Creation-Date: 2025-09-14 21:37+0200\n"
 "PO-Revision-Date: 2025-07-09 21:38+0200\n"
 "Last-Translator: johannesdedoper <https://github.com/johannesdedoper>\n"
 "Language: nl_NL\n"
@@ -66,38 +66,59 @@ msgstr ""
 msgid "Confirmation Procedure"
 msgstr ""
 
+msgid "Assignment"
+msgstr ""
+
 msgid "URL"
 msgstr "URL"
 
-msgid "Playlist Items"
-msgstr "Afspeellijst Bestanden"
+msgid "Title"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Playlist Indexes"
+msgstr ""
 
 #, fuzzy
-msgid ""
-"To index the media of a playlist, click on the \"Playlist Items\" column of each corresponding URL and specify the numerical indexes separated by commas, e.g. \"1,2,5,8\" if you want to download the indexed media at 1, 2, 5, 8 of the playlist.\n"
-"It is also possible to specify intervals, e.g. \"1-3,7,10-13\" with which the media at index 1, 2, 3, 7, 10, 11, 12 and 13 will be downloaded.\n"
+msgid "Read me"
+msgstr "Gereed"
+
+msgid "Add item:"
 msgstr ""
-"Klik op \"Afspeellijst Bestanden\" kolom om de index te specificeren voor de videos in de afspeellijst gescheiden door komma's bijvoorbeeld: \"1,2,5,8\" als u videos wilt downloaden met index 1, 2, 5, 8 in de afspeellijst.\n"
-"\n"
-"U kunt een specifieke range opgeven: \"1-3,7,10-13\" het zal de videos downloaden met de index 1, 2, 3, 7, 10, 11, 12 and 13.\n"
+
+msgid "Add"
+msgstr ""
+
+msgid "Add range:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Playlist Editor"
 msgstr "Afspeellijst Editor"
 
-msgid "Help viewer"
-msgstr "Hulp viewer"
-
-msgid "ERROR: Invalid option"
-msgstr "ERROR: Niet bestaande optie"
-
-msgid "please try again."
-msgstr "probeer het aub. nogmaals."
-
-msgid "OK: Indexes to download"
-msgstr "OK: Index om te downloaden"
-
-msgid "WARNING: The selected URL does not refer to a playlist. Only lines marked green can be indexed."
-msgstr "PAS OP: De gekozen URL verwijst NIET naar een afspeellijst. Alleen de groen gemarkeerde kunnen worden geindexeerd."
+msgid ""
+"To assign a playlist, check the box related to the row. This will download the title and\n"
+"the playlist containing it. If not any title is present, the playlist will still be downloaded\n"
+"only if the URL refers to a playlist.\n"
+"\n"
+"To index the playlist, use the «Add Item» and «Add Range» controls and then confirm\n"
+"clicking the «Add» button. You can use these controls multiple times for the same\n"
+"selected row.\n"
+"\n"
+"To remove a playlist assignment, uncheck the box related to the row.\n"
+"To remove all assignments, click the «Clear» button.\n"
+"To confirm everything, click the «OK» button.\n"
+"\n"
+"Examples:\n"
+"Add item 8 to download only the index 8 of the playlist.\n"
+"Add the range 10-13 to download the playlist's videos within that range.\n"
+"Add 1-3,7,10-13 with which the media at index 1, 2, 3, 7, 10, 11, 12 and 13 will be\n"
+"downloaded."
+msgstr ""
 
 #, python-brace-format
 msgid "Specify the {0} executable"
@@ -520,10 +541,6 @@ msgid "Custom language"
 msgstr ""
 
 #, fuzzy
-msgid "Read me"
-msgstr "Gereed"
-
-#, fuzzy
 msgid "Subtitle options"
 msgstr "Ondertitel Map"
 
@@ -887,6 +904,89 @@ msgstr ""
 msgid "Vidtuber - Exiting!"
 msgstr ""
 
+msgid "Best quality video"
+msgstr ""
+
+msgid "Worst quality video"
+msgstr ""
+
+msgid "Best available quality"
+msgstr ""
+
+msgid "Format 18 (youtube.com only)"
+msgstr ""
+
+msgid "Worst available quality"
+msgstr ""
+
+msgid "Best quality audio"
+msgstr ""
+
+msgid "Worst quality audio"
+msgstr ""
+
+msgid "Combined Videos"
+msgstr ""
+
+msgid "Videos by Resolution"
+msgstr ""
+
+msgid "Split Audio and Video"
+msgstr ""
+
+msgid "Audio Only"
+msgstr ""
+
+msgid "Format Codes"
+msgstr ""
+
+msgid "Download Mode:"
+msgstr ""
+
+#, fuzzy
+msgid "Quality settings"
+msgstr "Markeer instellingen"
+
+#, fuzzy
+msgid "Video format:"
+msgstr "Video transformatie"
+
+#, fuzzy
+msgid "Audio format:"
+msgstr "Audio Normalisatie"
+
+msgid ""
+"Unable to get format codes for playlists, channels and/or multiple videos.\n"
+"Please list only individual video URLs or choose another download mode."
+msgstr ""
+
+msgid "Unsupported"
+msgstr ""
+
+msgid "Click the Reload Format Codes button."
+msgstr ""
+
+msgid "Format Code List Missing"
+msgstr ""
+
+msgid "At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr "Minstens een \"Formaat Code\" moet gezet zijn voor elke URL, groen geselecteerd."
+
+msgid "Incomplete Format Code Selection"
+msgstr ""
+
+msgid "Missing «yt-dlp» executable. Please check the execution permissions and be sure to make the correct settings in the preferences dialog."
+msgstr ""
+
+msgid ""
+"Changes have been made to the command arguments.\n"
+"\n"
+"Are you sure you want to apply them?"
+msgstr ""
+
+msgid "Apply changes?"
+msgstr ""
+
 msgid "Format Code Properties"
 msgstr ""
 
@@ -897,14 +997,14 @@ msgstr ""
 msgid "Download only the best selected qualities"
 msgstr "Download de nieuwste presets"
 
-msgid "Reload"
+msgid "Load"
 msgstr ""
 
-msgid "Reload format codes"
+msgid "Reload format codes if needed"
 msgstr ""
 
-msgid "Format Code"
-msgstr "Formaat Code"
+msgid "Id"
+msgstr ""
 
 msgid "Url"
 msgstr "Url"
@@ -914,6 +1014,21 @@ msgstr "Extensie"
 
 msgid "Resolution"
 msgstr "Resolutie"
+
+msgid "Video Codec"
+msgstr ""
+
+msgid "Fps"
+msgstr ""
+
+msgid "Audio Codec"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Size"
+msgstr ""
 
 msgid "[Vidtuber]: SUCCESS !"
 msgstr ""
@@ -964,16 +1079,16 @@ msgstr "wacht... bezig met afbreken"
 msgid "Done"
 msgstr "Klaar!"
 
-#, fuzzy
-msgid "Invalid URL"
-msgstr "Ongeldige URL: \"{}\""
-
-msgid "Error list"
+msgid "Duration"
 msgstr ""
 
-#, fuzzy
-msgid "Invalid URLs"
-msgstr "Ongeldige URL: \"{}\""
+msgid "Domain"
+msgstr ""
+
+msgid ""
+"Errors occurred while retrieving the requested data.\n"
+"See the related log file for more details."
+msgstr ""
 
 msgid "Drag or paste URLs here"
 msgstr ""
@@ -989,118 +1104,4 @@ msgstr "Kies een tijdelijke bestemming voor de downloads"
 #, fuzzy
 msgid "Destination folder of downloads"
 msgstr "Kies een tijdelijke bestemming voor de downloads"
-
-msgid "Best quality video"
-msgstr ""
-
-msgid "Worst quality video"
-msgstr ""
-
-msgid "Best available quality"
-msgstr ""
-
-msgid "Format 18 (youtube.com only)"
-msgstr ""
-
-msgid "Worst available quality"
-msgstr ""
-
-msgid "Best quality audio"
-msgstr ""
-
-msgid "Worst quality audio"
-msgstr ""
-
-msgid "Combined Videos"
-msgstr ""
-
-msgid "Videos by Resolution"
-msgstr ""
-
-msgid "Split Audio and Video"
-msgstr ""
-
-msgid "Audio Only"
-msgstr ""
-
-msgid "Format Codes"
-msgstr ""
-
-msgid "Download Mode:"
-msgstr ""
-
-msgid "Include playlists"
-msgstr ""
-
-#, fuzzy
-msgid "Quality settings"
-msgstr "Markeer instellingen"
-
-#, fuzzy
-msgid "Video format:"
-msgstr "Video transformatie"
-
-#, fuzzy
-msgid "Audio format:"
-msgstr "Audio Normalisatie"
-
-msgid ""
-"The «Download Mode» is set to \"Format codes\".\n"
-"Would you like to reload/update the format codes list now?"
-msgstr ""
-
-msgid "Reload format codes?"
-msgstr ""
-
-#, fuzzy, python-brace-format
-msgid ""
-"Unable to get format codes on {0}, unsupported URL:\n"
-"\n"
-"{1}"
-msgstr ""
-"Format kan niet worden verkregen van '{0}'\n"
-"\n"
-"Niet ondersteund '{0}':\n"
-"'{1}"
-
-msgid ""
-"An error occurred while retrieving the requested data.\n"
-"See the related log file for more details."
-msgstr ""
-
-msgid "URLs have no playlist references"
-msgstr "URLs staan niet in de afspeellijst"
-
-msgid "The URLs contain playlists. Are you sure you want to continue?"
-msgstr "De URLs bevatten playlists. Wilt u toch doorgaan?"
-
-msgid "The URLs contain channels. Are you sure you want to continue?"
-msgstr "De URLs bevatten kanalen. Wilt u toch doorgaan?"
-
-#, python-brace-format
-msgid ""
-"Missing executable: «{0}».\n"
-"Before continuing, be sure to make the correct settings in the preferences dialog."
-msgstr ""
-
-msgid "Click the Reload Format Codes button."
-msgstr ""
-
-msgid "Format Code List Missing"
-msgstr ""
-
-msgid "At least one \"Format Code\" must be checked for each URL selected in green."
-msgstr "Minstens een \"Formaat Code\" moet gezet zijn voor elke URL, groen geselecteerd."
-
-msgid "Incomplete Format Code Selection"
-msgstr ""
-
-msgid ""
-"Changes have been made to the command arguments.\n"
-"\n"
-"Are you sure you want to apply them?"
-msgstr ""
-
-msgid "Apply changes?"
-msgstr ""
 

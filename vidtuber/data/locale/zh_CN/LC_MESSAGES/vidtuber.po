@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-04 11:07+0200\n"
+"POT-Creation-Date: 2025-09-14 21:37+0200\n"
 "PO-Revision-Date: 2025-07-09 21:38+0200\n"
 "Last-Translator: Gao Zimu <gaozimu_0502@163.com>\n"
 "Language: zh_CN\n"
@@ -66,42 +66,58 @@ msgstr ""
 msgid "Confirmation Procedure"
 msgstr ""
 
+msgid "Assignment"
+msgstr ""
+
 msgid "URL"
 msgstr "链接"
 
-#, fuzzy
-msgid "Playlist Items"
-msgstr "播放列表项目"
-
-#, fuzzy
-msgid ""
-"To index the media of a playlist, click on the \"Playlist Items\" column of each corresponding URL and specify the numerical indexes separated by commas, e.g. \"1,2,5,8\" if you want to download the indexed media at 1, 2, 5, 8 of the playlist.\n"
-"It is also possible to specify intervals, e.g. \"1-3,7,10-13\" with which the media at index 1, 2, 3, 7, 10, 11, 12 and 13 will be downloaded.\n"
+msgid "Title"
 msgstr ""
-"点击 \"播放列表项目 \"一栏，指定播放列表中的视频索引，用逗号隔开，比如。\"1,2,5,8\"，如果你想下载播放列表中1、2、5、8的视频索引。\n"
-"\n"
-"您可以指定范围。\"1-3,7,10-13\" 它将下载索引为1、2、3、7、10、11、12和13的视频。\n"
-"\n"
+
+msgid "Type"
+msgstr ""
+
+msgid "Playlist Indexes"
+msgstr ""
+
+msgid "Read me"
+msgstr "说明"
+
+msgid "Add item:"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Add range:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Playlist Editor"
 msgstr "播放列表编辑器"
 
-msgid "Help viewer"
-msgstr "帮助查看器"
-
-msgid "ERROR: Invalid option"
-msgstr "错误：无效的选项"
-
-msgid "please try again."
-msgstr "请重试。"
-
-#, fuzzy
-msgid "OK: Indexes to download"
-msgstr "确定：要下载的索引"
-
-#, fuzzy
-msgid "WARNING: The selected URL does not refer to a playlist. Only lines marked green can be indexed."
-msgstr "警告：所选的URL并不是指一个播放列表。只有标记为绿色的行可以被索引。"
+msgid ""
+"To assign a playlist, check the box related to the row. This will download the title and\n"
+"the playlist containing it. If not any title is present, the playlist will still be downloaded\n"
+"only if the URL refers to a playlist.\n"
+"\n"
+"To index the playlist, use the «Add Item» and «Add Range» controls and then confirm\n"
+"clicking the «Add» button. You can use these controls multiple times for the same\n"
+"selected row.\n"
+"\n"
+"To remove a playlist assignment, uncheck the box related to the row.\n"
+"To remove all assignments, click the «Clear» button.\n"
+"To confirm everything, click the «OK» button.\n"
+"\n"
+"Examples:\n"
+"Add item 8 to download only the index 8 of the playlist.\n"
+"Add the range 10-13 to download the playlist's videos within that range.\n"
+"Add 1-3,7,10-13 with which the media at index 1, 2, 3, 7, 10, 11, 12 and 13 will be\n"
+"downloaded."
+msgstr ""
 
 #, python-brace-format
 msgid "Specify the {0} executable"
@@ -496,9 +512,6 @@ msgstr ""
 msgid "Custom language"
 msgstr ""
 
-msgid "Read me"
-msgstr "说明"
-
 msgid "Subtitle options"
 msgstr "字幕选项"
 
@@ -857,6 +870,87 @@ msgstr "此程序将在 {0} 秒后退出"
 msgid "Vidtuber - Exiting!"
 msgstr ""
 
+msgid "Best quality video"
+msgstr ""
+
+msgid "Worst quality video"
+msgstr ""
+
+msgid "Best available quality"
+msgstr ""
+
+msgid "Format 18 (youtube.com only)"
+msgstr ""
+
+msgid "Worst available quality"
+msgstr ""
+
+msgid "Best quality audio"
+msgstr ""
+
+msgid "Worst quality audio"
+msgstr ""
+
+msgid "Combined Videos"
+msgstr ""
+
+msgid "Videos by Resolution"
+msgstr ""
+
+msgid "Split Audio and Video"
+msgstr ""
+
+msgid "Audio Only"
+msgstr ""
+
+msgid "Format Codes"
+msgstr ""
+
+msgid "Download Mode:"
+msgstr ""
+
+msgid "Quality settings"
+msgstr "质量设置"
+
+msgid "Video format:"
+msgstr "视频格式："
+
+msgid "Audio format:"
+msgstr "音频格式："
+
+msgid ""
+"Unable to get format codes for playlists, channels and/or multiple videos.\n"
+"Please list only individual video URLs or choose another download mode."
+msgstr ""
+
+msgid "Unsupported"
+msgstr ""
+
+msgid "Click the Reload Format Codes button."
+msgstr ""
+
+msgid "Format Code List Missing"
+msgstr ""
+
+#, fuzzy
+msgid "At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr "对于每个以绿色选择的URL，必须至少勾选一个 \"格式代码\"。"
+
+msgid "Incomplete Format Code Selection"
+msgstr ""
+
+msgid "Missing «yt-dlp» executable. Please check the execution permissions and be sure to make the correct settings in the preferences dialog."
+msgstr ""
+
+msgid ""
+"Changes have been made to the command arguments.\n"
+"\n"
+"Are you sure you want to apply them?"
+msgstr ""
+
+msgid "Apply changes?"
+msgstr ""
+
 msgid "Format Code Properties"
 msgstr ""
 
@@ -866,14 +960,14 @@ msgstr ""
 msgid "Download only the best selected qualities"
 msgstr "只下载选择的最好质量"
 
-msgid "Reload"
+msgid "Load"
 msgstr ""
 
-msgid "Reload format codes"
+msgid "Reload format codes if needed"
 msgstr ""
 
-msgid "Format Code"
-msgstr "格式代码"
+msgid "Id"
+msgstr ""
 
 msgid "Url"
 msgstr "网址"
@@ -883,6 +977,21 @@ msgstr "扩展"
 
 msgid "Resolution"
 msgstr "分辨率"
+
+msgid "Video Codec"
+msgstr ""
+
+msgid "Fps"
+msgstr ""
+
+msgid "Audio Codec"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Size"
+msgstr ""
 
 msgid "[Vidtuber]: SUCCESS !"
 msgstr ""
@@ -933,14 +1042,16 @@ msgstr "等等... 我打断了"
 msgid "Done"
 msgstr "完成"
 
-msgid "Invalid URL"
-msgstr "无效的链接"
+msgid "Duration"
+msgstr ""
 
-msgid "Error list"
-msgstr "错误列表"
+msgid "Domain"
+msgstr ""
 
-msgid "Invalid URLs"
-msgstr "无效的链接"
+msgid ""
+"Errors occurred while retrieving the requested data.\n"
+"See the related log file for more details."
+msgstr ""
 
 msgid "Drag or paste URLs here"
 msgstr "在此处拖入或粘贴链接"
@@ -953,119 +1064,4 @@ msgstr "设置一个新的下载内容保存文件夹"
 
 msgid "Destination folder of downloads"
 msgstr "下载内容保存文件夹"
-
-msgid "Best quality video"
-msgstr ""
-
-msgid "Worst quality video"
-msgstr ""
-
-msgid "Best available quality"
-msgstr ""
-
-msgid "Format 18 (youtube.com only)"
-msgstr ""
-
-msgid "Worst available quality"
-msgstr ""
-
-msgid "Best quality audio"
-msgstr ""
-
-msgid "Worst quality audio"
-msgstr ""
-
-msgid "Combined Videos"
-msgstr ""
-
-msgid "Videos by Resolution"
-msgstr ""
-
-msgid "Split Audio and Video"
-msgstr ""
-
-msgid "Audio Only"
-msgstr ""
-
-msgid "Format Codes"
-msgstr ""
-
-msgid "Download Mode:"
-msgstr ""
-
-msgid "Include playlists"
-msgstr ""
-
-msgid "Quality settings"
-msgstr "质量设置"
-
-msgid "Video format:"
-msgstr "视频格式："
-
-msgid "Audio format:"
-msgstr "音频格式："
-
-msgid ""
-"The «Download Mode» is set to \"Format codes\".\n"
-"Would you like to reload/update the format codes list now?"
-msgstr ""
-
-msgid "Reload format codes?"
-msgstr ""
-
-#, fuzzy, python-brace-format
-msgid ""
-"Unable to get format codes on {0}, unsupported URL:\n"
-"\n"
-"{1}"
-msgstr ""
-"Unable to get format codes on '{0}'\n"
-"\n"
-"Unsupported '{0}':n\n"
-"'{1}'"
-
-msgid ""
-"An error occurred while retrieving the requested data.\n"
-"See the related log file for more details."
-msgstr ""
-
-#, fuzzy
-msgid "URLs have no playlist references"
-msgstr "URLs没有播放列表参考"
-
-msgid "The URLs contain playlists. Are you sure you want to continue?"
-msgstr "这些链接包含播放列表。确定要继续吗？"
-
-msgid "The URLs contain channels. Are you sure you want to continue?"
-msgstr "这些链接包含频道。确定要继续吗？"
-
-#, python-brace-format
-msgid ""
-"Missing executable: «{0}».\n"
-"Before continuing, be sure to make the correct settings in the preferences dialog."
-msgstr ""
-"缺失可执行文件：«{0}»。\n"
-"继续前，请确定你设置了正确的首选项。"
-
-msgid "Click the Reload Format Codes button."
-msgstr ""
-
-msgid "Format Code List Missing"
-msgstr ""
-
-#, fuzzy
-msgid "At least one \"Format Code\" must be checked for each URL selected in green."
-msgstr "对于每个以绿色选择的URL，必须至少勾选一个 \"格式代码\"。"
-
-msgid "Incomplete Format Code Selection"
-msgstr ""
-
-msgid ""
-"Changes have been made to the command arguments.\n"
-"\n"
-"Are you sure you want to apply them?"
-msgstr ""
-
-msgid "Apply changes?"
-msgstr ""
 

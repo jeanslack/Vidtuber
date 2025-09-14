@@ -784,7 +784,7 @@ class MainFrame(wx.Frame):
             [self.toolbar.EnableTool(x, False) for x in (21, 24)]
             [self.toolbar.EnableTool(x, True) for x in (20, 23)]
 
-        elif args[0] == 'YouTube DLoad_Gui':
+        elif args[0] == 'Download Process':
             self.setupItem.Enable(False)
             [self.toolbar.EnableTool(x, False) for x in (20, 21, 23, 26)]
             self.toolbar.EnableTool(24, True)
@@ -792,7 +792,7 @@ class MainFrame(wx.Frame):
         self.delete.Enable(False)
         self.paste.Enable(False)
         self.clearall.Enable(False)
-        self.SetTitle(_('Vidtuber - DLoad_Gui Message Monitoring'))
+        self.SetTitle(_('Vidtuber - Downloader Message Monitoring'))
         self.textDnDTarget.Hide()
         self.dloader_Gui.Hide()
         self.ProcessPanel.Show()
