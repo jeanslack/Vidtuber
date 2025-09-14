@@ -30,14 +30,14 @@ from vidtuber.vt_dialogs.widget_utils import NormalTransientPopup
 
 class PlayListCtrl(wx.ListCtrl):
     """
-    This is the listControl widget.
-    Note that this wideget has PlaylistIndexing parented.
+    This class inherits is the ListCtrl object.
+    Note that this object has PlaylistIndexing parented.
     """
     def __init__(self, parent):
         """
         Constructor, style must be wx.LC_SINGLE_SEL .
         """
-        self.parent = parent  # parent is DnDPanel class
+        self.parent = parent  # parent is PlaylistIndexing class
         wx.ListCtrl.__init__(self,
                              parent,
                              wx.ID_ANY,
@@ -54,11 +54,11 @@ class PlayListCtrl(wx.ListCtrl):
         populate with default colums
         """
         self.EnableCheckBoxes(enable=True)
-        self.InsertColumn(0, _('Assignment'), width=120)
+        self.InsertColumn(0, _('Selection'), width=120)
         self.InsertColumn(1, _('URL'), width=150)
         self.InsertColumn(2, _('Title'), width=200)
         self.InsertColumn(3, _('Type'), width=100)
-        self.InsertColumn(4, _('Playlist Indexes'), width=230)
+        self.InsertColumn(4, _('Indexes'), width=230)
 
 
 class PlaylistIndexing(wx.Dialog):
@@ -117,13 +117,15 @@ class PlaylistIndexing(wx.Dialog):
         griditem.Add(self.spin_item, 0, wx.LEFT | wx.CENTRE, 5)
 
         self.btn_item = wx.Button(self, wx.ID_ANY, _("Add"), size=(-1, -1))
+        self.btn_item.SetToolTip(_('Add item to the selected playlist. Can '
+                                   'be used multiple times.'))
         griditem.Add(self.btn_item, 0, wx.LEFT | wx.CENTRE, 20)
         sizer_1.Add(griditem, 0, wx.ALL | wx.CENTER, 0)
 
         sizer_1.Add((0, 15), 0)
 
         gridrange = wx.FlexGridSizer(1, 5, 0, 0)
-        labstr = _('Add range:')
+        labstr = _('Add range')
         labfrom = wx.StaticText(self, label=labstr)
         gridrange.Add(labfrom, 0, wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 5)
         self.spin_from = wx.SpinCtrl(self, wx.ID_ANY,
@@ -133,7 +135,7 @@ class PlaylistIndexing(wx.Dialog):
                                      )
         gridrange.Add(self.spin_from, 0, wx.LEFT | wx.CENTRE, 5)
 
-        labstr = _('To:')
+        labstr = _('To')
         labto = wx.StaticText(self, label=labstr)
         gridrange.Add(labto, 0, wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 10)
 
@@ -145,6 +147,8 @@ class PlaylistIndexing(wx.Dialog):
         gridrange.Add(self.spin_to, 0, wx.LEFT | wx.CENTRE, 10)
 
         self.btn_range = wx.Button(self, wx.ID_ANY, _("Add"), size=(-1, -1))
+        self.btn_range.SetToolTip(_('Add range to the selected playlist. '
+                                    'Can be used multiple times.'))
         gridrange.Add(self.btn_range, 0, wx.LEFT | wx.CENTRE, 20)
         sizer_1.Add(gridrange, 0, wx.ALL | wx.CENTER, 0)
         sizer_1.Add((0, 15), 0)
@@ -242,16 +246,17 @@ class PlaylistIndexing(wx.Dialog):
         """
         event on button help
         """
-        msg = (_("To assign a playlist, check the box related to the row. This"
-                 " will download the title and\nthe playlist containing it. "
-                 "If not any title is present, the playlist will still be "
-                 "downloaded\nonly if the URL refers to a playlist.\n\n"
+        msg = (_("To enable a playlist, check the box in the «Selection» "
+                 "column for each desired row.\nThis "
+                 "will download the title and the playlist containing it. "
+                 "If not any title is present,\nthe playlist will still be "
+                 "downloaded only if the URL refers to a playlist.\n\n"
                  "To index the playlist, use the «Add Item» and «Add Range» "
-                 "controls and then confirm\nclicking the «Add» button. You "
-                 "can use these controls multiple times for the same\n"
-                 "selected row.\n\n"
-                 "To remove a playlist assignment, uncheck the box related "
-                 "to the row.\nTo remove all assignments, click the "
+                 "controls and then click\nthe «Add» button. You "
+                 "can use these controls multiple times for the same "
+                 "selected\nplaylist.\n\n"
+                 "To remove a playlist, uncheck the box in the «Selection» "
+                 "column.\nTo remove all settings, click the "
                  "«Clear» button.\nTo confirm everything, click the «OK» "
                  "button.\n\n"
                  "Examples:\n"

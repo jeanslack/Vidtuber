@@ -169,8 +169,7 @@ class DLoad_Gui(wx.Panel):
         bmplistindx = get_bmp(icons['playlist'], ((16, 16)))
         bmpsubtitles = get_bmp(icons['subtitles'], ((16, 16)))
 
-        self.opt = {("YES_PLAYLIST"): False,
-                    ("V_QUALITY"): list(DLoad_Gui.VPCOMP)[0],
+        self.opt = {("V_QUALITY"): list(DLoad_Gui.VPCOMP)[0],
                     ("A_FORMAT"): "best",
                     ("A_QUALITY"): "bestaudio",
                     ("SUBS"): sett['subtitles_options'],
