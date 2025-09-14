@@ -33,7 +33,7 @@ from vidtuber.vt_dialogs.showlogs import ShowLogs
 from vidtuber.vt_dialogs import about_dialog
 from vidtuber.vt_dialogs import check_new_version
 from vidtuber.vt_panels.textdrop import Url_DnD_Panel
-from vidtuber.vt_panels.youtubedl_ui import Downloader
+from vidtuber.vt_panels.downloader_gui import DLoad_Gui
 from vidtuber.vt_panels.long_task_ytdlp import LogOut
 from vidtuber.vt_io import io_tools
 from vidtuber.vt_io.checkup import check_destination_dir
@@ -69,18 +69,18 @@ class MainFrame(wx.Frame):
         wx.Frame.__init__(self, None, -1, style=wx.DEFAULT_FRAME_STYLE)
 
         # ---------- panel instances:
-        self.ytDownloader = Downloader(self)
-        self.textDnDTarget = Url_DnD_Panel(self)
+        self.dloader_Gui = DLoad_Gui(self)
+        self.textDnDTarget = Url_DnD_Panel(self, self.data_url)
         self.ProcessPanel = LogOut(self)
         # hide panels
         self.ProcessPanel.Hide()
-        self.ytDownloader.Hide()
+        self.dloader_Gui.Hide()
         self.textDnDTarget.Show()
         # Layout toolbar buttons:
         mainSizer = wx.BoxSizer(wx.VERTICAL)  # sizer base global
         # Layout external panels:
         mainSizer.Add(self.textDnDTarget, 1, wx.EXPAND)
-        mainSizer.Add(self.ytDownloader, 1, wx.EXPAND)
+        mainSizer.Add(self.dloader_Gui, 1, wx.EXPAND)
         mainSizer.Add(self.ProcessPanel, 1, wx.EXPAND)
 
         # ----------------------Set Properties----------------------#
@@ -168,21 +168,35 @@ class MainFrame(wx.Frame):
         sett = confmanager.read_options()
         sett['window_size'] = list(self.GetSize())
         sett['window_position'] = list(self.GetPosition())
-        sett['subtitles_options'] = self.ytDownloader.opt["SUBS"]
-        fcodecolwidth = [self.ytDownloader.panel_cod.fcode.GetColumnWidth(0),
-                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(1),
-                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(2),
-                         self.ytDownloader.panel_cod.fcode.GetColumnWidth(3),
+        sett['subtitles_options'] = self.dloader_Gui.opt["SUBS"]
+        textdndpastcolwidth = [self.textDnDTarget.urlctrl.GetColumnWidth(0),
+                               self.textDnDTarget.urlctrl.GetColumnWidth(1),
+                               self.textDnDTarget.urlctrl.GetColumnWidth(2),
+                               self.textDnDTarget.urlctrl.GetColumnWidth(3),
+                               self.textDnDTarget.urlctrl.GetColumnWidth(4),
+                               self.textDnDTarget.urlctrl.GetColumnWidth(5),
+                               ]
+        sett['textdndpaste_column_width'] = textdndpastcolwidth
+        fcodecolwidth = [self.dloader_Gui.panel_cod.fcode.GetColumnWidth(0),
+                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(1),
+                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(2),
+                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(3),
+                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(4),
+                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(5),
+                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(6),
+                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(7),
+                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(8),
+                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(9),
                          ]
-        sett['fcode_column_width'] = fcodecolwidth
-        val = self.ytDownloader.panel_cod.ckbx_mrg.GetValue()
+        sett['frmtcode_column_width'] = fcodecolwidth
+        val = self.dloader_Gui.panel_cod.ckbx_mrg.GetValue()
         sett['merge_single_file'] = val
-        val = self.ytDownloader.panel_cod.ckbx_best.GetValue()
+        val = self.dloader_Gui.panel_cod.ckbx_best.GetValue()
         sett['only_best_quality'] = val
-        sett['download_mode'] = self.ytDownloader.choice.GetSelection()
-        sett['video_format'] = self.ytDownloader.cmbx_vformat.GetSelection()
-        sett['audio_format'] = self.ytDownloader.cmbx_af.GetSelection()
-        sett['video_quality'] = self.ytDownloader.cmbx_vq.GetStringSelection()
+        sett['download_mode'] = self.dloader_Gui.choice.GetSelection()
+        sett['video_format'] = self.dloader_Gui.cmbx_vformat.GetSelection()
+        sett['audio_format'] = self.dloader_Gui.cmbx_af.GetSelection()
+        sett['video_quality'] = self.dloader_Gui.cmbx_vq.GetStringSelection()
 
         confmanager.write_options(**sett)
     # ------------------------------------------------------------------#
@@ -199,7 +213,7 @@ class MainFrame(wx.Frame):
 
     def on_close(self, event):
         """
-        This event destroy the YouTube Downloader child frame.
+        This event prepares the app to close.
         """
         if self.checks_running_processes():
             if self.ProcessPanel.thread_type is not None:
@@ -223,7 +237,7 @@ class MainFrame(wx.Frame):
 
     def on_Kill(self):
         """
-        This method is called after from the `main_setup_dlg()` method.
+        This method is called  from the `main_setup_dlg()` method.
         """
         if self.checks_running_processes():
             wx.MessageBox(_("There are still active windows with running "
@@ -699,7 +713,7 @@ class MainFrame(wx.Frame):
             self.panelShown()
             return
 
-        if self.ytDownloader.IsShown():
+        if self.dloader_Gui.IsShown():
             self.switch_text_import(self)
             return
     # ------------------------------------------------------------------#
@@ -708,7 +722,7 @@ class MainFrame(wx.Frame):
         """
         redirect to corresponding next panel
         """
-        if self.ytDownloader.IsShown():
+        if self.dloader_Gui.IsShown():
             self.switch_to_processing('Viewing last log')
             return
         self.switch_youtube_downloader(self)
@@ -729,7 +743,7 @@ class MainFrame(wx.Frame):
         Show URLs import panel.
         """
         self.ProcessPanel.Hide()
-        self.ytDownloader.Hide()
+        self.dloader_Gui.Hide()
         self.textDnDTarget.Show()
         self.paste.Enable(True)
         if self.data_url:
@@ -748,10 +762,10 @@ class MainFrame(wx.Frame):
         """
         Show youtube-dl downloader panel
         """
-        self.ytDownloader.clear_data_list(self.changed)
+        self.dloader_Gui.clear_data_list(self.changed)
         self.SetTitle(_('Vidtuber - Download Settings'))
         self.textDnDTarget.Hide()
-        self.ytDownloader.Show()
+        self.dloader_Gui.Show()
         (self.delete.Enable(False),
          self.paste.Enable(False),
          self.clearall.Enable(False)
@@ -770,7 +784,7 @@ class MainFrame(wx.Frame):
             [self.toolbar.EnableTool(x, False) for x in (21, 24)]
             [self.toolbar.EnableTool(x, True) for x in (20, 23)]
 
-        elif args[0] == 'YouTube Downloader':
+        elif args[0] == 'Download Process':
             self.setupItem.Enable(False)
             [self.toolbar.EnableTool(x, False) for x in (20, 21, 23, 26)]
             self.toolbar.EnableTool(24, True)
@@ -780,25 +794,26 @@ class MainFrame(wx.Frame):
         self.clearall.Enable(False)
         self.SetTitle(_('Vidtuber - Downloader Message Monitoring'))
         self.textDnDTarget.Hide()
-        self.ytDownloader.Hide()
+        self.dloader_Gui.Hide()
         self.ProcessPanel.Show()
         self.Layout()
-        self.ProcessPanel.topic_thread(args, self.data_url)
+        urls = [list(k.keys())[0] for k in self.data_url]
+        self.ProcessPanel.topic_thread(args, urls)
     # ------------------------------------------------------------------#
 
     def click_start(self, event):
         """
         By clicking on Download buttons, calls the
-        `ytDownloader.on_start()` method, which calls the
+        `dloader_Gui.on_start()` method, which calls the
         'switch_to_processing' method above.
         """
-        if self.ytDownloader.IsShown() or self.ProcessPanel.IsShown():
+        if self.dloader_Gui.IsShown() or self.ProcessPanel.IsShown():
             if not self.data_url:
                 self.switch_text_import(self)
                 return
             if check_destination_dir(self.appdata['dirdownload']):
                 return
-            self.ytDownloader.on_start()
+            self.dloader_Gui.on_start()
             return
     # ------------------------------------------------------------------#
 
@@ -850,7 +865,7 @@ class MainFrame(wx.Frame):
 
         msgdlg = _('The system will turn off in {0} seconds')
         title = _('Vidtuber - Shutdown!')
-        dlg = CountDownDlg(self, timeout=59, message=msgdlg, caption=title)
+        dlg = CountDownDlg(self, timeout=5, message=msgdlg, caption=title)
         res = dlg.ShowModal() == wx.ID_OK
         dlg.Destroy()
         if res:
@@ -859,6 +874,7 @@ class MainFrame(wx.Frame):
                 msg = (_("Error while shutting down. Please see "
                          "file log for details."))
                 wx.LogError(msg)
+                self.view_logs(None, flog='Shutdown.log')
     # ------------------------------------------------------------------#
 
     def auto_exit(self):

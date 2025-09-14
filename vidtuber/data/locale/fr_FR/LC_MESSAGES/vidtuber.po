@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.5\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-04 11:07+0200\n"
+"POT-Creation-Date: 2025-09-14 21:37+0200\n"
 "PO-Revision-Date: 2025-09-04 00:42+0300\n"
 "Last-Translator: ChourS <ChourS2008@yandex.ru>\n"
 "Language: fr_FR\n"
@@ -70,37 +70,58 @@ msgstr "Arguments de commande"
 msgid "Confirmation Procedure"
 msgstr "Procédure de Confirmation"
 
+msgid "Assignment"
+msgstr ""
+
 msgid "URL"
 msgstr "URL"
 
-msgid "Playlist Items"
-msgstr "Éléments de la playlist"
-
-msgid ""
-"To index the media of a playlist, click on the \"Playlist Items\" column of each corresponding URL and specify the numerical indexes separated by commas, e.g. \"1,2,5,8\" if you want to download the indexed media at 1, 2, 5, 8 of the playlist.\n"
-"It is also possible to specify intervals, e.g. \"1-3,7,10-13\" with which the media at index 1, 2, 3, 7, 10, 11, 12 and 13 will be downloaded.\n"
+msgid "Title"
 msgstr ""
-"Pour indexer les médias d'une playlist, cliquez sur la colonne « Éléments de la liste de lecture » de chaque URL correspondante et indiquez les index numériques séparés par des virgules, par exemple « 1,2,5,8 » si vous souhaitez télécharger les médias indexés à 1, 2, 5, 8 de la playlist.\\n\n"
-"\n"
-"Il est également possible de spécifier des intervalles, par exemple « 1-3,7,10-13 » avec lesquels les médias d'index 1, 2, 3, 7, 10, 11, 12 et 13 seront téléchargés.\n"
+
+msgid "Type"
+msgstr ""
+
+msgid "Playlist Indexes"
+msgstr ""
+
+msgid "Read me"
+msgstr "Lisez moi"
+
+msgid "Add item:"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Add range:"
+msgstr ""
+
+msgid "To:"
+msgstr ""
 
 msgid "Playlist Editor"
 msgstr "Éditeur de Playlist"
 
-msgid "Help viewer"
-msgstr "Visionneuse d'aide"
-
-msgid "ERROR: Invalid option"
-msgstr "ERREUR: Option invalide"
-
-msgid "please try again."
-msgstr "réessayer svp."
-
-msgid "OK: Indexes to download"
-msgstr "OK: Numéros à télécharger"
-
-msgid "WARNING: The selected URL does not refer to a playlist. Only lines marked green can be indexed."
-msgstr "AVERTISSEMENT: L'URL sélectionnée ne fait pas référence à une liste de lecture (playlist).Seules les lignes de couleur verte peuvent être numérotées."
+msgid ""
+"To assign a playlist, check the box related to the row. This will download the title and\n"
+"the playlist containing it. If not any title is present, the playlist will still be downloaded\n"
+"only if the URL refers to a playlist.\n"
+"\n"
+"To index the playlist, use the «Add Item» and «Add Range» controls and then confirm\n"
+"clicking the «Add» button. You can use these controls multiple times for the same\n"
+"selected row.\n"
+"\n"
+"To remove a playlist assignment, uncheck the box related to the row.\n"
+"To remove all assignments, click the «Clear» button.\n"
+"To confirm everything, click the «OK» button.\n"
+"\n"
+"Examples:\n"
+"Add item 8 to download only the index 8 of the playlist.\n"
+"Add the range 10-13 to download the playlist's videos within that range.\n"
+"Add 1-3,7,10-13 with which the media at index 1, 2, 3, 7, 10, 11, 12 and 13 will be\n"
+"downloaded."
+msgstr ""
 
 #, python-brace-format
 msgid "Specify the {0} executable"
@@ -507,9 +528,6 @@ msgstr "Sous-titres personnalisés"
 msgid "Custom language"
 msgstr "Langue personnalisée"
 
-msgid "Read me"
-msgstr "Lisez moi"
-
 msgid "Subtitle options"
 msgstr "Options des  Sous-Titres"
 
@@ -870,7 +888,7 @@ msgid "Viewing last log"
 msgstr "Visualiser le dernier log"
 
 msgid "Vidtuber - Downloader Message Monitoring"
-msgstr "Vidtuber - Surveillance des Messages du Téléchargeur"
+msgstr ""
 
 #, python-brace-format
 msgid "The system will turn off in {0} seconds"
@@ -890,6 +908,89 @@ msgstr "Quitter l'application en {0} secondes"
 msgid "Vidtuber - Exiting!"
 msgstr "Vidtuber - Sortie!"
 
+msgid "Best quality video"
+msgstr "Meilleure qualité vidéo"
+
+msgid "Worst quality video"
+msgstr "Vidéo de la pire qualité"
+
+msgid "Best available quality"
+msgstr "La meilleure qualité disponible"
+
+msgid "Format 18 (youtube.com only)"
+msgstr "Format 18 (youtube.com seulement)"
+
+msgid "Worst available quality"
+msgstr "La pire qualité disponible"
+
+msgid "Best quality audio"
+msgstr "Meilleure qualité audio"
+
+msgid "Worst quality audio"
+msgstr "Audio de la pire qualité"
+
+msgid "Combined Videos"
+msgstr ""
+
+msgid "Videos by Resolution"
+msgstr "Vidéos par Résolution"
+
+msgid "Split Audio and Video"
+msgstr "Diviser l'Audio et la Vidéo"
+
+msgid "Audio Only"
+msgstr "Audio Uniquement"
+
+msgid "Format Codes"
+msgstr "Codes de Format"
+
+msgid "Download Mode:"
+msgstr "Mode de Téléchargement:"
+
+msgid "Quality settings"
+msgstr "Réglages Qualité"
+
+msgid "Video format:"
+msgstr "Format Vidéo:"
+
+msgid "Audio format:"
+msgstr "Format audio:"
+
+msgid ""
+"Unable to get format codes for playlists, channels and/or multiple videos.\n"
+"Please list only individual video URLs or choose another download mode."
+msgstr ""
+
+msgid "Unsupported"
+msgstr ""
+
+msgid "Click the Reload Format Codes button."
+msgstr "Cliquez sur le bouton Recharger les codes de format."
+
+msgid "Format Code List Missing"
+msgstr "Liste de Codes de Format Manquante"
+
+msgid "At least one \"Format Code\" must be checked for each URL selected in green."
+msgstr "Au moins un \"code format\" doit être sélectionné pour chaque URL sélectionnée en vert."
+
+msgid "Incomplete Format Code Selection"
+msgstr "Sélection Incomplète Du Code de Format"
+
+msgid "Missing «yt-dlp» executable. Please check the execution permissions and be sure to make the correct settings in the preferences dialog."
+msgstr ""
+
+msgid ""
+"Changes have been made to the command arguments.\n"
+"\n"
+"Are you sure you want to apply them?"
+msgstr ""
+"Des modifications ont été apportées aux arguments de la commande.\n"
+"\n"
+"Êtes-vous sûr de vouloir les appliquer?"
+
+msgid "Apply changes?"
+msgstr "Appliquer des modifications?"
+
 msgid "Format Code Properties"
 msgstr "Propriétés du Code de Format"
 
@@ -899,14 +1000,14 @@ msgstr "Fusionner des fichiers en un seul fichier"
 msgid "Download only the best selected qualities"
 msgstr "Ne téléchargez que les meilleurs qualités"
 
-msgid "Reload"
-msgstr "Recharger"
+msgid "Load"
+msgstr ""
 
-msgid "Reload format codes"
-msgstr "Recharger les codes de format"
+msgid "Reload format codes if needed"
+msgstr ""
 
-msgid "Format Code"
-msgstr "Code format"
+msgid "Id"
+msgstr ""
 
 msgid "Url"
 msgstr "Url"
@@ -916,6 +1017,21 @@ msgstr "Extension"
 
 msgid "Resolution"
 msgstr "Résolution"
+
+msgid "Video Codec"
+msgstr ""
+
+msgid "Fps"
+msgstr ""
+
+msgid "Audio Codec"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Size"
+msgstr ""
 
 msgid "[Vidtuber]: SUCCESS !"
 msgstr "[Vidtuber]: RÉUSSI !"
@@ -962,14 +1078,16 @@ msgstr "Attendez svp... interruption en cours"
 msgid "Done"
 msgstr "Terminé"
 
-msgid "Invalid URL"
-msgstr "URL non valide"
+msgid "Duration"
+msgstr ""
 
-msgid "Error list"
-msgstr "Liste d'erreurs"
+msgid "Domain"
+msgstr ""
 
-msgid "Invalid URLs"
-msgstr "URLs  non valides"
+msgid ""
+"Errors occurred while retrieving the requested data.\n"
+"See the related log file for more details."
+msgstr ""
 
 msgid "Drag or paste URLs here"
 msgstr "Coller ou déposer les URLs ici"
@@ -982,123 +1100,4 @@ msgstr "Définir une destination pour les téléchargements"
 
 msgid "Destination folder of downloads"
 msgstr "Destination pour les téléchargements"
-
-msgid "Best quality video"
-msgstr "Meilleure qualité vidéo"
-
-msgid "Worst quality video"
-msgstr "Vidéo de la pire qualité"
-
-msgid "Best available quality"
-msgstr "La meilleure qualité disponible"
-
-msgid "Format 18 (youtube.com only)"
-msgstr "Format 18 (youtube.com seulement)"
-
-msgid "Worst available quality"
-msgstr "La pire qualité disponible"
-
-msgid "Best quality audio"
-msgstr "Meilleure qualité audio"
-
-msgid "Worst quality audio"
-msgstr "Audio de la pire qualité"
-
-msgid "Combined Videos"
-msgstr ""
-
-msgid "Videos by Resolution"
-msgstr "Vidéos par Résolution"
-
-msgid "Split Audio and Video"
-msgstr "Diviser l'Audio et la Vidéo"
-
-msgid "Audio Only"
-msgstr "Audio Uniquement"
-
-msgid "Format Codes"
-msgstr "Codes de Format"
-
-msgid "Download Mode:"
-msgstr "Mode de Téléchargement:"
-
-msgid "Include playlists"
-msgstr "Inclure playlists"
-
-msgid "Quality settings"
-msgstr "Réglages Qualité"
-
-msgid "Video format:"
-msgstr "Format Vidéo:"
-
-msgid "Audio format:"
-msgstr "Format audio:"
-
-msgid ""
-"The «Download Mode» is set to \"Format codes\".\n"
-"Would you like to reload/update the format codes list now?"
-msgstr ""
-"Le «Mode de téléchargement\" est réglé le \"Format des codes\".\n"
-"Voulez-vous recharger/mettre à jour la liste des codes de format maintenant?"
-
-msgid "Reload format codes?"
-msgstr "Recharger les codes de format?"
-
-#, python-brace-format
-msgid ""
-"Unable to get format codes on {0}, unsupported URL:\n"
-"\n"
-"{1}"
-msgstr ""
-"Impossible d'obtenir les codes de format sur {0},URL non prise en charge:\n"
-"\n"
-"{1}"
-
-msgid ""
-"An error occurred while retrieving the requested data.\n"
-"See the related log file for more details."
-msgstr ""
-"Une erreur s'est produite lors de la récupération des données demandées.\n"
-"Voir le fichier journal associé pour plus de détails."
-
-msgid "URLs have no playlist references"
-msgstr "Les URL ne correspondent pas à la playlist"
-
-msgid "The URLs contain playlists. Are you sure you want to continue?"
-msgstr "Les URL contiennent des listes de lecture.Êtes-vous  sûr de vouloir continuer?"
-
-msgid "The URLs contain channels. Are you sure you want to continue?"
-msgstr "Les URL contiennent des canaux. Êtes vous sûr de vouloir continuer?"
-
-#, python-brace-format
-msgid ""
-"Missing executable: «{0}».\n"
-"Before continuing, be sure to make the correct settings in the preferences dialog."
-msgstr ""
-"Exécutable manquant:«{0}».\n"
-"Avant de continuer, assurez-vous de définir les paramètres corrects dans la boîte de dialogue Préférences."
-
-msgid "Click the Reload Format Codes button."
-msgstr "Cliquez sur le bouton Recharger les codes de format."
-
-msgid "Format Code List Missing"
-msgstr "Liste de Codes de Format Manquante"
-
-msgid "At least one \"Format Code\" must be checked for each URL selected in green."
-msgstr "Au moins un \"code format\" doit être sélectionné pour chaque URL sélectionnée en vert."
-
-msgid "Incomplete Format Code Selection"
-msgstr "Sélection Incomplète Du Code de Format"
-
-msgid ""
-"Changes have been made to the command arguments.\n"
-"\n"
-"Are you sure you want to apply them?"
-msgstr ""
-"Des modifications ont été apportées aux arguments de la commande.\n"
-"\n"
-"Êtes-vous sûr de vouloir les appliquer?"
-
-msgid "Apply changes?"
-msgstr "Appliquer des modifications?"
 

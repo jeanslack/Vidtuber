@@ -196,7 +196,6 @@ def time_to_integer(timef: str = '0', sec=False, rnd=False) -> int:
     if sec:
         return int(hours * 3600 + minutes * 60 + seconds)
     return int(hours * 3600000 + minutes * 60000 + seconds * 1000)
-
 # ------------------------------------------------------------------------
 
 

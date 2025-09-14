@@ -24,38 +24,46 @@ This file is part of Vidtuber.
    You should have received a copy of the GNU General Public License
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
-import re
 import wx
-import wx.lib.mixins.listctrl as listmix
+from vidtuber.vt_dialogs.widget_utils import NormalTransientPopup
 
 
-class ListCtrl(wx.ListCtrl,
-               listmix.ListCtrlAutoWidthMixin,
-               listmix.TextEditMixin):
+class PlayListCtrl(wx.ListCtrl):
     """
-    A listctrl with the ability to be editable.
+    This is the listControl widget.
+    Note that this wideget has PlaylistIndexing parented.
     """
-
-    def __init__(self, parent, ID, pos=wx.DefaultPosition,
-                 size=wx.DefaultSize, style=0):
-        wx.ListCtrl.__init__(self, parent, ID, pos, size, style)
-
-        listmix.ListCtrlAutoWidthMixin.__init__(self)
+    def __init__(self, parent):
+        """
+        Constructor, style must be wx.LC_SINGLE_SEL .
+        """
+        self.parent = parent  # parent is DnDPanel class
+        wx.ListCtrl.__init__(self,
+                             parent,
+                             wx.ID_ANY,
+                             style=wx.LC_REPORT
+                             | wx.SUNKEN_BORDER
+                             | wx.LC_SINGLE_SEL
+                             | wx.LC_HRULES
+                             | wx.LC_VRULES
+                             )
         self.populate()
-        listmix.TextEditMixin.__init__(self)
 
     def populate(self):
-        """populate with default colums"""
-        self.InsertColumn(0, '#', width=30)
-        self.InsertColumn(1, _('URL'), width=400)
-        self.InsertColumn(2, _('Playlist Items'), width=200)
+        """
+        populate with default colums
+        """
+        self.EnableCheckBoxes(enable=True)
+        self.InsertColumn(0, _('Assignment'), width=120)
+        self.InsertColumn(1, _('URL'), width=150)
+        self.InsertColumn(2, _('Title'), width=200)
+        self.InsertColumn(3, _('Type'), width=100)
+        self.InsertColumn(4, _('Playlist Indexes'), width=230)
 
 
-class Indexing(wx.Dialog):
+class PlaylistIndexing(wx.Dialog):
     """
-    Shows a dialog box for setting playlist indexing.
-    See ``youtubedl_ui.py`` -> ``on_playlist_idx`` method for
-    how to use this class.
+    Dialog box for setting playlist indexing.
 
     """
     get = wx.GetApp()  # get data from bootstrap
@@ -69,59 +77,77 @@ class Indexing(wx.Dialog):
         GREEN = '#40804C'
     appicon = get.iconset['vidtuber']
 
-    HELPME = (_('To index the media of a playlist, click on the "Playlist '
-                'Items" column of each corresponding URL and specify the '
-                'numerical indexes separated by commas, e.g. "1,2,5,8" if '
-                'you want to download the indexed media at 1, 2, 5, 8 of the '
-                'playlist.\nIt is also possible to specify intervals, e.g. '
-                '"1-3,7,10-13" with which the media at index 1, 2, 3, 7, 10, '
-                '11, 12 and 13 will be downloaded.\n'))
+    LGREEN = '#52ee7d'
+    BLACK = '#1f1f1f'
 
     def __init__(self, parent, url, data):
         """
+        See ``downloader_gui.py`` -> ``on_playlist_idx`` method for
+        how to use this class.
         NOTE Use 'parent, -1' param. to make parent, use 'None' otherwise
 
         """
-        self.clrs = Indexing.appdata['colorscheme']
+        self.clrs = PlaylistIndexing.appdata['colorscheme']
+        self.listurl = [list(k.keys())[0] for k in url]
         self.urls = url
         self.data = data
 
-        wx.Dialog.__init__(self, parent, -1, style=wx.DEFAULT_DIALOG_STYLE)
+        wx.Dialog.__init__(self, parent, -1, style=wx.DEFAULT_DIALOG_STYLE
+                           | wx.RESIZE_BORDER)
 
-        # ------ Add widget controls
-        self.lctrl = ListCtrl(self,
-                              wx.ID_ANY,
-                              style=wx.LC_REPORT
-                              | wx.SUNKEN_BORDER
-                              | wx.LC_SINGLE_SEL
-                              | wx.LC_HRULES
-                              | wx.LC_VRULES
-                              )
-        self.tctrl = wx.TextCtrl(self,
-                                 wx.ID_ANY, "",
-                                 style=wx.TE_MULTILINE
-                                 | wx.TE_READONLY
-                                 | wx.TE_RICH2
-                                 )
-
-        # ------ Properties
-        self.SetTitle(_('Playlist Editor'))
-        self.SetMinSize((800, 400))
-        self.lctrl.SetMinSize((800, 200))
-        self.tctrl.SetMinSize((800, 200))
-
-        # ------ set Layout
         sizer_1 = wx.BoxSizer(wx.VERTICAL)
-        sizer_1.Add(self.lctrl, 0, wx.ALL | wx.EXPAND, 5)
+        btn_readme = wx.Button(self, wx.ID_ANY, _("Read me"), size=(-1, -1))
+        btn_readme.SetBackgroundColour(wx.Colour(PlaylistIndexing.LGREEN))
+        btn_readme.SetForegroundColour(wx.Colour(PlaylistIndexing.BLACK))
+        sizer_1.Add(btn_readme, 0, wx.ALL, 5)
+        sizer_1.Add((0, 15), 0)
+        self.plctrl = PlayListCtrl(self)  # ListCtrl instance
+        sizer_1.Add(self.plctrl, 1, wx.ALL | wx.EXPAND, 5)
+        self.plctrl.SetMinSize((800, 200))
+        sizer_1.Add((0, 15), 0)
+        griditem = wx.FlexGridSizer(1, 3, 0, 0)
+        labstr = _('Add item:')
+        labitem = wx.StaticText(self, label=labstr)
+        griditem.Add(labitem, 0, wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 5)
+        self.spin_item = wx.SpinCtrl(self, wx.ID_ANY,
+                                     "0", min=0,
+                                     max=1000, size=(-1, -1),
+                                     style=wx.TE_PROCESS_ENTER,
+                                     )
+        griditem.Add(self.spin_item, 0, wx.LEFT | wx.CENTRE, 5)
 
-        labtstr = _('Help viewer')
-        lab = wx.StaticText(self, label=labtstr)
-        sizer_1.Add(lab, 0, wx.LEFT, 5)
+        self.btn_item = wx.Button(self, wx.ID_ANY, _("Add"), size=(-1, -1))
+        griditem.Add(self.btn_item, 0, wx.LEFT | wx.CENTRE, 20)
+        sizer_1.Add(griditem, 0, wx.ALL | wx.CENTER, 0)
 
-        grid_sizer_1 = wx.GridSizer(1, 1, 0, 0)
-        sizer_1.Add(grid_sizer_1, 1, wx.EXPAND, 0)
-        grid_sizer_1.Add(self.tctrl, 0, wx.ALL | wx.EXPAND, 5)
+        sizer_1.Add((0, 15), 0)
 
+        gridrange = wx.FlexGridSizer(1, 5, 0, 0)
+        labstr = _('Add range:')
+        labfrom = wx.StaticText(self, label=labstr)
+        gridrange.Add(labfrom, 0, wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 5)
+        self.spin_from = wx.SpinCtrl(self, wx.ID_ANY,
+                                     "0", min=0,
+                                     max=1000, size=(-1, -1),
+                                     style=wx.TE_PROCESS_ENTER,
+                                     )
+        gridrange.Add(self.spin_from, 0, wx.LEFT | wx.CENTRE, 5)
+
+        labstr = _('To:')
+        labto = wx.StaticText(self, label=labstr)
+        gridrange.Add(labto, 0, wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 10)
+
+        self.spin_to = wx.SpinCtrl(self, wx.ID_ANY,
+                                   "0", min=0,
+                                   max=1000, size=(-1, -1),
+                                   style=wx.TE_PROCESS_ENTER,
+                                   )
+        gridrange.Add(self.spin_to, 0, wx.LEFT | wx.CENTRE, 10)
+
+        self.btn_range = wx.Button(self, wx.ID_ANY, _("Add"), size=(-1, -1))
+        gridrange.Add(self.btn_range, 0, wx.LEFT | wx.CENTRE, 20)
+        sizer_1.Add(gridrange, 0, wx.ALL | wx.CENTER, 0)
+        sizer_1.Add((0, 15), 0)
         # ------ bottom layout for buttons
         grid_btn = wx.GridSizer(1, 2, 0, 0)
         gridexit = wx.BoxSizer(wx.HORIZONTAL)
@@ -136,52 +162,64 @@ class Indexing(wx.Dialog):
         # ------ final settings:
         sizer_1.Add(grid_btn, 0, wx.EXPAND)
         icon = wx.Icon()
-        icon.CopyFromBitmap(wx.Bitmap(Indexing.appicon, wx.BITMAP_TYPE_ANY))
+        icon.CopyFromBitmap(wx.Bitmap(PlaylistIndexing.appicon,
+                                      wx.BITMAP_TYPE_ANY))
+
+        self.SetTitle(_('Playlist Editor'))
+        self.SetMinSize((800, 400))
         self.SetIcon(icon)
         self.SetSizer(sizer_1)
         sizer_1.Fit(self)
         self.Layout()
 
-        index = 0
-
-        for link in url:
-            self.lctrl.InsertItem(index, str(index + 1))
-            self.lctrl.SetItem(index, 1, link)
-            if '/playlist' in link:
-                self.lctrl.SetItemBackgroundColour(index, Indexing.GREEN)
-
-            if not self.data == {'': ''}:
-                for key, val in self.data.items():
-                    if key == link:
-                        self.lctrl.SetItem(index, 2, val)
-            index += 1
-
-        if Indexing.OS == 'Darwin':
-            self.lctrl.SetFont(wx.Font(12, wx.MODERN, wx.NORMAL, wx.NORMAL))
-            self.tctrl.SetFont(wx.Font(12, wx.MODERN, wx.NORMAL, wx.NORMAL))
+        if PlaylistIndexing.OS == 'Darwin':
+            self.plctrl.SetFont(wx.Font(12, wx.MODERN, wx.NORMAL, wx.NORMAL))
         else:
-            self.lctrl.SetFont(wx.Font(9, wx.MODERN, wx.NORMAL, wx.NORMAL))
-            self.tctrl.SetFont(wx.Font(9, wx.MODERN, wx.NORMAL, wx.NORMAL))
-            lab.SetLabelMarkup(f"<b>{labtstr}</b>")
-
-        self.tctrl.SetBackgroundColour(self.clrs['BACKGRD'])
+            self.plctrl.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL))
+            # lab.SetLabelMarkup(f"<b>{labtstr}</b>")
 
         # ----------------------Binding (EVT)----------------------#
-        self.lctrl.Bind(wx.EVT_LIST_BEGIN_LABEL_EDIT, self.on_edit_begin)
-        self.lctrl.Bind(wx.EVT_LIST_END_LABEL_EDIT, self.on_edit_end)
+        self.Bind(wx.EVT_BUTTON, self.on_help, btn_readme)
+
+        self.Bind(wx.EVT_LIST_ITEM_CHECKED, self.on_check, self.plctrl)
+        self.Bind(wx.EVT_LIST_ITEM_UNCHECKED, self.on_uncheck, self.plctrl)
+        self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select, self.plctrl)
+        self.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.on_deselect, self.plctrl)
+
+        self.Bind(wx.EVT_BUTTON, self.on_items, self.btn_item)
+        self.Bind(wx.EVT_BUTTON, self.on_range, self.btn_range)
+
         self.Bind(wx.EVT_BUTTON, self.on_close, btn_cancel)
         self.Bind(wx.EVT_BUTTON, self.on_ok, btn_ok)
         self.Bind(wx.EVT_BUTTON, self.on_reset, btn_reset)
 
-        self.textstyle()
+        self.on_deselect(None)
+        self.setdefault()
 
-    def textstyle(self):
+    def setdefault(self):
         """
         clear log messages and set text style on textctrl box
         """
-        self.tctrl.Clear()
-        self.tctrl.SetDefaultStyle(wx.TextAttr(self.clrs['TXT1']))
-        self.tctrl.AppendText(f'{Indexing.HELPME}')
+        index = 0
+        for item in self.urls:
+            for link, dictdata in item.items():
+                self.plctrl.InsertItem(index, str(index + 1))
+                # self.plctrl.InsertItem(index, '')  # do not add srt indx
+                self.plctrl.SetItem(index, 1, link)
+                self.plctrl.SetItem(index, 2, dictdata['title'])
+                self.plctrl.SetItem(index, 3, dictdata['urltype'])
+                index += 1
+
+        for row in range(self.plctrl.GetItemCount()):  # total number of rows
+            line = self.data.get(self.plctrl.GetItem(row, 1).GetText(), False)
+            if line:
+                self.plctrl.SetItem(row, 4, line[0])
+                self.plctrl.CheckItem(row, check=line[1])
+                # self.plctrl.SetItemBackgroundColour(row,
+                #                                     PlaylistIndexing.GREEN)
+            else:
+                self.plctrl.SetItem(row, 4, '')
+                self.plctrl.CheckItem(row, check=line)
     # ------------------------------------------------------------------#
 
     def getvalue(self):
@@ -190,104 +228,142 @@ class Indexing(wx.Dialog):
         by the caller. See the caller for more info and usage.
         """
         diz = {}
-        for row, url in enumerate(self.urls):
-            txt = self.lctrl.GetItem(row, 2).GetText()
-            if txt:
-                diz[url] = ''.join(txt.split())
-        return diz
+        num = self.plctrl.GetItemCount()  # n° total items
+        for i in range(num):
+            if self.plctrl.IsItemChecked(i):
+                url = self.plctrl.GetItem(i, 1).GetText()
+                plidx = self.plctrl.GetItem(i, 4).GetText()
+                diz[url] = [''.join(plidx.split()), True]
 
+        return diz
     # ----------------------Event handler (callback)----------------------#
 
-    def on_edit_end(self, event):
+    def on_help(self, event):
         """
-        Checking event-entered strings using REGEX:
-
-            Allows min 0 to max 999 digits and does not allow
-            numbers with leading zeroes like 07 or 005, allows
-            a number separated by hyphen like 22-33 and supports
-            comma followed by a white space. Note that all white
-            spaces are stripped before come to parsing by REGEX:
-            see `string` var below.
-
-        Some event examples:
-
-        row_id = event.GetIndex()  # Get the current row
-        col_id = event.GetColumn()  # Get the current column
-        new_data = event.GetLabel()  # Get the changed data
-        cols = self.lctrl.GetColumnCount()  # Get the total number of col
-        rows = self.lctrl.GetItemCount()  # Get the total number of rows
-
+        event on button help
         """
-        wxd = wx.DateTime.Now()
-        date = wxd.Format('%H:%M:%S')
-        new_data = event.GetLabel()  # Get the changed data
-        errbeg = _('ERROR: Invalid option')
-        errend = _('please try again.')
-        assign = _('OK: Indexes to download')
-        string = ''.join(new_data.split())
+        msg = (_("To assign a playlist, check the box related to the row. This"
+                 " will download the title and\nthe playlist containing it. "
+                 "If not any title is present, the playlist will still be "
+                 "downloaded\nonly if the URL refers to a playlist.\n\n"
+                 "To index the playlist, use the «Add Item» and «Add Range» "
+                 "controls and then confirm\nclicking the «Add» button. You "
+                 "can use these controls multiple times for the same\n"
+                 "selected row.\n\n"
+                 "To remove a playlist assignment, uncheck the box related "
+                 "to the row.\nTo remove all assignments, click the "
+                 "«Clear» button.\nTo confirm everything, click the «OK» "
+                 "button.\n\n"
+                 "Examples:\n"
+                 "Add item 8 to download only the index 8 of the playlist.\n"
+                 "Add the range 10-13 to download the playlist's videos "
+                 "within that range.\nAdd 1-3,7,10-13 with which the media at "
+                 "index 1, 2, 3, 7, 10, 11, 12 and 13 will be\ndownloaded."))
 
-        if string == '':
-            event.Veto()
-            return
-        check = bool(re.search(r"^(?:[1-9]\d\d|[1-9]?\d)(?:-(?:[1-9]\d\d"
-                               r"|[1-9]?\d))?(?:,\s?(?:[1-9]\d\d|[1-9]?\d)"
-                               r"(?:-(?:[1-9]\d\d|[1-9]?\d))?)*$", string))
-        if check is not True:
-            self.tctrl.SetDefaultStyle(wx.TextAttr(self.clrs['ERR1']))
-            self.tctrl.AppendText(f'\n{date}: {errbeg}: '
-                                  f'"{new_data}", {errend}\n')
-            event.Veto()
-            return
+        win = NormalTransientPopup(self,
+                                   wx.SIMPLE_BORDER,
+                                   msg,
+                                   PlaylistIndexing.LGREEN,
+                                   PlaylistIndexing.BLACK)
 
-        self.tctrl.SetDefaultStyle(wx.TextAttr(self.clrs['TXT3']))
-        self.tctrl.AppendText(f'\n{date}: {assign}: "{string}"\n')
-    # ------------------------------------------------------------------#
+        # Show the popup right below or above the button
+        # depending on available screen space...
+        btn = event.GetEventObject()
+        pos = btn.ClientToScreen((0, 0))
+        sz = btn.GetSize()
+        win.Position(pos, (0, sz[1]))
 
-    def on_edit_begin(self, event):
+        win.Popup()
+    # --------------------------------------------------------------#
+
+    def on_uncheck(self, event):
         """
-        Columns 0 and 1 must not be editable for
-        link without playlist.
+        Event on checkbox disabled
         """
         row_id = event.GetIndex()
+        self.plctrl.Select(row_id, on=0)  # default event selection
+        self.plctrl.SetItem(row_id, 4, '', imageId=-1)
+    # --------------------------------------------------------------#
 
-        wxd = wx.DateTime.Now()
-        date = wxd.Format('%H:%M:%S')
-        invalidmsg = _('WARNING: The selected URL does not refer to a '
-                       'playlist. Only lines marked green can be indexed.')
+    def on_check(self, event):
+        """
+        Event on checkbox enabled
+        """
+        row_id = event.GetIndex()
+        self.plctrl.Focus(row_id)
+        self.plctrl.Select(row_id, on=1)  # default event selection
+    # --------------------------------------------------------------#
 
-        colour = Indexing.GREEN
+    def on_items(self, event):
+        """
+        Event on press btn_item
+        """
+        newval = self.spin_item.GetValue()
+        sel = self.plctrl.GetFocusedItem()
+        if newval and sel != -1:
+            currv = self.plctrl.GetItem(sel, 4).GetText()
+            setval = f'{currv},{newval}' if currv else f'{newval}'
+            self.plctrl.SetItem(sel, 4, setval, imageId=-1)
 
-        if event.GetColumn() in (0, 1):
-            event.Veto()
-        elif event.GetColumn() == 2:
-            # It looks like the HTML color codes are translated to RGB here
-            if self.lctrl.GetItemBackgroundColour(row_id) != colour:
-                self.tctrl.SetDefaultStyle(wx.TextAttr(self.clrs['WARN']))
-                self.tctrl.AppendText(f'\n{date}: {invalidmsg}\n')
-                event.Veto()
-            else:
-                event.Skip()  # or event.Allow()
-        else:
-            event.Skip()  # or event.Allow()
-    # ------------------------------------------------------------------#
+            if not self.plctrl.IsItemChecked(sel):
+                self.plctrl.CheckItem(sel, check=True)
+    # --------------------------------------------------------------#
+
+    def on_range(self, event):
+        """
+        Event on press btn_range
+        """
+        newfrom = self.spin_from.GetValue()
+        newto = self.spin_to.GetValue()
+        sel = self.plctrl.GetFocusedItem()
+        if newfrom and newto and sel != -1:
+            currv = self.plctrl.GetItem(sel, 4).GetText()
+            setval = (f'{currv},{newfrom}-{newto}'
+                      if currv else f'{newfrom}-{newto}')
+            self.plctrl.SetItem(sel, 4, setval, imageId=-1)
+
+            if not self.plctrl.IsItemChecked(sel):
+                self.plctrl.CheckItem(sel, check=True)
+    # --------------------------------------------------------------#
+
+    def on_select(self, event):
+        """
+        Selecting line with mouse or up/down keyboard buttons
+        """
+        self.spin_item.Enable(), self.btn_item.Enable()
+        self.spin_from.Enable(), self.spin_to.Enable()
+        self.btn_range.Enable()
+    # ----------------------------------------------------------------------
+
+    def on_deselect(self, event):
+        """
+        Event to deselect a line when clicking
+        in an empty space of the control list
+        """
+        self.spin_item.Disable(), self.btn_item.Disable()
+        self.btn_range.Disable(), self.spin_from.Disable(),
+        self.spin_to.Disable()
+
+        self.spin_item.SetValue(0), self.spin_from.SetValue(0),
+        self.spin_to.SetValue(0)
+    # ----------------------------------------------------------------------
 
     def on_reset(self, event):
         """
         Reset all items on editable columns and clear log messages
         """
-        rows = self.lctrl.GetItemCount()  # Get the total number of rows
+        rows = self.plctrl.GetItemCount()  # Get the total number of rows
         for row in range(rows):
-            self.lctrl.SetItem(row, 2, '')
-
-        self.textstyle()
-    # ------------------------------------------------------------------#
+            self.plctrl.SetItem(row, 4, '')
+            self.plctrl.CheckItem(self, row, check=False)
+    # --------------------------------------------------------------#
 
     def on_close(self, event):
         """
         Close this dialog without saving anything
         """
         event.Skip()
-    # ------------------------------------------------------------------#
+    # --------------------------------------------------------------#
 
     def on_ok(self, event):
         """

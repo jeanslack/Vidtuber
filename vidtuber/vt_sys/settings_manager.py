@@ -118,7 +118,7 @@ class ConfigManager:
         "en_US" or "fr_FR", etc.
 
     yt-dlp_cmd (str):
-        Path to the yt-dlp (yt-dlp.exe on Windows) executable.
+        Path to the yt-dlp executable.
 
     ytdlp_islocal (bool):
         If `True`, the user enables a custom location (pathname) for
@@ -131,10 +131,10 @@ class ConfigManager:
     ("ssl_certificate", "add_metadata", "embed_thumbnails",
     "overwr_dl_files", "include_ID_name", "restrict_fname")
     (bool):
-        Checkboxes option (see YouTube Downloader)
+        Checkboxes option (see downloader_gui)
 
     subtitles_options (dict):
-        (see YouTube Downloader)
+        (see downloader_gui)
 
     external_downloader (str):
         external downloader used by yt-dlp. Default is None
@@ -171,11 +171,11 @@ class ConfigManager:
         webbrowser (str),
         cookiesfrombrowser (list)
 
-    fcode_column_width (list of int)
+    frmtcode_column_width (list of int)
         column width in the format code panel (ytdownloader).
 
     """
-    VERSION = 2.4
+    VERSION = 2.7
     DEFAULT_OPTIONS = {"confversion": VERSION,
                        "yt-dlp_cmd": "",
                        "ytdlp_islocal": False,
@@ -203,7 +203,10 @@ class ConfigManager:
                                              "embedsubtitle": False,
                                              "skip_download": False
                                              },
-                       "fcode_column_width": [120, 60, 200, 80],
+                       "textdndpaste_column_width": [30, 150, 350, 100, 100,
+                                                     100],
+                       "frmtcode_column_width": [120, 60, 200, 80, 160,
+                                                 110, 80, 110, 100, 100],
                        "download_mode": 0,
                        "video_format": 0,
                        "audio_format": 0,
@@ -231,7 +234,7 @@ class ConfigManager:
                        "embed_thumbnails": False,
                        "overwr_dl_files": False,
                        "include_ID_name": False,
-                       "restrict_fname": False,
+                       "restrict_fname": True,
                        }
 
     def __init__(self, filename, makeportable=None):

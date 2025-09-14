@@ -31,7 +31,7 @@ from vidtuber.vt_dialogs.widget_utils import NormalTransientPopup
 class SubtitleEditor(wx.Dialog):
     """
     Shows a dialog box for setting preferred subtitles.
-    See ``youtubedl_ui.py`` -> ``on_subtitles_editor`` method
+    See ``downloader_gui.py`` -> ``on_subtitles_editor`` method
     for how to use this class.
 
     """

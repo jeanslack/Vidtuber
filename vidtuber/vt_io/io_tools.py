@@ -24,36 +24,108 @@ This file is part of Vidtuber.
    You should have received a copy of the GNU General Public License
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
+import json
 import requests
 import wx
 from vidtuber.vt_threads.check_bin import subp
 from vidtuber.vt_utils.utils import open_default_application
+from vidtuber.vt_utils.utils import format_bytes
+from vidtuber.vt_utils.utils import integer_to_time
+from vidtuber.vt_io.make_filelog import make_log_template
 from vidtuber.vt_dialogs.widget_utils import PopupDialog
-from vidtuber.vt_threads.ydl_get_formatcode import YdlExtractInfo
+from vidtuber.vt_threads.get_output_thread import FetchOutputDataProcess
+from vidtuber.vt_threads.get_output_thread import logerror
 
 
-def youtubedl_getstatistics(url, args, logfile, parent=None):
+def dump_formats(datadict, jdata):
     """
-    Call `YdlExtractInfo` thread to extract data info.
-    During this process a wait pop-up dialog is shown.
-
-    Returns a generator.
-
-    Usage example without pop-up dialog:
-        thread = YdlExtractInfo(url)
-        thread.join()
-        data = thread.data
-        yield data
+    Called by `ytdlp_dump_single_json` function.
+    Performs some data manipulation steps to make
+    datadict mapping more compact.
+    Return a dict object with formats values.
     """
-    thread = YdlExtractInfo(url, args, logfile)
+    for frmts in jdata['formats']:
+        frmtid = frmts.get('format_id', 'None')
+        ext = frmts.get('ext', 'N/A')
+        format_res = frmts.get('format', 'N/A')
+        res = ' '.join(format_res.split()[1:])
+        resolution = res.replace('-', '').strip()
+        vcodec = f"{frmts.get('vcodec', '')}"
+        vcodec = '' if vcodec in ('None', 'none') else vcodec
+        fps = f"{frmts.get('fps', '')}"
+        fps = '' if fps in ('None', 'none') else fps
+        acodec = f"{frmts.get('acodec', '')}"
+        acodec = '' if acodec in ('None', 'none') else acodec
+        lang = f"{frmts.get('language', '')}"
+        lang = '' if lang in ('None', 'none') else lang
+
+        if frmts.get('filesize'):
+            size = format_bytes(float(frmts['filesize']))
+        else:
+            size = ''
+        dictf = {'id': frmtid, 'ext': ext, 'resolution': resolution,
+                 'vcodec': vcodec, 'fps': fps, 'acodec': acodec,
+                 'lang': lang, 'size': size,
+                 }
+        datadict['formats'].append(dictf)
+
+    return datadict
+# --------------------------------------------------------------------------#
+
+
+def ytdlp_dump_single_json(url, args, logfile, parent=None):
+    """
+    Wait for data given by `FetchOutputDataProcess` thread.
+    During this process a Modal wait pop-up dialog is shown.
+
+    This function is responsible for converting JSON data from
+    `thread.data` class attribute and returning a consistent data
+    structure.
+
+    Note that parent is `vt_panels.textdrop.Url_DnD_Panel` here.
+
+    Returns a data tuple.
+    """
+    logfile = make_log_template(logfile, mode="w")
+    thread = FetchOutputDataProcess(url, args, logfile)
     dlgload = PopupDialog(parent,
                           _("Vidtuber - Loading..."),
-                          _("Wait....\nRetrieving required data."))
+                          _("Wait....\nRetrieving required data."),
+                          thread,
+                          )
     dlgload.ShowModal()
     # thread.join()
     data = thread.data
     dlgload.Destroy()
-    yield data
+    if thread.stop_work_thread:
+        return None, 'stop work thread'
+    if data[1]:
+        return data
+    try:
+        jdata = json.loads(data[0])
+    except json.decoder.JSONDecodeError as err:
+        logerror(f"[VIDTUBER]: JSON Decoding ERROR: {err}",
+                 logfile, usesep=False)
+        return None, 'error'
+
+    newdata = {'title': jdata.get('title', 'Unknown Title'),
+               'domain': jdata.get('webpage_url_domain', 'Unknown Domain'),
+               'urltype': jdata.get('webpage_url_basename', 'Unknown Type'),
+               'duration': 'N/A', 'formats': [],
+               }
+    duration = jdata.get('duration')
+    if duration:
+        if isinstance(duration, (float, int)):
+            duration = round(duration) * 1000
+            newdata['duration'] = integer_to_time(duration, mills=False)
+
+    if url in ('/playlists', '/channels', '/playlist', '/channel', '/videos'):
+        newdata['formats'] = []
+
+    elif jdata.get('formats'):
+        newdata = dump_formats(newdata, jdata)
+
+    return newdata, None
 # --------------------------------------------------------------------------#
 
 
