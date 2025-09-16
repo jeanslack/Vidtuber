@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 1.1.5\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-14 23:47+0200\n"
+"POT-Creation-Date: 2025-09-16 08:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,6 +59,14 @@ msgstr ""
 msgid "Confirmation Procedure"
 msgstr ""
 
+#, python-brace-format
+msgid "Items in Range \"{0}\" already included in this row"
+msgstr ""
+
+#, python-brace-format
+msgid "Index \"{0}\" already included in this row"
+msgstr ""
+
 msgid "Selection"
 msgstr ""
 
@@ -71,25 +79,25 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-msgid "Indexes"
+msgid "Index/Range"
 msgstr ""
 
 msgid "Read me"
 msgstr ""
 
-msgid "Add item:"
+msgid "Add Index/Range"
+msgstr ""
+
+msgid "Index"
 msgstr ""
 
 msgid "Add"
 msgstr ""
 
-msgid "Add item to the selected playlist. Can be used multiple times."
+msgid "Add index to the selected playlist. Can be used multiple times."
 msgstr ""
 
-msgid "Add range"
-msgstr ""
-
-msgid "To"
+msgid "Range"
 msgstr ""
 
 msgid "Add range to the selected playlist. Can be used multiple times."
@@ -103,9 +111,9 @@ msgid ""
 "This will download the title and the playlist containing it. If not any title is present,\n"
 "the playlist will still be downloaded only if the URL refers to a playlist.\n"
 "\n"
-"To index the playlist, use the «Add Item» and «Add Range» controls and then click\n"
-"the «Add» button. You can use these controls multiple times for the same selected\n"
-"playlist.\n"
+"To index the playlist, use the «Index» and/or «Range» controls and then click the\n"
+"corresponding «Add» button. You can use these controls multiple times for the\n"
+"same selected playlist.\n"
 "\n"
 "To remove a playlist, uncheck the box in the «Selection» column.\n"
 "To remove all settings, click the «Clear» button.\n"
@@ -114,8 +122,16 @@ msgid ""
 "Examples:\n"
 "Add item 8 to download only the index 8 of the playlist.\n"
 "Add the range 10-13 to download the playlist's videos within that range.\n"
-"Add 1-3,7,10-13 with which the media at index 1, 2, 3, 7, 10, 11, 12 and 13 will be\n"
-"downloaded."
+"Add 1-3,7,10-13 with which the media at index 1, 2, 3, 7, 10, 11, 12 and 13 will\n"
+"be downloaded."
+msgstr ""
+
+#, python-brace-format
+msgid "Added index: \"{0}\""
+msgstr ""
+
+#, python-brace-format
+msgid "Added range indexes: \"{0}-{1}\""
 msgstr ""
 
 #, python-brace-format

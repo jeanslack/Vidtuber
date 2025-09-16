@@ -7,7 +7,7 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Fri, 12 Sep 2025 V.2.0.1
+Tue, 16 Sep 2025 V.2.0.1
 
   * Added the management and mapping of data fetched from audio/video content
     platforms during drag-and-drop URL stage #15.
@@ -18,7 +18,7 @@ Fri, 12 Sep 2025 V.2.0.1
   * Fixed inconsistencies checking only the 'yt-dlp'/'yt-dlp.exe' executables
     instead of the entire available range of executables ('yt-dlp',
     'yt-dlp.exe', 'yt-dlp_macos', 'yt-dlp_linux').
-  * Completely redesigned the interface for managing playlists.
+  * The playlist management dialog has been completely redesigned.
 
 +------------------------------------+
 Wed, 03 Sep 2025 V.1.1.10

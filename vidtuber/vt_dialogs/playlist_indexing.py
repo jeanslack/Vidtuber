@@ -28,6 +28,50 @@ import wx
 from vidtuber.vt_dialogs.widget_utils import NormalTransientPopup
 
 
+def check_duplicated_indexes(string, entry):
+    """
+    Check for duplicates. Return None if no duplicates,
+    a message string otherwise.
+
+    """
+    if not string or not entry:
+        return None
+
+    rangestr = []
+    itemstr = []
+    for x in string.split(','):
+        if not x.isdigit():
+            rangestr.append(x.split('-'))
+        else:
+            itemstr.append(x)
+
+    totalrange = []
+    for x in rangestr:
+        for r in range(int(x[0]), int(x[1]) + 1):
+            totalrange.append(r)
+
+    alreadyexists = totalrange + [int(x) for x in itemstr if x.isdigit()]
+
+    if '-' in entry:  # entry is a range
+        start, end = int(entry.split('-')[0]), int(entry.split('-')[1])
+
+        if start > end:
+            return f'ERROR: Invalid range: "{start}" is > "{end}"'
+
+        entrylist = list(range(start, end + 1))
+        duplicates = alreadyexists + entrylist
+        if [i for i in set(duplicates) if duplicates.count(i) > 1]:
+
+            return (_('Items in Range "{0}" already included in '
+                      'this row').format(entry))
+        return None
+
+    if int(entry) in alreadyexists:
+        return _('Index "{0}" already included in this row').format(entry)
+
+    return None
+
+
 class PlayListCtrl(wx.ListCtrl):
     """
     This class inherits is the ListCtrl object.
@@ -58,7 +102,7 @@ class PlayListCtrl(wx.ListCtrl):
         self.InsertColumn(1, _('URL'), width=150)
         self.InsertColumn(2, _('Title'), width=200)
         self.InsertColumn(3, _('Type'), width=100)
-        self.InsertColumn(4, _('Indexes'), width=230)
+        self.InsertColumn(4, _('Index/Range'), width=230)
 
 
 class PlaylistIndexing(wx.Dialog):
@@ -105,53 +149,46 @@ class PlaylistIndexing(wx.Dialog):
         sizer_1.Add(self.plctrl, 1, wx.ALL | wx.EXPAND, 5)
         self.plctrl.SetMinSize((800, 200))
         sizer_1.Add((0, 15), 0)
-        griditem = wx.FlexGridSizer(1, 3, 0, 0)
-        labstr = _('Add item:')
+        self.labstatus = wx.StaticText(self, label='')
+        msg = _('Add Index/Range')
+        self.labstatus.SetLabelMarkup(f"<b>{msg}</b>")
+        sizer_1.Add(self.labstatus, 0, wx.CENTRE)
+        sizer_1.Add((0, 20), 0)
+        griditem = wx.FlexGridSizer(1, 6, 0, 0)
+        labstr = _('Index')
         labitem = wx.StaticText(self, label=labstr)
         griditem.Add(labitem, 0, wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 5)
-        self.spin_item = wx.SpinCtrl(self, wx.ID_ANY,
-                                     "0", min=0,
-                                     max=1000, size=(-1, -1),
-                                     style=wx.TE_PROCESS_ENTER,
-                                     )
-        griditem.Add(self.spin_item, 0, wx.LEFT | wx.CENTRE, 5)
+        self.spin_index = wx.SpinCtrl(self, wx.ID_ANY,
+                                      "1", min=1,
+                                      max=999, size=(-1, -1),
+                                      style=wx.TE_PROCESS_ENTER,
+                                      )
+        griditem.Add(self.spin_index, 0, wx.LEFT | wx.CENTRE, 5)
 
-        self.btn_item = wx.Button(self, wx.ID_ANY, _("Add"), size=(-1, -1))
-        self.btn_item.SetToolTip(_('Add item to the selected playlist. Can '
-                                   'be used multiple times.'))
-        griditem.Add(self.btn_item, 0, wx.LEFT | wx.CENTRE, 20)
-        sizer_1.Add(griditem, 0, wx.ALL | wx.CENTER, 0)
+        self.btn_add_indx = wx.Button(self, wx.ID_ANY, _("Add"), size=(-1, -1))
+        self.btn_add_indx.SetToolTip(_('Add index to the selected playlist. '
+                                       'Can be used multiple times.'))
+        griditem.Add(self.btn_add_indx, 0, wx.LEFT | wx.CENTRE, 5)
 
-        sizer_1.Add((0, 15), 0)
-
-        gridrange = wx.FlexGridSizer(1, 5, 0, 0)
-        labstr = _('Add range')
-        labfrom = wx.StaticText(self, label=labstr)
-        gridrange.Add(labfrom, 0, wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 5)
-        self.spin_from = wx.SpinCtrl(self, wx.ID_ANY,
-                                     "0", min=0,
-                                     max=1000, size=(-1, -1),
-                                     style=wx.TE_PROCESS_ENTER,
-                                     )
-        gridrange.Add(self.spin_from, 0, wx.LEFT | wx.CENTRE, 5)
-
-        labstr = _('To')
+        labstr = _('Range')
         labto = wx.StaticText(self, label=labstr)
-        gridrange.Add(labto, 0, wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 10)
+        griditem.Add(labto, 0, wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 30)
 
-        self.spin_to = wx.SpinCtrl(self, wx.ID_ANY,
-                                   "0", min=0,
-                                   max=1000, size=(-1, -1),
-                                   style=wx.TE_PROCESS_ENTER,
-                                   )
-        gridrange.Add(self.spin_to, 0, wx.LEFT | wx.CENTRE, 10)
+        self.spin_range = wx.SpinCtrl(self, wx.ID_ANY,
+                                      "2", min=2,
+                                      max=1000, size=(-1, -1),
+                                      style=wx.TE_PROCESS_ENTER,
+                                      )
+        griditem.Add(self.spin_range, 0, wx.LEFT | wx.CENTRE, 5)
 
-        self.btn_range = wx.Button(self, wx.ID_ANY, _("Add"), size=(-1, -1))
-        self.btn_range.SetToolTip(_('Add range to the selected playlist. '
-                                    'Can be used multiple times.'))
-        gridrange.Add(self.btn_range, 0, wx.LEFT | wx.CENTRE, 20)
-        sizer_1.Add(gridrange, 0, wx.ALL | wx.CENTER, 0)
+        self.btn_add_range = wx.Button(self, wx.ID_ANY, _("Add"),
+                                       size=(-1, -1))
+        self.btn_add_range.SetToolTip(_('Add range to the selected playlist. '
+                                        'Can be used multiple times.'))
+        griditem.Add(self.btn_add_range, 0, wx.LEFT | wx.CENTRE, 5)
+        sizer_1.Add(griditem, 0, wx.ALL | wx.CENTER, 0)
         sizer_1.Add((0, 15), 0)
+
         # ------ bottom layout for buttons
         grid_btn = wx.GridSizer(1, 2, 0, 0)
         gridexit = wx.BoxSizer(wx.HORIZONTAL)
@@ -180,7 +217,6 @@ class PlaylistIndexing(wx.Dialog):
             self.plctrl.SetFont(wx.Font(12, wx.MODERN, wx.NORMAL, wx.NORMAL))
         else:
             self.plctrl.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL))
-            # lab.SetLabelMarkup(f"<b>{labtstr}</b>")
 
         # ----------------------Binding (EVT)----------------------#
         self.Bind(wx.EVT_BUTTON, self.on_help, btn_readme)
@@ -190,8 +226,11 @@ class PlaylistIndexing(wx.Dialog):
         self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select, self.plctrl)
         self.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.on_deselect, self.plctrl)
 
-        self.Bind(wx.EVT_BUTTON, self.on_items, self.btn_item)
-        self.Bind(wx.EVT_BUTTON, self.on_range, self.btn_range)
+        self.Bind(wx.EVT_SPINCTRL, self.on_index, self.spin_index)
+        # self.Bind(wx.EVT_SPINCTRL, self.on_range, self.spin_range)
+
+        self.Bind(wx.EVT_BUTTON, self.on_add_index, self.btn_add_indx)
+        self.Bind(wx.EVT_BUTTON, self.on_add_range, self.btn_add_range)
 
         self.Bind(wx.EVT_BUTTON, self.on_close, btn_cancel)
         self.Bind(wx.EVT_BUTTON, self.on_ok, btn_ok)
@@ -251,10 +290,10 @@ class PlaylistIndexing(wx.Dialog):
                  "will download the title and the playlist containing it. "
                  "If not any title is present,\nthe playlist will still be "
                  "downloaded only if the URL refers to a playlist.\n\n"
-                 "To index the playlist, use the «Add Item» and «Add Range» "
-                 "controls and then click\nthe «Add» button. You "
-                 "can use these controls multiple times for the same "
-                 "selected\nplaylist.\n\n"
+                 "To index the playlist, use the «Index» and/or «Range» "
+                 "controls and then click the\ncorresponding «Add» button. "
+                 "You can use these controls multiple times for the\n"
+                 "same selected playlist.\n\n"
                  "To remove a playlist, uncheck the box in the «Selection» "
                  "column.\nTo remove all settings, click the "
                  "«Clear» button.\nTo confirm everything, click the «OK» "
@@ -262,8 +301,9 @@ class PlaylistIndexing(wx.Dialog):
                  "Examples:\n"
                  "Add item 8 to download only the index 8 of the playlist.\n"
                  "Add the range 10-13 to download the playlist's videos "
-                 "within that range.\nAdd 1-3,7,10-13 with which the media at "
-                 "index 1, 2, 3, 7, 10, 11, 12 and 13 will be\ndownloaded."))
+                 "within that range.\nAdd 1-3,7,10-13 with which the media "
+                 "at index 1, 2, 3, 7, 10, 11, 12 and 13 will\n"
+                 "be downloaded."))
 
         win = NormalTransientPopup(self,
                                    wx.SIMPLE_BORDER,
@@ -288,6 +328,9 @@ class PlaylistIndexing(wx.Dialog):
         row_id = event.GetIndex()
         self.plctrl.Select(row_id, on=0)  # default event selection
         self.plctrl.SetItem(row_id, 4, '', imageId=-1)
+        msg = _('Add Index/Range')
+        self.labstatus.SetLabelMarkup(f"<b>{msg}</b>")
+        self.Layout()
     # --------------------------------------------------------------#
 
     def on_check(self, event):
@@ -297,47 +340,89 @@ class PlaylistIndexing(wx.Dialog):
         row_id = event.GetIndex()
         self.plctrl.Focus(row_id)
         self.plctrl.Select(row_id, on=1)  # default event selection
+        msg = _('Add Index/Range')
+        self.labstatus.SetLabelMarkup(f"<b>{msg}</b>")
+        self.Layout()
     # --------------------------------------------------------------#
 
-    def on_items(self, event):
+    def on_index(self, event):
+        """
+        Event on spin_index control
+        """
+        idxitem = self.spin_index.GetValue()
+        self.spin_range.SetMin(idxitem + 1)
+    # --------------------------------------------------------------#
+
+    # def on_range(self, event):
+    #     """
+    #     Event on spin_range control
+    #     """
+    #     pass
+    # --------------------------------------------------------------#
+
+    def on_add_index(self, event):
         """
         Event on press btn_item
         """
-        newval = self.spin_item.GetValue()
+        idxitem = self.spin_index.GetValue()
         sel = self.plctrl.GetFocusedItem()
-        if newval and sel != -1:
-            currv = self.plctrl.GetItem(sel, 4).GetText()
-            setval = f'{currv},{newval}' if currv else f'{newval}'
-            self.plctrl.SetItem(sel, 4, setval, imageId=-1)
+        if idxitem and sel != -1:
+            curidx = self.plctrl.GetItem(sel, 4).GetText()
+            ret = check_duplicated_indexes(str(curidx), str(idxitem))
+            if ret:
+                self.labstatus.SetLabelMarkup(f"<b><span foreground="
+                                              f"'red'>{ret}</span></b>")
+                self.Layout()
+                return
+
+            newitem = f'{curidx},{idxitem}' if curidx else f'{idxitem}'
+            self.plctrl.SetItem(sel, 4, newitem, imageId=-1)
 
             if not self.plctrl.IsItemChecked(sel):
                 self.plctrl.CheckItem(sel, check=True)
+
+            msg = _('Added index: "{0}"').format(idxitem)
+            self.labstatus.SetLabelMarkup(f"<b>{msg}</b>")
+            self.Layout()
     # --------------------------------------------------------------#
 
-    def on_range(self, event):
+    def on_add_range(self, event):
         """
         Event on press btn_range
         """
-        newfrom = self.spin_from.GetValue()
-        newto = self.spin_to.GetValue()
+        idxfrom = self.spin_index.GetValue()
+        idxto = self.spin_range.GetValue()
         sel = self.plctrl.GetFocusedItem()
-        if newfrom and newto and sel != -1:
-            currv = self.plctrl.GetItem(sel, 4).GetText()
-            setval = (f'{currv},{newfrom}-{newto}'
-                      if currv else f'{newfrom}-{newto}')
-            self.plctrl.SetItem(sel, 4, setval, imageId=-1)
+        if idxfrom and idxto and sel != -1:
+            curidx = self.plctrl.GetItem(sel, 4).GetText()
 
+            ret = check_duplicated_indexes(str(curidx), f'{idxfrom}-{idxto}')
+            if ret:
+                self.labstatus.SetLabelMarkup(f"<b><span foreground="
+                                              f"'red'>{ret}</span></b>")
+                self.Layout()
+                return
+
+            newrange = (f'{curidx},{idxfrom}-{idxto}'
+                        if curidx else f'{idxfrom}-{idxto}')
+
+            self.plctrl.SetItem(sel, 4, newrange, imageId=-1)
+
+            # if not checked, auto check the corrisponding checkbox
             if not self.plctrl.IsItemChecked(sel):
                 self.plctrl.CheckItem(sel, check=True)
+
+            msg = _('Added range indexes: "{0}-{1}"').format(idxfrom, idxto)
+            self.labstatus.SetLabelMarkup(f"<b>{msg}</b>")
+            self.Layout()
     # --------------------------------------------------------------#
 
     def on_select(self, event):
         """
         Selecting line with mouse or up/down keyboard buttons
         """
-        self.spin_item.Enable(), self.btn_item.Enable()
-        self.spin_from.Enable(), self.spin_to.Enable()
-        self.btn_range.Enable()
+        self.spin_index.Enable(), self.btn_add_indx.Enable()
+        self.spin_range.Enable(), self.btn_add_range.Enable()
     # ----------------------------------------------------------------------
 
     def on_deselect(self, event):
@@ -345,12 +430,8 @@ class PlaylistIndexing(wx.Dialog):
         Event to deselect a line when clicking
         in an empty space of the control list
         """
-        self.spin_item.Disable(), self.btn_item.Disable()
-        self.btn_range.Disable(), self.spin_from.Disable(),
-        self.spin_to.Disable()
-
-        self.spin_item.SetValue(0), self.spin_from.SetValue(0),
-        self.spin_to.SetValue(0)
+        self.spin_index.Disable(), self.btn_add_indx.Disable()
+        self.btn_add_range.Disable(), self.spin_range.Disable()
     # ----------------------------------------------------------------------
 
     def on_reset(self, event):
@@ -360,7 +441,11 @@ class PlaylistIndexing(wx.Dialog):
         rows = self.plctrl.GetItemCount()  # Get the total number of rows
         for row in range(rows):
             self.plctrl.SetItem(row, 4, '')
-            self.plctrl.CheckItem(self, row, check=False)
+            self.plctrl.CheckItem(row, check=False)
+
+        self.spin_index.SetValue(1)
+        self.spin_range.SetMin(self.spin_index.GetValue() + 1)
+        self.spin_range.SetValue(2)
     # --------------------------------------------------------------#
 
     def on_close(self, event):
