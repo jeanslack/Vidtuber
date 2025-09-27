@@ -15,8 +15,10 @@ written in [Python3](https://www.python.org/) using the
 ### Ubuntu PPA
 
 >#### Important notes for Ubuntu 22.04 Jammy users
->This PPA does not provide support to recent versions of Vidtuber for Ubuntu 22.04 due to compatibility issues with the official version of wxPython provided on Jammy. 
->To overcome this, please download the archive containing the standalone application: [Vidtuber-2.0.1-ubuntu-22.04_x86_64.tar.xz](https://github.com/jeanslack/Vidtuber/releases/download/v2.0.1/Vidtuber-2.0.1-ubuntu-22.04_x86_64.tar.xz)
+>If you're an Ubuntu 22.04 user, please note that this PPA is now deprecated!   
+>This PPA drops support for Ubuntu 22.04 (Jammy Jallyfish) due to compatibility issues with Jammy-provided wxPython build. 
+>To overcome this, please use the standalone application available in this repo: [Vidtuber-2.0.1-ubuntu-22.04_x86_64.tar.xz](https://github.com/jeanslack/Vidtuber/releases/download/v2.0.1/Vidtuber-2.0.1-ubuntu-22.04_x86_64.tar.xz)   
+>After downloading the archive, unzip it and read the README file inside for additional information.
 
 This PPA currently publishes packages for [Ubuntu](https://ubuntu.com/), including official and
 derivative distributions such as Ubuntu, Xubuntu, Kubuntu, Lubuntu, LinuxMint,
