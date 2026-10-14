@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: Vidtuber 1.1.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-24 21:51+0200\n"
-"PO-Revision-Date: 2025-09-03 22:27+0300\n"
+"PO-Revision-Date: 2025-09-28 10:51+0300\n"
 "Last-Translator: ChourS <ChourS2008@yandex.ru>\n"
-"Language: ru_RU\n"
 "Language-Team: Chour <ChourS2008@yandex.ru>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.17.0\n"
+"X-Generator: Poedit 3.7\n"
 
 #, python-brace-format
 msgid ""
@@ -72,47 +73,47 @@ msgstr "Подтвердить процедуру"
 
 #, python-brace-format
 msgid "Items in Range \"{0}\" already included in this row"
-msgstr ""
+msgstr "Элементы в диапазоне \"{0}\" уже включены в эту строку"
 
 #, python-brace-format
 msgid "Index \"{0}\" already included in this row"
-msgstr ""
+msgstr "Индекс \"{0}\" уже включен в эту строку"
 
 msgid "Selection"
-msgstr ""
+msgstr "Выбор"
 
 msgid "URL"
 msgstr "URL"
 
 msgid "Title"
-msgstr ""
+msgstr "Заглавие"
 
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 msgid "Index/Range"
-msgstr ""
+msgstr "Индекс/Диапазон"
 
 msgid "Read me"
 msgstr "Прочти меня"
 
 msgid "Add Index/Range"
-msgstr ""
+msgstr "Добавить индекс/диапазон"
 
 msgid "Index"
-msgstr ""
+msgstr "Индекс"
 
 msgid "Add"
-msgstr ""
+msgstr "Добавить"
 
 msgid "Add index to the selected playlist. Can be used multiple times."
-msgstr ""
+msgstr "Добавьте индекс к выбранному списку воспроизведения. Может использоваться несколько раз."
 
 msgid "Range"
-msgstr ""
+msgstr "Диапазон"
 
 msgid "Add range to the selected playlist. Can be used multiple times."
-msgstr ""
+msgstr "Добавьте диапазон в выбранный список воспроизведения. Можно использовать несколько раз."
 
 msgid "Playlist Editor"
 msgstr "Редактор плейлистов(playlist)"
@@ -136,14 +137,34 @@ msgid ""
 "Add 1-3,7,10-13 with which the media at index 1, 2, 3, 7, 10, 11, 12 and 13 will\n"
 "be downloaded."
 msgstr ""
+"Чтобы включить список воспроизведения, установите флажок в столбце «Выбор» \n"
+"для каждой нужной строки.\n"
+"При этом будет загружен заголовок и содержащий его плейлист. Если заголовок отсутствует,\n"
+"плейлист все равно будет загружен, только если URL-адрес ссылается на плейлист.\n"
+"\n"
+"Чтобы проиндексировать список воспроизведения, используйте элементы управления \n"
+"«Индекс» и/или «Диапазон», а затем нажмите соответствующую кнопку «Добавить». \n"
+"Вы можете использовать эти элементы управления несколько раз для одного и того же \n"
+"выбранного списка воспроизведения.\n"
+"\n"
+"Чтобы удалить список воспроизведения, снимите флажок в столбце «Выбор».\n"
+"Чтобы удалить все настройки, нажмите кнопку «Очистить».\n"
+"Чтобы все подтвердить, нажмите кнопку «ОК».\n"
+"\n"
+"Примеры:\n"
+"Добавьте пункт 8, чтобы загрузить только индекс 8 списка воспроизведения.\n"
+"Добавьте диапазон 10-13, чтобы загрузить видео из списка воспроизведения \n"
+"в пределах этого диапазона.\n"
+"Добавьте 1-3,7,10-13, с которыми будут загружены носители \n"
+"с индексом 1, 2, 3, 7, 10, 11, 12 и 13."
 
 #, python-brace-format
 msgid "Added index: \"{0}\""
-msgstr ""
+msgstr "Добавлен индекс: \"{0}\""
 
 #, python-brace-format
 msgid "Added range indexes: \"{0}-{1}\""
-msgstr ""
+msgstr "Добавлены индексы диапазона: \"{0}-{1}\""
 
 #, python-brace-format
 msgid "Specify the {0} executable"
@@ -927,7 +948,7 @@ msgid "Viewing last log"
 msgstr "Просмотр последнего log-журнала"
 
 msgid "Vidtuber - Downloader Message Monitoring"
-msgstr ""
+msgstr "Vidtuber - Мониторинг сообщений загрузчика"
 
 # русское сокращение последнего слова
 #, python-brace-format
@@ -970,7 +991,7 @@ msgid "Worst quality audio"
 msgstr "Звук самого низкого качества"
 
 msgid "Combined Videos"
-msgstr ""
+msgstr "Комбинированные видеоролики"
 
 msgid "Videos by Resolution"
 msgstr "Видео по разрешению"
@@ -1000,9 +1021,13 @@ msgid ""
 "Unable to get format codes for playlists, channels and/or multiple videos.\n"
 "Please list only individual video URLs or choose another download mode."
 msgstr ""
+"Не удается получить коды форматов для списков воспроизведения, каналов \n"
+"и/или нескольких видеороликов.\n"
+"Пожалуйста, укажите только отдельные URL-адреса видео или выберите \n"
+"другой режим загрузки."
 
 msgid "Unsupported"
-msgstr ""
+msgstr "Неподдерживаемый"
 
 msgid "Click the Reload Format Codes button."
 msgstr "Нажмите кнопку \"Перезагрузить коды форматов\"."
@@ -1020,6 +1045,8 @@ msgstr "Неполный выбор кода формата"
 
 msgid "Missing «yt-dlp» executable. Please check the execution permissions and be sure to make the correct settings in the preferences dialog."
 msgstr ""
+"Отсутствует исполняемый файл «yt-dlp». Пожалуйста, проверьте разрешения на выполнение и убедитесь в правильности настроек \n"
+"в диалоговом окне настроек."
 
 msgid ""
 "Changes have been made to the command arguments.\n"
@@ -1043,13 +1070,13 @@ msgid "Download only the best selected qualities"
 msgstr "Загружайте только вариант с наилучшим качеством"
 
 msgid "Load"
-msgstr ""
+msgstr "Загрузка"
 
 msgid "Reload format codes if needed"
-msgstr ""
+msgstr "При необходимости обновите коды форматирования"
 
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 msgid "Url"
 msgstr "Url"
@@ -1061,19 +1088,19 @@ msgid "Resolution"
 msgstr "Разрешение"
 
 msgid "Video Codec"
-msgstr ""
+msgstr "Видеокодек"
 
 msgid "Fps"
-msgstr ""
+msgstr "Fps"
 
 msgid "Audio Codec"
-msgstr ""
+msgstr "Аудиокодек"
 
 msgid "Language"
-msgstr ""
+msgstr "Язык"
 
 msgid "Size"
-msgstr ""
+msgstr "Размер"
 
 msgid "[Vidtuber]: SUCCESS !"
 msgstr "[Vidtuber]: УСПЕШНО !"
@@ -1121,15 +1148,17 @@ msgid "Done"
 msgstr "Готово"
 
 msgid "Duration"
-msgstr ""
+msgstr "Продолжительность"
 
 msgid "Domain"
-msgstr ""
+msgstr "Domain"
 
 msgid ""
 "Errors occurred while retrieving the requested data.\n"
 "See the related log file for more details."
 msgstr ""
+"При получении запрошенных данных возникли ошибки.\n"
+"Более подробную информацию смотрите в соответствующем файле журнала."
 
 msgid "Drag or paste URLs here"
 msgstr "Перетащите или вставьте URL-адреса сюда"
@@ -1142,4 +1171,3 @@ msgstr "Установите новую папку назначения для �
 
 msgid "Destination folder of downloads"
 msgstr "Папка назначения для загрузок"
-
