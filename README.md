@@ -1,5 +1,5 @@
 # **Vidtuber**
-[![Image](https://img.shields.io/static/v1?label=python&logo=python&message=3.9%20|%203.10%20|%203.11%20|%203.12%20|%203.13&color=blue)](https://www.python.org/downloads/)
+[![Image](https://img.shields.io/static/v1?label=python&logo=python&message=3.11%20|%203.12%20|%203.13%20|%203.14%20|%203.15&color=blue)](https://www.python.org/downloads/)
 [![Image](https://img.shields.io/badge/license-GPLv3-orange)](https://github.com/jeanslack/Vidtuber/blob/master/LICENSE)
 [![Python application](https://github.com/jeanslack/Vidtuber/actions/workflows/python-package.yml/badge.svg)](https://github.com/jeanslack/Vidtuber/actions/workflows/python-package.yml)
 
@@ -13,14 +13,7 @@ written in [Python3](https://www.python.org/) using the
 ## INSTALLATION
 
 ### Ubuntu PPA
-
->#### Important notes for Ubuntu 22.04 Jammy users
->If you're an Ubuntu 22.04 user, please note that this PPA is now deprecated!   
->This PPA drops support for Ubuntu 22.04 (Jammy Jallyfish) due to compatibility issues with Jammy-provided wxPython build. 
->To overcome this, please use the standalone application available in this repo: [Vidtuber-2.0.1-ubuntu-22.04_x86_64.tar.xz](https://github.com/jeanslack/Vidtuber/releases/download/v2.0.1/Vidtuber-2.0.1-ubuntu-22.04_x86_64.tar.xz)   
->After downloading the archive, unzip it and read the README file inside for additional information.
-
-This PPA currently publishes packages for [Ubuntu](https://ubuntu.com/), including official and
+This [PPA](https://launchpad.net/~jeanslack/+archive/ubuntu/vidtuber) currently publishes packages for [Ubuntu](https://ubuntu.com/), including official and
 derivative distributions such as Ubuntu, Xubuntu, Kubuntu, Lubuntu, LinuxMint,
 etc.
 
@@ -38,12 +31,13 @@ Vidtuber is available on the [SlackBuilds.org](https://slackbuilds.org/) ("Sbo")
 
 ### Devuan / Debian
 
-No arch deb package: [Latest Releases](https://github.com/jeanslack/Vidtuber/releases/latest)
+deb package: [Latest Releases](https://github.com/jeanslack/Vidtuber/releases/latest)
 
 Tested on:
 
-- Devuan Daedalus
-- Debian12 bookworm
+- Debian13 Trixie
+
+This .deb package may be backward-compatible with **Debian12 bookworm** and **Devuan Daedalus**, but proceed with caution.
 
 ### MS Windows
 
