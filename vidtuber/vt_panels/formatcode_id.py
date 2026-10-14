@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Feb.07.2024
+Rev: Oct.14.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -53,12 +53,13 @@ class FormatCodeList(wx.Panel):
     # RED = get.appset['colorscheme']['ERR1']   # code text err + sb error
     # -----------------------------------------------------------------#
 
-    def __init__(self, parent, format_codeid):
+    def __init__(self, parent, format_codeid, controller=None):
         """
         Note that most of the objects defined here are
         always reset for any change to the URLs list.
         """
         self.parent = parent
+        self.controller = controller  # DLoad_Gui's phone number :-)
         self.urllist = []
         self.format_codeid = format_codeid  # format codes order
         bmpreload = get_bmp(FormatCodeList.icons['reload'], ((16, 16)))
@@ -126,7 +127,8 @@ class FormatCodeList(wx.Panel):
         """
         self.format_codeid.clear()
         self.fcode.DeleteAllItems()
-        self.parent.on_format_codes()
+        if self.controller:
+            self.controller.on_format_codes()
     # ---------------------------------------------------------------------
 
     def on_checkbox(self, event):

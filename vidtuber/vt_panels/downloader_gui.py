@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Sep.01.2025
+Rev: Oct.14.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -210,7 +210,7 @@ class DLoad_Gui(wx.Panel):
         sizer_base.Add(boxoptions, 0, wx.ALL | wx.EXPAND, 5)
         fgs2 = wx.BoxSizer(wx.HORIZONTAL)
         boxoptions.Add(fgs2, 0, wx.ALL | wx.EXPAND, 0)
-        self.cmbx_vq = wx.ComboBox(self, wx.ID_ANY,
+        self.cmbx_vq = wx.ComboBox(box, wx.ID_ANY,
                                    choices=(sett['video_quality'], ''),
                                    size=(-1, -1), style=wx.CB_DROPDOWN
                                    | wx.CB_READONLY
@@ -218,9 +218,9 @@ class DLoad_Gui(wx.Panel):
         self.cmbx_vq.SetSelection(0)
         # grid_v.Add((20, 20), 0,)
         fgs2.Add(self.cmbx_vq, 0, wx.ALL | wx.CENTRE, 5)
-        txtvformat = wx.StaticText(self, wx.ID_ANY, _('Video format:'))
+        txtvformat = wx.StaticText(box, wx.ID_ANY, _('Video format:'))
         fgs2.Add(txtvformat, 0, wx.LEFT | wx.CENTRE, 5)
-        self.cmbx_vformat = wx.ComboBox(self, wx.ID_ANY,
+        self.cmbx_vformat = wx.ComboBox(box, wx.ID_ANY,
                                         choices=['Auto', 'webm', 'mp4'],
                                         size=(-1, -1), style=wx.CB_DROPDOWN
                                         | wx.CB_READONLY
@@ -228,7 +228,7 @@ class DLoad_Gui(wx.Panel):
         self.cmbx_vformat.SetSelection(sett['video_format'])
         fgs2.Add(self.cmbx_vformat, 0, wx.ALL | wx.CENTRE, 5)
         fgs2.Add((20, 20), 0,)
-        self.cmbx_aq = wx.ComboBox(self, wx.ID_ANY,
+        self.cmbx_aq = wx.ComboBox(box, wx.ID_ANY,
                                    choices=list(DLoad_Gui.AQUAL.keys()),
                                    size=(-1, -1),
                                    style=wx.CB_DROPDOWN
@@ -238,9 +238,9 @@ class DLoad_Gui(wx.Panel):
         # grid_v.Add((20, 20), 0,)
         fgs2.Add(self.cmbx_aq, 0, wx.ALL | wx.CENTRE, 5)
 
-        txtaformat = wx.StaticText(self, wx.ID_ANY, _('Audio format:'))
+        txtaformat = wx.StaticText(box, wx.ID_ANY, _('Audio format:'))
         fgs2.Add(txtaformat, 0, wx.LEFT | wx.CENTRE, 5)
-        self.cmbx_af = wx.ComboBox(self, wx.ID_ANY,
+        self.cmbx_af = wx.ComboBox(box, wx.ID_ANY,
                                    choices=list(DLoad_Gui.AFORMATS.keys()),
                                    size=(-1, -1),
                                    style=wx.CB_DROPDOWN
@@ -250,10 +250,13 @@ class DLoad_Gui(wx.Panel):
         fgs2.Add(self.cmbx_af, 0, wx.ALL | wx.CENTRE, 5)
 
         # ------------- simple listctrl
-        box = wx.StaticBox(self, wx.ID_ANY, '')
-        boxpanel = wx.StaticBoxSizer(box, wx.VERTICAL)
+        box1 = wx.StaticBox(self, wx.ID_ANY, '')
+        boxpanel = wx.StaticBoxSizer(box1, wx.VERTICAL)
         sizer_base.Add(boxpanel, 1, wx.ALL | wx.EXPAND, 5)
-        self.panel_cod = FormatCodeList(self, self.format_codeid)
+        self.panel_cod = FormatCodeList(box1,
+                                        self.format_codeid,
+                                        controller=self
+                                        )
         boxpanel.Add(self.panel_cod, 1, wx.EXPAND)
         self.SetSizer(sizer_base)
         self.Layout()
