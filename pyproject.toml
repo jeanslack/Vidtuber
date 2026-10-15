@@ -5,8 +5,13 @@ build-backend = "hatchling.build"
 [project]
 name = "vidtuber"
 dynamic = ["version"]
-readme = "README.md"
-requires-python = ">=3.9"
+dependencies = [
+    "wxpython>=4.1.1;platform_system == 'Windows' or platform_system == 'Darwin'",
+    "pypubsub>=4.0.3",
+    "requests",
+    "yt-dlp"
+]
+requires-python = ">=3.11"
 authors = [
   {name = "Gianluca Pernigotto", email = "jeanlucperni@gmail.com"}
 ]
@@ -14,6 +19,7 @@ maintainers = [
   {name = "Gianluca Pernigotto", email = "jeanlucperni@gmail.com"}
 ]
 description = "Vidtuber is a simple yet comprehensive, cross-platform GUI for yt-dlp"
+readme = "README.md"
 license =  {text = "GNU General Public License v3 (GPLv3)"}
 keywords = [
     "vidtuber",
@@ -41,30 +47,22 @@ classifiers = [
     "Natural Language :: Russian",
     "Natural Language :: Spanish",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
     "Topic :: Multimedia :: Video"
-]
-dependencies = [
-    "wxpython>=4.1.0;platform_system == 'Windows' or platform_system == 'Darwin'",
-    "pypubsub>=4.0.3",
-    "requests",
-    "yt-dlp"
 ]
 
 [project.optional-dependencies]
 cli = []
-
 build = [
     "build",
     "hatchling",
     "pip",
     "six",
     "wheel",
-    "setuptools",
     "babel",
 ]
 pyinstaller = [

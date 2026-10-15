@@ -7,6 +7,19 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
+Wed, 14 Oct 2026 V.2.0.5
+
+  * Requires Python version >= 3.11 (Because Python3.10 EOL).
+  * Requires wxPython4.1.1 or later.
+  * Update Russian language by ChourS.
+  * Fixed debug messages in wxPython4.3.2; this will make the application ready
+    (and cleaner) for the latest versions of the toolkit.
+  * Improved building package using hatchling. This removes `setuptools` from
+    dependencies.
+  * Fixed UI Dark mode issue on Windows11 using Dark system theme .
+  * Fixed inconsistencies in `xdg/*appdata.xml` file and `debian/copyright`.
+
++------------------------------------+
 Tue, 30 Sep 2025 V.2.0.1
 
   * Added the management and mapping of data fetched from audio/video content

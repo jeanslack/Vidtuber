@@ -4,9 +4,9 @@ Name: gui_app.py
 Porpose: bootstrap for Vidtuber app.
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: March.17.2023
+Rev: October.14.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -87,6 +87,9 @@ class Vidtuber(wx.App):
         self.appset['DISPLAY_SIZE'] = wx.GetDisplaySize()  # get monitor res
         if hasattr(wx.SystemSettings, 'GetAppearance'):
             appear = wx.SystemSettings.GetAppearance()
+            if hasattr(appear, 'IsSystemDark'):  # from wx>=4.3.0
+                if appear.IsSystemDark():
+                    self.SetAppearance(Vidtuber.Appearance.Dark)
             self.appset['IS_DARK_THEME'] = appear.IsDark()
 
         self.iconset = self.data.icons_set(self.appset['icontheme'])

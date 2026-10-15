@@ -7,13 +7,12 @@ Build-Depends: debhelper-compat (= 13),
                python3-all,
                python3-babel,
                python3-hatchling,
-               python3-setuptools
 Standards-Version: 4.5.1
 Homepage: https://github.com/jeanslack/Vidtuber
 Rules-Requires-Root: no
 #Vcs-Git: https://salsa.debian.org/debian/vidtuber.git
 #Vcs-Browser: https://salsa.debian.org/debian/vidtuber
-X-Python3-Version: >= 3.8
+X-Python3-Version: >= 3.11
 
 Package: vidtuber
 Architecture: all

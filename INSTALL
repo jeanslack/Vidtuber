@@ -6,8 +6,8 @@ Base application dependencies
 =============================
 
     Requires:
-        - Python >=3.9.0
-        - wxPython >=4.1.0
+        - Python >=3.11
+        - wxPython >=4.1.1
         - PyPubSub >=4.0.3
         - requests
         - yt-dlp
