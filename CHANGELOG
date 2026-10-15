@@ -16,7 +16,10 @@ Wed, 14 Oct 2026 V.2.0.5
     (and cleaner) for the latest versions of the toolkit.
   * Improved building package using hatchling. This removes `setuptools` from
     dependencies.
-  * Fixed UI Dark mode issue on Windows11 using Dark system theme .
+  * Fixed UI Dark mode issue on Windows11 using Dark system theme.
+    This fix applies only in wxPython v4.3 or higher. Note that changes to the
+    system theme will not be immediately reflected in the GUI if the application
+    is running. Restart the application for the changes to take effect.
   * Fixed inconsistencies in `xdg/*appdata.xml` file and `debian/copyright`.
 
 +------------------------------------+
