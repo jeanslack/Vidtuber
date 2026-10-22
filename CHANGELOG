@@ -7,7 +7,7 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Wed, 14 Oct 2026 V.2.0.5
+Thu, 22 Oct 2026 V.2.0.5
 
   * Requires Python version >= 3.11 (Because Python3.10 EOL).
   * Requires wxPython4.1.1 or later.
@@ -21,6 +21,16 @@ Wed, 14 Oct 2026 V.2.0.5
     system theme will not be immediately reflected in the GUI if the application
     is running. Restart the application for the changes to take effect.
   * Fixed inconsistencies in `xdg/*appdata.xml` file and `debian/copyright`.
+  * Fixed issue using `External downloader arguments` in the options dialog:
+    When absolute paths to executables were specified in the external
+    downloader's text field, they were also potentially replicated within the
+    syntax of the optional arguments - whenever such arguments were provided -
+    instead of simply using the downloader's name (basename).
+  * The argument syntax in the `External downloader arguments` text field
+    should now be entered just as you would in a terminal or console - that is,
+    without single or double quotes, square brackets, etc., unless such
+    characters are explicitly required by the external downloader's own
+    argument syntax.
 
 +------------------------------------+
 Tue, 30 Sep 2025 V.2.0.1

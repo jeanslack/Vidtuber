@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Apr.13.2024
+Rev: Oct.22.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -137,12 +137,12 @@ class YtdlpSettings(wx.Dialog):
         msg = _("Choosing an external downloader")
         labexdtitle = wx.StaticText(tabThree, wx.ID_ANY, msg)
         sizerextdown.Add(labexdtitle, 0, wx.ALL | wx.EXPAND, 5)
+        dlarray = ("`aria2c`, `axel`, `curl`, `ffmpeg`, `httpie`, `wget`")
         msg = (_("In addition to the default `native` one, yt-dlp can use the "
-                 "following external downloaders:\n"
-                 "`aria2c`, `avconv`, `axel`, `curl`, `ffmpeg`, `httpie`, "
-                 "`wget`.\nPlease note that using an external downloader the "
+                 "following external downloaders:\n{}.\n"
+                 "Please note that using an external downloader the "
                  "download status information may not be available."
-                 ))
+                 ).format(dlarray))
         labdwmsg = wx.StaticText(tabThree, wx.ID_ANY, (msg))
         sizerextdown.Add(labdwmsg, 0, wx.ALL, 5)
         sizerextdown.Add((0, 20))
@@ -156,9 +156,8 @@ class YtdlpSettings(wx.Dialog):
         labextdwargs = wx.StaticText(tabThree, wx.ID_ANY,
                                      _("External downloader arguments"))
         sizerextdown.Add(labextdwargs, 0, wx.LEFT | wx.TOP | wx.BOTTOM, 5)
-        val = self.appdata["external_downloader_args"]
-        args = " ".join(val) if isinstance(val, list) else 'None'
-        self.txtctrl_extdw_args = wx.TextCtrl(tabThree, wx.ID_ANY, args)
+        exedwargs = str(self.appdata["external_downloader_args"])
+        self.txtctrl_extdw_args = wx.TextCtrl(tabThree, wx.ID_ANY, exedwargs)
         sizerextdown.Add(self.txtctrl_extdw_args, 0, wx.EXPAND | wx.LEFT
                          | wx.RIGHT | wx.BOTTOM, 5)
         tabThree.SetSizer(sizerextdown)
@@ -526,7 +525,7 @@ class YtdlpSettings(wx.Dialog):
         Event on entering arguments for external downloader
         """
         val = str(self.txtctrl_extdw_args.GetValue()).strip()
-        args = None if val in ("", "None", "none") else val.split()
+        args = None if val in ("", "None", "none") else val
         self.sett["external_downloader_args"] = args
     # -------------------------------------------------------------------#
 

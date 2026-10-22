@@ -6,7 +6,7 @@ Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: March.17.2023
+Rev: Oct.22.2026
 Code checker: flake8, pylint
 
  This file is part of Vidtuber.
@@ -138,11 +138,16 @@ class ConfigManager:
 
     external_downloader (str):
         external downloader used by yt-dlp. Default is None
+        It is always recommended to use an absolute path here.
 
-    external_downloader_args (list):
-        args used by external downloader in yt-dlp. Default is None
-        List of options should be passed using aria2c:
-        ["-j", "1","-x", "1", "-s", "1"]
+    external_downloader_args (str):
+        Args used by external downloader in yt-dlp. Default is `None`.
+        Some example of options you can enter on setting dialog using
+        aria2c  `-x 16 -s 16 -k 1M`, `-j 1 -x 1 -s 1`, etc
+        This is the example of correct syntax in the final command
+        line string: "aria2c:-x 16 -s 16 -k 1M"
+        Note the column `:` between downloader name - Which must be
+        the `basename` NOT absolute pathname here - and arguments.
 
     proxy (str):
         Use the specified HTTP/HTTPS/SOCKS proxy. To enable SOCKS proxy,
