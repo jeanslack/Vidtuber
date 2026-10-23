@@ -7,7 +7,7 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Thu, 22 Oct 2026 V.2.0.5
+Fri, 23 Oct 2026 V.2.0.5
 
   * Requires Python version >= 3.11 (Because Python3.10 EOL).
   * Requires wxPython4.1.1 or later.
@@ -36,6 +36,10 @@ Thu, 22 Oct 2026 V.2.0.5
     automatically from the browser or select a `cookies.txt` file (in Netscape
     HTTP Cookie File format).
   * Update configuration file to v2.8 .
+  * Update translation catalog.
+  * Update UserGuide to v.2.0.5. This update has changed the Option Dialog.pdf
+    file by modifying the Download Options and Cookies sections.
+
 
 +------------------------------------+
 Tue, 30 Sep 2025 V.2.0.1
