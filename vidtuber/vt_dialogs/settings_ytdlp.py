@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Apr.13.2024
+Rev: Oct.22.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -137,12 +137,12 @@ class YtdlpSettings(wx.Dialog):
         msg = _("Choosing an external downloader")
         labexdtitle = wx.StaticText(tabThree, wx.ID_ANY, msg)
         sizerextdown.Add(labexdtitle, 0, wx.ALL | wx.EXPAND, 5)
+        dlarray = "`aria2c`, `axel`, `curl`, `ffmpeg`, `httpie`, `wget`"
         msg = (_("In addition to the default `native` one, yt-dlp can use the "
-                 "following external downloaders:\n"
-                 "`aria2c`, `avconv`, `axel`, `curl`, `ffmpeg`, `httpie`, "
-                 "`wget`.\nPlease note that using an external downloader the "
+                 "following external downloaders:\n{}.\n"
+                 "Please note that using an external downloader the "
                  "download status information may not be available."
-                 ))
+                 ).format(dlarray))
         labdwmsg = wx.StaticText(tabThree, wx.ID_ANY, (msg))
         sizerextdown.Add(labdwmsg, 0, wx.ALL, 5)
         sizerextdown.Add((0, 20))
@@ -156,9 +156,8 @@ class YtdlpSettings(wx.Dialog):
         labextdwargs = wx.StaticText(tabThree, wx.ID_ANY,
                                      _("External downloader arguments"))
         sizerextdown.Add(labextdwargs, 0, wx.LEFT | wx.TOP | wx.BOTTOM, 5)
-        val = self.appdata["external_downloader_args"]
-        args = " ".join(val) if isinstance(val, list) else 'None'
-        self.txtctrl_extdw_args = wx.TextCtrl(tabThree, wx.ID_ANY, args)
+        exedwargs = str(self.appdata["external_downloader_args"])
+        self.txtctrl_extdw_args = wx.TextCtrl(tabThree, wx.ID_ANY, exedwargs)
         sizerextdown.Add(self.txtctrl_extdw_args, 0, wx.EXPAND | wx.LEFT
                          | wx.RIGHT | wx.BOTTOM, 5)
         tabThree.SetSizer(sizerextdown)
@@ -318,16 +317,18 @@ class YtdlpSettings(wx.Dialog):
         sizercook.Add((0, 20))
         sizercookie = wx.BoxSizer(wx.HORIZONTAL)
 
-        msg = _('Allow cookies for authentication')
-        self.ckbx_usecook = wx.CheckBox(tabSev, wx.ID_ANY, msg)
-        self.ckbx_usecook.SetValue(self.appdata['use_cookie_file'])
-        sizercook.Add(self.ckbx_usecook, 0, wx.LEFT, 5)
-        labcookie = wx.StaticText(tabSev, wx.ID_ANY, _("Cookie file"))
-        sizercookie.Add(labcookie, 0, wx.LEFT | wx.TOP | wx.EXPAND, 5)
+        msg = _('Manage the cookie file manually')
+        self.ckbx_filecook = wx.CheckBox(tabSev, wx.ID_ANY, msg)
+        self.ckbx_filecook.SetValue(self.appdata['select_cookie_file'])
+        sizercook.Add(self.ckbx_filecook, 0, wx.LEFT, 5)
+        self.labcookie = wx.StaticText(tabSev, wx.ID_ANY, _("Cookie file"))
+        sizercookie.Add(self.labcookie, 0, wx.LEFT | wx.TOP | wx.EXPAND, 5)
         self.txtctrl_cook = wx.TextCtrl(tabSev, wx.ID_ANY, "",
                                         style=wx.TE_READONLY
                                         )
-        self.txtctrl_cook.SetValue(self.appdata["cookiefile"])
+        if (os.path.exists(self.sett['cookiefile'])
+           and os.path.isfile(self.sett['cookiefile'])):
+            self.txtctrl_cook.SetValue(self.appdata["cookiefile"])
         tip = _('File name from where cookies should be read and dumped to')
         self.txtctrl_cook.SetToolTip(tip)
         sizercookie.Add(self.txtctrl_cook, 1, wx.ALL | wx.EXPAND, 5)
@@ -350,11 +351,20 @@ class YtdlpSettings(wx.Dialog):
         self.cmbx_browser.SetValue(self.appdata['webbrowser'])
         sizerautocook.Add(self.cmbx_browser, 0, wx.LEFT | wx.TOP
                           | wx.CENTRE, 5)
-        if not self.appdata['autogen_cookie_file']:
-            self.labautocook.Disable(), self.cmbx_browser.Disable()
-        if not self.sett['use_cookie_file']:
-            self.btn_cookie.Disable(), self.ckbx_autocook.Disable()
+
+        if self.sett['select_cookie_file']:
+            self.ckbx_autocook.Disable(), self.labautocook.Disable()
+            self.cmbx_browser.Disable(), self.labcookie.Enable()
+            self.txtctrl_cook.Enable(), self.btn_cookie.Enable()
+        elif self.sett['autogen_cookie_file']:
+            self.ckbx_filecook.Disable(), self.labcookie.Disable()
+            self.txtctrl_cook.Disable(), self.btn_cookie.Disable()
+            self.labautocook.Enable(), self.cmbx_browser.Enable()
+        else:
+            self.labautocook.Disable(), self.labcookie.Disable()
+            self.cmbx_browser.Disable(), self.btn_cookie.Disable(),
             self.txtctrl_cook.Disable()
+
         sizercook.Add(sizerautocook, 0, wx.LEFT | wx.EXPAND, 5)
         tabSev.SetSizer(sizercook)
         notebook.AddPage(tabSev, _("Cookies"))
@@ -415,21 +425,21 @@ class YtdlpSettings(wx.Dialog):
         self.Bind(wx.EVT_BUTTON, self.on_ok, btn_ok)
         self.Bind(wx.EVT_TEXT, self.on_ext_downl, self.txtctrl_extdw)
         self.Bind(wx.EVT_TEXT, self.on_ext_downl_args, self.txtctrl_extdw_args)
-        self.Bind(wx.EVT_BUTTON, self.on_cookie_file, self.btn_cookie)
+        self.Bind(wx.EVT_BUTTON, self.on_choose_cookie, self.btn_cookie)
         self.Bind(wx.EVT_CHECKBOX, self.on_autogen_cookie, self.ckbx_autocook)
-        self.Bind(wx.EVT_COMBOBOX, self.on_autogen_cookie, self.cmbx_browser)
-        self.Bind(wx.EVT_CHECKBOX, self.on_enable_cookie, self.ckbx_usecook)
+        self.Bind(wx.EVT_CHECKBOX, self.on_file_cookie, self.ckbx_filecook)
+        self.Bind(wx.EVT_COMBOBOX, self.on_web_browser, self.cmbx_browser)
         # --------------------------------------------#
 
-    def on_enable_cookie(self, event):
+    def on_file_cookie(self, event):
         """
-        Event triggered on enabling cookies CheckBox.
+        Event triggered on enabling the "Choose cookie file manually"
+        CheckBox.
         """
-        if self.ckbx_usecook.GetValue():
-            self.ckbx_autocook.Enable()
-            self.btn_cookie.Enable()
-            self.txtctrl_cook.Enable()
-            self.sett['use_cookie_file'] = True
+        if self.ckbx_filecook.GetValue():
+            self.ckbx_autocook.Disable(), self.labcookie.Enable()
+            self.btn_cookie.Enable(), self.txtctrl_cook.Enable()
+            self.sett['select_cookie_file'] = True
         else:
             ckf = self.txtctrl_cook.GetValue()
             if os.path.exists(ckf) and os.path.isfile(ckf):
@@ -438,36 +448,26 @@ class YtdlpSettings(wx.Dialog):
                                  _('Please confirm'), wx.ICON_QUESTION
                                  | wx.CANCEL | wx.YES_NO, self) == wx.YES:
                     os.remove(ckf)
-            self.ckbx_autocook.SetValue(False)
-            self.on_autogen_cookie(None)
-            self.ckbx_autocook.Disable()
-            self.btn_cookie.Disable()
-            self.txtctrl_cook.SetValue("")
-            self.txtctrl_cook.Disable()
-            self.sett['use_cookie_file'] = False
+                    self.txtctrl_cook.SetValue("")
+
+            self.ckbx_autocook.Enable(), self.btn_cookie.Disable()
+            self.labcookie.Disable(), self.txtctrl_cook.Disable()
+            self.sett['select_cookie_file'] = False
     # ---------------------------------------------------------------------#
 
     def on_autogen_cookie(self, event):
         """
-        Event on checking Generate a cookie file from web
-        browser CheckBox.
+        Event on checking "Extract cookies automatically from
+        your browser" CheckBox.
         """
         if self.ckbx_autocook.GetValue():
+            self.ckbx_filecook.Disable()
             self.labautocook.Enable(), self.cmbx_browser.Enable()
             self.sett['autogen_cookie_file'] = True
-            self.sett['webbrowser'] = self.cmbx_browser.GetStringSelection()
-            path = os.path.join(self.appdata["confdir"], 'cookies.txt')
-            self.sett["cookiefile"] = path
-            self.txtctrl_cook.SetValue(path)
-            self.sett["cookiesfrombrowser"] = (self.sett['webbrowser'],
-                                               None, None, None)
-
         else:
+            self.ckbx_filecook.Enable()
             self.labautocook.Disable(), self.cmbx_browser.Disable()
             self.sett['autogen_cookie_file'] = False
-            self.sett["cookiefile"] = ""
-            self.txtctrl_cook.SetValue("")
-            self.sett["cookiesfrombrowser"] = (None, None, None, None)
     # ---------------------------------------------------------------------#
 
     def on_web_browser(self, event):
@@ -479,7 +479,7 @@ class YtdlpSettings(wx.Dialog):
                                            None, None, None)
     # ---------------------------------------------------------------------#
 
-    def on_cookie_file(self, event):
+    def on_choose_cookie(self, event):
         """
         Event triggered clicking on Button to
         select a new cookies.txt file.
@@ -494,6 +494,7 @@ class YtdlpSettings(wx.Dialog):
                 return
             filename = fdlg.GetPath()
             self.txtctrl_cook.SetValue(filename)
+            self.sett["cookiefile"] = filename
     # ---------------------------------------------------------------------#
 
     def on_downloadfile(self, event):
@@ -526,7 +527,7 @@ class YtdlpSettings(wx.Dialog):
         Event on entering arguments for external downloader
         """
         val = str(self.txtctrl_extdw_args.GetValue()).strip()
-        args = None if val in ("", "None", "none") else val.split()
+        args = None if val in ("", "None", "none") else val
         self.sett["external_downloader_args"] = args
     # -------------------------------------------------------------------#
 

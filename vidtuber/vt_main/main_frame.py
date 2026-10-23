@@ -336,8 +336,8 @@ class MainFrame(wx.Frame):
                                           'Vidtuber/pulls'))
         spons = helpButton.Append(wx.ID_ANY, _("Sponsor this project"),
                                   _("Become a developer supporter"))
-        donat = helpButton.Append(wx.ID_ANY, _("Donate"),
-                                  _("Donate to the app developer"))
+        donat = helpButton.Append(wx.ID_ANY, _("Donate now ❤️"),
+                                  _("Donate to the Vidtuber project"))
         helpButton.AppendSeparator()
         projButton = wx.Menu()  # projects sub menu
         helpButton.AppendSubMenu(projButton,

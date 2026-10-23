@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Oct.14.2026
+Rev: Oct.22.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -24,6 +24,7 @@ This file is part of Vidtuber.
    You should have received a copy of the GNU General Public License
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
+import os
 import shutil
 import itertools
 import wx
@@ -66,8 +67,9 @@ def from_api_to_cli(data, execpath):
     if data['external_downloader']:
         opt += f'--downloader "{data["external_downloader"]}" '
     if data['external_downloader_args']:
-        dwargs = ' '.join(data["external_downloader_args"])
-        opt += (f'--downloader-args "{data["external_downloader"]}:{dwargs}" ')
+        dwargs = data["external_downloader_args"]
+        extdl = os.path.basename(data["external_downloader"])
+        opt += (f'--downloader-args "{extdl}:{dwargs}" ')
     if data['yesplaylist'] is True:
         opt += '--yes-playlist '
         if data['playlist_items']:
@@ -498,7 +500,7 @@ class DLoad_Gui(wx.Panel):
             postprocessors.append({'key': 'EmbedThumbnail'})
         if self.opt["SUBS"]["embedsubtitle"]:
             postprocessors.append({'key': 'FFmpegEmbedSubtitle'})
-        if (self.appdata["use_cookie_file"]
+        if (self.appdata["select_cookie_file"]
                 and self.appdata["cookiefile"].strip()):
             data["cookiefile"] = self.appdata["cookiefile"]
         if self.appdata["autogen_cookie_file"]:
