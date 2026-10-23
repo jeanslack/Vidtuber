@@ -500,7 +500,7 @@ class DLoad_Gui(wx.Panel):
             postprocessors.append({'key': 'EmbedThumbnail'})
         if self.opt["SUBS"]["embedsubtitle"]:
             postprocessors.append({'key': 'FFmpegEmbedSubtitle'})
-        if (self.appdata["use_cookie_file"]
+        if (self.appdata["select_cookie_file"]
                 and self.appdata["cookiefile"].strip()):
             data["cookiefile"] = self.appdata["cookiefile"]
         if self.appdata["autogen_cookie_file"]:

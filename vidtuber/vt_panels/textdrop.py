@@ -42,7 +42,7 @@ def drag_and_drop_command_build():
     execpath = appdata['yt-dlp_cmd']
     kwa = {}
 
-    if (appdata["use_cookie_file"] and appdata["cookiefile"].strip()):
+    if (appdata["select_cookie_file"] and appdata["cookiefile"].strip()):
         kwa["cookiefile"] = appdata["cookiefile"]
     if appdata["autogen_cookie_file"]:
         cfb = tuple(appdata["cookiesfrombrowser"])

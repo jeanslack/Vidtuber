@@ -31,6 +31,11 @@ Thu, 22 Oct 2026 V.2.0.5
     without single or double quotes, square brackets, etc., unless such
     characters are explicitly required by the external downloader's own
     argument syntax.
+  * Fixed issue with incorrect cookie handling in the Options dialog. Now, only
+    one checkbox can be selected at a time: you can either extract cookies
+    automatically from the browser or select a `cookies.txt` file (in Netscape
+    HTTP Cookie File format).
+  * Update configuration file to v2.8 .
 
 +------------------------------------+
 Tue, 30 Sep 2025 V.2.0.1

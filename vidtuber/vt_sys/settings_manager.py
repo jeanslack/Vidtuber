@@ -171,6 +171,7 @@ class ConfigManager:
         geo_bypass_ip_block (str)
 
     cookie file setup options:
+        select_cookie_file (bool)
         cookiefile (str)
         autogen_cookie_file (bool)
         webbrowser (str),
@@ -180,7 +181,7 @@ class ConfigManager:
         column width in the format code panel (ytdownloader).
 
     """
-    VERSION = 2.7
+    VERSION = 2.8
     DEFAULT_OPTIONS = {"confversion": VERSION,
                        "yt-dlp_cmd": "",
                        "ytdlp_islocal": False,
@@ -228,7 +229,7 @@ class ConfigManager:
                        "geo_bypass": "",
                        "geo_bypass_country": "",
                        "geo_bypass_ip_block": "",
-                       "use_cookie_file": False,
+                       "select_cookie_file": False,
                        "cookiefile": "",
                        "autogen_cookie_file": False,
                        "webbrowser": "firefox",
