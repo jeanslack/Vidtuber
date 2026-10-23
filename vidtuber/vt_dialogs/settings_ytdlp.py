@@ -327,8 +327,8 @@ class YtdlpSettings(wx.Dialog):
                                         style=wx.TE_READONLY
                                         )
         if (os.path.exists(self.sett['cookiefile'])
-             and os.path.isfile(self.sett['cookiefile'])):
-                self.txtctrl_cook.SetValue(self.appdata["cookiefile"])
+           and os.path.isfile(self.sett['cookiefile'])):
+            self.txtctrl_cook.SetValue(self.appdata["cookiefile"])
         tip = _('File name from where cookies should be read and dumped to')
         self.txtctrl_cook.SetToolTip(tip)
         sizercookie.Add(self.txtctrl_cook, 1, wx.ALL | wx.EXPAND, 5)
