@@ -7,7 +7,7 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Fri, 23 Oct 2026 V.2.0.5
+Fri, 23 Oct 2026 V.2.0.6
 
   * Requires Python version >= 3.11 (Because Python3.10 EOL).
   * Requires wxPython4.1.1 or later.
