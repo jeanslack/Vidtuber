@@ -1,12 +1,12 @@
 # -*- coding: UTF-8 -*-
 """
 Name: downloader_thread.py
-Porpose: long processing task using yt-dlp executable
+Porpose: long processing task using yt-dlp executable (file download)
 Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: June.05.2025
+Rev: October.25.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -24,9 +24,7 @@ This file is part of Vidtuber.
    You should have received a copy of the GNU General Public License
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
-import os
 from threading import Thread
-import signal
 import time
 import itertools
 import platform
@@ -37,13 +35,6 @@ from vidtuber.vt_utils.utils import Popen
 from vidtuber.vt_io.make_filelog import loginfo, logerror
 if not platform.system() == 'Windows':
     import shlex
-
-
-def killbill(pid):
-    """
-    kill the process sending a Ctrl+C event to yt-dlp
-    """
-    lambda: os.kill(pid, signal.CTRL_C_EVENT)
 
 
 class DownloadProcess(Thread):
@@ -116,7 +107,14 @@ class DownloadProcess(Thread):
                                      status=0,
                                      )
                         if self.stop_work_thread:
-                            killbill(proc.pid)
+                            try:
+                                proc.terminate()
+                                proc.wait(timeout=3)
+                            except subprocess.TimeoutExpired:
+                                proc.kill()  # if unresponsive, force exit
+                            except OSError:
+                                pass  # Handles cases where the proc
+
                             wx.CallAfter(pub.sendMessage,
                                          "UPDATE_YDL_EXECUTABLE_EVT",
                                          output='STOP',

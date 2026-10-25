@@ -11,6 +11,9 @@ Sun, 25 Oct 2026 V.2.0.8
 
   * Fix bug on Dragging files when cookies from browser is setted; the
     `cookiesfrombrowser` list does not set any string values.
+  * Improved deterministic, cross-platform termination of yt-dlp executable.
+  * Improved shutdown based on native OS status codes rather than text strings.
+  * Some code refactoring.
 
 
 +------------------------------------+

@@ -1,12 +1,12 @@
 # -*- coding: UTF-8 -*-
 """
 Name: get_output_thread.py
-Porpose: long processing task
+Porpose: long processing task (URL data retrieval in JSON format)
 Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Sep.09.2025
+Rev: October.25.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -24,9 +24,7 @@ This file is part of Vidtuber.
    You should have received a copy of the GNU General Public License
    along with Vidtuber.  If not, see <http://www.gnu.org/licenses/>.
 """
-import os
 from threading import Thread
-import signal
 import platform
 import subprocess
 import wx
@@ -35,14 +33,6 @@ from vidtuber.vt_utils.utils import Popen
 from vidtuber.vt_io.make_filelog import loginfo, logerror
 if not platform.system() == 'Windows':
     import shlex
-
-
-def killbill(pid):
-    """
-    kill the process sending a Ctrl+C event to subprocess executable
-    """
-    lambda: os.kill(pid, signal.CTRL_C_EVENT)
-# ----------------------------------------------------------------#
 
 
 class FetchOutputDataProcess(Thread):
@@ -120,6 +110,12 @@ class FetchOutputDataProcess(Thread):
                        universal_newlines=True,
                        encoding='utf-8',
                        ) as self.proc:
+                # the user pressed stop before the process was even bound
+                if self.stop_work_thread:
+                    try:
+                        self.proc.terminate()
+                    except OSError:
+                        pass
                 out = self.proc.communicate()
 
                 if self.proc.returncode:  # if returncode == 1
@@ -152,5 +148,12 @@ class FetchOutputDataProcess(Thread):
         Sets the stop work thread to terminate the process
         """
         self.stop_work_thread = True
-        self.proc.terminate()
-        killbill(self.proc.pid)
+        if self.proc:
+            try:
+                self.proc.terminate()
+                # A small check with timeout to avoid residual blocks
+                self.proc.wait(timeout=1)
+            except subprocess.TimeoutExpired:
+                self.proc.kill()
+            except OSError:
+                pass  # Process already closed

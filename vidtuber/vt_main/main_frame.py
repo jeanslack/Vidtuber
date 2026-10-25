@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: June.06.2025
+Rev: October.25.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -166,33 +166,22 @@ class MainFrame(wx.Frame):
         """
         confmanager = ConfigManager(self.appdata['fileconfpath'])
         sett = confmanager.read_options()
+
         sett['window_size'] = list(self.GetSize())
         sett['window_position'] = list(self.GetPosition())
         sett['subtitles_options'] = self.dloader_Gui.opt["SUBS"]
-        textdndpastcolwidth = [self.textDnDTarget.urlctrl.GetColumnWidth(0),
-                               self.textDnDTarget.urlctrl.GetColumnWidth(1),
-                               self.textDnDTarget.urlctrl.GetColumnWidth(2),
-                               self.textDnDTarget.urlctrl.GetColumnWidth(3),
-                               self.textDnDTarget.urlctrl.GetColumnWidth(4),
-                               self.textDnDTarget.urlctrl.GetColumnWidth(5),
-                               ]
-        sett['textdndpaste_column_width'] = textdndpastcolwidth
-        fcodecolwidth = [self.dloader_Gui.panel_cod.fcode.GetColumnWidth(0),
-                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(1),
-                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(2),
-                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(3),
-                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(4),
-                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(5),
-                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(6),
-                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(7),
-                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(8),
-                         self.dloader_Gui.panel_cod.fcode.GetColumnWidth(9),
-                         ]
-        sett['frmtcode_column_width'] = fcodecolwidth
-        val = self.dloader_Gui.panel_cod.ckbx_mrg.GetValue()
-        sett['merge_single_file'] = val
-        val = self.dloader_Gui.panel_cod.ckbx_best.GetValue()
-        sett['only_best_quality'] = val
+
+        urlctrl = self.textDnDTarget.urlctrl
+        sett['textdndpaste_column_width'] = [urlctrl.GetColumnWidth(i) for i
+                                             in range(urlctrl.GetColumnCount())
+                                             ]
+        fcode = self.dloader_Gui.panel_cod.fcode
+        sett['frmtcode_column_width'] = [fcode.GetColumnWidth(i) for i
+                                         in range(fcode.GetColumnCount())
+                                         ]
+        panel_cod = self.dloader_Gui.panel_cod
+        sett['merge_single_file'] = panel_cod.ckbx_mrg.GetValue()
+        sett['only_best_quality'] = panel_cod.ckbx_best.GetValue()
         sett['download_mode'] = self.dloader_Gui.choice.GetSelection()
         sett['video_format'] = self.dloader_Gui.cmbx_vformat.GetSelection()
         sett['audio_format'] = self.dloader_Gui.cmbx_af.GetSelection()
@@ -861,15 +850,24 @@ class MainFrame(wx.Frame):
         if self.checks_running_processes():
             return
 
+        # Securely pre-detect password before writing options to disk
+        sudo_pwd = self.appdata.get('sudo_password', None)
+
         self.write_option_before_exit()
 
         msgdlg = _('The system will turn off in {0} seconds')
         title = _('Vidtuber - Shutdown!')
+
+        # dispays countdown popup
         dlg = CountDownDlg(self, timeout=5, message=msgdlg, caption=title)
         res = dlg.ShowModal() == wx.ID_OK
         dlg.Destroy()
+
         if res:
-            succ = shutdown_system(self.appdata['sudo_password'])
+            # Passing the extracted credential temporarily
+            succ = shutdown_system(sudo_pwd)
+
+            # if exception (i.e OSError or False)
             if not succ:
                 msg = (_("Error while shutting down. Please see "
                          "file log for details."))
