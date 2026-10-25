@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Oct.22.2026
+Rev: Oct.25.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -464,10 +464,12 @@ class YtdlpSettings(wx.Dialog):
             self.ckbx_filecook.Disable()
             self.labautocook.Enable(), self.cmbx_browser.Enable()
             self.sett['autogen_cookie_file'] = True
+            self.on_web_browser(None)  # default selected cookiesfrombrowser
         else:
             self.ckbx_filecook.Enable()
             self.labautocook.Disable(), self.cmbx_browser.Disable()
             self.sett['autogen_cookie_file'] = False
+            self.sett["cookiesfrombrowser"] = (None, None, None, None)
     # ---------------------------------------------------------------------#
 
     def on_web_browser(self, event):
