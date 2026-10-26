@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: July.07.2025
+Rev: October.26.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -698,8 +698,8 @@ class SetUp(wx.Dialog):
         Open default web browser via Python Web-browser controller.
         see <https://docs.python.org/3.8/library/webbrowser.html>
         """
-        page = ('https://jeanslack.github.io/Vidtuber/User-guide/'
-                'Startup_and_Setup_en.pdf')
+        page = ('https://github.com/jeanslack/Vidtuber/blob/main/docs/'
+                'UserGuide/Preferences_Dialog_en.pdf')
 
         webbrowser.open(page)
     # --------------------------------------------------------------------#
