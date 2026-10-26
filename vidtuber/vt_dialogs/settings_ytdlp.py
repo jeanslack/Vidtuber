@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Oct.25.2026
+Rev: Oct.26.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -40,9 +40,9 @@ class YtdlpSettings(wx.Dialog):
 
     def __init__(self, parent):
         """
-        self.appdata: (dict) default settings already loaded.
-        self.confmanager: instance to ConfigManager class
-        self.sett: (dict) current user settings from file conf.
+        self.appdata: (dict) default settings already loaded in memory.
+        self.confmanager: instance to ConfigManager class to read fileconf now
+        self.sett: (dict) current user settings just readed from file conf.
 
         """
         get = wx.GetApp()
@@ -177,17 +177,72 @@ class YtdlpSettings(wx.Dialog):
         labproxy = wx.StaticText(tabFour, wx.ID_ANY, (msg))
         sizernet.Add(labproxy, 0, wx.ALL, 5)
         sizernet.Add((0, 20))
-
-        gridproxy = wx.FlexGridSizer(1, 2, 0, 0)
+        gridproxy = wx.BoxSizer(wx.HORIZONTAL)
         proxylab = wx.StaticText(tabFour, wx.ID_ANY, _("Proxy"))
-        gridproxy.Add(proxylab, 0, wx.ALL | wx.EXPAND, 5)
+        gridproxy.Add(proxylab, 0, wx.LEFT | wx.TOP | wx.CENTER, 5)
         self.txtctrl_proxy = wx.TextCtrl(tabFour, wx.ID_ANY, "",
                                          size=(450, -1))
         self.txtctrl_proxy.SetValue(self.appdata["proxy"])
-        gridproxy.Add(self.txtctrl_proxy, 0, wx.ALL | wx.EXPAND, 5)
+        gridproxy.Add(self.txtctrl_proxy, 0, wx.LEFT | wx.TOP | wx.CENTER, 5)
         sizernet.Add(gridproxy, 0, wx.ALL | wx.EXPAND, 5)
+        sizernet.Add((0, 10))
+        msg = _("Timeouts and Retries")
+        labtouttitle = wx.StaticText(tabFour, wx.ID_ANY, msg)
+        sizernet.Add(labtouttitle, 0, wx.ALL | wx.EXPAND, 5)
+        msg = (_('Settings for network timeout before failure, the maximum '
+                 'number of attempts to complete a download, and the maximum '
+                 'number of attempts for individual fragments (HLS/DASH)'))
+        labtimeout = wx.StaticText(tabFour, wx.ID_ANY, (msg))
+        labtimeout.Wrap(600)
+        sizernet.Add(labtimeout, 0, wx.ALL, 5)
+        sizernet.Add((0, 20))
+        gridtimeout = wx.BoxSizer(wx.HORIZONTAL)
+        timeoutlab = wx.StaticText(tabFour, wx.ID_ANY, _("Timeout"))
+        gridtimeout.Add(timeoutlab, 0, wx.LEFT | wx.TOP | wx.CENTER, 5)
+        self.spin_timeout = wx.SpinCtrl(tabFour, wx.ID_ANY,
+                                        str(self.appdata["timeoutDL"]), min=0,
+                                        max=3600, size=(-1, -1),
+                                        style=wx.TE_PROCESS_ENTER,
+                                        )
+        tip = (_('Sets the maximum wait time (in seconds) before yt-dlp '
+                 'considers a connection to be stalled and terminates it '
+                 'due to server inactivity. Default is 20 seconds.'))
+        self.spin_timeout.SetToolTip(tip)
+        gridtimeout.Add(self.spin_timeout, 0, wx.LEFT | wx.TOP | wx.CENTER, 5)
+        gridtimeout.Add((20, 0))
+        retrlab = wx.StaticText(tabFour, wx.ID_ANY, _("Retries"))
+        gridtimeout.Add(retrlab, 0, wx.LEFT | wx.TOP | wx.CENTER, 5)
+        retries = str(self.appdata["retriesDL"])
+        valretries = '0' if retries == 'infinite' else retries
+        self.spin_retries = wx.SpinCtrl(tabFour, wx.ID_ANY, valretries, min=0,
+                                        max=999, size=(-1, -1),
+                                        style=wx.TE_PROCESS_ENTER,
+                                        )
+        tip = (_('Sets how many times to retry starting or resuming the '
+                 'download if the connection drops or the server returns '
+                 'a transient error. Default is 10 times; 0 means infinite.'))
+        self.spin_retries.SetToolTip(tip)
+        gridtimeout.Add(self.spin_retries, 0, wx.LEFT | wx.TOP | wx.CENTER, 5)
+        gridtimeout.Add((20, 0))
+        fraglab = wx.StaticText(tabFour, wx.ID_ANY, _("Fragment Retries"))
+        gridtimeout.Add(fraglab, 0, wx.LEFT | wx.TOP | wx.CENTER, 5)
+        frag_retries = str(self.appdata["retriesfragDL"])
+        valfragreties = '0' if frag_retries == 'infinite' else frag_retries
+        self.spin_frag = wx.SpinCtrl(tabFour, wx.ID_ANY, valfragreties, min=0,
+                                     max=999, size=(-1, -1),
+                                     style=wx.TE_PROCESS_ENTER,
+                                     )
+        tip = (_('This value determines how many attempts to make for each '
+                 'individual fragment before giving up. This applies only '
+                 'when yt-dlp downloads using DASH, hlsnative, or ISM '
+                 '(formats that are split into fragments). Default is 10 '
+                 'time; 0 means infinite.'))
+        self.spin_frag.SetToolTip(tip)
+        gridtimeout.Add(self.spin_frag, 0, wx.LEFT | wx.TOP | wx.CENTER, 5)
+        sizernet.Add(gridtimeout, 0, wx.ALL | wx.EXPAND, 5)
         tabFour.SetSizer(sizernet)
         notebook.AddPage(tabFour, _("Network"))
+
         # -----tab 5
         tabFive = wx.Panel(notebook, wx.ID_ANY)
         sizergeo = wx.BoxSizer(wx.VERTICAL)
@@ -326,8 +381,8 @@ class YtdlpSettings(wx.Dialog):
         self.txtctrl_cook = wx.TextCtrl(tabSev, wx.ID_ANY, "",
                                         style=wx.TE_READONLY
                                         )
-        if (os.path.exists(self.sett['cookiefile'])
-           and os.path.isfile(self.sett['cookiefile'])):
+        if (os.path.exists(self.appdata['cookiefile'])
+           and os.path.isfile(self.appdata['cookiefile'])):
             self.txtctrl_cook.SetValue(self.appdata["cookiefile"])
         tip = _('File name from where cookies should be read and dumped to')
         self.txtctrl_cook.SetToolTip(tip)
@@ -352,11 +407,11 @@ class YtdlpSettings(wx.Dialog):
         sizerautocook.Add(self.cmbx_browser, 0, wx.LEFT | wx.TOP
                           | wx.CENTRE, 5)
 
-        if self.sett['select_cookie_file']:
+        if self.appdata['select_cookie_file']:
             self.ckbx_autocook.Disable(), self.labautocook.Disable()
             self.cmbx_browser.Disable(), self.labcookie.Enable()
             self.txtctrl_cook.Enable(), self.btn_cookie.Enable()
-        elif self.sett['autogen_cookie_file']:
+        elif self.appdata['autogen_cookie_file']:
             self.ckbx_filecook.Disable(), self.labcookie.Disable()
             self.txtctrl_cook.Disable(), self.btn_cookie.Disable()
             self.labautocook.Enable(), self.cmbx_browser.Enable()
@@ -389,6 +444,8 @@ class YtdlpSettings(wx.Dialog):
             labexdtitle.SetFont(wx.Font(13, wx.DEFAULT, wx.NORMAL, wx.BOLD))
             labproxtitle.SetFont(wx.Font(13, wx.DEFAULT, wx.NORMAL, wx.BOLD))
             labproxy.SetFont(wx.Font(11, wx.SWISS, wx.NORMAL, wx.NORMAL))
+            labtouttitle.SetFont(wx.Font(13, wx.DEFAULT, wx.NORMAL, wx.BOLD))
+            labtimeout.SetFont(wx.Font(11, wx.SWISS, wx.NORMAL, wx.NORMAL))
             labgeoproxtitle.SetFont(wx.Font(13, wx.DEFAULT, wx.NORMAL,
                                             wx.BOLD))
             labgeogeneral.SetFont(wx.Font(11, wx.SWISS, wx.NORMAL, wx.NORMAL))
@@ -402,6 +459,8 @@ class YtdlpSettings(wx.Dialog):
             labexdtitle.SetFont(wx.Font(10, wx.DEFAULT, wx.NORMAL, wx.BOLD))
             labproxtitle.SetFont(wx.Font(10, wx.DEFAULT, wx.NORMAL, wx.BOLD))
             labproxy.SetFont(wx.Font(8, wx.SWISS, wx.NORMAL, wx.NORMAL))
+            labtouttitle.SetFont(wx.Font(10, wx.DEFAULT, wx.NORMAL, wx.BOLD))
+            labtimeout.SetFont(wx.Font(8, wx.SWISS, wx.NORMAL, wx.NORMAL))
             labgeoproxtitle.SetFont(wx.Font(10, wx.DEFAULT, wx.NORMAL,
                                             wx.BOLD))
             labgeogeneral.SetFont(wx.Font(8, wx.SWISS, wx.NORMAL, wx.NORMAL))
@@ -538,8 +597,8 @@ class YtdlpSettings(wx.Dialog):
         Open default web browser via Python Web-browser controller.
         see <https://docs.python.org/3.8/library/webbrowser.html>
         """
-        page = ('https://jeanslack.github.io/Vidtuber/User-guide/'
-                'YouTube_Downloader_Options_en.pdf')
+        page = ('https://github.com/jeanslack/Vidtuber/blob/main/docs/'
+                'UserGuide/Options_Dialog_en.pdf')
         webbrowser.open(page)
     # --------------------------------------------------------------------#
 
@@ -569,9 +628,15 @@ class YtdlpSettings(wx.Dialog):
         self.sett['geo_bypass_country'] = self.txtctrl_geocountry.GetValue()
         self.sett['geo_bypass_ip_block'] = self.txtctrl_geoipblock.GetValue()
         self.sett['cookiefile'] = self.txtctrl_cook.GetValue()
+        self.sett['timeoutDL'] = str(self.spin_timeout.GetValue())
+        retries = self.spin_retries.GetValue()
+        self.sett['retriesDL'] = "infinite" if retries == 0 else str(retries)
+        frag = self.spin_frag.GetValue()
+        self.sett['retriesfragDL'] = "infinite" if frag == 0 else str(frag)
         self.confmanager.write_options(**self.sett)
         self.appdata.update(self.sett)
-        # do not store this data in the configuration file
+        # do not store the following data in the configuration file using
+        # `sett`, just use `self.appadata` instead.
         self.appdata['password'] = self.txtctrl_pass.GetValue()
         self.appdata['videopassword'] = self.txtctrl_vpass.GetValue()
         event.Skip()

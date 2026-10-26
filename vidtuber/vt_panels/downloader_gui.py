@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Oct.22.2026
+Rev: Oct.26.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -90,6 +90,9 @@ def from_api_to_cli(data, execpath):
     opt += '--force-overwrites ' if data['overwrites'] else ''
     opt += '--no-check-certificates ' if data['nocheckcertificate'] else ''
     opt += f'--proxy "{data["proxy"]}" ' if data["proxy"] else ''
+    opt += f'--socket-timeout {data['socket_timeout']} '
+    opt += f'--retries {data['retries']} '
+    opt += f'--fragment-retries {data['fragment_retries']} '
     if data['geo_verification_proxy']:
         opt += f'--geo-verification-proxy "{data["geo_verification_proxy"]}" '
     geo = (f'{data["geo_bypass"]} {data["geo_bypass_country"]} '
@@ -525,6 +528,9 @@ class DLoad_Gui(wx.Panel):
         data['no_color'] = True
         data['nocheckcertificate'] = self.appdata["ssl_certificate"]
         data['proxy'] = self.appdata["proxy"]
+        data['socket_timeout'] = self.appdata["timeoutDL"]
+        data['retries'] = self.appdata["retriesDL"]
+        data['fragment_retries'] = self.appdata["retriesfragDL"]
         data['username'] = self.appdata["username"]
         data['password'] = self.appdata["password"]
         data['videopassword'] = self.appdata["videopassword"]

@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: October.25.2026
+Rev: October.26.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -305,8 +305,8 @@ class MainFrame(wx.Frame):
         # ------------------ help menu
         helpButton = wx.Menu()
         helpItem = helpButton.Append(wx.ID_HELP, _("User guide"),
-                                     ('https://github.com/jeanslack/'
-                                      'Vidtuber'))
+                                     ('https://github.com/jeanslack/Vidtuber'
+                                      '/tree/main/docs/UserGuide'))
         helpButton.AppendSeparator()
         dscrp = (_("System information"),
                  _("Get generic information about the installed system."))
@@ -495,7 +495,8 @@ class MainFrame(wx.Frame):
         Web-browser controller.
         see <https://docs.python.org/3.8/library/webbrowser.html>
         """
-        page = 'https://github.com/jeanslack/Vidtuber'
+        page = ('https://github.com/jeanslack/Vidtuber'
+                '/tree/main/docs/UserGuide')
         webbrowser.open(page)
     # ------------------------------------------------------------------#
 

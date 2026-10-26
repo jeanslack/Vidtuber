@@ -6,7 +6,7 @@ Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Oct.22.2026
+Rev: Oct.26.2026
 Code checker: flake8, pylint
 
  This file is part of Vidtuber.
@@ -154,6 +154,11 @@ class ConfigManager:
         specify a proper scheme, e.g. socks5://user:pass@127.0.0.1:1080/ .
         Pass in an empty string (--proxy "") for direct connection
 
+    Timeout an Retries options:
+        timeoutDL: (str)
+        retriesDL: (str)
+        retriesfragDL: (str)
+
     username (str):
         Login with this account ID
 
@@ -181,7 +186,7 @@ class ConfigManager:
         column width in the format code panel (ytdownloader).
 
     """
-    VERSION = 2.8
+    VERSION = 2.9
     DEFAULT_OPTIONS = {"confversion": VERSION,
                        "yt-dlp_cmd": "",
                        "ytdlp_islocal": False,
@@ -222,6 +227,9 @@ class ConfigManager:
                        "external_downloader": None,
                        "external_downloader_args": None,
                        "proxy": "",
+                       "timeoutDL": "20",
+                       "retriesDL": "10",
+                       "retriesfragDL": "10",
                        "username": "",
                        "password": "",
                        "videopassword": "",
