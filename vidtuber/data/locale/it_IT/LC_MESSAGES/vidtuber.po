@@ -5,15 +5,15 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Vidtuber 2.0.5\n"
+"Project-Id-Version: Vidtuber 2.1.10\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-23 16:53+0200\n"
-"PO-Revision-Date: 2026-10-23 16:55+0200\n"
+"POT-Creation-Date: 2026-10-26 15:56+0100\n"
+"PO-Revision-Date: 2026-10-26 17:07+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
@@ -100,12 +100,12 @@ msgid "URL"
 msgstr "URL"
 
 #: vidtuber/vt_dialogs/playlist_indexing.py:103
-#: vidtuber/vt_panels/formatcode_id.py:98 vidtuber/vt_panels/textdrop.py:121
+#: vidtuber/vt_panels/formatcode_id.py:98 vidtuber/vt_panels/textdrop.py:124
 msgid "Title"
 msgstr "Titolo"
 
 #: vidtuber/vt_dialogs/playlist_indexing.py:104
-#: vidtuber/vt_panels/textdrop.py:124
+#: vidtuber/vt_panels/textdrop.py:127
 msgid "Type"
 msgstr "Tipo"
 
@@ -146,7 +146,7 @@ msgid "Add range to the selected playlist. Can be used multiple times."
 msgstr "Aggiungi intervallo alla playlist selezionata. Utilizzabile più volte."
 
 #: vidtuber/vt_dialogs/playlist_indexing.py:209
-#: vidtuber/vt_panels/downloader_gui.py:197
+#: vidtuber/vt_panels/downloader_gui.py:200
 msgid "Playlist Editor"
 msgstr "Editor Playlist"
 
@@ -221,7 +221,7 @@ msgstr "Abilita percorso personalizzato esecuzione yt-dlp."
 #: vidtuber/vt_dialogs/settings_vidtuber.py:88
 #: vidtuber/vt_dialogs/settings_vidtuber.py:115
 #: vidtuber/vt_dialogs/settings_vidtuber.py:127
-#: vidtuber/vt_dialogs/settings_ytdlp.py:123 vidtuber/vt_panels/textdrop.py:252
+#: vidtuber/vt_dialogs/settings_ytdlp.py:123 vidtuber/vt_panels/textdrop.py:255
 msgid "Change"
 msgstr "Modifica"
 
@@ -314,7 +314,7 @@ msgstr ""
 "Se necessario, ricordati di riattivarle."
 
 #: vidtuber/vt_dialogs/settings_vidtuber.py:231
-#: vidtuber/vt_main/main_frame.py:281
+#: vidtuber/vt_main/main_frame.py:270
 msgid "Exit the application"
 msgstr "Esci dall'applicazione"
 
@@ -378,8 +378,8 @@ msgstr "Per questo file non è concesso il permesso di esecuzione:"
 #: vidtuber/vt_dialogs/settings_vidtuber.py:619
 #: vidtuber/vt_dialogs/wizard_dlg.py:221 vidtuber/vt_dialogs/wizard_dlg.py:253
 #: vidtuber/vt_dialogs/wizard_dlg.py:416 vidtuber/vt_dialogs/wizard_dlg.py:532
-#: vidtuber/vt_dialogs/wizard_dlg.py:559 vidtuber/vt_main/main_frame.py:223
-#: vidtuber/vt_main/main_frame.py:246
+#: vidtuber/vt_dialogs/wizard_dlg.py:559 vidtuber/vt_main/main_frame.py:212
+#: vidtuber/vt_main/main_frame.py:235
 msgid "Vidtuber - Warning!"
 msgstr "Vidtuber - Attenzione!"
 
@@ -487,65 +487,97 @@ msgstr ""
 "uno schema appropriato, ad esempio:\t{}\n"
 "Se non usi un proxy, per la connessione diretta lascia semplicemente vuoto il campo di testo."
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:182
+#: vidtuber/vt_dialogs/settings_ytdlp.py:181
 msgid "Proxy"
 msgstr "Proxy"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:190
+#: vidtuber/vt_dialogs/settings_ytdlp.py:189
+msgid "Timeouts and Retries"
+msgstr "Timeout e numero di Tentativi"
+
+#: vidtuber/vt_dialogs/settings_ytdlp.py:192
+msgid "Settings for network timeout before failure, the maximum number of attempts to complete a download, and the maximum number of attempts for individual fragments (HLS/DASH)"
+msgstr "Impostazioni relative al timeout di rete prima dell'interruzione, al numero massimo di tentativi per completare un download e al numero massimo di tentativi per i singoli frammenti nell'ambito di streaming frazionati (DASH, HLS/m3u8, ISM)"
+
+#: vidtuber/vt_dialogs/settings_ytdlp.py:200
+msgid "Timeout"
+msgstr "Timeout"
+
+#: vidtuber/vt_dialogs/settings_ytdlp.py:207
+msgid "Sets the maximum wait time (in seconds) before yt-dlp considers a connection to be stalled and terminates it due to server inactivity. Default is 20 seconds."
+msgstr "Imposta il tempo di attesa massimo (in secondi) prima che yt-dlp consideri una connessione bloccata e la interrompa a causa dell'inattività del server. Valore predefinito 20 secondi."
+
+#: vidtuber/vt_dialogs/settings_ytdlp.py:213
+msgid "Retries"
+msgstr "Tentativi"
+
+#: vidtuber/vt_dialogs/settings_ytdlp.py:221
+msgid "Sets how many times to retry starting or resuming the download if the connection drops or the server returns a transient error. Default is 10 times; 0 means infinite."
+msgstr "Definisce il numero di tentativi di avvio o ripresa del download nel caso in cui la connessione cada o il server restituisca un errore temporaneo. Il valore predefinito è 10; 0 imposterà un numero infinito di tentativi."
+
+#: vidtuber/vt_dialogs/settings_ytdlp.py:227
+msgid "Fragment Retries"
+msgstr "Tentativi ritrasmissione frammenti"
+
+#: vidtuber/vt_dialogs/settings_ytdlp.py:235
+msgid "This value determines how many attempts to make for each individual fragment before giving up. This applies only when yt-dlp downloads using DASH, hlsnative, or ISM (formats that are split into fragments). Default is 10 time; 0 means infinite."
+msgstr "Questo valore determina il numero di tentativi da effettuare per ogni singolo frammento prima di rinunciare. Si applica solo quando yt-dlp esegue il download utilizzando DASH, hlsnative o ISM (formati suddivisi in frammenti). Il valore predefinito è 10; 0 imposterà un numero infinito di tentativi."
+
+#: vidtuber/vt_dialogs/settings_ytdlp.py:244
 msgid "Network"
 msgstr "Rete"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:195
+#: vidtuber/vt_dialogs/settings_ytdlp.py:250
 msgid "Geo-restriction options"
 msgstr "Opzioni sulla limitazione geografica"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:198
+#: vidtuber/vt_dialogs/settings_ytdlp.py:253
 msgid "Use the following options to try bypassing geographic restriction."
 msgstr "Utilizza le seguenti opzioni per provare a bypassare la restrizione geografica."
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:205
+#: vidtuber/vt_dialogs/settings_ytdlp.py:260
 msgid "Geo verification proxy"
 msgstr "Proxy verifica geografica"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:209
+#: vidtuber/vt_dialogs/settings_ytdlp.py:264
 msgid "URL of the proxy to use for IP address verification on geo-restricted sites."
 msgstr "URL proxy da usare per la verifica dell'indirizzo IP in siti con restrizioni geografiche."
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:214
+#: vidtuber/vt_dialogs/settings_ytdlp.py:269
 msgid "Geo bypass"
 msgstr "Bypass geografico"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:218
+#: vidtuber/vt_dialogs/settings_ytdlp.py:273
 msgid "Bypass geographic restriction via faking X-Forwarded-For HTTP header. One of \"default\" (only when known to be useful), or \"never\""
 msgstr ""
 "Ignora la restrizione geografica tramite la falsa intestazione HTTP X-Forwarded-For. \n"
 "Imposta o \"predefinito\" (solo quando noto per essere utile) o \"mai\""
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:225
+#: vidtuber/vt_dialogs/settings_ytdlp.py:280
 msgid "Geo bypass country"
 msgstr "Nazione bypass geografico"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:229
+#: vidtuber/vt_dialogs/settings_ytdlp.py:284
 msgid "Two-letter ISO 3166-2 country code that will be used for explicit geographic restriction bypassing via faking X-Forwarded-For HTTP header."
 msgstr "Codice nazione ISO 3166-2 di due lettere che verrà usato per aggirare la restrizione geografica esplicita tramite la falsa intestazione HTTP X-Forwarded-For."
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:237
+#: vidtuber/vt_dialogs/settings_ytdlp.py:292
 msgid "Geo bypass ip block"
 msgstr "Blocco IP bypass geografico"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:241
+#: vidtuber/vt_dialogs/settings_ytdlp.py:296
 msgid "IP range in CIDR notation that will be used similarly to geo_bypass_country"
 msgstr "Intervallo IP nella notazione CIDR che verrà usato in modo simile a geo_bypass_country"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:248
+#: vidtuber/vt_dialogs/settings_ytdlp.py:303
 msgid "Geo-Restriction"
 msgstr "Restrizione geografica"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:253
+#: vidtuber/vt_dialogs/settings_ytdlp.py:308
 msgid "Authentication with login credentials"
 msgstr "Autenticazione con credenziali di accesso"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:256
+#: vidtuber/vt_dialogs/settings_ytdlp.py:311
 msgid ""
 "If you need to login with your credentials please note that login with password is not\n"
 "supported for some websites (e.g. YouTube, CloudFlare). In this case you can include a\n"
@@ -555,39 +587,39 @@ msgstr ""
 "è supportato per alcuni siti Web (ad esempio YouTube, CloudFlare). Se questo è il \n"
 "caso, considera di includere un file cookie per l'autenticazione (vedi scheda cookies)."
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:265
+#: vidtuber/vt_dialogs/settings_ytdlp.py:320
 msgid "Username"
 msgstr "Username"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:269
+#: vidtuber/vt_dialogs/settings_ytdlp.py:324
 msgid "Username for authentication purposes"
 msgstr "Nome utente per scopi di autenticazione"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:273
+#: vidtuber/vt_dialogs/settings_ytdlp.py:328
 msgid "Password"
 msgstr "Password"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:277
+#: vidtuber/vt_dialogs/settings_ytdlp.py:332
 msgid "Password for authentication purposes"
 msgstr "Password per scopi di autenticazione"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:282
+#: vidtuber/vt_dialogs/settings_ytdlp.py:337
 msgid "Video Password"
 msgstr "Password del Video"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:286
+#: vidtuber/vt_dialogs/settings_ytdlp.py:341
 msgid "Password for accessing a video"
 msgstr "Password per accedere a un video"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:292
+#: vidtuber/vt_dialogs/settings_ytdlp.py:347
 msgid "Authentication"
 msgstr "Autenticazione"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:298
+#: vidtuber/vt_dialogs/settings_ytdlp.py:353
 msgid "Using cookies to gain access to websites"
 msgstr "Utilizzo dei cookie per accedere ai siti web"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:303
+#: vidtuber/vt_dialogs/settings_ytdlp.py:358
 #, python-brace-format
 msgid ""
 "Here you can pass your `Netscape HTTP Cookie File` in order to access websites that require authentication.\n"
@@ -604,53 +636,53 @@ msgstr ""
 "\n"
 "Per ulteriori info, consulta la documentazione al seguente indirizzo:"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:320
+#: vidtuber/vt_dialogs/settings_ytdlp.py:375
 msgid "Manage the cookie file manually"
-msgstr "Gestisci il file cookie manualmente"
+msgstr "Gestisci file cookie manualmente"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:324
+#: vidtuber/vt_dialogs/settings_ytdlp.py:379
 msgid "Cookie file"
 msgstr "File cookie"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:332
+#: vidtuber/vt_dialogs/settings_ytdlp.py:387
 msgid "File name from where cookies should be read and dumped to"
 msgstr "Nome del file da cui leggere e scaricare i cookie"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:335
+#: vidtuber/vt_dialogs/settings_ytdlp.py:390
 msgid "Browse"
 msgstr "Sfoglia"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:338
+#: vidtuber/vt_dialogs/settings_ytdlp.py:393
 msgid "Extract cookies automatically from your browser"
-msgstr "Estrai i cookie automaticamente dal browser"
+msgstr "Estrai cookie automaticamente dal browser"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:344
+#: vidtuber/vt_dialogs/settings_ytdlp.py:399
 msgid "Web Browser"
 msgstr "Browser Web"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:370
+#: vidtuber/vt_dialogs/settings_ytdlp.py:425
 msgid "Cookies"
 msgstr "Cookie"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:413
+#: vidtuber/vt_dialogs/settings_ytdlp.py:472
 msgid "User Options"
 msgstr "Opzioni Utente"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:446
+#: vidtuber/vt_dialogs/settings_ytdlp.py:505
 msgid "Do you want to remove the current cookie file from your system?"
 msgstr "Vuoi rimuovere l'attuale file cookie dal sistema?"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:448
+#: vidtuber/vt_dialogs/settings_ytdlp.py:507
 #: vidtuber/vt_dialogs/showlogs.py:172 vidtuber/vt_dialogs/wizard_dlg.py:259
 #: vidtuber/vt_dialogs/wizard_dlg.py:422
 msgid "Please confirm"
 msgstr "Conferma"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:489
+#: vidtuber/vt_dialogs/settings_ytdlp.py:550
 msgid "Locate your cookie file"
 msgstr "Individua il file cookie"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:505 vidtuber/vt_main/main_frame.py:467
+#: vidtuber/vt_dialogs/settings_ytdlp.py:566 vidtuber/vt_main/main_frame.py:456
 msgid "Choose Destination"
 msgstr "Scegli la Destinazione"
 
@@ -779,7 +811,7 @@ msgid "Download subtitles only (do not include audio and video)"
 msgstr "Scarica solo i sottotitoli (non includere audio e video)"
 
 #: vidtuber/vt_dialogs/subtitles_editor.py:137
-#: vidtuber/vt_panels/downloader_gui.py:203
+#: vidtuber/vt_panels/downloader_gui.py:206
 msgid "Subtitles Editor"
 msgstr "Editor Sottotitoli"
 
@@ -809,7 +841,7 @@ msgstr ""
 "lingue richieste, ad es. \"all, -it.*, -nl.*\", -fr.*\" ciò scaricherà tutti i sottotitoli\n"
 "tranne quelli in italiano, olandese e francese."
 
-#: vidtuber/vt_dialogs/widget_utils.py:120 vidtuber/vt_main/main_frame.py:694
+#: vidtuber/vt_dialogs/widget_utils.py:120 vidtuber/vt_main/main_frame.py:684
 msgid "Stop"
 msgstr "Stop"
 
@@ -954,7 +986,7 @@ msgstr ""
 "\"{}\"\n"
 
 #: vidtuber/vt_io/checkup.py:44 vidtuber/vt_io/io_tools.py:148
-#: vidtuber/vt_panels/downloader_gui.py:652 vidtuber/vt_panels/textdrop.py:137
+#: vidtuber/vt_panels/downloader_gui.py:658 vidtuber/vt_panels/textdrop.py:140
 msgid "Vidtuber - Error!"
 msgstr "Vidtuber - Errore!"
 
@@ -970,167 +1002,167 @@ msgstr ""
 "Attendi....\n"
 "Recupero i dati richiesti."
 
-#: vidtuber/vt_main/main_frame.py:87 vidtuber/vt_main/main_frame.py:758
+#: vidtuber/vt_main/main_frame.py:87 vidtuber/vt_main/main_frame.py:748
 msgid "Vidtuber - List of URLs"
 msgstr "Vidtuber - Elenco URL"
 
-#: vidtuber/vt_main/main_frame.py:103 vidtuber/vt_main/main_frame.py:757
-#: vidtuber/vt_panels/downloader_gui.py:349 vidtuber/vt_panels/textdrop.py:359
+#: vidtuber/vt_main/main_frame.py:103 vidtuber/vt_main/main_frame.py:747
+#: vidtuber/vt_panels/downloader_gui.py:352 vidtuber/vt_panels/textdrop.py:362
 msgid "Ready"
 msgstr "Pronto"
 
-#: vidtuber/vt_main/main_frame.py:220 vidtuber/vt_main/main_frame.py:243
+#: vidtuber/vt_main/main_frame.py:209 vidtuber/vt_main/main_frame.py:232
 msgid "There are still active windows with running processes, make sure you finish your work before exit."
 msgstr "Ci sono ancora finestre attive con processi in esecuzione, assicurati di finire il lavoro prima di uscire."
 
-#: vidtuber/vt_main/main_frame.py:227
+#: vidtuber/vt_main/main_frame.py:216
 msgid "Are you sure you want to exit the application?"
 msgstr "Sei sicuro di voler uscire dall'applicazione?"
 
-#: vidtuber/vt_main/main_frame.py:229
+#: vidtuber/vt_main/main_frame.py:218
 msgid "Exit"
 msgstr "Uscita dall'applicazione"
 
-#: vidtuber/vt_main/main_frame.py:276
+#: vidtuber/vt_main/main_frame.py:265
 msgid "Open destination folder of downloads\tCtrl+D"
 msgstr "Apri cartella destinazione dei download\tCtrl+D"
 
-#: vidtuber/vt_main/main_frame.py:280
+#: vidtuber/vt_main/main_frame.py:269
 msgid "Exit\tCtrl+Q"
 msgstr "Esci\tCtrl+Q"
 
-#: vidtuber/vt_main/main_frame.py:282
+#: vidtuber/vt_main/main_frame.py:271
 msgid "File"
 msgstr "File"
 
-#: vidtuber/vt_main/main_frame.py:286 vidtuber/vt_panels/textdrop.py:305
-#: vidtuber/vt_panels/textdrop.py:332
+#: vidtuber/vt_main/main_frame.py:275 vidtuber/vt_panels/textdrop.py:308
+#: vidtuber/vt_panels/textdrop.py:335
 msgid "Paste\tCtrl+V"
 msgstr "Incolla\tCtrl+V"
 
-#: vidtuber/vt_main/main_frame.py:287
+#: vidtuber/vt_main/main_frame.py:276
 msgid "Paste the copied URLs from clipboard"
 msgstr "Incolla gli URL copiati dagli appunti"
 
-#: vidtuber/vt_main/main_frame.py:289 vidtuber/vt_panels/textdrop.py:306
-#: vidtuber/vt_panels/textdrop.py:335
+#: vidtuber/vt_main/main_frame.py:278 vidtuber/vt_panels/textdrop.py:309
+#: vidtuber/vt_panels/textdrop.py:338
 msgid "Remove selected URL\tDEL"
 msgstr "Rimuovi l'URL selezionato\tDEL"
 
-#: vidtuber/vt_main/main_frame.py:290
+#: vidtuber/vt_main/main_frame.py:279
 msgid "Remove the selected URL from the list"
 msgstr "Rimuove l'URL selezionato dall'elenco"
 
-#: vidtuber/vt_main/main_frame.py:293 vidtuber/vt_panels/textdrop.py:307
-#: vidtuber/vt_panels/textdrop.py:338
+#: vidtuber/vt_main/main_frame.py:282 vidtuber/vt_panels/textdrop.py:310
+#: vidtuber/vt_panels/textdrop.py:341
 msgid "Clear list\tShift+DEL"
 msgstr "Azzera elenco\tShift+DEL"
 
-#: vidtuber/vt_main/main_frame.py:294
+#: vidtuber/vt_main/main_frame.py:283
 msgid "Clear the URL list"
 msgstr "Cancella l'elenco degli URL"
 
-#: vidtuber/vt_main/main_frame.py:299
+#: vidtuber/vt_main/main_frame.py:288
 msgid "Preferences\tCtrl+P"
 msgstr "Impostazioni\tCtrl+P"
 
-#: vidtuber/vt_main/main_frame.py:300
+#: vidtuber/vt_main/main_frame.py:289
 msgid "Main application preferences"
 msgstr "Preferenze principali dell'applicazione"
 
-#: vidtuber/vt_main/main_frame.py:301
+#: vidtuber/vt_main/main_frame.py:290
 msgid "Edit"
 msgstr "Modifica"
 
-#: vidtuber/vt_main/main_frame.py:305
+#: vidtuber/vt_main/main_frame.py:294
 msgid "Work notes\tCtrl+N"
 msgstr "Note di lavoro\tCtrl+N"
 
-#: vidtuber/vt_main/main_frame.py:306
+#: vidtuber/vt_main/main_frame.py:295
 msgid "Read and write useful notes and reminders."
 msgstr "Leggi e scrivi utili note e promemoria."
 
-#: vidtuber/vt_main/main_frame.py:308
+#: vidtuber/vt_main/main_frame.py:297
 msgid "Tools"
 msgstr "Strumenti"
 
-#: vidtuber/vt_main/main_frame.py:312
+#: vidtuber/vt_main/main_frame.py:301
 msgid "About yt-dlp"
 msgstr "Informazioni su yt-dlp"
 
-#: vidtuber/vt_main/main_frame.py:313
+#: vidtuber/vt_main/main_frame.py:302
 msgid "Shows useful information about yt-dlp"
 msgstr "Mostra informazioni utili su yt-dlp"
 
-#: vidtuber/vt_main/main_frame.py:315
+#: vidtuber/vt_main/main_frame.py:304
 msgid "View"
 msgstr "Visualizza"
 
-#: vidtuber/vt_main/main_frame.py:318
+#: vidtuber/vt_main/main_frame.py:307
 msgid "User guide"
 msgstr "Guida utente"
 
-#: vidtuber/vt_main/main_frame.py:322
+#: vidtuber/vt_main/main_frame.py:311
 msgid "System information"
 msgstr "Informazioni di sistema"
 
-#: vidtuber/vt_main/main_frame.py:323
+#: vidtuber/vt_main/main_frame.py:312
 msgid "Get generic information about the installed system."
 msgstr "Ottieni informazioni generiche sul sistema installato."
 
-#: vidtuber/vt_main/main_frame.py:326
+#: vidtuber/vt_main/main_frame.py:315
 msgid "Show log files\tCtrl+L"
 msgstr "Visualizza file registro eventi\tCtrl+L"
 
-#: vidtuber/vt_main/main_frame.py:327
+#: vidtuber/vt_main/main_frame.py:316
 msgid "Viewing log messages"
 msgstr "Visualizzazione dei messaggi di registro"
 
-#: vidtuber/vt_main/main_frame.py:330
+#: vidtuber/vt_main/main_frame.py:319
 msgid "Issue tracker"
 msgstr "Segnala problema"
 
-#: vidtuber/vt_main/main_frame.py:334
+#: vidtuber/vt_main/main_frame.py:323
 msgid "Contribute to the project"
 msgstr "Contribuisci al progetto"
 
-#: vidtuber/vt_main/main_frame.py:337
+#: vidtuber/vt_main/main_frame.py:326
 msgid "Sponsor this project"
 msgstr "Sponsorizza questo progetto"
 
-#: vidtuber/vt_main/main_frame.py:338
+#: vidtuber/vt_main/main_frame.py:327
 msgid "Become a developer supporter"
 msgstr "Diventa un sostenitore dello sviluppatore"
 
-#: vidtuber/vt_main/main_frame.py:339
+#: vidtuber/vt_main/main_frame.py:328
 msgid "Donate now ❤️"
 msgstr "Dona ora ❤️"
 
-#: vidtuber/vt_main/main_frame.py:340
+#: vidtuber/vt_main/main_frame.py:329
 msgid "Donate to the Vidtuber project"
 msgstr "Fai una donazione al progetto Vidtuber"
 
-#: vidtuber/vt_main/main_frame.py:344
+#: vidtuber/vt_main/main_frame.py:333
 msgid "Other projects by the developer"
 msgstr "Altri progetti dello sviluppatore"
 
-#: vidtuber/vt_main/main_frame.py:361
+#: vidtuber/vt_main/main_frame.py:350
 msgid "About Vidtuber"
 msgstr "Info su Vidtuber"
 
-#: vidtuber/vt_main/main_frame.py:362
+#: vidtuber/vt_main/main_frame.py:351
 msgid "Check latest version"
 msgstr "Controlla l'ultima versione"
 
-#: vidtuber/vt_main/main_frame.py:363
+#: vidtuber/vt_main/main_frame.py:352
 msgid "Check and download the latest version of the application"
 msgstr "Controlla e scarica l'ultima versione dell'applicazione"
 
-#: vidtuber/vt_main/main_frame.py:365
+#: vidtuber/vt_main/main_frame.py:354
 msgid "Help"
 msgstr "Aiuto"
 
-#: vidtuber/vt_main/main_frame.py:445
+#: vidtuber/vt_main/main_frame.py:434
 #, python-brace-format
 msgid ""
 "- Executable version currently used: {0}\n"
@@ -1141,15 +1173,15 @@ msgstr ""
 "Ultima versione disponibile su github.com: {1}\n"
 "{2}"
 
-#: vidtuber/vt_main/main_frame.py:448
+#: vidtuber/vt_main/main_frame.py:437
 msgid "Vidtuber - About «yt-dlp»"
 msgstr "Vidtuber - Informazioni su «yt-dlp»"
 
-#: vidtuber/vt_main/main_frame.py:489
+#: vidtuber/vt_main/main_frame.py:478
 msgid "Some changes require restarting the application."
 msgstr "Alcune modifiche richiedono il riavvio dell'applicazione."
 
-#: vidtuber/vt_main/main_frame.py:494
+#: vidtuber/vt_main/main_frame.py:483
 #, python-brace-format
 msgid ""
 "{0}\n"
@@ -1160,11 +1192,11 @@ msgstr ""
 "\n"
 "Vuoi riavviare l'applicazione adesso?"
 
-#: vidtuber/vt_main/main_frame.py:496
+#: vidtuber/vt_main/main_frame.py:485
 msgid "Restart Vidtuber?"
 msgstr "Vuoi riavviare Vidtuber?"
 
-#: vidtuber/vt_main/main_frame.py:605
+#: vidtuber/vt_main/main_frame.py:595
 msgid ""
 "No publications found!\n"
 "ERROR: tag_name"
@@ -1172,152 +1204,152 @@ msgstr ""
 "Nessuna pubblicazione trovata!\n"
 "ERRORE: tag_name"
 
-#: vidtuber/vt_main/main_frame.py:621
+#: vidtuber/vt_main/main_frame.py:611
 #, python-brace-format
 msgid "A new release is available - v.{0}\n"
 msgstr "È disponibile una nuovo versione - v.{0}\n"
 
-#: vidtuber/vt_main/main_frame.py:624
+#: vidtuber/vt_main/main_frame.py:614
 msgid "You are using a development version that has not yet been released!\n"
 msgstr "Stai usando una versione di sviluppo che non è ancora stata rilasciata!\n"
 
-#: vidtuber/vt_main/main_frame.py:627
+#: vidtuber/vt_main/main_frame.py:617
 msgid "Congratulation! You are already using the latest version.\n"
 msgstr "Congratulazioni! L'applicazione è aggiornata.\n"
 
-#: vidtuber/vt_main/main_frame.py:676
+#: vidtuber/vt_main/main_frame.py:666
 msgid "Go to the previous panel"
 msgstr "Vai al pannello precedente"
 
-#: vidtuber/vt_main/main_frame.py:677
+#: vidtuber/vt_main/main_frame.py:667
 msgid "Back"
 msgstr "Indietro"
 
-#: vidtuber/vt_main/main_frame.py:681
+#: vidtuber/vt_main/main_frame.py:671
 msgid "Go to the next panel"
 msgstr "Vai al prossimo pannello"
 
-#: vidtuber/vt_main/main_frame.py:682
+#: vidtuber/vt_main/main_frame.py:672
 msgid "Next"
 msgstr "Avanti"
 
-#: vidtuber/vt_main/main_frame.py:686
+#: vidtuber/vt_main/main_frame.py:676
 msgid "User Options and other download settings"
 msgstr "Opzioni utente e altre impostazioni di download"
 
-#: vidtuber/vt_main/main_frame.py:687
+#: vidtuber/vt_main/main_frame.py:677
 msgid "Options"
 msgstr "Opzioni"
 
-#: vidtuber/vt_main/main_frame.py:689 vidtuber/vt_main/main_frame.py:690
+#: vidtuber/vt_main/main_frame.py:679 vidtuber/vt_main/main_frame.py:680
 msgid "Download"
 msgstr "Scarica"
 
-#: vidtuber/vt_main/main_frame.py:693
+#: vidtuber/vt_main/main_frame.py:683
 msgid "Stop Downloading"
 msgstr "Interrompi il download"
 
-#: vidtuber/vt_main/main_frame.py:766
+#: vidtuber/vt_main/main_frame.py:756
 msgid "Vidtuber - Download Settings"
 msgstr "Vidtuber - Impostazioni di download"
 
-#: vidtuber/vt_main/main_frame.py:783
+#: vidtuber/vt_main/main_frame.py:773
 msgid "Viewing last log"
 msgstr "Visualizzazione ultimo log"
 
-#: vidtuber/vt_main/main_frame.py:795
+#: vidtuber/vt_main/main_frame.py:785
 msgid "Vidtuber - Downloader Message Monitoring"
 msgstr "Vidtuber - Monitoraggio messaggi downloader"
 
-#: vidtuber/vt_main/main_frame.py:866
+#: vidtuber/vt_main/main_frame.py:859
 #, python-brace-format
 msgid "The system will turn off in {0} seconds"
 msgstr "Il sistema si spegnerà tra {0} secondi"
 
-#: vidtuber/vt_main/main_frame.py:867
+#: vidtuber/vt_main/main_frame.py:860
 msgid "Vidtuber - Shutdown!"
 msgstr "Vidtuber - Spegnimento!"
 
-#: vidtuber/vt_main/main_frame.py:874
+#: vidtuber/vt_main/main_frame.py:873
 msgid "Error while shutting down. Please see file log for details."
 msgstr ""
 "Errore durante lo spegnimento. \n"
 "Per i dettagli consultare il file registro."
 
-#: vidtuber/vt_main/main_frame.py:887
+#: vidtuber/vt_main/main_frame.py:886
 #, python-brace-format
 msgid "Exiting the application in {0} seconds"
 msgstr "Chiusura dell'applicazione tra {0} secondi"
 
-#: vidtuber/vt_main/main_frame.py:888
+#: vidtuber/vt_main/main_frame.py:887
 msgid "Vidtuber - Exiting!"
 msgstr "Vidtuber - Uscita dall'applicazione!"
 
-#: vidtuber/vt_panels/downloader_gui.py:130
+#: vidtuber/vt_panels/downloader_gui.py:133
 msgid "Best quality video"
 msgstr "Migliore qualità video"
 
-#: vidtuber/vt_panels/downloader_gui.py:131
+#: vidtuber/vt_panels/downloader_gui.py:134
 msgid "Worst quality video"
 msgstr "Peggiore qualità video"
 
-#: vidtuber/vt_panels/downloader_gui.py:134
+#: vidtuber/vt_panels/downloader_gui.py:137
 msgid "Best available quality"
 msgstr "Migliore qualità disponibile"
 
-#: vidtuber/vt_panels/downloader_gui.py:135
+#: vidtuber/vt_panels/downloader_gui.py:138
 msgid "Format 18 (youtube.com only)"
 msgstr "Formato 18 (solo youtube.com)"
 
-#: vidtuber/vt_panels/downloader_gui.py:136
+#: vidtuber/vt_panels/downloader_gui.py:139
 msgid "Worst available quality"
 msgstr "Peggiore qualità disponibile"
 
-#: vidtuber/vt_panels/downloader_gui.py:148
+#: vidtuber/vt_panels/downloader_gui.py:151
 msgid "Best quality audio"
 msgstr "Migliore qualità audio"
 
-#: vidtuber/vt_panels/downloader_gui.py:149
+#: vidtuber/vt_panels/downloader_gui.py:152
 msgid "Worst quality audio"
 msgstr "Peggiore qualità audio"
 
-#: vidtuber/vt_panels/downloader_gui.py:151
+#: vidtuber/vt_panels/downloader_gui.py:154
 msgid "Combined Videos"
 msgstr "Video Combinati"
 
-#: vidtuber/vt_panels/downloader_gui.py:152
+#: vidtuber/vt_panels/downloader_gui.py:155
 msgid "Videos by Resolution"
 msgstr "Video basati su Risoluzione"
 
-#: vidtuber/vt_panels/downloader_gui.py:153
+#: vidtuber/vt_panels/downloader_gui.py:156
 msgid "Split Audio and Video"
 msgstr "Audio e Video Divisi"
 
-#: vidtuber/vt_panels/downloader_gui.py:154
+#: vidtuber/vt_panels/downloader_gui.py:157
 msgid "Audio Only"
 msgstr "Solo Audio"
 
-#: vidtuber/vt_panels/downloader_gui.py:155
+#: vidtuber/vt_panels/downloader_gui.py:158
 msgid "Format Codes"
 msgstr "Codici Formato"
 
-#: vidtuber/vt_panels/downloader_gui.py:193
+#: vidtuber/vt_panels/downloader_gui.py:196
 msgid "Download Mode:"
 msgstr "Modalità Download:"
 
-#: vidtuber/vt_panels/downloader_gui.py:210
+#: vidtuber/vt_panels/downloader_gui.py:213
 msgid "Quality settings"
 msgstr "Impostazioni qualità"
 
-#: vidtuber/vt_panels/downloader_gui.py:223
+#: vidtuber/vt_panels/downloader_gui.py:226
 msgid "Video format:"
 msgstr "Formato Video:"
 
-#: vidtuber/vt_panels/downloader_gui.py:243
+#: vidtuber/vt_panels/downloader_gui.py:246
 msgid "Audio format:"
 msgstr "Formato audio:"
 
-#: vidtuber/vt_panels/downloader_gui.py:325
+#: vidtuber/vt_panels/downloader_gui.py:328
 msgid ""
 "Unable to get format codes for playlists, channels and/or multiple videos.\n"
 "Please list only individual video URLs or choose another download mode."
@@ -1325,31 +1357,31 @@ msgstr ""
 "Impossibile ottenere i codici formato per le playlist, i canali e/o video multipli.\n"
 "Elenca solo gli URL dei singoli video o scegli un'altra modalità di download."
 
-#: vidtuber/vt_panels/downloader_gui.py:330
+#: vidtuber/vt_panels/downloader_gui.py:333
 msgid "Unsupported"
 msgstr "Non supportato"
 
-#: vidtuber/vt_panels/downloader_gui.py:616
+#: vidtuber/vt_panels/downloader_gui.py:622
 msgid "Click the Reload Format Codes button."
 msgstr "Clicca sul pulsante Ricarica Codici Formato."
 
-#: vidtuber/vt_panels/downloader_gui.py:617
+#: vidtuber/vt_panels/downloader_gui.py:623
 msgid "Format Code List Missing"
 msgstr "Elenco Codici Formato Mancante"
 
-#: vidtuber/vt_panels/downloader_gui.py:626
+#: vidtuber/vt_panels/downloader_gui.py:632
 msgid "At least one \"Format Code\" must be checked for each URL selected in green."
 msgstr "È necessario spuntare almeno un \"Codice Formato\" per ciascun URL selezionato in verde."
 
-#: vidtuber/vt_panels/downloader_gui.py:628
+#: vidtuber/vt_panels/downloader_gui.py:634
 msgid "Incomplete Format Code Selection"
 msgstr "Selezione Codici Formato Incompleta"
 
-#: vidtuber/vt_panels/downloader_gui.py:649 vidtuber/vt_panels/textdrop.py:134
+#: vidtuber/vt_panels/downloader_gui.py:655 vidtuber/vt_panels/textdrop.py:137
 msgid "Missing «yt-dlp» executable. Please check the execution permissions and be sure to make the correct settings in the preferences dialog."
 msgstr "Manca l'eseguibile «yt-dlp». Controlla i permessi di esecuzione e assicurati di effettuare correttamente le impostazioni nella finestra di dialogo delle preferenze."
 
-#: vidtuber/vt_panels/downloader_gui.py:665
+#: vidtuber/vt_panels/downloader_gui.py:671
 msgid ""
 "Changes have been made to the command arguments.\n"
 "\n"
@@ -1359,7 +1391,7 @@ msgstr ""
 "\n"
 "Vuoi davvero applicarle?"
 
-#: vidtuber/vt_panels/downloader_gui.py:667
+#: vidtuber/vt_panels/downloader_gui.py:673
 msgid "Apply changes?"
 msgstr "Applicare le modifiche?"
 
@@ -1387,7 +1419,7 @@ msgstr "Ricarica codici formato quando richiesto"
 msgid "Id"
 msgstr "Id"
 
-#: vidtuber/vt_panels/formatcode_id.py:97 vidtuber/vt_panels/textdrop.py:120
+#: vidtuber/vt_panels/formatcode_id.py:97 vidtuber/vt_panels/textdrop.py:123
 msgid "Url"
 msgstr "Url"
 
@@ -1480,15 +1512,15 @@ msgstr "Attendere... interruzione in corso"
 msgid "Done"
 msgstr "Fatto"
 
-#: vidtuber/vt_panels/textdrop.py:122
+#: vidtuber/vt_panels/textdrop.py:125
 msgid "Duration"
 msgstr "Durata"
 
-#: vidtuber/vt_panels/textdrop.py:123
+#: vidtuber/vt_panels/textdrop.py:126
 msgid "Domain"
 msgstr "Dominio"
 
-#: vidtuber/vt_panels/textdrop.py:180
+#: vidtuber/vt_panels/textdrop.py:183
 msgid ""
 "Errors occurred while retrieving the requested data.\n"
 "See the related log file for more details."
@@ -1496,18 +1528,18 @@ msgstr ""
 "Si sono verificati errori durante il recupero dei dati richiesti.\n"
 "Per maggiori dettagli, consultare il file di registro correlato."
 
-#: vidtuber/vt_panels/textdrop.py:232
+#: vidtuber/vt_panels/textdrop.py:235
 msgid "Drag or paste URLs here"
 msgstr "Trascina o incolla qui gli URL"
 
-#: vidtuber/vt_panels/textdrop.py:242
+#: vidtuber/vt_panels/textdrop.py:245
 msgid "Save to:"
 msgstr "Salva in:"
 
-#: vidtuber/vt_panels/textdrop.py:266
+#: vidtuber/vt_panels/textdrop.py:269
 msgid "Set a new destination folder for downloads"
 msgstr "Imposta nuova cartella di destinazione per i download"
 
-#: vidtuber/vt_panels/textdrop.py:268
+#: vidtuber/vt_panels/textdrop.py:271
 msgid "Destination folder of downloads"
 msgstr "Cartella di destinazione dei download"
