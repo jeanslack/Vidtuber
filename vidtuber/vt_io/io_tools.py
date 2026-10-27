@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: June.06.2025
+Rev: Oct.27.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -28,13 +28,13 @@ import json
 import requests
 import wx
 from vidtuber.vt_threads.check_bin import subp
-from vidtuber.vt_utils.utils import open_default_application
-from vidtuber.vt_utils.utils import format_bytes
-from vidtuber.vt_utils.utils import integer_to_time
+from vidtuber.vt_utils.utils import (open_default_application,
+                                     format_bytes,
+                                     integer_to_time)
 from vidtuber.vt_io.make_filelog import make_log_template
 from vidtuber.vt_dialogs.widget_utils import PopupDialog
-from vidtuber.vt_threads.get_output_thread import FetchOutputDataProcess
-from vidtuber.vt_threads.get_output_thread import logerror
+from vidtuber.vt_threads.get_output_thread import (FetchOutputDataProcess,
+                                                   logerror)
 
 
 def dump_formats(datadict, jdata):
@@ -44,34 +44,35 @@ def dump_formats(datadict, jdata):
     datadict mapping more compact.
     Return a dict object with formats values.
     """
-    for frmts in jdata['formats']:
-        frmtid = frmts.get('format_id', 'None')
-        ext = frmts.get('ext', 'N/A')
+    for frmts in jdata.get('formats', []):
         format_res = frmts.get('format', 'N/A')
-        res = ' '.join(format_res.split()[1:])
-        resolution = res.replace('-', '').strip()
-        vcodec = f"{frmts.get('vcodec', '')}"
-        vcodec = '' if vcodec in ('None', 'none') else vcodec
-        fps = f"{frmts.get('fps', '')}"
-        fps = '' if fps in ('None', 'none') else fps
-        acodec = f"{frmts.get('acodec', '')}"
-        acodec = '' if acodec in ('None', 'none') else acodec
-        lang = f"{frmts.get('language', '')}"
-        lang = '' if lang in ('None', 'none') else lang
+        res_parts = format_res.split()
+        resolution = (' '.join(res_parts[1:]).replace('-', '').strip()
+                      if len(res_parts) > 1 else 'N/A')
 
-        if frmts.get('filesize'):
-            size = format_bytes(float(frmts['filesize']))
-        else:
-            size = ''
-        dictf = {'id': frmtid, 'ext': ext, 'resolution': resolution,
-                 'vcodec': vcodec, 'fps': fps, 'acodec': acodec,
-                 'lang': lang, 'size': size,
-                 }
+        # RIFATTORIZZATO: Compattazione pulita delle stringhe "None"
+        raw_vcodec = str(frmts.get('vcodec', ''))
+        raw_fps = str(frmts.get('fps', ''))
+        raw_acodec = str(frmts.get('acodec', ''))
+        raw_lang = str(frmts.get('language', ''))
+
+        size = (format_bytes(float(frmts['filesize']))
+                if frmts.get('filesize') else '')
+
+        dictf = {
+            'id': frmts.get('format_id', 'None'),
+            'ext': frmts.get('ext', 'N/A'),
+            'resolution': resolution,
+            'vcodec': '' if raw_vcodec.lower() in ('none', '') else raw_vcodec,
+            'fps': '' if raw_fps.lower() in ('none', '') else raw_fps,
+            'acodec': '' if raw_acodec.lower() in ('none', '') else raw_acodec,
+            'lang': '' if raw_lang.lower() in ('none', '') else raw_lang,
+            'size': size,
+        }
         datadict['formats'].append(dictf)
 
     return datadict
 # --------------------------------------------------------------------------#
-
 
 def ytdlp_dump_single_json(url, args, logfile, parent=None):
     """
@@ -91,16 +92,18 @@ def ytdlp_dump_single_json(url, args, logfile, parent=None):
     dlgload = PopupDialog(parent,
                           _("Vidtuber - Loading..."),
                           _("Wait....\nRetrieving required data."),
-                          thread,
+                          thread
                           )
     dlgload.ShowModal()
-    # thread.join()
+
     data = thread.data
     dlgload.Destroy()
+
     if thread.stop_work_thread:
         return None, 'stop work thread'
     if data[1]:
         return data
+
     try:
         jdata = json.loads(data[0])
     except json.decoder.JSONDecodeError as err:
@@ -108,26 +111,26 @@ def ytdlp_dump_single_json(url, args, logfile, parent=None):
                  logfile, usesep=False)
         return None, 'error'
 
-    newdata = {'title': jdata.get('title', 'Unknown Title'),
-               'domain': jdata.get('webpage_url_domain', 'Unknown Domain'),
-               'urltype': jdata.get('webpage_url_basename', 'Unknown Type'),
-               'duration': 'N/A', 'formats': [],
-               }
+    newdata = {
+        'title': jdata.get('title', 'Unknown Title'),
+        'domain': jdata.get('webpage_url_domain', 'Unknown Domain'),
+        'urltype': jdata.get('webpage_url_basename', 'Unknown Type'),
+        'duration': 'N/A',
+        'formats': [],
+    }
+
     duration = jdata.get('duration')
-    if duration:
-        if isinstance(duration, (float, int)):
-            duration = round(duration) * 1000
-            newdata['duration'] = integer_to_time(duration, mills=False)
+    if duration and isinstance(duration, (float, int)):
+        duration = round(duration) * 1000
+        newdata['duration'] = integer_to_time(duration, mills=False)
 
     if url in ('/playlists', '/channels', '/playlist', '/channel', '/videos'):
         newdata['formats'] = []
-
     elif jdata.get('formats'):
         newdata = dump_formats(newdata, jdata)
 
     return newdata, None
 # --------------------------------------------------------------------------#
-
 
 def youtubedl_get_executable_version(execpath):
     """
@@ -138,7 +141,6 @@ def youtubedl_get_executable_version(execpath):
     return res[1] if res[0] == 'None' else f'{res[0]} [ERROR]\n'
 # --------------------------------------------------------------------------#
 
-
 def openpath(where):
     """
     Call `vdms_threads.opendir.open_default_application`.
@@ -146,30 +148,19 @@ def openpath(where):
     ret = open_default_application(where)
     if ret:
         wx.MessageBox(ret, _('Vidtuber - Error!'), wx.ICON_ERROR, None)
-# -------------------------------------------------------------------------#
-
+# --------------------------------------------------------------------------#
 
 def get_github_releases(url, keyname):
     """
-    Check for releases data on github page using github API:
-        https://developer.github.com/v3/repos/releases/#get-the-latest-release
-
-    see keyname examples here:
-    <https://api.github.com/repos/jeanslack/Vidtuber/releases>
+    Check for releases data on github page using github API.
     """
     try:
         response = requests.get(url, timeout=15)
-        not_found = None, None
-    except Exception as err:
-        not_found = 'request error:', err
-    else:
-        try:
-            version = response.json()[f"{keyname}"]
-        except Exception as err:
-            not_found = 'response error:', err
+        response.raise_for_status()
+        version = response.json()[f"{keyname}"]
+        return version, None
+    except requests.RequestException as err:
+        return None, err
+    except (KeyError, ValueError, TypeError) as err:
+        return None, err
 
-    if not_found[0]:
-        return not_found
-
-    return version, None
-# --------------------------------------------------------------------------#

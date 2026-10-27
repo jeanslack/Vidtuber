@@ -21,7 +21,9 @@ Mon, 26 Oct 2026 v2.1.10
   * Updated configuration file to v2.9 .
   * Refactored downloader_thread.py, get_output_thread.py, generic_downloads.py,
     shutdown.py, downloader_gui.py, formatcode_id.py, textdrop.py (populate()),
-    main_frame.py (write_option_before_exit(), auto_shutdown()) .
+    main_frame.py [write_option_before_exit(), auto_shutdown(),
+    removed: ydl_latest(), get_ytdlp_version(), check_new_releases()],
+    io_tools.py [dump_formats(), get_github_releases()], utils.py .
 
 
 +------------------------------------+
