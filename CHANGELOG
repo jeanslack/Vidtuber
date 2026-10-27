@@ -7,10 +7,11 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Mon, 26 Oct 2026 v2.1.10
+Tue, 27 Oct 2026 v2.1.10
 
-  * Fix bug on Dragging files when cookies from browser is setted; the
-    `cookiesfrombrowser` list does not set any string values.
+  * Fixed a bug that made it impossible to drag and drop files if the 
+  * "Extract cookies automatically from your browser" option was already 
+    enabled; The `cookiesfrombrowser` list did not set any string-type values.
   * Fixed deterministic, cross-platform termination of yt-dlp executable.
   * Improved shutdown based on native OS status codes rather than text strings.
   * New: added controls to adjust timeout and retries downloads on User Option
