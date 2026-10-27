@@ -74,6 +74,7 @@ def dump_formats(datadict, jdata):
     return datadict
 # --------------------------------------------------------------------------#
 
+
 def ytdlp_dump_single_json(url, args, logfile, parent=None):
     """
     Wait for data given by `FetchOutputDataProcess` thread.
@@ -132,6 +133,7 @@ def ytdlp_dump_single_json(url, args, logfile, parent=None):
     return newdata, None
 # --------------------------------------------------------------------------#
 
+
 def youtubedl_get_executable_version(execpath):
     """
     Call `check_bin.subp` to get yt-dlp executable version.
@@ -141,6 +143,7 @@ def youtubedl_get_executable_version(execpath):
     return res[1] if res[0] == 'None' else f'{res[0]} [ERROR]\n'
 # --------------------------------------------------------------------------#
 
+
 def openpath(where):
     """
     Call `vdms_threads.opendir.open_default_application`.
@@ -149,6 +152,7 @@ def openpath(where):
     if ret:
         wx.MessageBox(ret, _('Vidtuber - Error!'), wx.ICON_ERROR, None)
 # --------------------------------------------------------------------------#
+
 
 def get_github_releases(url, keyname):
     """
@@ -163,4 +167,3 @@ def get_github_releases(url, keyname):
         return None, err
     except (KeyError, ValueError, TypeError) as err:
         return None, err
-

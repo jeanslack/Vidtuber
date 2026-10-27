@@ -26,11 +26,8 @@ This file is part of Vidtuber.
 """
 import sys
 import subprocess
-import platform
-import re
 import shutil
 import os
-import glob
 import math
 
 
@@ -252,15 +249,15 @@ def integer_to_time(integer: int = 0, mills=True, rnd=False) -> str:
         raise TypeError("An integer (int) object is expected.")
 
     # Protect from accidental negative numbers
-    if integer < 0:
-        integer = 0
+    integer = max(integer, 0)
 
     # Rounding is applied to the total if milliseconds are to be excluded.
     # If there are fewer than 500ms remaining until the next second, it
     # truncates; otherwise, it adds one full second.
     if not mills and rnd:
         remainder = integer % 1000
-        integer = (integer + 1000 - remainder) if remainder >= 500 else (integer - remainder)
+        integer = ((integer + 1000 - remainder)
+                   if remainder >= 500 else (integer - remainder))
 
     # The sexagesimal division should never produce ":60"
     minutes, sec_remainder = divmod(integer, 60000)
@@ -275,6 +272,7 @@ def integer_to_time(integer: int = 0, mills=True, rnd=False) -> str:
     seconds_int = int(sec_remainder / 1000)
     return f"{hours:02}:{minutes:02}:{seconds_int:02}"
 # ------------------------------------------------------------------------
+
 
 def del_filecontents(filename):
     """
