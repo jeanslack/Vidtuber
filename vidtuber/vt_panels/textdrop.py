@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: textdrop.py
-Porpose: Allows you to add text URLs
+Purpose: Allows you to add text URLs
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
@@ -116,15 +116,15 @@ class MyListCtrl(wx.ListCtrl):
 
     def populate(self):
         """
-        make default colums
+        make default columns
         """
         colw = MyListCtrl.get.appset['textdndpaste_column_width']
-        self.InsertColumn(0, ('#'), width=colw[0])
-        self.InsertColumn(1, (_('Url')), width=colw[1])
-        self.InsertColumn(2, (_('Title')), width=colw[2])
-        self.InsertColumn(3, (_('Duration')), width=colw[3])
-        self.InsertColumn(4, (_('Domain')), width=colw[4])
-        self.InsertColumn(5, (_('Type')), width=colw[5])
+        columns = ('#', _('Url'), _('Title'), _('Duration'),
+                   _('Domain'), _('Type'))
+
+        for index, title in enumerate(columns):
+            self.InsertColumn(index, title, width=colw[index])
+    # ----------------------------------------------------------------------#
 
     def dropUpdate(self, url):
         """

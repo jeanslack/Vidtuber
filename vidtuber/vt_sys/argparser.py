@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: argparser.py
-Porpose: Vidtuber Command line arguments
+Purpose: Vidtuber Command line arguments
 Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

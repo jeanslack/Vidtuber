@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: check_bin.py
-Porpose: Gets the output to display the features of FFmpeg
+Purpose: Gets the output to display the features of FFmpeg
 Compatibility: Python3 (Unix, Windows)
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

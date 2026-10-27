@@ -5,7 +5,7 @@
 # license: GPL3
 # Rev: July.10.2024
 #
-# PORPOSE: Generate a binary catalog for each locale found
+# Purpose: Generate a binary catalog for each locale found
 #          from the TARGET directory.
 #
 # USAGE: ~$ cd /Vidtuber/source/directory

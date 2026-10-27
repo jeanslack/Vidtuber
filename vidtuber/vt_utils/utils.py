@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: utils.py
-Porpose: It groups useful functions that are called several times
+Purpose: It groups useful functions that are called several times
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

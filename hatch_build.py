@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: hatch_build.py
-Porpose: Defines code that will be executed at various stages
+Purpose: Defines code that will be executed at various stages
          of the build process, see [tool.hatch.build.hooks.custom] on
          pyproject.toml file.
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>

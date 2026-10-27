@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: list_warning.py
-Porpose: A custom multipurpose dialog for listing alert messages and confirms
+Purpose: A custom multipurpose dialog for listing alert messages and confirms
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: infoprog.py
-Porpose: about vidtuber
+Purpose: about vidtuber
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

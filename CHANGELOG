@@ -9,15 +9,19 @@ Change Log:
 +------------------------------------+
 Mon, 26 Oct 2026 v2.1.10
 
-  * Fixed bug on Dragging files when cookies from browser is setted; the
+  * Fix bug on Dragging files when cookies from browser is setted; the
     `cookiesfrombrowser` list does not set any string values.
   * Fixed deterministic, cross-platform termination of yt-dlp executable.
   * Improved shutdown based on native OS status codes rather than text strings.
-  * Some code refactoring.
   * New: added controls to adjust timeout and retries downloads on User Option
     dialog, Network table.
-  * Update User Guide `docs/UserGuide/Options_Dialog_en.pdf`
+  * Updated User Guide `docs/UserGuide/Options_Dialog_en.pdf`
   * Fixed broken User Guide URL.
+  * Updated support for the Russian language (thanks to ChourS)
+  * Updated configuration file to v2.9 .
+  * Refactored downloader_thread.py, get_output_thread.py, generic_downloads.py,
+    shutdown.py, downloader_gui.py, formatcode_id.py, textdrop.py (populate()),
+    main_frame.py (write_option_before_exit(), auto_shutdown()) .
 
 
 +------------------------------------+

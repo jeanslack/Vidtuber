@@ -5,7 +5,7 @@
 # license: GPL3
 # Rev: July.11.2025
 #
-# PORPOSE: Delete obsolete translation messages on vidtuber.po files
+# Purpose: Delete obsolete translation messages on vidtuber.po files
 #          for each locale found on the TARGET directory.
 #
 # USAGE: ~$ cd /Vidtuber/source/directory

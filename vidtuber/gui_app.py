@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: gui_app.py
-Porpose: bootstrap for Vidtuber app.
+Purpose: bootstrap for Vidtuber app.
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>

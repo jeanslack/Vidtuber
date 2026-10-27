@@ -1,12 +1,12 @@
 # -*- coding: UTF-8 -*-
 """
 Name: formatcode_id.py
-Porpose: user interface panel for format codes tasks
+Purpose: user interface panel for format codes tasks
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Oct.14.2026
+Rev: Oct.27.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -46,11 +46,6 @@ class FormatCodeList(wx.Panel):
         GREEN = '#4CDD67'
     else:
         GREEN = '#40804C'
-
-    # BACKGRD = get.appset['colorscheme']['BACKGRD']  # help viewer backgrd
-    # DONE = get.appset['colorscheme']['TXT3']  # code text done
-    # WARN = get.appset['colorscheme']['WARN']  # code text warn
-    # RED = get.appset['colorscheme']['ERR1']   # code text err + sb error
     # -----------------------------------------------------------------#
 
     def __init__(self, parent, format_codeid, controller=None):
@@ -93,16 +88,12 @@ class FormatCodeList(wx.Panel):
                                  )
         self.fcode.EnableCheckBoxes(enable=True)
         colw = FormatCodeList.appdata['frmtcode_column_width']
-        self.fcode.InsertColumn(0, (_('Id')), width=colw[0])
-        self.fcode.InsertColumn(1, (_('Url')), width=colw[1])
-        self.fcode.InsertColumn(2, (_('Title')), width=colw[2])
-        self.fcode.InsertColumn(3, (_('Extension')), width=colw[3])
-        self.fcode.InsertColumn(4, (_('Resolution')), width=colw[4])
-        self.fcode.InsertColumn(5, (_('Video Codec')), width=colw[5])
-        self.fcode.InsertColumn(6, (_('Fps')), width=colw[6])
-        self.fcode.InsertColumn(7, (_('Audio Codec')), width=colw[7])
-        self.fcode.InsertColumn(8, (_('Language')), width=colw[8])
-        self.fcode.InsertColumn(9, (_('Size')), width=colw[9])
+        columns = ('Id', 'Url', _('Title'), _('Extension'),
+                   _('Resolution'), _('Video Codec'), 'Fps',
+                   _('Audio Codec'), _('Language'), _('Size'))
+
+        for index, title in enumerate(columns):
+            self.fcode.InsertColumn(index, title, width=colw[index])
 
         sizer_base.Add(self.fcode, 1, wx.ALL | wx.EXPAND, 5)
 
@@ -176,15 +167,22 @@ class FormatCodeList(wx.Panel):
 
                 for num, frmts in enumerate(value['formats']):
                     self.fcode.InsertItem(index, frmts['id'])
-                    self.fcode.SetItem(index, 1, url)
-                    self.fcode.SetItem(index, 2, listurl[url]['title'])
-                    self.fcode.SetItem(index, 3, frmts['ext'])
-                    self.fcode.SetItem(index, 4, frmts['resolution'])
-                    self.fcode.SetItem(index, 5, frmts['vcodec'])
-                    self.fcode.SetItem(index, 6, frmts['fps'])
-                    self.fcode.SetItem(index, 7, frmts['acodec'])
-                    self.fcode.SetItem(index, 8, frmts['lang'])
-                    self.fcode.SetItem(index, 9, frmts['size'])
+
+                    row_data = (
+                        (1, url),
+                        (2, listurl[url]['title']),
+                        (3, frmts['ext']),
+                        (4, frmts['resolution']),
+                        (5, frmts['vcodec']),
+                        (6, frmts['fps']),
+                        (7, frmts['acodec']),
+                        (8, frmts['lang']),
+                        (9, frmts['size'])
+                    )
+
+                    for col, text in row_data:
+                        self.fcode.SetItem(index, col, text)
+
                     if num == 0:
                         green = FormatCodeList.GREEN
                         self.fcode.SetItemBackgroundColour(index, green)
@@ -204,11 +202,9 @@ class FormatCodeList(wx.Panel):
         amerge = '' if not self.ckbx_mrg.GetValue() else '--audio-multistreams'
         vmerge = '' if not self.ckbx_mrg.GetValue() else '--video-multistreams'
 
-        for url, key, val in zip(self.urllist,
-                                 self.format_codeid.keys(),
-                                 self.format_codeid.values()
-                                 ):
-            if key == url:
+        for url in self.urllist:
+            if url in self.format_codeid:
+                val = self.format_codeid[url]
                 video, audio, mhtml = self.fcode_concatenate(val, sepany)
 
                 if audio or video or mhtml:
@@ -226,30 +222,19 @@ class FormatCodeList(wx.Panel):
         """
         Concatenate the selected format codes appropriately
         """
-        video, audio, mhtml = None, None, None
-        index_v, index_a, index_h = 0, 0, 0
+        v_list, a_list, h_list = [], [], []
 
         for idx in val:
             if idx.startswith('Video: '):
-                index_v += 1
-                if index_v > 1:
-                    video += f"{sepany}{idx.split('Video: ')[1]}"
-                else:
-                    video = idx.split('Video: ')[1]
-
+                v_list.append(idx.split('Video: ', 1)[1])
             elif idx.startswith('Audio: '):
-                index_a += 1
-                if index_a > 1:
-                    audio += f"{sepany}{idx.split('Audio: ')[1]}"
-                else:
-                    audio = idx.split('Audio: ')[1]
-
+                a_list.append(idx.split('Audio: ', 1)[1])
             elif idx.startswith('mhtml: '):
-                index_h += 1
-                if index_h > 1:
-                    mhtml += f",{idx.split('mhtml: ')[1]}"
-                else:
-                    mhtml = idx.split('mhtml: ')[1]
+                h_list.append(idx.split('mhtml: ', 1)[1])
+
+        video = sepany.join(v_list) if v_list else None
+        audio = sepany.join(a_list) if a_list else None
+        mhtml = ','.join(h_list) if h_list else None
 
         return video, audio, mhtml
     # -----------------------------------------------------------------#
@@ -257,19 +242,13 @@ class FormatCodeList(wx.Panel):
     def finalize_urlcodes(self, video, audio, mhtml, sep):
         """
         Finalizes the passed format codes for each URL, if any.
-        Return a string with apropriate separators.
+        Return a string with appropriate separators.
         If no audio, video or mhtml, return None type.
         """
-        if video and audio:
-            codes = f'{video}{sep}{audio}'
-        elif video:
-            codes = f'{video}'
-        elif audio:
-            codes = f'{audio}'
-        else:
-            codes = None
+        media_parts = [p for p in (video, audio) if p]
+        codes = sep.join(media_parts) if media_parts else None
 
         if mhtml:
-            codes = f'{codes},{mhtml}' if codes else f'{mhtml}'
+            codes = f'{codes},{mhtml}' if codes else mhtml
 
         return codes

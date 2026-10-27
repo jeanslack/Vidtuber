@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: settings_vidtuber.py
-Porpose: vidtuber setup dialog
+Purpose: vidtuber setup dialog
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

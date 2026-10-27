@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: settings_ytdlp.py
-Porpose: Downloader setup dialog
+Purpose: Downloader setup dialog
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

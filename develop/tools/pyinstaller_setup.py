@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: pyinstaller_setup.py
-Porpose: Provide build options to bundle the Vidtuber application.
+Purpose: Provide build options to bundle the Vidtuber application.
 Platform: Gnu-Linux, MacOs, MS-Windows
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

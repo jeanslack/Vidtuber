@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 File Name: make_filelog.py
-Porpose: log file generator
+Purpose: log file generator
 Compatibility: Python3, Python2
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

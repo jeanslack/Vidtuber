@@ -5,7 +5,7 @@
 # license: GPL3
 # Rev: July.10.2024
 #
-# PORPOSE: Create a new `vidtuber.pot` file with the latest strings.
+# Purpose: Create a new `vidtuber.pot` file with the latest strings.
 #
 # USAGE: ~$ cd /Vidtuber/source/directory
 #        ~$ develop/gettext_utils/make_pot.sh

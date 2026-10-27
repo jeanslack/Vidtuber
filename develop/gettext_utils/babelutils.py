@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 """"
-Porpose: Manage the translation message catalog independently
+Purpose: Manage the translation message catalog independently
          of the GNU-xgettext utilities.
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

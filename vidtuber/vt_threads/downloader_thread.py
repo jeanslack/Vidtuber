@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: downloader_thread.py
-Porpose: long processing task using yt-dlp executable (file download)
+Purpose: long processing task using yt-dlp executable (file download)
 Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>

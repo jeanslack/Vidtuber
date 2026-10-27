@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: vidtuber_check_version.py
-Porpose: shows informative messages on version in use and new releases
+Purpose: shows informative messages on version in use and new releases
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>
