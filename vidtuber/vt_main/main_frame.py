@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: main_ytdlp.py
-Porpose: window main frame for yt-dlp
+Purpose: window main frame for yt-dlp
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
@@ -429,25 +429,20 @@ class MainFrame(wx.Frame):
         execpath = wx.GetApp().appset['yt-dlp_cmd']
         exec_version = io_tools.youtubedl_get_executable_version(execpath)
 
-        latest = self.ydl_latest()
+        url = "https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest"
+        latest = io_tools.get_github_releases(url, "tag_name")
+        if latest[1]:
+            caption = f'Vidtuber - {latest[1].__class__.__name__}'
+            wx.MessageBox(str(latest[1]), caption, wx.ICON_ERROR, self)
+            return
+
         url = '<https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest>'
         wx.MessageBox(_("- Executable version currently used: {0}\n"
                         "Latest version available on github.com: {1}\n"
-                        "{2}").format(exec_version, latest, url),
+                        "{2}").format(exec_version, latest[0], url),
                       _('Vidtuber - About «yt-dlp»'),
                       wx.ICON_INFORMATION, self)
     # ------------------------------------------------------------------#
-
-    def ydl_latest(self):
-        """
-        Check the latest version of yt-dlp available on github.com
-        """
-        url = "https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest"
-        latest = io_tools.get_github_releases(url, "tag_name")
-        if latest[0] in ['request error:', 'response error:']:
-            return f"{latest[0]} {latest[1]}"
-        return latest[0]
-    # -----------------------------------------------------------------#
 
     def on_outputdir(self, event):
         """
@@ -590,15 +585,9 @@ class MainFrame(wx.Frame):
                "Vidtuber/releases/latest")
 
         vers = io_tools.get_github_releases(url, "tag_name")
-        if vers[0] in ['request error:', 'response error:']:
-            if str(vers[1]) == "'tag_name'":
-                msg = _('No publications found!\nERROR: tag_name')
-                dlg = check_new_version.CheckNewVersion(self, msg, VERSION,
-                                                        VERSION)
-                dlg.ShowModal()
-                return
-            wx.MessageBox(f"{vers[0]} {vers[1]}", f"{vers[0]}",
-                          wx.ICON_ERROR, self)
+        if vers[1]:
+            caption = f'Vidtuber - {vers[1].__class__.__name__}'
+            wx.MessageBox(str(vers[1]), caption, wx.ICON_ERROR, self)
             return
 
         vers = vers[0].split('v')[1]

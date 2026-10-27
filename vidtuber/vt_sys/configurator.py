@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: configurator.py
-Porpose: Set Vidtuber configuration on startup
+Purpose: Set Vidtuber configuration on startup
 Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>

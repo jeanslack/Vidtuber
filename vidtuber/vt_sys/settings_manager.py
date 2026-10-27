@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: settings_manager.py
-Porpose: Read and write the configuration file
+Purpose: Read and write the configuration file
 Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>

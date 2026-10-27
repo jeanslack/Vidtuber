@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: subtitle_editor.py
-Porpose: shows a dialog box to setting preferred subtitles
+Purpose: shows a dialog box to setting preferred subtitles
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

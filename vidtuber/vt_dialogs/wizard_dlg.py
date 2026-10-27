@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: wizard_dlg.py
-Porpose: wizard setup dialog fot Vidtuber
+Purpose: wizard setup dialog fot Vidtuber
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

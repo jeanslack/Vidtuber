@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: downloader_gui.py
-Porpose: youtube-dl user interface
+Purpose: youtube-dl user interface
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
@@ -41,77 +41,113 @@ def from_api_to_cli(data, execpath):
     """
     Revert API arguments to command line options
     """
-    if not data["format"]:
-        dformat = ''
-    else:
-        dformat = (f'--format "{data["format"]}" {data["audio-multistreams"]} '
-                   f'{data["video-multistreams"]}')
-    opt = (f'"{execpath}" {dformat} --progress-template '
-           f'"download-title:%(info.id)s-%(progress.eta)s" '
-           f'--newline --compat-options "{data["compat_opts"]}" '
-           f'--ignore-errors --ignore-config --no-color ')
+    args = [f'"{execpath}"']
 
-    if data['extractaudio']:
-        opt += '--extract-audio '
-    if data['postprocessors']:
+    if data.get("format"):
+        fmt_str = f'--format "{data["format"]}"'
+        if data.get("audio-multistreams"):
+            fmt_str += f' {data["audio-multistreams"]}'
+        if data.get("video-multistreams"):
+            fmt_str += f' {data["video-multistreams"]}'
+        args.append(fmt_str)
+
+    # default yt-dlp arguments
+    args.extend([
+        '--progress-template "download-title:%(info.id)s-%(progress.eta)s"',
+        '--newline',
+        f'--compat-options "{data["compat_opts"]}"',
+        '--ignore-errors',
+        '--ignore-config',
+        '--no-color'
+    ])
+    if data.get('extractaudio'):
+        args.append('--extract-audio')
+
+    if data.get('postprocessors'):
         for pp in data['postprocessors']:
             for key, val in pp.items():
                 if 'preferredcodec' in key:
-                    opt += f'--audio-format {val} '
+                    args.append(f'--audio-format {val}')
                 if 'EmbedThumbnail' in val:
-                    opt += '--embed-thumbnail '
+                    args.append('--embed-thumbnail')
                 if 'FFmpegEmbedSubtitle' in val:
-                    opt += '--embed-subs '
-    if data['addmetadata']:
-        opt += '--embed-metadata '
-    if data['external_downloader']:
-        opt += f'--downloader "{data["external_downloader"]}" '
-    if data['external_downloader_args']:
-        dwargs = data["external_downloader_args"]
-        extdl = os.path.basename(data["external_downloader"])
-        opt += (f'--downloader-args "{extdl}:{dwargs}" ')
-    if data['yesplaylist'] is True:
-        opt += '--yes-playlist '
-        if data['playlist_items']:
-            opt += f'--playlist-items "{data["playlist_items"]}" '
-    else:
-        opt += '--no-playlist '
-    if data['writesubtitles']:
-        opt += '--write-subs '
-        if data['subtitleslangs'][0]:
-            sublang = ','.join(data["subtitleslangs"])
-            opt += f'--sub-langs "{sublang}" '
-        if data['writeautomaticsub']:
-            opt += '--write-auto-subs '
-        if data['skip_download']:
-            opt += '--skip-download '
-    opt += '--restrict-filenames ' if data['restrictfilenames'] else ''
-    opt += '--write-thumbnail ' if data['writethumbnail'] else ''
-    opt += '--force-overwrites ' if data['overwrites'] else ''
-    opt += '--no-check-certificates ' if data['nocheckcertificate'] else ''
-    opt += f'--proxy "{data["proxy"]}" ' if data["proxy"] else ''
-    opt += f'--socket-timeout {data["socket_timeout"]} '
-    opt += f'--retries {data["retries"]} '
-    opt += f'--fragment-retries {data["fragment_retries"]} '
-    if data['geo_verification_proxy']:
-        opt += f'--geo-verification-proxy "{data["geo_verification_proxy"]}" '
-    geo = (f'{data["geo_bypass"]} {data["geo_bypass_country"]} '
-           f'{data["geo_bypass_ip_block"]}')
-    if geo.strip():
-        opt += f'--xff "{geo}" '
-    if data['username']:
-        opt += f'--username {data["username"]} '
-        opt += f'--password {data["password"]} '
-    if data['videopassword']:
-        opt += f'--video-password {data["videopassword"]} '
-    if data.get("cookiefile"):
-        opt += f'--cookies "{data["cookiefile"]}" '
-    if data.get("cookiesfrombrowser"):
-        opt += f'--cookies-from-browser "{data["cookiesfrombrowser"][0]}" '
-    opt += f'--ffmpeg-location "{data["ffmpeg_location"]}" '
-    opt += f'--output "{data["outtmpl"]}" '
+                    args.append('--embed-subs')
 
-    return opt
+    if data.get('addmetadata'):
+        args.append('--embed-metadata')
+
+    if data.get('external_downloader'):
+        args.append(f'--downloader "{data["external_downloader"]}"')
+        if data.get('external_downloader_args'):
+            extdl = os.path.basename(data["external_downloader"])
+            args.append(f'--downloader-args '
+                        f'"{extdl}:{data["external_downloader_args"]}"')
+
+    if data.get('yesplaylist') is True:
+        args.append('--yes-playlist')
+        if data.get('playlist_items'):
+            args.append(f'--playlist-items "{data["playlist_items"]}"')
+    else:
+        args.append('--no-playlist')
+
+    if data.get('writesubtitles'):
+        args.append('--write-subs')
+        if data.get('subtitleslangs') and data['subtitleslangs'][0]:
+            sublang = ','.join(data["subtitleslangs"])
+            args.append(f'--sub-langs "{sublang}"')
+        if data.get('writeautomaticsub'):
+            args.append('--write-auto-subs')
+        if data.get('skip_download'):
+            args.append('--skip-download')
+
+    if data.get('restrictfilenames'):
+        args.append('--restrict-filenames')
+    if data.get('writethumbnail'):
+        args.append('--write-thumbnail')
+    if data.get('overwrites'):
+        args.append('--force-overwrites')
+    if data.get('nocheckcertificate'):
+        args.append('--no-check-certificates')
+
+    if data.get("proxy"):
+        args.append(f'--proxy "{data["proxy"]}"')
+
+    args.extend([
+        f'--socket-timeout {data.get("socket_timeout", 30)}',
+        f'--retries {data.get("retries", 10)}',
+        f'--fragment-retries {data.get("fragment_retries", 10)}'
+    ])
+
+    if data.get('geo_verification_proxy'):
+        args.append(f'--geo-verification-proxy '
+                    f'"{data["geo_verification_proxy"]}"')
+
+    geo = (f'{data.get("geo_bypass", "")} '
+           f'{data.get("geo_bypass_country", "")} '
+           f'{data.get("geo_bypass_ip_block", "")}'.strip()
+           )
+    if geo:
+        args.append(f'--xff "{geo}"')
+
+    if data.get('username'):
+        args.append(f'--username {data["username"]}')
+        args.append(f'--password {data["password"]}')
+
+    if data.get('videopassword'):
+        args.append(f'--video-password {data["videopassword"]}')
+
+    if data.get("cookiefile"):
+        args.append(f'--cookies "{data["cookiefile"]}"')
+
+    if data.get("cookiesfrombrowser"):
+        cfb = data["cookiesfrombrowser"]
+        cfb_val = cfb[0] if isinstance(cfb, (list, tuple)) else cfb
+        args.append(f'--cookies-from-browser "{cfb_val}"')
+
+    args.append(f'--ffmpeg-location "{data["ffmpeg_location"]}"')
+    args.append(f'--output "{data["outtmpl"]}"')
+
+    return ' '.join(args) + ' '
 
 
 class DLoad_Gui(wx.Panel):
@@ -129,15 +165,6 @@ class DLoad_Gui(wx.Panel):
             ('p240'): ('best*[height=240]'),
             ('p144'): ('best*[height=144]'),
             }
-    # video qualities best or worst
-    VQUAL = {_('Best quality video'): ('bestvideo'),
-             _('Worst quality video'): ('worstvideo'),
-             }
-    # precompiled videos
-    VPCOMP = {_('Best available quality'): (''),
-              _('Format 18 (youtube.com only)'): ('18'),
-              _('Worst available quality'): ('worstvideo+worstaudio/worst'),
-              }
     AFORMATS = {("Auto"): ("best"),
                 ("wav"): ("wav"),
                 ("mp3"): ("mp3"),
@@ -147,16 +174,6 @@ class DLoad_Gui(wx.Panel):
                 ("opus"): ("opus"),
                 ("flac"): ("flac"),
                 }
-    # audio qualities best or worst
-    AQUAL = {_('Best quality audio'): ('bestaudio'),
-             _('Worst quality audio'): ('worstaudio')}
-
-    CHOICE = [_('Combined Videos'),
-              _('Videos by Resolution'),
-              _('Split Audio and Video'),
-              _('Audio Only'),
-              _('Format Codes')
-              ]
     # -----------------------------------------------------------------#
 
     def __init__(self, parent):
@@ -170,11 +187,27 @@ class DLoad_Gui(wx.Panel):
         self.red = self.appdata['colorscheme']['ERR1']  # code err + sb error
         confmanager = ConfigManager(self.appdata['fileconfpath'])
         sett = confmanager.read_options()
+        # video qualities best or worst
+        self.VQUAL = {_('Best quality video'): 'bestvideo',
+                      _('Worst quality video'): 'worstvideo'}
+        # precompiled videos
+        self.VPCOMP = {_('Best available quality'): '',
+                       _('Format 18 (youtube.com only)'): '18',
+                       _('Worst available quality'):
+                           'worstvideo+worstaudio/worst'}
+        # audio qualities best or wors
+        self.AQUAL = {_('Best quality audio'): 'bestaudio',
+                      _('Worst quality audio'): 'worstaudio'}
+        self.choices_list = [_('Combined Videos'),
+                             _('Videos by Resolution'),
+                             _('Split Audio and Video'),
+                             _('Audio Only'),
+                             _('Format Codes')]
 
         bmplistindx = get_bmp(icons['playlist'], ((16, 16)))
         bmpsubtitles = get_bmp(icons['subtitles'], ((16, 16)))
 
-        self.opt = {("V_QUALITY"): list(DLoad_Gui.VPCOMP)[0],
+        self.opt = {("V_QUALITY"): list(self.VPCOMP)[0],
                     ("A_FORMAT"): "best",
                     ("A_QUALITY"): "bestaudio",
                     ("SUBS"): sett['subtitles_options'],
@@ -189,7 +222,7 @@ class DLoad_Gui(wx.Panel):
         fgs1 = wx.BoxSizer(wx.HORIZONTAL)
         sizer_base.Add(fgs1, 0, wx.ALL | wx.CENTRE, 5)
         self.choice = wx.Choice(self, wx.ID_ANY,
-                                choices=DLoad_Gui.CHOICE,
+                                choices=self.choices_list,
                                 size=(-1, -1),
                                 )
         self.choice.SetSelection(sett['download_mode'])
@@ -234,7 +267,7 @@ class DLoad_Gui(wx.Panel):
         fgs2.Add(self.cmbx_vformat, 0, wx.ALL | wx.CENTRE, 5)
         fgs2.Add((20, 20), 0,)
         self.cmbx_aq = wx.ComboBox(box, wx.ID_ANY,
-                                   choices=list(DLoad_Gui.AQUAL.keys()),
+                                   choices=list(self.AQUAL.keys()),
                                    size=(-1, -1),
                                    style=wx.CB_DROPDOWN
                                    | wx.CB_READONLY
@@ -345,74 +378,67 @@ class DLoad_Gui(wx.Panel):
     def on_choicebox(self, event, statusmsg=True):
         """
         Set widgets on switching choice box
-
         """
-        if statusmsg:
-            if not self.parent.sb.GetStatusText() == 'Ready':
-                self.parent.statusbar_msg(_('Ready'), None)
+        if statusmsg and self.parent.sb.GetStatusText() != 'Ready':
+            self.parent.statusbar_msg(_('Ready'), None)
 
-        if self.choice.GetSelection() == 0:
-            self.cmbx_af.Disable()
-            self.cmbx_aq.Disable()
+        mode = self.choice.GetSelection()
+
+        # Disable all first
+        self.cmbx_vq.Disable()
+        self.cmbx_vformat.Disable()
+        self.cmbx_aq.Disable()
+        self.cmbx_af.Disable()
+
+        if mode == 0:
             self.cmbx_vq.Enable()
-            self.cmbx_vformat.Disable()
             self.cmbx_vq.Clear()
-            self.cmbx_vq.Append(list(DLoad_Gui.VPCOMP.keys()))
+            self.cmbx_vq.Append(list(self.VPCOMP.keys()))
             self.cmbx_vq.SetSelection(0)
-            self.Layout()
             self.on_vquality(self)
 
-        elif self.choice.GetSelection() == 1:
-            self.cmbx_af.Disable()
-            self.cmbx_aq.Disable()
+        elif mode == 1:
             self.cmbx_vq.Enable()
             self.cmbx_vformat.Enable()
             self.cmbx_vq.Clear()
             self.cmbx_vq.Append(list(DLoad_Gui.VRES.keys()))
             self.cmbx_vq.SetSelection(0)
-            self.Layout()
             self.on_vquality(self)
 
-        elif self.choice.GetSelection() == 2:
-            self.cmbx_af.Disable()
-            self.cmbx_aq.Enable()
+        elif mode == 2:
             self.cmbx_vq.Enable()
-            self.cmbx_vformat.Disable()
+            self.cmbx_aq.Enable()
             self.cmbx_vq.Clear()
-            self.cmbx_vq.Append(list(DLoad_Gui.VQUAL.keys()))
+            self.cmbx_vq.Append(list(self.VQUAL.keys()))
             self.cmbx_vq.SetSelection(0)
-            self.Layout()
             self.on_vquality(self)
 
-        elif self.choice.GetSelection() == 3:
-            self.cmbx_vq.Disable()
+        elif mode == 3:
             self.cmbx_aq.Enable()
             self.cmbx_af.Enable()
-            self.cmbx_vformat.Disable()
-            self.Layout()
             self.on_aformat(self)
 
-        elif self.choice.GetSelection() == 4:
-            self.cmbx_vq.Disable()
-            self.cmbx_aq.Disable()
-            self.cmbx_af.Disable()
-            self.cmbx_vformat.Disable()
-            ret = self.on_format_codes()
-            if ret:
+        elif mode == 4:
+            if self.on_format_codes():
                 return
-            self.Layout()
+
+        self.Layout()
     # -----------------------------------------------------------------#
 
     def on_vquality(self, event):
         """
         Set video qualities during combobox event
         """
-        if self.choice.GetSelection() == 0:
-            self.opt["V_QUALITY"] = DLoad_Gui.VPCOMP[self.cmbx_vq.GetValue()]
-        elif self.choice.GetSelection() == 1:
-            self.opt["V_QUALITY"] = DLoad_Gui.VRES[self.cmbx_vq.GetValue()]
-        elif self.choice.GetSelection() == 2:
-            self.opt["V_QUALITY"] = DLoad_Gui.VQUAL[self.cmbx_vq.GetValue()]
+        mode = self.choice.GetSelection()
+        val = self.cmbx_vq.GetValue()
+
+        if mode == 0:
+            self.opt["V_QUALITY"] = self.VPCOMP[val]
+        elif mode == 1:
+            self.opt["V_QUALITY"] = DLoad_Gui.VRES[val]
+        elif mode == 2:
+            self.opt["V_QUALITY"] = self.VQUAL[val]
+
         self.on_quality(self)
     # -----------------------------------------------------------------#
 
@@ -420,27 +446,25 @@ class DLoad_Gui(wx.Panel):
         """
         Set preferring video and audio format on combobox event
         """
+        mode = self.choice.GetSelection()
         vformat = self.cmbx_vformat.GetValue()
+        quality = self.quality
 
-        if self.choice.GetSelection() == 0:
-            if self.opt["V_QUALITY"] == '':
-                qbar = 'Default best quality'
-            else:
-                qbar = self.opt["V_QUALITY"]
+        if mode == 0:
             quality = self.opt["V_QUALITY"]
-
+            qbar = quality if quality != '' else 'Default best quality'
             self.parent.statusbar_msg(f'Quality: {qbar}', None)
 
-        elif self.choice.GetSelection() == 1:
+        elif mode == 1:
             vf = '' if vformat == 'Auto' else f'[ext={vformat}]'
             quality = self.opt["V_QUALITY"] + vf
             self.parent.statusbar_msg(f'Quality: {quality}', None)
 
-        elif self.choice.GetSelection() == 2:
+        elif mode == 2:
             quality = f'{self.opt["V_QUALITY"]},{self.opt["A_QUALITY"]}'
             self.parent.statusbar_msg(f'Quality: {quality}', None)
 
-        elif self.choice.GetSelection() == 3:
+        elif mode == 3:
             quality = f'{self.opt["A_QUALITY"]}/worst'
             msg = f'Quality: {quality} (format={self.cmbx_af.GetValue()})'
             self.parent.statusbar_msg(msg, None)
@@ -463,7 +487,7 @@ class DLoad_Gui(wx.Panel):
         This is related to "Download spilt audio and video" and
         "Download Audio only" choices.
         """
-        self.opt["A_QUALITY"] = DLoad_Gui.AQUAL.get(self.cmbx_aq.GetValue())
+        self.opt["A_QUALITY"] = self.AQUAL.get(self.cmbx_aq.GetValue())
         self.on_quality(self)
     # -----------------------------------------------------------------#
 
@@ -546,7 +570,7 @@ class DLoad_Gui(wx.Panel):
         return data
     # -----------------------------------------------------------------#
 
-    def build_args(self, *args, **data):
+    def build_args(self, outtmpl, format_quality, codes, **data):
         """
         Build the options list for yt_dlp,
         return a type list object.
@@ -554,35 +578,34 @@ class DLoad_Gui(wx.Panel):
         datalist = []
         urlslist = [list(k.keys())[0] for k in self.parent.data_url]
 
-        if self.appdata['playlistsubfolder']:
-            subdir = ('%(uploader)s/%(playlist_title)'
-                      's/%(playlist_index)s - ')
-        else:
-            subdir = ''
+        subdir = ('%(uploader)s/%(playlist_title)s/%(playlist_index)s - '
+                  if self.appdata['playlistsubfolder'] else '')
+
+        if not isinstance(codes, (list, tuple)):
+            codes = [codes] if codes else []
 
         for url, code in itertools.zip_longest(urlslist,
-                                               args[2],
-                                               fillvalue='',
-                                               ):
+                                               codes,
+                                               fillvalue=''):
             if self.playlist_indx.get(url):
-                template = subdir + args[0]
+                template = subdir + outtmpl
                 playlistitems = self.playlist_indx[url][0]
                 yesplaylist = self.playlist_indx[url][1]
             else:
-                template = args[0]
+                template = outtmpl
                 playlistitems = None
                 yesplaylist = False
 
-            format_code = code if code else args[1]
-            datalist.append(
-                {'format': format_code,
-                 'extractaudio': args[1],
-                 'outtmpl': f"{self.appdata['dirdownload']}/{template}",
-                 'yesplaylist': yesplaylist,
-                 'playlist_items': playlistitems,
-                 'postprocessors': data['postprocessors'],
-                 **data
-                 })
+            format_code = code if code else format_quality
+            datalist.append({
+                'format': format_code,
+                'extractaudio': data.get('extractaudio', False),
+                'outtmpl': f"{self.appdata['dirdownload']}/{template}",
+                'yesplaylist': yesplaylist,
+                'playlist_items': playlistitems,
+                'postprocessors': data.get('postprocessors', []),
+                **data
+            })
         return datalist
     # -----------------------------------------------------------------#
 
@@ -591,58 +614,52 @@ class DLoad_Gui(wx.Panel):
         Pass options list to processing.
         """
         data = self.default_download_options()
+        mode = self.choice.GetSelection()
 
-        if self.appdata["include_ID_name"]:
-            _id = '%(title).100s-%(id)s'
-        else:
-            _id = '%(title).100s'
+        # Configurazione di base del template dell'ID
+        _id = ('%(title).100s-%(id)s' if self.appdata["include_ID_name"]
+               else '%(title).100s')
 
         formatquality = self.quality
         outtmpl = f'{_id}.%(ext)s'
+        code = []
+        data['extractaudio'] = False
 
-        if self.choice.GetSelection() == 0:  # precompiled or quality
-            code = []
-            data['extractaudio'] = False
-
-        elif self.choice.GetSelection() == 1:  # by video resolution
-            code = []
-            data['extractaudio'] = False
-
-        elif self.choice.GetSelection() == 2:  # audio and video splitted
-            code = []
+        if mode == 2:  # audio and video splitted
             outtmpl = f'{_id}.f%(format_id)s.%(ext)s'
-            data['extractaudio'] = False
 
-        elif self.choice.GetSelection() == 3:  # audio only
-            code = []
+        elif mode == 3:  # audio only
             data['extractaudio'] = True
 
-        elif self.choice.GetSelection() == 4:  # format code
+        elif mode == 4:  # format code
             if self.panel_cod.fcode.GetItemCount() == 0:
                 msg = _('Click the Reload Format Codes button.')
                 wx.MessageBox(msg, _('Format Code List Missing'),
-                              wx.ICON_INFORMATION, self)
+                              wx.ICON_INFORMATION, self
+                              )
                 return
 
-            code = self.panel_cod.get_formatcode()
+            res_code = self.panel_cod.get_formatcode()
+            if not res_code or not res_code[0]:
+                msg = _('At least one "Format Code" must be checked for '
+                        'each URL selected in green.')
+                wx.MessageBox(msg, _('Incomplete Format Code Selection'),
+                              wx.ICON_INFORMATION, self
+                              )
+                return
+
             formatquality = ''
             outtmpl = f'{_id}.f%(format_id)s.%(ext)s'
-            data['extractaudio'] = False
-            if not code[0]:
-                msg = _('At least one "Format Code" must be checked for each '
-                        'URL selected in green.')
-                wx.MessageBox(msg, _('Incomplete Format Code Selection'),
-                              wx.ICON_INFORMATION, self)
-                return
-            data['audio-multistreams'] = code[1]
-            data['video-multistreams'] = code[2]
-            code = code[0]
+            code = res_code[0]
+            data['audio-multistreams'] = res_code[1]
+            data['video-multistreams'] = res_code[2]
 
-        self.to_processing(self.build_args(outtmpl,
-                                           formatquality,
-                                           code,
-                                           **data
-                                           ))
+        args_list = self.build_args(outtmpl,
+                                    formatquality,
+                                    code,
+                                    **data
+                                    )
+        self.to_processing(args_list)
     # -----------------------------------------------------------------#
 
     def to_processing(self, datalist, getcmd=False):

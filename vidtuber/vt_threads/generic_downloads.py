@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: generic_downloads.py
-Porpose: generic network download operation
+Purpose: generic network download operation
 Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

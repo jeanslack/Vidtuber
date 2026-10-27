@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: showlogs.py
-Porpose: show logs data
+Purpose: show logs data
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

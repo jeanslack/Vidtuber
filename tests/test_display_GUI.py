@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-# Porpose: Contains test cases for the Vidtuber object.
+# Purpose: Contains test cases for the Vidtuber object.
 # Rev: Oct.04.2020 *PEP8 compatible*
 
 import sys

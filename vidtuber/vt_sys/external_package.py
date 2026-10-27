@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: external_package.py
-Porpose: finds and loads a module
+Purpose: finds and loads a module
 Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: inkscape2png
-Porpose: Wrapper interface to perform batch conversion using the
+Purpose: Wrapper interface to perform batch conversion using the
          Inkscape library
 Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>

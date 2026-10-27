@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: playlist_indexing.py
-Porpose: shows a dialog box for setting playlist indexing
+Purpose: shows a dialog box for setting playlist indexing
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: about_app.py
-Porpose: Gets information about the program
+Purpose: Gets information about the program
 Compatibility: Python3, Python2
 author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

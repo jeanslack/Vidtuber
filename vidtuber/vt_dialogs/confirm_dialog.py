@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: confirm_dialog.py
-Porpose: confirmation dialog for final settings.
+Purpose: confirmation dialog for final settings.
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

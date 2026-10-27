@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: shutdown.py
-Porpose: Execute shutdown system using subprocess
+Purpose: Execute shutdown system using subprocess
 Compatibility: Python3 (Unix, Windows)
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>

@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: get_output_thread.py
-Porpose: long processing task (URL data retrieval in JSON format)
+Purpose: long processing task (URL data retrieval in JSON format)
 Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>

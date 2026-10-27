@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-# Porpose: Contains test cases for the utils.py object.
+# Purpose: Contains test cases for the utils.py object.
 # Rev: April.06.2020 *PEP8 compatible*
 
 import sys

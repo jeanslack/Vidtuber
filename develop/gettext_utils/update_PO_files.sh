@@ -5,7 +5,7 @@
 # license: GPL3
 # Rev: July.10.2024
 #
-# PORPOSE: Updates all translation strings of vidtuber.po files
+# Purpose: Updates all translation strings of vidtuber.po files
 #          located in "vidtuber/data/locale" .
 #
 # USAGE: ~$ cd /Vidtuber/source/directory
