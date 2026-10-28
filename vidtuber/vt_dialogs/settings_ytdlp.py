@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Oct.26.2026
+Rev: Oct.28.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -353,8 +353,9 @@ class YtdlpSettings(wx.Dialog):
         msg = _("Using cookies to gain access to websites")
         labcooktitle = wx.StaticText(tabSev, wx.ID_ANY, msg)
         sizercook.Add(labcooktitle, 0, wx.ALL | wx.EXPAND, 5)
-        suppwebbrowser = ('brave', 'chrome', 'chromium', 'edge', 'firefox',
-                          'opera', 'safari', 'vivaldi', 'whale')
+        suppbrowsers = ('brave', 'chrome', 'chromium', 'edge', 'firefox',
+                        'opera', 'safari', 'vivaldi', 'whale')
+
         msg = (_("Here you can pass your `Netscape HTTP Cookie File` in order "
                  "to access websites that require authentication.\nIf you "
                  "don't know how to obtain this type of file, you can let "
@@ -362,7 +363,7 @@ class YtdlpSettings(wx.Dialog):
                  "your browser\nautomatically. The currently supported "
                  "browsers are:\n{0}.\n\nFor more information please consult "
                  "the documentation at the following link:").format(
-                     ', '.join(suppwebbrowser)))
+                     ', '.join(i.capitalize() for i in suppbrowsers)))
         labcookgen = wx.StaticText(tabSev, wx.ID_ANY, (msg))
         sizercook.Add(labcookgen, 0, wx.ALL, 5)
         url1 = ("https://github.com/yt-dlp/yt-dlp/wiki/"
@@ -399,26 +400,47 @@ class YtdlpSettings(wx.Dialog):
                                          _("Web Browser"))
         sizerautocook.Add(self.labautocook, 0, wx.LEFT | wx.TOP | wx.CENTER, 5)
         self.cmbx_browser = wx.ComboBox(tabSev, wx.ID_ANY,
-                                        choices=suppwebbrowser,
+                                        choices=suppbrowsers,
                                         size=(-1, -1),
                                         style=wx.CB_DROPDOWN | wx.CB_READONLY
                                         )
         self.cmbx_browser.SetValue(self.appdata['webbrowser'])
         sizerautocook.Add(self.cmbx_browser, 0, wx.LEFT | wx.TOP
                           | wx.CENTRE, 5)
+        sizerautocook.Add((20, 0))
+        self.labbrowseopt = wx.StaticText(tabSev, wx.ID_ANY,
+                                          _("Additional Parameters"))
+        sizerautocook.Add(self.labbrowseopt, 0, wx.LEFT | wx.TOP
+                          | wx.CENTER, 5)
+        self.txtctrl_browseropt = wx.TextCtrl(tabSev, wx.ID_ANY,
+                                              self.sett["webbrowserOPT"])
+        tip = (_('If necessary, enter these parameters and provide them using '
+                 'the required prefixes:\n\n'
+                 '• +KEYRING (e.g., +gnomekeyring)\n'
+                 '• :PROFILE (e.g., :Default)\n'
+                 '• ::CONTAINER (Firefox only, e.g., ::Work)\n\n'
+                 'Example: +gnomekeyring:Default::Work'))
+        self.txtctrl_browseropt.SetToolTip(tip)
+        sizerautocook.Add(self.txtctrl_browseropt, 1, wx.LEFT | wx.TOP
+                          | wx.CENTRE
+                          | wx.EXPAND, 5)
+        sizerautocook.Add((5, 0))
 
         if self.appdata['select_cookie_file']:
             self.ckbx_autocook.Disable(), self.labautocook.Disable()
+            self.txtctrl_browseropt.Disable(), self.labbrowseopt.Disable()
             self.cmbx_browser.Disable(), self.labcookie.Enable()
             self.txtctrl_cook.Enable(), self.btn_cookie.Enable()
         elif self.appdata['autogen_cookie_file']:
             self.ckbx_filecook.Disable(), self.labcookie.Disable()
             self.txtctrl_cook.Disable(), self.btn_cookie.Disable()
             self.labautocook.Enable(), self.cmbx_browser.Enable()
+            self.txtctrl_browseropt.Enable(), self.labbrowseopt.Enable()
         else:
             self.labautocook.Disable(), self.labcookie.Disable()
             self.cmbx_browser.Disable(), self.btn_cookie.Disable(),
-            self.txtctrl_cook.Disable()
+            self.txtctrl_cook.Disable(), self.txtctrl_browseropt.Disable()
+            self.labbrowseopt.Disable()
 
         sizercook.Add(sizerautocook, 0, wx.LEFT | wx.EXPAND, 5)
         tabSev.SetSizer(sizercook)
@@ -497,6 +519,7 @@ class YtdlpSettings(wx.Dialog):
         """
         if self.ckbx_filecook.GetValue():
             self.ckbx_autocook.Disable(), self.labcookie.Enable()
+            self.txtctrl_browseropt.Disable(), self.labbrowseopt.Disable()
             self.btn_cookie.Enable(), self.txtctrl_cook.Enable()
             self.sett['select_cookie_file'] = True
         else:
@@ -522,13 +545,14 @@ class YtdlpSettings(wx.Dialog):
         if self.ckbx_autocook.GetValue():
             self.ckbx_filecook.Disable()
             self.labautocook.Enable(), self.cmbx_browser.Enable()
+            self.txtctrl_browseropt.Enable(), self.labbrowseopt.Enable()
             self.sett['autogen_cookie_file'] = True
-            self.on_web_browser(None)  # default selected cookiesfrombrowser
+            self.on_web_browser(None)
         else:
             self.ckbx_filecook.Enable()
             self.labautocook.Disable(), self.cmbx_browser.Disable()
+            self.txtctrl_browseropt.Disable(), self.labbrowseopt.Disable()
             self.sett['autogen_cookie_file'] = False
-            self.sett["cookiesfrombrowser"] = (None, None, None, None)
     # ---------------------------------------------------------------------#
 
     def on_web_browser(self, event):
@@ -536,8 +560,6 @@ class YtdlpSettings(wx.Dialog):
         Event on choice a web browser item from ComboBox
         """
         self.sett['webbrowser'] = self.cmbx_browser.GetStringSelection()
-        self.sett["cookiesfrombrowser"] = (self.sett['webbrowser'],
-                                           None, None, None)
     # ---------------------------------------------------------------------#
 
     def on_choose_cookie(self, event):
@@ -628,6 +650,8 @@ class YtdlpSettings(wx.Dialog):
         self.sett['geo_bypass_country'] = self.txtctrl_geocountry.GetValue()
         self.sett['geo_bypass_ip_block'] = self.txtctrl_geoipblock.GetValue()
         self.sett['cookiefile'] = self.txtctrl_cook.GetValue()
+        self.sett['webbrowser'] = self.cmbx_browser.GetStringSelection()
+        self.sett["webbrowserOPT"] = self.txtctrl_browseropt.GetValue().strip()
         self.sett['timeoutDL'] = str(self.spin_timeout.GetValue())
         retries = self.spin_retries.GetValue()
         self.sett['retriesDL'] = "infinite" if retries == 0 else str(retries)
