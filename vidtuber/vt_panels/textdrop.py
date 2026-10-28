@@ -138,20 +138,16 @@ class MyListCtrl(wx.ListCtrl):
         Update list-control during drag and drop.
 
         """
-        self.Disable()  # to avoid overwriting or overloading.
-
         if not shutil.which(MyListCtrl.get.appset['yt-dlp_cmd']):
             wx.MessageBox(_('Missing «yt-dlp» executable. Please check the '
                             'execution permissions and be sure to make the '
                             'correct settings in the preferences dialog.'
                             ), _('Vidtuber - Error!'), wx.ICON_ERROR, self)
-            self.Enable()
             return 'INTERRUPTED'
 
         self.index = self.GetItemCount()
         res = urlparse(url)
         if not res[1]:  # if empty netloc given from ParseResult
-            self.Enable()
             return False
 
         if not next((item for item in self.data_url if url in item), None):
@@ -178,7 +174,6 @@ class MyListCtrl(wx.ListCtrl):
 
             self.parent.changes_in_progress()
 
-        self.Enable()
         return True
     # ----------------------------------------------------------------------#
 
@@ -193,7 +188,6 @@ class MyListCtrl(wx.ListCtrl):
             toplevparent = wx.GetTopLevelParent(self)
             toplevparent.view_logs(None, flog='Drag_And_Drop.log')
             self.errors = False  # restore default value here
-            self.Enable()
 
 
 class UrlDropTarget(wx.TextDropTarget):
@@ -212,14 +206,30 @@ class UrlDropTarget(wx.TextDropTarget):
     def OnDropText(self, x, y, data):
         """
         Update ListCtrl object by dragging text inside it.
+        Safely disable the list control at the start of the overall
+        drop operation, and use `wx.CallAfter` at the end of this code
+        block to defer re-enabling the widget - as well as displaying
+        any error dialogs - until after the Drag & Drop event loop
+        has concluded.
         """
+        self.listctrl.Disable()
+
         for url in data.split():
             ret = self.listctrl.dropUpdate(url)
             if ret == 'INTERRUPTED':
                 break
-        self.listctrl.rejected_urls()
+        # self.listctrl.rejected_urls()
+        wx.CallAfter(self.postDropActions)
 
         return True
+
+    def postDropActions(self):
+        """
+        Executes GUI updates safely outside the DND main loop.
+        """
+        if self.listctrl:
+            self.listctrl.Enable()
+            self.listctrl.rejected_urls()
 
 
 class Url_DnD_Panel(wx.Panel):

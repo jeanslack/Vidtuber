@@ -11,6 +11,8 @@ URGENCY: high
 URGENCY: medium
 ----------------
 
+Many parts of the code need refactoring.
+
 -------------
 URGENCY: low
 -------------

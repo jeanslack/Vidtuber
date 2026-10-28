@@ -7,28 +7,32 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
-Wed, 28 Oct 2026 v2.1.12
+Wed, 28 Oct 2026 v2.1.13
 
-  * Fixed bug that made it impossible to drag and drop files if "Extract cookies
-    automatically from your browser" option was already enabled; the first item
-    in the `cookiesfrombrowser` list was setting an incorrect string "none".
+  * Fixed an issue that made it impossible to retrieve data when dragging and
+    dropping URLs while the "Automatically extract cookies from browser" option
+    was enabled.
   * Fixed deterministic, cross-platform termination of yt-dlp executable.
   * Improved shutdown based on native OS status codes rather than text strings.
   * New: added controls to adjust timeout and retries downloads on <User Option
     dialog -> Network> table.
   * Updated User Guide `docs/UserGuide/Options_Dialog_en.pdf`.
-  * Fixed broken User Guide URL.
+  * Fixed broken URL on help -> User Guide.
   * Updated support for the Russian language (thanks to ChourS).
-  * Updated configuration file to v2.9 .
-  * Refactored downloader_thread.py, get_output_thread.py, generic_downloads.py,
-    shutdown.py, downloader_gui.py, formatcode_id.py, textdrop.py [populate(),
-    drag_and_drop_command_build()],
+  * Updated configuration file to version 3.0.
+  * Code refactoring performed on the following files: downloader_thread.py,
+    get_output_thread.py, generic_downloads.py, shutdown.py, downloader_gui.py,
+    formatcode_id.py, textdrop.py [populate(), drag_and_drop_command_build()],
     main_frame.py [write_option_before_exit(), auto_shutdown(),
     removed: ydl_latest(), get_ytdlp_version(), check_new_releases()],
     io_tools.py [dump_formats(), get_github_releases()], utils.py .
   * New: Added optional control to set additional parameters next to the browser
     name, concerning the specification of cookies (keyring, profile and
     container).
+  * Fixed 'SetFocus' error that occurred during text drag-and-drop operations,
+    which corresponded to the Win32 error code ERROR_INVALID_PARAMETER.
+    This fix is ​​cross-platform; therefore, systems based on GTK and Qt/X11
+    engines will also benefit from the improved focus management in the code.
 
 +------------------------------------+
 Sat, 24 Oct 2026 V.2.0.7
