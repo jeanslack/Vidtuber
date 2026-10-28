@@ -26,7 +26,7 @@ This file is part of Vidtuber.
 """
 PRGNAME = 'vidtuber'
 RELNAME = 'Vidtuber'
-VERSION = '2.1.12'
+VERSION = '2.1.13'
 RELSTATE = 'released'
 COPYRIGHT = '2023-2026'
 WEBSITE = 'http://jeanslack.github.io/Vidtuber/'
