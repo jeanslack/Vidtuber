@@ -139,9 +139,8 @@ def from_api_to_cli(data, execpath):
     if data.get("cookiefile"):
         args.append(f'--cookies "{data["cookiefile"]}"')
 
-    if data.get("cookiesfrombrowser"):
-        cfb = data["cookiesfrombrowser"]
-        cfb_val = cfb[0] if isinstance(cfb, (list, tuple)) else cfb
+    if data.get("webbrowser"):
+        cfb_val = data['webbrowser'] + data['webbrowserOPT']
         args.append(f'--cookies-from-browser "{cfb_val}"')
 
     args.append(f'--ffmpeg-location "{data["ffmpeg_location"]}"')
@@ -531,8 +530,8 @@ class DLoad_Gui(wx.Panel):
                 and self.appdata["cookiefile"].strip()):
             data["cookiefile"] = self.appdata["cookiefile"]
         if self.appdata["autogen_cookie_file"]:
-            cfb = tuple(self.appdata["cookiesfrombrowser"])
-            data["cookiesfrombrowser"] = cfb
+            data["webbrowser"] = self.appdata["webbrowser"]
+            data["webbrowserOPT"] = self.appdata.get("webbrowserOPT", "")
         data['compat_opts'] = 'youtube-dl'
         data['external_downloader'] = (
             self.appdata["external_downloader"])

@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2025 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: October.26.2026
+Rev: October.28.2026
 Code checker: flake8, pylint
 
 This file is part of Vidtuber.
@@ -40,51 +40,58 @@ def drag_and_drop_command_build():
     get = wx.GetApp()  # get data from bootstrap
     appdata = get.appset
     execpath = appdata['yt-dlp_cmd']
-    kwa = {}
 
-    if (appdata["select_cookie_file"] and appdata["cookiefile"].strip()):
-        kwa["cookiefile"] = appdata["cookiefile"]
+    args = [
+        f'"{execpath}"',
+        '--newline',
+        '--compat-options "youtube-dl"',
+        '--ignore-errors',
+        '--ignore-config',
+        '--no-color',
+        '--restrict-filenames'
+    ]
+    if appdata['ssl_certificate']:
+        args.append('--no-check-certificates')
+
+    if appdata['proxy']:
+        args.append(f'--proxy "{appdata["proxy"]}"')
+
+    args.extend([
+        f'--socket-timeout {appdata["timeoutDL"]}',
+        f'--retries {appdata["retriesDL"]}'
+    ])
+
+    if appdata['geo_verification_proxy']:
+        args.append(f'--geo-verification-proxy '
+                    f'"{appdata["geo_verification_proxy"]}"')
+
+    geo = (f'{appdata["geo_bypass"]} {appdata["geo_bypass_country"]} '
+           f'{appdata["geo_bypass_ip_block"]}'.strip())
+    if geo:
+        args.append(f'--xff "{geo}"')
+
+    if appdata['username']:
+        args.append(f'--username {appdata["username"]}')
+        args.append(f'--password {appdata["password"]}')
+
+    if appdata['videopassword']:
+        args.append(f'--video-password {appdata["videopassword"]}')
+
+    if appdata["select_cookie_file"] and appdata["cookiefile"].strip():
+        args.append(f'--cookies "{appdata["cookiefile"]}"')
+
     if appdata["autogen_cookie_file"]:
-        cfb = tuple(appdata["cookiesfrombrowser"])
-        kwa["cookiesfrombrowser"] = cfb
-    kwa['nocheckcertificate'] = appdata["ssl_certificate"]
-    kwa['proxy'] = appdata["proxy"]
-    kwa['username'] = appdata["username"]
-    kwa['password'] = appdata["password"]
-    kwa['videopassword'] = appdata["videopassword"]
-    kwa["geo_verification_proxy"] = appdata["geo_verification_proxy"]
-    kwa["geo_bypass"] = appdata["geo_bypass"]
-    kwa["geo_bypass_country"] = appdata["geo_bypass_country"]
-    kwa["geo_bypass_ip_block"] = appdata["geo_bypass_ip_block"]
-    kwa["timeoutDL"] = appdata["timeoutDL"]
-    kwa["retriesDL"] = appdata["retriesDL"]
-    # Do not use --fragment-retries option here because not download mode
-    opt = (f'"{execpath}" --newline --compat-options "youtube-dl" '
-           f'--ignore-errors --ignore-config --no-color '
-           f'--restrict-filenames ')
-    opt += '--no-check-certificates ' if kwa['nocheckcertificate'] else ''
-    opt += f'--proxy "{kwa["proxy"]}" ' if kwa["proxy"] else ''
-    opt += f'--socket-timeout {kwa["timeoutDL"]} '
-    opt += f'--retries {kwa["retriesDL"]} '
-    if kwa['geo_verification_proxy']:
-        opt += (f'--geo-verification-proxy '
-                f'"{kwa["geo_verification_proxy"]}" ')
-    geo = (f'{kwa["geo_bypass"]} {kwa["geo_bypass_country"]} '
-           f'{kwa["geo_bypass_ip_block"]}')
-    if geo.strip():
-        opt += f'--xff "{geo}" '
-    if kwa['username']:
-        opt += f'--username {kwa["username"]} '
-        opt += f'--password {kwa["password"]} '
-    if kwa['videopassword']:
-        opt += f'--video-password {kwa["videopassword"]} '
-    if kwa.get("cookiefile"):
-        opt += f'--cookies "{kwa["cookiefile"]}" '
-    if kwa.get("cookiesfrombrowser"):
-        opt += f'--cookies-from-browser "{kwa["cookiesfrombrowser"][0]}" '
-    opt += '--flat-playlist --dump-single-json  '
+        browser = appdata["webbrowser"]
+        browseropt = appdata.get("webbrowserOPT", "")
+        cfb_val = browser + browseropt
+        args.append(f'--cookies-from-browser "{cfb_val}"')
 
-    return opt
+    args.extend([
+        '--flat-playlist',
+        '--dump-single-json'
+    ])
+
+    return ' '.join(args) + ' '
 
 
 class MyListCtrl(wx.ListCtrl):

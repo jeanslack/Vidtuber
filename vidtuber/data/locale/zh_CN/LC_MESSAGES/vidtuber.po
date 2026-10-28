@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Vidtuber 2.0.5\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 15:56+0100\n"
+"POT-Creation-Date: 2026-10-28 17:50+0100\n"
 "PO-Revision-Date: 2025-07-09 21:38+0200\n"
 "Last-Translator: Gao Zimu <gaozimu_0502@163.com>\n"
 "Language: zh_CN\n"
@@ -94,11 +94,11 @@ msgstr ""
 msgid "URL"
 msgstr "链接"
 
-#: vidtuber/vt_dialogs/playlist_indexing.py:103 vidtuber/vt_panels/formatcode_id.py:98 vidtuber/vt_panels/textdrop.py:124
+#: vidtuber/vt_dialogs/playlist_indexing.py:103 vidtuber/vt_panels/formatcode_id.py:91 vidtuber/vt_panels/textdrop.py:129
 msgid "Title"
 msgstr ""
 
-#: vidtuber/vt_dialogs/playlist_indexing.py:104 vidtuber/vt_panels/textdrop.py:127
+#: vidtuber/vt_dialogs/playlist_indexing.py:104 vidtuber/vt_panels/textdrop.py:130
 msgid "Type"
 msgstr ""
 
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Add range to the selected playlist. Can be used multiple times."
 msgstr ""
 
-#: vidtuber/vt_dialogs/playlist_indexing.py:209 vidtuber/vt_panels/downloader_gui.py:200
+#: vidtuber/vt_dialogs/playlist_indexing.py:209 vidtuber/vt_panels/downloader_gui.py:232
 msgid "Playlist Editor"
 msgstr "播放列表编辑器"
 
@@ -185,7 +185,7 @@ msgstr ""
 msgid "Enable a custom location to run yt-dlp executable."
 msgstr ""
 
-#: vidtuber/vt_dialogs/settings_vidtuber.py:88 vidtuber/vt_dialogs/settings_vidtuber.py:115 vidtuber/vt_dialogs/settings_vidtuber.py:127 vidtuber/vt_dialogs/settings_ytdlp.py:123 vidtuber/vt_panels/textdrop.py:255
+#: vidtuber/vt_dialogs/settings_vidtuber.py:88 vidtuber/vt_dialogs/settings_vidtuber.py:115 vidtuber/vt_dialogs/settings_vidtuber.py:127 vidtuber/vt_dialogs/settings_ytdlp.py:123 vidtuber/vt_panels/textdrop.py:262
 msgid "Change"
 msgstr "更改"
 
@@ -551,7 +551,7 @@ msgstr "身份验证"
 msgid "Using cookies to gain access to websites"
 msgstr ""
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:358
+#: vidtuber/vt_dialogs/settings_ytdlp.py:359
 #, python-brace-format
 msgid ""
 "Here you can pass your `Netscape HTTP Cookie File` in order to access websites that require authentication.\n"
@@ -562,51 +562,66 @@ msgid ""
 "For more information please consult the documentation at the following link:"
 msgstr ""
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:375
+#: vidtuber/vt_dialogs/settings_ytdlp.py:376
 msgid "Manage the cookie file manually"
 msgstr ""
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:379
+#: vidtuber/vt_dialogs/settings_ytdlp.py:380
 msgid "Cookie file"
 msgstr "Cookie 文件"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:387
+#: vidtuber/vt_dialogs/settings_ytdlp.py:388
 msgid "File name from where cookies should be read and dumped to"
 msgstr ""
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:390
+#: vidtuber/vt_dialogs/settings_ytdlp.py:391
 msgid "Browse"
 msgstr "浏览"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:393
+#: vidtuber/vt_dialogs/settings_ytdlp.py:394
 msgid "Extract cookies automatically from your browser"
 msgstr "自动从你的浏览器提取 Cookie"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:399
+#: vidtuber/vt_dialogs/settings_ytdlp.py:400
 msgid "Web Browser"
 msgstr "网页浏览器"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:425
+#: vidtuber/vt_dialogs/settings_ytdlp.py:412
+msgid "Additional Parameters"
+msgstr ""
+
+#: vidtuber/vt_dialogs/settings_ytdlp.py:417
+msgid ""
+"If necessary, enter these parameters and provide them using the required prefixes:\n"
+"\n"
+"• +KEYRING (e.g., +gnomekeyring)\n"
+"• :PROFILE (e.g., :Default)\n"
+"• ::CONTAINER (Firefox only, e.g., ::Work)\n"
+"\n"
+"Example: +gnomekeyring:Default::Work"
+msgstr ""
+
+#: vidtuber/vt_dialogs/settings_ytdlp.py:447
 msgid "Cookies"
 msgstr "Cookies"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:472
+#: vidtuber/vt_dialogs/settings_ytdlp.py:494
 msgid "User Options"
 msgstr ""
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:505
+#: vidtuber/vt_dialogs/settings_ytdlp.py:528
 msgid "Do you want to remove the current cookie file from your system?"
 msgstr "确定从系统里删除当前的 Cookie 文件吗？"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:507 vidtuber/vt_dialogs/showlogs.py:172 vidtuber/vt_dialogs/wizard_dlg.py:259 vidtuber/vt_dialogs/wizard_dlg.py:422
+#: vidtuber/vt_dialogs/settings_ytdlp.py:530 vidtuber/vt_dialogs/showlogs.py:172 vidtuber/vt_dialogs/wizard_dlg.py:259 vidtuber/vt_dialogs/wizard_dlg.py:422
 msgid "Please confirm"
 msgstr "请确认"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:550
+#: vidtuber/vt_dialogs/settings_ytdlp.py:572
 msgid "Locate your cookie file"
 msgstr "定位你的 Cookie 文件"
 
-#: vidtuber/vt_dialogs/settings_ytdlp.py:566 vidtuber/vt_main/main_frame.py:456
+#: vidtuber/vt_dialogs/settings_ytdlp.py:588 vidtuber/vt_main/main_frame.py:451
 msgid "Choose Destination"
 msgstr "选择输出目录"
 
@@ -735,7 +750,7 @@ msgstr "为视频编写字幕"
 msgid "Download subtitles only (do not include audio and video)"
 msgstr "仅下载字幕（不包含音频和视频）"
 
-#: vidtuber/vt_dialogs/subtitles_editor.py:137 vidtuber/vt_panels/downloader_gui.py:206
+#: vidtuber/vt_dialogs/subtitles_editor.py:137 vidtuber/vt_panels/downloader_gui.py:238
 msgid "Subtitles Editor"
 msgstr "字幕编辑器"
 
@@ -754,7 +769,7 @@ msgid ""
 "subtitles except those in Italian, Dutch and French."
 msgstr ""
 
-#: vidtuber/vt_dialogs/widget_utils.py:120 vidtuber/vt_main/main_frame.py:684
+#: vidtuber/vt_dialogs/widget_utils.py:120 vidtuber/vt_main/main_frame.py:673
 msgid "Stop"
 msgstr "停止"
 
@@ -883,15 +898,15 @@ msgstr ""
 "\n"
 "“{}”\n"
 
-#: vidtuber/vt_io/checkup.py:44 vidtuber/vt_io/io_tools.py:148 vidtuber/vt_panels/downloader_gui.py:658 vidtuber/vt_panels/textdrop.py:140
+#: vidtuber/vt_io/checkup.py:44 vidtuber/vt_io/io_tools.py:153 vidtuber/vt_panels/downloader_gui.py:674 vidtuber/vt_panels/textdrop.py:147
 msgid "Vidtuber - Error!"
 msgstr "Vidtuber - 错误！"
 
-#: vidtuber/vt_io/io_tools.py:92
+#: vidtuber/vt_io/io_tools.py:94
 msgid "Vidtuber - Loading..."
 msgstr ""
 
-#: vidtuber/vt_io/io_tools.py:93
+#: vidtuber/vt_io/io_tools.py:95
 #, fuzzy
 msgid ""
 "Wait....\n"
@@ -900,11 +915,11 @@ msgstr ""
 "Wait....\n"
 "检索所需数据。"
 
-#: vidtuber/vt_main/main_frame.py:87 vidtuber/vt_main/main_frame.py:748
+#: vidtuber/vt_main/main_frame.py:87 vidtuber/vt_main/main_frame.py:737
 msgid "Vidtuber - List of URLs"
 msgstr ""
 
-#: vidtuber/vt_main/main_frame.py:103 vidtuber/vt_main/main_frame.py:747 vidtuber/vt_panels/downloader_gui.py:352 vidtuber/vt_panels/textdrop.py:362
+#: vidtuber/vt_main/main_frame.py:103 vidtuber/vt_main/main_frame.py:736 vidtuber/vt_panels/downloader_gui.py:382 vidtuber/vt_panels/textdrop.py:369
 msgid "Ready"
 msgstr "准备就绪"
 
@@ -933,7 +948,7 @@ msgstr "退出\tCtrl+Q"
 msgid "File"
 msgstr "文件"
 
-#: vidtuber/vt_main/main_frame.py:275 vidtuber/vt_panels/textdrop.py:308 vidtuber/vt_panels/textdrop.py:335
+#: vidtuber/vt_main/main_frame.py:275 vidtuber/vt_panels/textdrop.py:315 vidtuber/vt_panels/textdrop.py:342
 msgid "Paste\tCtrl+V"
 msgstr "粘贴\tCtrl+Q"
 
@@ -941,7 +956,7 @@ msgstr "粘贴\tCtrl+Q"
 msgid "Paste the copied URLs from clipboard"
 msgstr ""
 
-#: vidtuber/vt_main/main_frame.py:278 vidtuber/vt_panels/textdrop.py:309 vidtuber/vt_panels/textdrop.py:338
+#: vidtuber/vt_main/main_frame.py:278 vidtuber/vt_panels/textdrop.py:316 vidtuber/vt_panels/textdrop.py:345
 msgid "Remove selected URL\tDEL"
 msgstr "移除选中的链接\tDEL"
 
@@ -949,7 +964,7 @@ msgstr "移除选中的链接\tDEL"
 msgid "Remove the selected URL from the list"
 msgstr "从列表中移除选中的链接"
 
-#: vidtuber/vt_main/main_frame.py:282 vidtuber/vt_panels/textdrop.py:310 vidtuber/vt_panels/textdrop.py:341
+#: vidtuber/vt_main/main_frame.py:282 vidtuber/vt_panels/textdrop.py:317 vidtuber/vt_panels/textdrop.py:348
 msgid "Clear list\tShift+DEL"
 msgstr "清空列表\tShift+DEL"
 
@@ -1060,7 +1075,7 @@ msgstr ""
 msgid "Help"
 msgstr "帮助"
 
-#: vidtuber/vt_main/main_frame.py:434
+#: vidtuber/vt_main/main_frame.py:440
 #, python-brace-format
 msgid ""
 "- Executable version currently used: {0}\n"
@@ -1068,15 +1083,15 @@ msgid ""
 "{2}"
 msgstr ""
 
-#: vidtuber/vt_main/main_frame.py:437
+#: vidtuber/vt_main/main_frame.py:443
 msgid "Vidtuber - About «yt-dlp»"
 msgstr ""
 
-#: vidtuber/vt_main/main_frame.py:478
+#: vidtuber/vt_main/main_frame.py:473
 msgid "Some changes require restarting the application."
 msgstr "一些更改需要重启应用。"
 
-#: vidtuber/vt_main/main_frame.py:483
+#: vidtuber/vt_main/main_frame.py:478
 #, python-brace-format
 msgid ""
 "{0}\n"
@@ -1087,254 +1102,236 @@ msgstr ""
 "\n"
 "确定要重启应用吗？"
 
-#: vidtuber/vt_main/main_frame.py:485
+#: vidtuber/vt_main/main_frame.py:480
 msgid "Restart Vidtuber?"
 msgstr ""
 
-#: vidtuber/vt_main/main_frame.py:595
-msgid ""
-"No publications found!\n"
-"ERROR: tag_name"
-msgstr ""
-
-#: vidtuber/vt_main/main_frame.py:611
+#: vidtuber/vt_main/main_frame.py:600
 #, python-brace-format
 msgid "A new release is available - v.{0}\n"
 msgstr "新版本可用 - v.{0}\n"
 
-#: vidtuber/vt_main/main_frame.py:614
+#: vidtuber/vt_main/main_frame.py:603
 msgid "You are using a development version that has not yet been released!\n"
 msgstr "您正在使用一个尚未发布的开发版本！\n"
 
-#: vidtuber/vt_main/main_frame.py:617
+#: vidtuber/vt_main/main_frame.py:606
 msgid "Congratulation! You are already using the latest version.\n"
 msgstr "恭喜！您正在使用最新版本。\n"
 
-#: vidtuber/vt_main/main_frame.py:666
+#: vidtuber/vt_main/main_frame.py:655
 msgid "Go to the previous panel"
 msgstr "转到上一个面板"
 
-#: vidtuber/vt_main/main_frame.py:667
+#: vidtuber/vt_main/main_frame.py:656
 msgid "Back"
 msgstr "上一步"
 
-#: vidtuber/vt_main/main_frame.py:671
+#: vidtuber/vt_main/main_frame.py:660
 msgid "Go to the next panel"
 msgstr "转到下一个面板"
 
-#: vidtuber/vt_main/main_frame.py:672
+#: vidtuber/vt_main/main_frame.py:661
 msgid "Next"
 msgstr "下一步"
 
-#: vidtuber/vt_main/main_frame.py:676
+#: vidtuber/vt_main/main_frame.py:665
 msgid "User Options and other download settings"
 msgstr ""
 
-#: vidtuber/vt_main/main_frame.py:677
+#: vidtuber/vt_main/main_frame.py:666
 msgid "Options"
 msgstr "选项"
 
-#: vidtuber/vt_main/main_frame.py:679 vidtuber/vt_main/main_frame.py:680
+#: vidtuber/vt_main/main_frame.py:668 vidtuber/vt_main/main_frame.py:669
 msgid "Download"
 msgstr "下载"
 
-#: vidtuber/vt_main/main_frame.py:683
+#: vidtuber/vt_main/main_frame.py:672
 msgid "Stop Downloading"
 msgstr ""
 
-#: vidtuber/vt_main/main_frame.py:756
+#: vidtuber/vt_main/main_frame.py:745
 msgid "Vidtuber - Download Settings"
 msgstr ""
 
-#: vidtuber/vt_main/main_frame.py:773
+#: vidtuber/vt_main/main_frame.py:762
 msgid "Viewing last log"
 msgstr "查看最后的日志"
 
-#: vidtuber/vt_main/main_frame.py:785
+#: vidtuber/vt_main/main_frame.py:774
 msgid "Vidtuber - Downloader Message Monitoring"
 msgstr ""
 
-#: vidtuber/vt_main/main_frame.py:859
+#: vidtuber/vt_main/main_frame.py:848
 #, python-brace-format
 msgid "The system will turn off in {0} seconds"
 msgstr "系统将在 {0} 秒后关机"
 
-#: vidtuber/vt_main/main_frame.py:860
+#: vidtuber/vt_main/main_frame.py:849
 msgid "Vidtuber - Shutdown!"
 msgstr ""
 
-#: vidtuber/vt_main/main_frame.py:873
+#: vidtuber/vt_main/main_frame.py:862
 msgid "Error while shutting down. Please see file log for details."
 msgstr "关机时出现错误。请查看日志以获取详情。"
 
-#: vidtuber/vt_main/main_frame.py:886
+#: vidtuber/vt_main/main_frame.py:875
 #, python-brace-format
 msgid "Exiting the application in {0} seconds"
 msgstr "此程序将在 {0} 秒后退出"
 
-#: vidtuber/vt_main/main_frame.py:887
+#: vidtuber/vt_main/main_frame.py:876
 msgid "Vidtuber - Exiting!"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:133
+#: vidtuber/vt_panels/downloader_gui.py:190
 msgid "Best quality video"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:134
+#: vidtuber/vt_panels/downloader_gui.py:191
 msgid "Worst quality video"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:137
+#: vidtuber/vt_panels/downloader_gui.py:193
 msgid "Best available quality"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:138
+#: vidtuber/vt_panels/downloader_gui.py:194
 msgid "Format 18 (youtube.com only)"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:139
+#: vidtuber/vt_panels/downloader_gui.py:195
 msgid "Worst available quality"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:151
+#: vidtuber/vt_panels/downloader_gui.py:198
 msgid "Best quality audio"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:152
+#: vidtuber/vt_panels/downloader_gui.py:199
 msgid "Worst quality audio"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:154
+#: vidtuber/vt_panels/downloader_gui.py:200
 msgid "Combined Videos"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:155
+#: vidtuber/vt_panels/downloader_gui.py:201
 msgid "Videos by Resolution"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:156
+#: vidtuber/vt_panels/downloader_gui.py:202
 msgid "Split Audio and Video"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:157
+#: vidtuber/vt_panels/downloader_gui.py:203
 msgid "Audio Only"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:158
+#: vidtuber/vt_panels/downloader_gui.py:204
 msgid "Format Codes"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:196
+#: vidtuber/vt_panels/downloader_gui.py:228
 msgid "Download Mode:"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:213
+#: vidtuber/vt_panels/downloader_gui.py:245
 msgid "Quality settings"
 msgstr "质量设置"
 
-#: vidtuber/vt_panels/downloader_gui.py:226
+#: vidtuber/vt_panels/downloader_gui.py:258
 msgid "Video format:"
 msgstr "视频格式："
 
-#: vidtuber/vt_panels/downloader_gui.py:246
+#: vidtuber/vt_panels/downloader_gui.py:278
 msgid "Audio format:"
 msgstr "音频格式："
 
-#: vidtuber/vt_panels/downloader_gui.py:328
+#: vidtuber/vt_panels/downloader_gui.py:360
 msgid ""
 "Unable to get format codes for playlists, channels and/or multiple videos.\n"
 "Please list only individual video URLs or choose another download mode."
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:333
+#: vidtuber/vt_panels/downloader_gui.py:365
 msgid "Unsupported"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:622
+#: vidtuber/vt_panels/downloader_gui.py:635
 msgid "Click the Reload Format Codes button."
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:623
+#: vidtuber/vt_panels/downloader_gui.py:636
 msgid "Format Code List Missing"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:632
+#: vidtuber/vt_panels/downloader_gui.py:643
 #, fuzzy
 msgid "At least one \"Format Code\" must be checked for each URL selected in green."
 msgstr "对于每个以绿色选择的URL，必须至少勾选一个 \"格式代码\"。"
 
-#: vidtuber/vt_panels/downloader_gui.py:634
+#: vidtuber/vt_panels/downloader_gui.py:645
 msgid "Incomplete Format Code Selection"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:655 vidtuber/vt_panels/textdrop.py:137
+#: vidtuber/vt_panels/downloader_gui.py:671 vidtuber/vt_panels/textdrop.py:144
 msgid "Missing «yt-dlp» executable. Please check the execution permissions and be sure to make the correct settings in the preferences dialog."
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:671
+#: vidtuber/vt_panels/downloader_gui.py:687
 msgid ""
 "Changes have been made to the command arguments.\n"
 "\n"
 "Are you sure you want to apply them?"
 msgstr ""
 
-#: vidtuber/vt_panels/downloader_gui.py:673
+#: vidtuber/vt_panels/downloader_gui.py:689
 msgid "Apply changes?"
 msgstr ""
 
-#: vidtuber/vt_panels/formatcode_id.py:71
+#: vidtuber/vt_panels/formatcode_id.py:66
 msgid "Format Code Properties"
 msgstr ""
 
-#: vidtuber/vt_panels/formatcode_id.py:77
+#: vidtuber/vt_panels/formatcode_id.py:72
 msgid "Merge files into one file"
 msgstr ""
 
-#: vidtuber/vt_panels/formatcode_id.py:81
+#: vidtuber/vt_panels/formatcode_id.py:76
 msgid "Download only the best selected qualities"
 msgstr "只下载选择的最好质量"
 
-#: vidtuber/vt_panels/formatcode_id.py:85
+#: vidtuber/vt_panels/formatcode_id.py:80
 msgid "Load"
 msgstr ""
 
-#: vidtuber/vt_panels/formatcode_id.py:88
+#: vidtuber/vt_panels/formatcode_id.py:83
 msgid "Reload format codes if needed"
 msgstr ""
 
-#: vidtuber/vt_panels/formatcode_id.py:96
-msgid "Id"
-msgstr ""
-
-#: vidtuber/vt_panels/formatcode_id.py:97 vidtuber/vt_panels/textdrop.py:123
-msgid "Url"
-msgstr "网址"
-
-#: vidtuber/vt_panels/formatcode_id.py:99
+#: vidtuber/vt_panels/formatcode_id.py:91
 msgid "Extension"
 msgstr "扩展"
 
-#: vidtuber/vt_panels/formatcode_id.py:100
+#: vidtuber/vt_panels/formatcode_id.py:92
 msgid "Resolution"
 msgstr "分辨率"
 
-#: vidtuber/vt_panels/formatcode_id.py:101
+#: vidtuber/vt_panels/formatcode_id.py:92
 msgid "Video Codec"
 msgstr ""
 
-#: vidtuber/vt_panels/formatcode_id.py:102
-msgid "Fps"
-msgstr ""
-
-#: vidtuber/vt_panels/formatcode_id.py:103
+#: vidtuber/vt_panels/formatcode_id.py:93
 msgid "Audio Codec"
 msgstr ""
 
-#: vidtuber/vt_panels/formatcode_id.py:104
+#: vidtuber/vt_panels/formatcode_id.py:93
 msgid "Language"
 msgstr ""
 
-#: vidtuber/vt_panels/formatcode_id.py:105
+#: vidtuber/vt_panels/formatcode_id.py:93
 msgid "Size"
 msgstr ""
 
@@ -1402,33 +1399,37 @@ msgstr "等等... 我打断了"
 msgid "Done"
 msgstr "完成"
 
-#: vidtuber/vt_panels/textdrop.py:125
+#: vidtuber/vt_panels/textdrop.py:129
+msgid "Url"
+msgstr "网址"
+
+#: vidtuber/vt_panels/textdrop.py:129
 msgid "Duration"
 msgstr ""
 
-#: vidtuber/vt_panels/textdrop.py:126
+#: vidtuber/vt_panels/textdrop.py:130
 msgid "Domain"
 msgstr ""
 
-#: vidtuber/vt_panels/textdrop.py:183
+#: vidtuber/vt_panels/textdrop.py:190
 msgid ""
 "Errors occurred while retrieving the requested data.\n"
 "See the related log file for more details."
 msgstr ""
 
-#: vidtuber/vt_panels/textdrop.py:235
+#: vidtuber/vt_panels/textdrop.py:242
 msgid "Drag or paste URLs here"
 msgstr "在此处拖入或粘贴链接"
 
-#: vidtuber/vt_panels/textdrop.py:245
+#: vidtuber/vt_panels/textdrop.py:252
 msgid "Save to:"
 msgstr "保存至："
 
-#: vidtuber/vt_panels/textdrop.py:269
+#: vidtuber/vt_panels/textdrop.py:276
 msgid "Set a new destination folder for downloads"
 msgstr "设置一个新的下载内容保存文件夹"
 
-#: vidtuber/vt_panels/textdrop.py:271
+#: vidtuber/vt_panels/textdrop.py:278
 msgid "Destination folder of downloads"
 msgstr "下载内容保存文件夹"
 

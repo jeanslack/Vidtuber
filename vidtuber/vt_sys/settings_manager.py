@@ -6,7 +6,7 @@ Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyleft - 2026 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Oct.26.2026
+Rev: Oct.28.2026
 Code checker: flake8, pylint
 
  This file is part of Vidtuber.
@@ -180,13 +180,13 @@ class ConfigManager:
         cookiefile (str)
         autogen_cookie_file (bool)
         webbrowser (str),
-        cookiesfrombrowser (list)
+        webbrowserOPT (str)
 
     frmtcode_column_width (list of int)
         column width in the format code panel (ytdownloader).
 
     """
-    VERSION = 2.9
+    VERSION = 3.0
     DEFAULT_OPTIONS = {"confversion": VERSION,
                        "yt-dlp_cmd": "",
                        "ytdlp_islocal": False,
@@ -241,7 +241,7 @@ class ConfigManager:
                        "cookiefile": "",
                        "autogen_cookie_file": False,
                        "webbrowser": "firefox",
-                       "cookiesfrombrowser": [None, None, None, None],
+                       "webbrowserOPT": "",
                        "playlistsubfolder": True,
                        "ssl_certificate": False,
                        "add_metadata": False,
